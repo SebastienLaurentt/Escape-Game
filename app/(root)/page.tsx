@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main className="">
-      <h1>Escape Game </h1>
+      <h1>Escape Gamess </h1>
     </main>
   );
 }
