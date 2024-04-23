@@ -5,9 +5,9 @@ import { Button } from "../ui/button";
 
 const Header = () => {
   return (
-    <header className="flex flex-row justify-between px-4">
+    <header className="flex flex-row justify-between py-4 px-4">
       <h1>Escape Room</h1>
-      <div>
+      <div className="flex flex-row items-center gap-x-4">
         <SignedIn>
           <UserButton />
         </SignedIn>
@@ -16,8 +16,9 @@ const Header = () => {
             <Link href="/sign-in">Login</Link>
           </Button>
         </SignedOut>
+        <Button>Book Now</Button>
       </div>
-      <Button>Book Now</Button>
+
     </header>
   );
 };
