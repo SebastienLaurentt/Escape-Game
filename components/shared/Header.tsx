@@ -13,10 +13,10 @@ const Header = () => {
         </SignedIn>
         <SignedOut>
           <Button>
-            <Link href="/sign-in">Login</Link>
+            <Link href="/sign-in">Se connecter </Link>
           </Button>
         </SignedOut>
-        <Button>Book Now</Button>
+        <Button>Réserver</Button>
       </div>
 
     </header>
