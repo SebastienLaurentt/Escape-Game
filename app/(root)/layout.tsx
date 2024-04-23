@@ -1,11 +1,15 @@
+import Header from "@/components/shared/Header";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body >{children}</body>
-    </html>
+    <div>
+      <Header />
+      <main className="flex-1" >{children}</main>
+    </div>
+
   );
 }
