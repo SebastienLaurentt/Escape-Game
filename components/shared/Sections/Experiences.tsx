@@ -8,8 +8,8 @@ const Experiences = () => {
     <Section marginBottom={true} marginTop={true} classname="">
       <SectionHeader title="Choisissez votre" titleHighlight="expérience !" />
       <ul className="flex flex-col gap-y-8 lg:flex-row gap-x-4">
-        <Link href="/experience/horror" className="text-white md:text-white/0 md:hover:text-white">
-          <li className="mx-auto relative ">
+        <Link href="/experience/horror" className="text-white lg:text-white/0 lg:hover:text-white mx-auto">
+          <li className=" relative">
             <Image
               src="/images/Experience1.jpg"
               alt="Paris"
@@ -21,8 +21,8 @@ const Experiences = () => {
             </span>
           </li>
         </Link>
-        <Link href="/experience/thriller" className="text-white md:text-white/0 md:hover:text-white">
-          <li className="mx-auto relative ">
+        <Link href="/experience/thriller" className="text-white lg:text-white/0 lg:hover:text-white mx-auto">
+          <li className="relative">
             <Image
               src="/images/Experience2.jpg"
               alt="Paris"
@@ -34,8 +34,8 @@ const Experiences = () => {
             </span>
           </li>
         </Link>
-        <Link href="/experience/night" className="text-white md:text-white/0 md:hover:text-white">
-          <li className="mx-auto relative ">
+        <Link href="/experience/night" className="text-white lg:text-white/0 lg:hover:text-white mx-auto">
+          <li className="relative">
             <Image
               src="/images/Experience3.jpg"
               alt="Paris"
