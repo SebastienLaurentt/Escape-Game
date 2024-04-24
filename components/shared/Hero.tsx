@@ -13,11 +13,11 @@ const Hero = () => {
           className="object-cover"
         />
       </div>
-      <div className="absolute text-white flex flex-col items-center px-4 mt-12 z-20">
-        <h1 className="text-3xl text-center font-bold">
+      <div className="absolute text-white flex flex-col items-center px-4 mt-20 lg:mt-28 z-20">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl text-center font-bold md:w-[400px] lg:w-[500px]">
           Bienvenue chez Escape Room !{" "}
         </h1>
-        <p className="my-4 w-[200px] md:text-lg md:w-[400px] text-center">
+        <p className="my-4 w-[200px] md:text-lg lg:text-xl md:w-[400px] text-center">
           Réservez une salle pour une expérience unique
         </p>
         <Button className="bg-white text-black">Réserver</Button>
