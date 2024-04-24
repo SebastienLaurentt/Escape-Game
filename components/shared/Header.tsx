@@ -14,7 +14,7 @@ const Header = () => {
     <header
       className={`${headerPosition} w-full `}
     >
-      <div className="flex  items-center  xl:mx-auto  flex-row justify-between xl:px-16 xl:max-w-[2000px] py-4">
+      <div className="flex px-4 items-center  xl:mx-auto  flex-row justify-between xl:px-16 xl:max-w-[2000px] py-4">
         <Link href="/">
           <Image src={logo} alt="Escape Room" width={50} height={50} />
         </Link>
