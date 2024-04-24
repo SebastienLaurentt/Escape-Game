@@ -4,8 +4,8 @@ import { Button } from "../ui/button";
 
 const Hero = () => {
   return (
-    <div className="flex flex-row justify-center">
-      <Image src={BgHome} width={1920} height={1080} alt="home picture" className="relative " />
+    <div className="flex flex-row justify-center h-screen ">
+      <Image src={BgHome} alt="home picture" className="relative object-cover " />
       <div className="absolute text-white flex flex-col ">
         <h1 className="text-3xl font-bold  mt-12">
           Bienvenue chez Escape Room !{" "}
