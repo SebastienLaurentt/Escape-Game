@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div className="relative flex flex-row justify-center h-screen overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-transparent to-black opacity-100 z-10" />
-      <div className="relative">
+      <div className="flex flex-row justify-center  relative h-screen">
         <Image
           src={BgHome}
           alt="home picture"
