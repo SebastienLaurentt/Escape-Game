@@ -1,6 +1,7 @@
 import React from 'react'
 import Section from '../Section'
 import SectionHeader from '../SectionHeader'
+import Image from 'next/image'
 
 const Experiences = () => {
   return (
@@ -9,9 +10,15 @@ const Experiences = () => {
           title="Choissisez votre"
           titleHighlight="expérience"
         />
-    <ul>
+    <ul className='flex flex-col gap-y-8'>
       <li>
-        
+        <Image src="/images/Experience1.jpg" alt="Paris" width={500} height={500} />
+      </li>
+      <li>
+        <Image src="/images/Experience1.jpg" alt="Paris" width={500} height={500} />
+      </li>
+      <li>
+        <Image src="/images/Experience1.jpg" alt="Paris" width={500} height={500} />
       </li>
     </ul>
     </Section>
