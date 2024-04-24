@@ -44,4 +44,16 @@
     body {
       @apply bg-background text-foreground;
     }
+
+    h1 {
+      @apply text-3xl md:text-5xl lg:text-7xl leading-[3rem] md:leading-[4rem] lg:leading-[5rem] font-bold;
+    }
+  
+    h2 {
+      @apply text-xl md:text-3xl leading-8 md:leading-[48px] font-bold mb-4  max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
+    }
+  
+    h3 {
+      @apply text-lg md:text-2xl leading-8 md:leading-10 font-medium mb-4 md:mb-6 lg:mb-8;
+    }
   }
