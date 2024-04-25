@@ -3,17 +3,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import navData from "../../data/navData";
 import logo from "../../public/images/Logo.svg";
 import BurgerMenu from "./BurgerMenu";
+import { gsap } from "gsap";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const headerPosition = pathname === "/" ? "absolute top-0 z-20" : "";
+
+  useEffect(() => {
+    gsap.fromTo(
+      "#header",
+      { opacity: 0 },
+      { opacity: 1, duration: 1, delay: 0.8 }
+    );
+  }, []);
+
   return (
-    <header className={`${headerPosition} w-full `}>
+    <header id="header" className={`${headerPosition} w-full `}>
       <div className="flex flex-row items-center  justify-between  px-6 py-4 lg:px-10 lg:py-6 xl:mx-auto xl:max-w-[2000px] xl:px-16">
         <Link href="/">
           <Image src={logo} alt="Escape Room" width={50} height={50} />
