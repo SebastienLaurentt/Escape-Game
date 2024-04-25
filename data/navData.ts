@@ -5,12 +5,12 @@ const navData = [
     burgerMenuName: "ACCUEIL",
   },
   {
-    href: "/",
+    href: "/experiences",
     name: "Expériences",
     burgerMenuName: "EXPERIENCES",
   },
   {
-    href: "/",
+    href: "/contact",
     name: "Contact",
     burgerMenuName: "CONTACT",
   },
