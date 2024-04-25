@@ -16,7 +16,7 @@ const Infos = () => {
             <h3>Horaires d&apos;ouverture</h3>
             <div className="flex flex-row gap-x-8  md:gap-y-2 ">
               <div >
-                <Calendar size={48} />
+                <Calendar size={48} color="#991b1b" />
               </div>
               <div className="flex flex-col">
                 <span>7 jours / 7 </span>
@@ -28,7 +28,7 @@ const Infos = () => {
             <h3>Localisation</h3>
             <div className="flex flex-row gap-x-8  md:gap-y-2 ">
               <div >
-                <LocateFixed size={48} />
+                <LocateFixed size={48} color="#991b1b" />
               </div>
               <div className="flex flex-col">
                 <span>5 Rue Marcel Pagnol </span>
@@ -53,7 +53,7 @@ const Infos = () => {
             <ul className="flex flex-col gap-y-4 md:gap-y-12">
               <li>
                 <div className="flex flex-row gap-x-8  md:gap-y-2 ">
-                  <Phone size={48} />
+                  <Phone size={48} color="#991b1b" />
                   <div className="flex flex-col">
                     <span>Téléphone</span>
                     <span>XX XX XX XX XX</span>
@@ -62,7 +62,7 @@ const Infos = () => {
               </li>
               <li>
                 <div className="flex flex-row  gap-x-8 md:gap-y-2">
-                  <Mail size={48} />
+                  <Mail size={48} color="#991b1b" />
                   <div className="flex flex-col">
                     <span>Email</span>
                     <span>xxx.xxxx@xxxx.fr</span>
