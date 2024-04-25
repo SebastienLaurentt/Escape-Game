@@ -27,29 +27,30 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
   }, [isOpen]);
 
   useEffect(() => {
-    if (isOpen) {
-      // Header Opacity Animation
-      gsap.fromTo(
-        "#headerBurgerMenu",
-        { opacity: 0 },
-        { opacity: 1, duration: 1 }
-      );
+    // Close Button Opacity Animation
+    gsap.fromTo(
+      "#CloseBurgerMenu",
+      { opacity: 0 },
+      { opacity: 1, duration: 3 }
+    );
 
-      // Nav Opacity and Y translation Animation
-      gsap.fromTo(
-        "#NavBurgerMenu",
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1 }
-      );
+    // Logo Opacity Animation
+    gsap.fromTo("#LogoBurgerMenu", { opacity: 0 }, { opacity: 1, duration: 3 });
 
-      // Instagram Button Opacity and Y translation Animation
-      gsap.fromTo(
-        "#InstagramBurgerMenu",
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1 }
-      );
-    }
-  }, [isOpen]);
+    // Nav Opacity and Y translation Animation
+    gsap.fromTo(
+      "#NavBurgerMenu",
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 1 }
+    );
+
+    // Social Buttons Opacity and Y translation Animation
+    gsap.fromTo(
+      "#SocialBurgerMenu",
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 1 }
+    );
+  });
 
   return (
     <>
@@ -67,6 +68,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
         }`}
       >
         <button
+          id="CloseBurgerMenu"
           onClick={() => setIsOpen(false)}
           aria-label="Fermer le menu mobile"
           className="absolute right-7 top-7 lg:right-20"
@@ -76,7 +78,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
 
         <div className="mt-32 flex flex-col gap-y-12">
           <Link href="/">
-            <Image src={Logo} alt="logo" className="mx-auto  size-40" />
+            <Image id="LogoBurgerMenu" src={Logo} alt="logo" className="mx-auto  size-40" />
           </Link>
 
           <ul
@@ -92,7 +94,10 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
             ))}
           </ul>
 
-          <div className="flex flex-row justify-center gap-x-8">
+          <div
+            id="SocialBurgerMenu"
+            className="flex flex-row justify-center gap-x-8"
+          >
             <button
               onClick={() => setIsOpen(false)}
               aria-label="Allez à la page Instagram de Escape Room"
