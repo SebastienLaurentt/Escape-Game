@@ -3,8 +3,8 @@ import { Facebook, Instagram, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import navData from "../data/navData";
-import Logo from "../public/images/Logo.svg";
+import navData from "../../data/navData";
+import Logo from "../../public/images/Logo.svg";
 
 interface IBurgerMenu {
   isOpen: boolean;
@@ -69,7 +69,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
         <button
           onClick={() => setIsOpen(false)}
           aria-label="Fermer le menu mobile"
-          className="absolute right-7 top-7"
+          className="absolute right-7 top-7 lg:right-20"
         >
           <X className="lg:size-10" />
         </button>

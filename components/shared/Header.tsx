@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import navData from "../../data/navData";
 import logo from "../../public/images/Logo.svg";
-import BurgerMenu from "../BurgerMenu";
+import BurgerMenu from "./BurgerMenu";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +14,7 @@ const Header = () => {
   const headerPosition = pathname === "/" ? "absolute top-0 z-20" : "";
   return (
     <header className={`${headerPosition} w-full `}>
-      <div className="flex flex-row items-center  justify-between  px-6 py-4 lg:px-10 xl:mx-auto xl:max-w-[2000px] xl:px-16">
+      <div className="flex flex-row items-center  justify-between  px-6 py-4 lg:px-10 lg:py-6 xl:mx-auto xl:max-w-[2000px] xl:px-16">
         <Link href="/">
           <Image src={logo} alt="Escape Room" width={50} height={50} />
         </Link>
