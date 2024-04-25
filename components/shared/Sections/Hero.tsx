@@ -1,11 +1,11 @@
 import Image from "next/image";
-import BgHome from "../../../public/images/BgHome.webp";
+import BgHome from "../../../public/images/BgHome2.webp";
 import { Button } from "../../ui/button";
 
 const Hero = () => {
   return (
     <div className="relative flex h-screen flex-row justify-center overflow-hidden">
-      <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-70" />
+      <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-60" />
       <div className="relative flex h-screen  flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
