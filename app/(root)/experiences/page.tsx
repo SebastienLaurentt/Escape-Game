@@ -2,19 +2,21 @@ import ExperienceLongerCard from "@/components/shared/ExperienceLongerCard";
 import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
 import HorrorImg from "../../../public/images/Experience1.jpg";
+import ThrillerImg from "../../../public/images/Experience2.jpg";
+import NightImg from "../../../public/images/Experience3.jpg";
 
 const Experiences = () => {
   return (
     <>
       <PageTitle title="Choisissez votre expérience" />
-      <Section marginBottom={true} marginTop={true} classname="">
+      <Section marginBottom={true} marginTop={false} classname="">
         <ul className="flex flex-col lg:flex-row lg:gap-x-4">
           <li>
             <ExperienceLongerCard
               src={HorrorImg}
               alt="Logo de l'expérience Horror"
               name="Horror"
-              description="lorem00000"
+              description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante ultime."
               peopleNumber="4-6"
               duration="1"
               price="40"
@@ -22,10 +24,10 @@ const Experiences = () => {
           </li>
           <li>
             <ExperienceLongerCard
-              src={HorrorImg}
-              alt="Logo de l'expérience Horror"
-              name="Horror"
-              description="lorem00000"
+              src={ThrillerImg}
+              alt="Logo de l'expérience Thriller"
+              name="Thriller"
+              description="Vivez une montée d'adrénaline palpitante alors que vous explorez des mystères sombres et des secrets sinistres dans cette expérience pleine de suspense."
               peopleNumber="4-6"
               duration="1"
               price="40"
@@ -33,10 +35,10 @@ const Experiences = () => {
           </li>
           <li>
             <ExperienceLongerCard
-              src={HorrorImg}
-              alt="Logo de l'expérience Horror"
-              name="Horror"
-              description="lorem00000"
+              src={NightImg}
+              alt="Logo de l'expérience Night"
+              name="Night"
+              description="Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité lors de cette aventure nocturne effrayante."
               peopleNumber="4-6"
               duration="1"
               price="40"
