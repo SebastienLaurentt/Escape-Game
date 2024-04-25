@@ -1,8 +1,9 @@
+import PageTitle from '@/components/shared/PageTitle'
 import React from 'react'
 
 const Experiences = () => {
   return (
-    <div>page</div>
+    <PageTitle title="Choisissez votre expérience" />
   )
 }
 
