@@ -4,16 +4,16 @@ import { Button } from "../../ui/button";
 
 const Hero = () => {
   return (
-    <div className="relative flex flex-row justify-center h-screen overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70 z-10" />
-      <div className="flex flex-row justify-center  relative h-screen">
+    <div className="relative flex h-screen flex-row justify-center overflow-hidden">
+      <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-70" />
+      <div className="relative flex h-screen  flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <div className="absolute  flex flex-col items-center px-4 mt-60 lg:mt-28 z-20">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl text-center font-bold md:w-[400px] lg:w-[500px]">
+      <div className="absolute  z-20 mt-60 flex flex-col items-center px-4 lg:mt-28">
+        <h1 className="text-center text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
           Bienvenue chez Escape Room !{" "}
         </h1>
-        <p className="my-4 w-[200px] md:text-lg lg:text-xl md:w-[400px] text-center">
+        <p className="my-4 w-[200px] text-center md:w-[400px] md:text-lg lg:text-xl">
           Réservez une salle pour une expérience unique
         </p>
         <Button className="bg-white text-black">Réserver</Button>
