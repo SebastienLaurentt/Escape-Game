@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
+import { gsap } from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 import BgHome from "../../../public/images/BgHome2.webp";
 import { Button } from "../../ui/button";
-import { gsap } from "gsap";
 
 const Hero = () => {
-
   useEffect(() => {
     const screenWidth = window.innerWidth;
     // Hero Text Animation
@@ -28,7 +28,10 @@ const Hero = () => {
       <div className="relative flex h-screen  flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <div id="hero-text" className="absolute  z-10 mt-60 flex flex-col items-center px-4 text-center lg:mt-72 xl:ml-20 xl:mt-0 xl:items-start xl:text-left 2xl:mb-12 2xl:ml-52">
+      <div
+        id="hero-text"
+        className="absolute  z-10 mt-60 flex flex-col items-center px-4 text-center lg:mt-72 xl:ml-20 xl:mt-0 xl:items-start xl:text-left 2xl:mb-12 2xl:ml-52"
+      >
         <h1 className=" text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
           Bienvenue chez{" "}
           <span className="text-accent-foreground">Escape Room !</span>
@@ -36,7 +39,9 @@ const Hero = () => {
         <p className="my-4 w-[200px]  md:w-[400px] md:text-lg lg:text-xl">
           Réservez une salle pour une expérience unique
         </p>
-        <Button>Réserver</Button>
+        <Button asChild>
+          <Link href="/experiences">Réserver</Link>
+        </Button>
       </div>
     </div>
   );
