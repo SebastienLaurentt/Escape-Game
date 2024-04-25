@@ -48,7 +48,7 @@ const Infos = () => {
           <div className="md:w-1/2">
             <h3>Par téléphone ou email</h3>
             <p className="mb-8 md:mb-24 ">
-              Mr Ruben Attia <br /> Président des Galopins
+              Mr Ruben Attia <br /> Président 
             </p>
             <ul className="flex flex-col gap-y-4 md:gap-y-12">
               <li>
