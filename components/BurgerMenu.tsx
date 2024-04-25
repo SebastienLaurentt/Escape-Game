@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
 import { Instagram, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import navData from "../data/navData";
-import Image from "next/image";
-import Logo from "../../public/images/Logo.svg";
+import Logo from "../public/images/Logo.svg";
 
 interface IBurgerMenu {
   isOpen: boolean;
@@ -69,7 +69,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
       </button>
 
       <div
-        className={`fixed left-0 top-0  flex min-h-screen w-full flex-col justify-between bg-white pb-24 pt-12 text-center text-black transition-all duration-500 ease-in-out  ${
+        className={`fixed left-0 top-0 z-40 flex min-h-screen w-full flex-col justify-between  bg-black pb-24 pt-12 text-center transition-all duration-500 ease-in-out  ${
           isOpen ? "opacity-100" : "hidden opacity-0"
         }`}
       >
@@ -78,9 +78,8 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
           className="flex flex-col items-center justify-center"
         >
           <Link href="/">
-            <Image src={Logo} alt="logo"/>
+            <Image src={Logo} alt="logo" className="size-24" />
           </Link>
-
 
           <button
             id="closingButton"
