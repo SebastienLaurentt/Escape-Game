@@ -1,5 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+import HorrorImg from "../../../public/images/Experience1.jpg";
+import ThrillerImg from "../../../public/images/Experience2.jpg";
+import NightImg from "../../../public/images/Experience3.jpg";
+import ExperienceHomeCard from "../ExperienceHomeCard";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 
@@ -9,57 +11,30 @@ const Experiences = () => {
       <SectionHeader title="Choisissez votre" titleHighlight="expérience !" />
       <ul className="flex flex-col gap-x-4 gap-y-8 lg:flex-row">
         <li>
-          <Link
+          <ExperienceHomeCard
             href="/experiences/horror"
-            className="relative mx-auto text-white xl:text-white/0 xl:hover:text-white"
-          >
-            <Image
-              src="/images/Experience1.jpg"
-              alt="Paris"
-              width={500}
-              height={500}
-              className="rounded-xl shadow-md shadow-gray-600"
-            />
-            <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
-              Horror
-            </span>
-          </Link>
+            src={HorrorImg}
+            alt="Logo de l'expérience Horror"
+            name="Horror"
+          />
         </li>
 
         <li>
-          <Link
+          <ExperienceHomeCard
             href="/experiences/thriller"
-            className="relative mx-auto text-white xl:text-white/0 xl:hover:text-white"
-          >
-            <Image
-              src="/images/Experience2.jpg"
-              alt="Paris"
-              width={500}
-              height={500}
-              className="rounded-xl shadow-md shadow-gray-600"
-            />
-            <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
-              Thriller
-            </span>
-          </Link>
+            src={ThrillerImg}
+            alt="Logo de l'expérience Thriller"
+            name="Thriller"
+          />
         </li>
 
         <li>
-          <Link
+          <ExperienceHomeCard
             href="/experiences/night"
-            className="relative mx-auto text-white xl:text-white/0 xl:hover:text-white"
-          >
-            <Image
-              src="/images/Experience3.jpg"
-              alt="Paris"
-              width={500}
-              height={500}
-              className="rounded-xl shadow-md shadow-gray-600"
-            />
-            <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
-              Night
-            </span>
-          </Link>
+            src={NightImg}
+            alt="Logo de l'expérience Night"
+            name="Night"
+          />
         </li>
       </ul>
     </Section>
