@@ -81,7 +81,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
 
           <ul
             id="NavBurgerMenu"
-            className=" flex flex-col gap-4 p-4 text-md font-extralight tracking-[.5em] md:text-lg lg:gap-8 lg:text-xl"
+            className=" flex flex-col gap-6 p-4 text-md font-extralight tracking-[.5em] md:text-lg lg:gap-8 lg:text-xl"
           >
             {navData.map((link) => (
               <li key={link.name}>
