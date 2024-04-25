@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { Instagram, X } from "lucide-react";
+import { Facebook, Instagram, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -28,13 +28,6 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
 
   useEffect(() => {
     if (isOpen) {
-      // Closing Button Rotation Animation
-      gsap.fromTo(
-        "#closingButton",
-        { rotation: 0 },
-        { rotation: 360, duration: 1 }
-      );
-
       // Header Opacity Animation
       gsap.fromTo(
         "#headerBurgerMenu",
@@ -69,50 +62,55 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
       </button>
 
       <div
-        className={`fixed left-0 top-0 z-40 flex min-h-screen w-full flex-col justify-between  bg-black pb-24 pt-12 text-center transition-all duration-500 ease-in-out  ${
+        className={`fixed left-0 top-0 z-40 flex h-screen w-full flex-col   bg-black pb-24 pt-12 text-center transition-all duration-500 ease-in-out  ${
           isOpen ? "opacity-100" : "hidden opacity-0"
         }`}
       >
-        <div
-          id="headerBurgerMenu"
-          className="flex flex-col items-center justify-center"
-        >
-          <Link href="/">
-            <Image src={Logo} alt="logo" className="size-24" />
-          </Link>
-
-          <button
-            id="closingButton"
-            onClick={() => setIsOpen(false)}
-            aria-label="Fermer le menu mobile"
-          >
-            <X className="lg:size-10" />
-          </button>
-        </div>
-
-        <ul
-          id="NavBurgerMenu"
-          className=" flex flex-col gap-4 p-4 text-md font-extralight tracking-[.5em] md:text-lg lg:gap-8 lg:text-xl"
-        >
-          {navData.map((link) => (
-            <li key={link.name}>
-              <Link href={link.href} onClick={() => setIsOpen(false)}>
-                {link.burgerMenuName}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
         <button
-          id="InstagramBurgerMenu"
-          className=" flex w-full justify-center"
           onClick={() => setIsOpen(false)}
-          aria-label="Allez à la page Instagram de Escape Room"
+          aria-label="Fermer le menu mobile"
+          className="absolute right-7 top-7"
         >
-          <Link href="" target="_blank">
-            <Instagram className="  size-8 md:size-10 lg:size-12" />
-          </Link>
+          <X className="lg:size-10" />
         </button>
+
+        <div className="mt-32 flex flex-col gap-y-12">
+          <Link href="/">
+            <Image src={Logo} alt="logo" className="mx-auto  size-40" />
+          </Link>
+
+          <ul
+            id="NavBurgerMenu"
+            className=" flex flex-col gap-4 p-4 text-md font-extralight tracking-[.5em] md:text-lg lg:gap-8 lg:text-xl"
+          >
+            {navData.map((link) => (
+              <li key={link.name}>
+                <Link href={link.href} onClick={() => setIsOpen(false)}>
+                  {link.burgerMenuName}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-row justify-center gap-x-8">
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="Allez à la page Instagram de Escape Room"
+            >
+              <Link href="" target="_blank">
+                <Instagram className="  size-8 md:size-10 lg:size-12" />
+              </Link>
+            </button>
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="Allez à la page Facebook de Escape Room"
+            >
+              <Link href="" target="_blank">
+                <Facebook className="  size-8 md:size-10 lg:size-12" />
+              </Link>
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
