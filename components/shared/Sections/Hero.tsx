@@ -4,16 +4,17 @@ import { Button } from "../../ui/button";
 
 const Hero = () => {
   return (
-    <div className="relative flex h-screen flex-row justify-center overflow-hidden">
-      <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-60" />
+    <div className="relative flex h-screen flex-row justify-center overflow-hidden xl:items-center xl:justify-start">
+      <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-80" />
       <div className="relative flex h-screen  flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <div className="absolute  z-10 mt-60 flex flex-col items-center px-4 lg:mt-28">
-        <h1 className="text-center text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
-          Bienvenue chez Escape Room !{" "}
+      <div className="absolute  z-10 mt-60 flex flex-col items-center px-4 text-center lg:mt-72 xl:ml-20 xl:mt-0 xl:items-start xl:text-left 2xl:mb-12 2xl:ml-52">
+        <h1 className=" text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
+          Bienvenue chez{" "}
+          <span className="text-accent-foreground">Escape Room !</span>
         </h1>
-        <p className="my-4 w-[200px] text-center md:w-[400px] md:text-lg lg:text-xl">
+        <p className="my-4 w-[200px]  md:w-[400px] md:text-lg lg:text-xl">
           Réservez une salle pour une expérience unique
         </p>
         <Button className="bg-white text-black">Réserver</Button>
