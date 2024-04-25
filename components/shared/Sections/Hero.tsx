@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="relative flex h-screen  flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <div className="absolute  z-20 mt-60 flex flex-col items-center px-4 lg:mt-28">
+      <div className="absolute  z-10 mt-60 flex flex-col items-center px-4 lg:mt-28">
         <h1 className="text-center text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
           Bienvenue chez Escape Room !{" "}
         </h1>
