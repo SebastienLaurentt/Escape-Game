@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import HorrorImg from "../../../public/images/Experience1.jpg";
 import ThrillerImg from "../../../public/images/Experience2.jpg";
 import NightImg from "../../../public/images/Experience3.jpg";
@@ -37,6 +38,11 @@ const Experiences = () => {
           />
         </li>
       </ul>
+      <div className="my-12 flex flex-row justify-center">
+        <Button href="/experiences">
+          Réserver
+        </Button>
+      </div>
     </Section>
   );
 };
