@@ -14,7 +14,6 @@ const Experiences = () => {
       <ul className="flex flex-col gap-x-4 gap-y-8 lg:flex-row">
         <li>
           <ExperienceHomeCard
-            href="/experiences/horror"
             src={HorrorImg}
             alt="Logo de l'expérience Horror"
             name="Horror"
@@ -23,7 +22,6 @@ const Experiences = () => {
 
         <li>
           <ExperienceHomeCard
-            href="/experiences/thriller"
             src={ThrillerImg}
             alt="Logo de l'expérience Thriller"
             name="Thriller"
@@ -32,7 +30,6 @@ const Experiences = () => {
 
         <li>
           <ExperienceHomeCard
-            href="/experiences/night"
             src={NightImg}
             alt="Logo de l'expérience Night"
             name="Night"
