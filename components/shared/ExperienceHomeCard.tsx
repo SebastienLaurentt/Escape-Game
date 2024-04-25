@@ -24,7 +24,7 @@ const ExperienceHomeCard = ({
         alt={alt}
         className="w-full rounded-xl shadow-md shadow-gray-600"
       />
-      <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
+      <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl font-bold uppercase md:text-4xl">
         {name}
       </span>
     </Link>
