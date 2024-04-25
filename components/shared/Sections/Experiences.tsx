@@ -8,54 +8,59 @@ const Experiences = () => {
     <Section marginBottom={true} marginTop={true} classname="">
       <SectionHeader title="Choisissez votre" titleHighlight="expérience !" />
       <ul className="flex flex-col gap-x-4 gap-y-8 lg:flex-row">
-        <Link
-          href="/experience/horror"
-          className="mx-auto text-white lg:text-white/0 lg:hover:text-white"
-        >
-          <li className=" relative">
+        <li>
+          <Link
+            href="/experiences/horror"
+            className="relative mx-auto text-white xl:text-white/0 xl:hover:text-white"
+          >
             <Image
               src="/images/Experience1.jpg"
               alt="Paris"
               width={500}
               height={500}
+              className="rounded-xl shadow-md shadow-gray-600"
             />
             <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
               Horror
             </span>
-          </li>
-        </Link>
-        <Link
-          href="/experience/thriller"
-          className="mx-auto text-white lg:text-white/0 lg:hover:text-white"
-        >
-          <li className="relative">
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/experiences/thriller"
+            className="relative mx-auto text-white xl:text-white/0 xl:hover:text-white"
+          >
             <Image
               src="/images/Experience2.jpg"
               alt="Paris"
               width={500}
               height={500}
+              className="rounded-xl shadow-md shadow-gray-600"
             />
             <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
               Thriller
             </span>
-          </li>
-        </Link>
-        <Link
-          href="/experience/night"
-          className="mx-auto text-white lg:text-white/0 lg:hover:text-white"
-        >
-          <li className="relative">
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/experiences/night"
+            className="relative mx-auto text-white xl:text-white/0 xl:hover:text-white"
+          >
             <Image
               src="/images/Experience3.jpg"
               alt="Paris"
               width={500}
               height={500}
+              className="rounded-xl shadow-md shadow-gray-600"
             />
             <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
               Night
             </span>
-          </li>
-        </Link>
+          </Link>
+        </li>
       </ul>
     </Section>
   );
