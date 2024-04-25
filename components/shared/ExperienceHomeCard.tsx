@@ -22,9 +22,7 @@ const ExperienceHomeCard = ({
       <Image
         src={src}
         alt={alt}
-        width={500}
-        height={500}
-        className="rounded-xl shadow-md shadow-gray-600"
+        className="w-full rounded-xl shadow-md shadow-gray-600"
       />
       <span className=" absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold uppercase">
         {name}
