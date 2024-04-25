@@ -36,7 +36,7 @@ const Hero = () => {
         <p className="my-4 w-[200px]  md:w-[400px] md:text-lg lg:text-xl">
           Réservez une salle pour une expérience unique
         </p>
-        <Button className="bg-white text-black">Réserver</Button>
+        <Button>Réserver</Button>
       </div>
     </div>
   );
