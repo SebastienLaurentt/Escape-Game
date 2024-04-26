@@ -30,8 +30,8 @@ const Hero = () => {
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
       <Section classname="absolute z-10 flex flex-col items-center w-full xl:items-start xl:text-left text-center">
-        <h1 className=" text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
-          Bienvenue chez{" "}
+        <h1>
+          Bienvenue chez <br />
           <span className="text-accent-foreground">Escape Room !</span>
         </h1>
         <p className="my-4 w-[200px]  md:w-[400px] md:text-lg lg:text-xl">
