@@ -64,12 +64,12 @@ const Experiences = () => {
       </Section>
 
       {selectedCard && (
-        <Section marginBottom={false} marginTop={true} classname="flex flex-col justify-center">
+        <Section marginBottom={true} marginTop={true} classname="flex flex-col items-center">
           <PageTitle
             title="II. Réservez votre expérience"
             titleDescription="Sélectionnez la date et l'heure qui vous conviennent le mieux pour votre expérience."
           />
-          <div className="mx-auto">
+          <div>
             <Calendar />
           </div>
         </Section>
