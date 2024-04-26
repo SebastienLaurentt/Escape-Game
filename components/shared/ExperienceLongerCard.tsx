@@ -27,7 +27,7 @@ const ExperienceLongerCard = ({
   return (
     <div
       className={`cursor-pointer rounded-xl border-2 ${
-        isSelected ? "border-accent" : "border-white"
+        isSelected ? "border-accent" : ""
       }  hover:border-accent`}
       onClick={onClick}
     >

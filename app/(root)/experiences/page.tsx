@@ -1,17 +1,18 @@
-'use client'
+"use client";
 
 import ExperienceLongerCard from "@/components/shared/ExperienceLongerCard";
 import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
+import { Calendar } from "@/components/ui/calendar";
+import { useState } from "react";
 import HorrorImg from "../../../public/images/Experience1.jpg";
 import ThrillerImg from "../../../public/images/Experience2.jpg";
 import NightImg from "../../../public/images/Experience3.jpg";
-import { useState } from "react";
 
 const Experiences = () => {
   const [selectedCard, setSelectedCard] = useState(null);
 
-  const handleCardClick = (cardName:any) => {
+  const handleCardClick = (cardName: any) => {
     setSelectedCard(cardName);
   };
 
@@ -29,8 +30,8 @@ const Experiences = () => {
               peopleNumber="4-6"
               duration="1"
               price="40"
-              isSelected={selectedCard === 'Horror'}
-              onClick={() => handleCardClick('Horror')}
+              isSelected={selectedCard === "Horror"}
+              onClick={() => handleCardClick("Horror")}
             />
           </li>
           <li>
@@ -42,8 +43,8 @@ const Experiences = () => {
               peopleNumber="4-6"
               duration="1"
               price="40"
-              isSelected={selectedCard === 'Thriller'}
-              onClick={() => handleCardClick('Thriller')}
+              isSelected={selectedCard === "Thriller"}
+              onClick={() => handleCardClick("Thriller")}
             />
           </li>
           <li>
@@ -55,12 +56,24 @@ const Experiences = () => {
               peopleNumber="4-6"
               duration="1"
               price="40"
-              isSelected={selectedCard === 'Night'}
-              onClick={() => handleCardClick('Night')}
+              isSelected={selectedCard === "Night"}
+              onClick={() => handleCardClick("Night")}
             />
           </li>
         </ul>
       </Section>
+
+      {selectedCard && (
+        <Section marginBottom={false} marginTop={true} classname="flex flex-col justify-center">
+          <PageTitle
+            title="II. Réservez votre expérience"
+            titleDescription="Sélectionnez la date et l'heure qui vous conviennent le mieux pour votre expérience."
+          />
+          <div className="mx-auto">
+            <Calendar />
+          </div>
+        </Section>
+      )}
     </main>
   );
 };
