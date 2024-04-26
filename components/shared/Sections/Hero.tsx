@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import BgHome from "../../../public/images/BgHome2.webp";
 import { Button } from "../../ui/button";
+import Section from "../Section";
 
 const Hero = () => {
   useEffect(() => {
@@ -23,15 +24,12 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative flex  h-screen w-full flex-row justify-center overflow-hidden xl:items-center xl:justify-start">
+    <div className="relative flex  h-screen flex-row items-center justify-center xl:justify-center">
       <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-80" />
-      <div className="relative flex h-screen  flex-row justify-center">
+      <div className="relative flex h-screen  w-full flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <div
-        id="hero-text"
-        className="absolute  z-10 mt-60 flex flex-col items-center  text-center lg:mt-72 xl:mt-0 xl:items-start xl:px-16 xl:text-left 2xl:mx-auto 2xl:mb-12 2xl:max-w-[1600px] "
-      >
+      <Section classname="absolute z-10 flex flex-col items-center w-full xl:items-start xl:text-left text-center">
         <h1 className=" text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
           Bienvenue chez{" "}
           <span className="text-accent-foreground">Escape Room !</span>
@@ -42,7 +40,7 @@ const Hero = () => {
         <Button asChild>
           <Link href="/experiences">Réserver</Link>
         </Button>
-      </div>
+      </Section>
     </div>
   );
 };
