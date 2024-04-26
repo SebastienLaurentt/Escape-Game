@@ -1,4 +1,4 @@
-import { User } from "lucide-react";
+import { Euro, Hourglass, User } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 
 interface ExperienceLongerCardProps {
@@ -20,24 +20,26 @@ const ExperienceLongerCard = ({
   description,
   peopleNumber,
   duration,
-  price
+  price,
 }: ExperienceLongerCardProps) => {
   return (
-    <div>
-      <Image
-        src={src}
-        alt={alt}
-        className="w-full rounded-xl shadow-md shadow-gray-600"
-      />
-      <div>
+    <div className="rounded-xl border-2 border-white">
+      <Image src={src} alt={alt} className="rounded-xl" />
+      <div className="flex flex-col gap-y-2 p-2">
         <h2>{name}</h2>
         <span>{description}</span>
-        <div className="flex flex-row gap-x-2">
-          <span>{peopleNumber}</span>
-          <User />
+        <div className="flex flex-row items-center gap-x-1">
+          <span className="text-xl">{peopleNumber}</span>
+          <User size={40} />
         </div>
-        <span>{duration} h </span>
-        <span>{price} € </span>
+        <div className="flex flex-row items-center gap-x-1">
+          <span className="text-xl">{duration}</span>
+          <Hourglass size={40} />
+        </div>
+        <div className="flex flex-row items-center gap-x-1">
+          <span className="text-xl">{price}</span>
+          <Euro size={40} />
+        </div>
       </div>
     </div>
   );
