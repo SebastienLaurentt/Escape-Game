@@ -4,13 +4,14 @@ import ExperienceLongerCard from "@/components/shared/ExperienceLongerCard";
 import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
 import { Calendar } from "@/components/ui/calendar";
-import { useState } from "react";
+import React, { useState } from "react";
 import HorrorImg from "../../../public/images/Experience1.jpg";
 import ThrillerImg from "../../../public/images/Experience2.jpg";
 import NightImg from "../../../public/images/Experience3.jpg";
 
 const Experiences = () => {
   const [selectedCard, setSelectedCard] = useState(null);
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
 
   const handleCardClick = (cardName: any) => {
     setSelectedCard(cardName);
@@ -64,13 +65,21 @@ const Experiences = () => {
       </Section>
 
       {selectedCard && (
-        <Section marginBottom={true} marginTop={true} classname="flex flex-col items-center">
+        <Section
+          marginBottom={true}
+          marginTop={true}
+          classname="flex flex-col items-center"
+        >
           <PageTitle
             title="II. Réservez votre expérience"
             titleDescription="Sélectionnez la date et l'heure qui vous conviennent le mieux pour votre expérience."
           />
           <div>
-            <Calendar />
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+            />
           </div>
         </Section>
       )}
