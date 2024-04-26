@@ -27,7 +27,7 @@ const ExperienceLongerCard = ({
   return (
     <div
       className={`cursor-pointer rounded-xl border-2 ${
-        isSelected ? 'border-accent' : 'border-white'
+        isSelected ? "border-accent" : "border-white"
       }  hover:border-accent`}
       onClick={onClick}
     >
@@ -43,9 +43,16 @@ const ExperienceLongerCard = ({
           <span className="text-xl">{duration}</span>
           <Hourglass size={40} />
         </div>
-        <div className="flex flex-row items-center gap-x-1">
-          <span className="text-xl">{price}</span>
-          <Euro size={40} />
+        <div className="flex flex-row items-center justify-between gap-x-1">
+          <div className="flex flex-row">
+            <span className="text-xl">{price}</span>
+            <Euro size={40} />
+          </div>
+          {isSelected ? (
+            <span className="rounded-xl bg-accent px-2 py-1">
+              Votre Sélection
+            </span>
+          ) : null}
         </div>
       </div>
     </div>
