@@ -23,14 +23,14 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative flex h-screen flex-row justify-center overflow-hidden xl:items-center xl:justify-start">
+    <div className="relative flex  h-screen w-full flex-row justify-center overflow-hidden xl:items-center xl:justify-start">
       <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-80" />
       <div className="relative flex h-screen  flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
       <div
         id="hero-text"
-        className="absolute  z-10 mt-60 flex flex-col items-center px-4 text-center lg:mt-72 xl:ml-20 xl:mt-0 xl:items-start xl:text-left 2xl:mb-12 2xl:ml-52"
+        className="absolute  z-10 mt-60 flex flex-col items-center  text-center lg:mt-72 xl:mt-0 xl:items-start xl:px-16 xl:text-left 2xl:mx-auto 2xl:mb-12 2xl:max-w-[1600px] "
       >
         <h1 className=" text-3xl font-bold md:w-[400px] md:text-4xl lg:w-[500px] lg:text-5xl">
           Bienvenue chez{" "}
