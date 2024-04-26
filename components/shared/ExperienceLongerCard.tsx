@@ -9,6 +9,8 @@ interface ExperienceLongerCardProps {
   peopleNumber: string;
   duration: string;
   price: string;
+  isSelected: boolean;
+  onClick: () => void;
 }
 
 const ExperienceLongerCard = ({
@@ -19,9 +21,16 @@ const ExperienceLongerCard = ({
   peopleNumber,
   duration,
   price,
+  isSelected,
+  onClick,
 }: ExperienceLongerCardProps) => {
   return (
-    <div className="cursor-pointer rounded-xl border-2 border-white hover:border-4 hover:border-accent">
+    <div
+      className={`cursor-pointer rounded-xl border-2 ${
+        isSelected ? 'border-accent' : 'border-white'
+      }  hover:border-accent`}
+      onClick={onClick}
+    >
       <Image src={src} alt={alt} className="rounded-xl" />
       <div className="flex flex-col gap-y-2 p-3">
         <h2>{name}</h2>
