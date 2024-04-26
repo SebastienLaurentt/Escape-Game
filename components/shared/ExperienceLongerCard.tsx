@@ -2,7 +2,6 @@ import { Euro, Hourglass, User } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 
 interface ExperienceLongerCardProps {
-  href?: string;
   src: StaticImageData;
   alt: string;
   name: string;
@@ -13,7 +12,6 @@ interface ExperienceLongerCardProps {
 }
 
 const ExperienceLongerCard = ({
-  href,
   src,
   alt,
   name,
