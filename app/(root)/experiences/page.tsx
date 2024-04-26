@@ -17,7 +17,7 @@ const Experiences = () => {
 
   return (
     <main>
-      <PageTitle title="I. Choisissez votre expérience" />
+      <PageTitle title="I. Sélectionnez votre expérience" />
       <Section marginBottom={true} marginTop={false} classname="">
         <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-8 xl:px-28">
           <li>
