@@ -8,15 +8,15 @@ import NightImg from "../../../public/images/Experience3.jpg";
 const Experiences = () => {
   return (
     <main>
-      <PageTitle title="Choisissez votre expérience" />
+      <PageTitle title="I. Choisissez votre expérience" />
       <Section marginBottom={true} marginTop={false} classname="">
-        <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-4">
+        <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-8 xl:px-28">
           <li>
             <ExperienceLongerCard
               src={HorrorImg}
               alt="Logo de l'expérience Horror"
               name="Horror"
-              description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante ultime."
+              description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante"
               peopleNumber="4-6"
               duration="1"
               price="40"
@@ -27,7 +27,7 @@ const Experiences = () => {
               src={ThrillerImg}
               alt="Logo de l'expérience Thriller"
               name="Thriller"
-              description="Vivez une montée d'adrénaline palpitante alors que vous explorez des mystères sombres et des secrets sinistres dans cette expérience pleine de suspense."
+              description="Vivez une montée d'adrénaline palpitante alors que vous explorez des mystères sombres et des secrets sinistres."
               peopleNumber="4-6"
               duration="1"
               price="40"
