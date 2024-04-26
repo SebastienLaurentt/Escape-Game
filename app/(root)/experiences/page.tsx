@@ -7,7 +7,7 @@ import NightImg from "../../../public/images/Experience3.jpg";
 
 const Experiences = () => {
   return (
-    <>
+    <main>
       <PageTitle title="Choisissez votre expérience" />
       <Section marginBottom={true} marginTop={false} classname="">
         <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-4">
@@ -46,7 +46,7 @@ const Experiences = () => {
           </li>
         </ul>
       </Section>
-    </>
+    </main>
   );
 };
 
