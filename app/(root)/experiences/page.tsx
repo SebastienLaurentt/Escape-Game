@@ -10,7 +10,7 @@ const Experiences = () => {
     <>
       <PageTitle title="Choisissez votre expérience" />
       <Section marginBottom={true} marginTop={false} classname="">
-        <ul className="flex flex-col lg:flex-row lg:gap-x-4">
+        <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-4">
           <li>
             <ExperienceLongerCard
               src={HorrorImg}
