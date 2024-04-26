@@ -29,7 +29,7 @@ const Hero = () => {
       <div className="relative flex h-screen  w-full flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <Section classname="absolute z-10 flex flex-col items-center w-full xl:items-start xl:text-left text-center">
+      <Section id="hero-text" classname="absolute z-10 flex flex-col items-center w-full xl:items-start xl:text-left text-center">
         <h1>
           Bienvenue chez <br />
           <span className="text-accent-foreground">Escape Room !</span>
