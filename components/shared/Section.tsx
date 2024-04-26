@@ -1,4 +1,5 @@
 interface SectionProps {
+  id?: string;
   classname?: string;
   marginBottom?: boolean;
   marginTop?: boolean;
@@ -6,6 +7,7 @@ interface SectionProps {
 }
 
 const Section = ({
+  id,
   classname,
   marginBottom,
   marginTop,
@@ -16,6 +18,7 @@ const Section = ({
 
   return (
     <section
+    id={id}
       className={`${classname} ${isMarginBottom} ${isMarginTop} px-6 md:px-10 xl:mx-auto xl:px-16  2xl:max-w-[1600px]`}
     >
       {children}
