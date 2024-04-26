@@ -16,7 +16,7 @@ const Experiences = () => {
               src={HorrorImg}
               alt="Logo de l'expérience Horror"
               name="Horror"
-              description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante"
+              description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante."
               peopleNumber="4-6"
               duration="1"
               price="40"
@@ -38,7 +38,7 @@ const Experiences = () => {
               src={NightImg}
               alt="Logo de l'expérience Night"
               name="Night"
-              description="Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité lors de cette aventure nocturne effrayante."
+              description="Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité de cette aventure nocturne."
               peopleNumber="4-6"
               duration="1"
               price="40"

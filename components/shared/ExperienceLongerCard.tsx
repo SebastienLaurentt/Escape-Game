@@ -23,9 +23,9 @@ const ExperienceLongerCard = ({
   price,
 }: ExperienceLongerCardProps) => {
   return (
-    <div className="rounded-xl border-2 border-white">
+    <div className="cursor-pointer rounded-xl border-2 border-white hover:border-4 hover:border-accent">
       <Image src={src} alt={alt} className="rounded-xl" />
-      <div className="flex flex-col gap-y-2 p-2">
+      <div className="flex flex-col gap-y-2 p-3">
         <h2>{name}</h2>
         <span>{description}</span>
         <div className="flex flex-row items-center gap-x-1">
