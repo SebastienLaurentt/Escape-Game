@@ -29,13 +29,12 @@ const Hero = () => {
       <div className="relative flex h-screen  w-full flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <Section id="hero-text" classname="absolute z-10 flex flex-col items-center w-full xl:items-start xl:text-left text-center">
-        <h1>
-          Bienvenue chez <br />
-          <span className="text-accent-foreground">Escape Room !</span>
+      <Section id="hero-text" classname="absolute z-10 flex flex-col items-center w-full xl:items-center  text-center">
+        <h1 className="uppercase">
+        La Villa de <span className="text-accent">l&apos;Effroi</span> 
         </h1>
-        <p className="my-4 w-[200px]  md:w-[400px] md:text-lg lg:text-xl">
-          Réservez une salle pour une expérience unique
+        <p className="my-4 w-[250px]  md:w-[500px] md:text-lg lg:text-xl">
+        Explorez la Villa de l&apos;Effroi. <br /> Échappez-vous avant l&apos;horreur.
         </p>
         <Button asChild>
           <Link href="/experiences">Réserver</Link>
