@@ -1,7 +1,7 @@
 import { Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
 
-const SocialIcons = ({ id }: { id: string }) => {
+const SocialIcons = ({ id }: { id?: string }) => {
   return (
     <div id={id} className="flex flex-row justify-center gap-x-8">
       <button aria-label="Allez à la page Instagram de Escape Room">
