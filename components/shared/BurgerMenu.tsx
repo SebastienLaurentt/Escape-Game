@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import navData from "../../data/navData";
 import Logo from "../../public/images/Logo.svg";
+import SocialIcons from "./SocialIcons";
 
 interface IBurgerMenu {
   isOpen: boolean;
@@ -94,27 +95,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
             ))}
           </ul>
 
-          <div
-            id="SocialBurgerMenu"
-            className="flex flex-row justify-center gap-x-8"
-          >
-            <button
-              onClick={() => setIsOpen(false)}
-              aria-label="Allez à la page Instagram de Escape Room"
-            >
-              <Link href="" target="_blank">
-                <Instagram className="  size-8 md:size-10 lg:size-12" />
-              </Link>
-            </button>
-            <button
-              onClick={() => setIsOpen(false)}
-              aria-label="Allez à la page Facebook de Escape Room"
-            >
-              <Link href="" target="_blank">
-                <Facebook className="  size-8 md:size-10 lg:size-12" />
-              </Link>
-            </button>
-          </div>
+            <SocialIcons id="SocialBurgerMenu" />
         </div>
       </div>
     </>
