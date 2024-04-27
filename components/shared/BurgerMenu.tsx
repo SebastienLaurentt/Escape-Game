@@ -95,7 +95,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
             ))}
           </ul>
 
-            <SocialIcons id="SocialBurgerMenu" />
+            <SocialIcons id="SocialBurgerMenu" classname="gap-x-8"/>
         </div>
       </div>
     </>

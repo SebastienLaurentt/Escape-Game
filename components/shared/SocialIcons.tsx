@@ -8,15 +8,15 @@ interface SocialIconsPropos {
 
 const SocialIcons = ({id, classname}: SocialIconsPropos) => {
   return (
-    <div id={id} className={`flex flex-row justify-center gap-x-8 ${classname}`}>
+    <div id={id} className={`flex flex-row justify-center  ${classname}`}>
       <button aria-label="Allez à la page Instagram de Escape Room">
         <Link href="" target="_blank">
-          <Instagram className="  size-8 md:size-10 lg:size-12" />
+          <Instagram className="  size-8 md:size-10 xl:size-6" />
         </Link>
       </button>
       <button aria-label="Allez à la page Facebook de Escape Room">
         <Link href="" target="_blank">
-          <Facebook className="  size-8 md:size-10 lg:size-12" />
+          <Facebook className="size-8 md:size-10 xl:size-6" />
         </Link>
       </button>
     </div>

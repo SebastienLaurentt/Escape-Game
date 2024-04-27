@@ -62,7 +62,7 @@ const Header = () => {
           <Button>Réserver</Button>
         </div> */}
 
-        <SocialIcons classname="hidden xl:block"/>
+        <SocialIcons classname="hidden xl:flex gap-x-4"/>
       </div>
     </header>
   );
