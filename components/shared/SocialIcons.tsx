@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Link } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
+import Link from "next/link";
 
 const SocialIcons = ({ id }: { id: string }) => {
   return (
