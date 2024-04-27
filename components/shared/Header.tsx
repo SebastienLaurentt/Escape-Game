@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import navData from "../../data/navData";
 import logo from "../../public/images/Logo.svg";
 import BurgerMenu from "./BurgerMenu";
+import SocialIcons from "./SocialIcons";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,6 +61,8 @@ const Header = () => {
           </SignedOut>
           <Button>Réserver</Button>
         </div> */}
+
+        <SocialIcons classname="hidden xl:block"/>
       </div>
     </header>
   );
