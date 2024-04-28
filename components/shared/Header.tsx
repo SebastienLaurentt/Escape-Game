@@ -50,17 +50,6 @@ const Header = () => {
         <div className="flex items-center xl:hidden ">
           <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
-        {/* <div className="hidden flex-row items-center gap-x-4 md:flex">
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          <SignedOut>
-            <Button>
-              <Link href="/sign-in">Se connecter </Link>
-            </Button>
-          </SignedOut>
-          <Button>Réserver</Button>
-        </div> */}
 
         <SocialIcons classname="hidden xl:flex gap-x-4"/>
       </div>
