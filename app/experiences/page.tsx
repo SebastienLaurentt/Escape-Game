@@ -26,7 +26,7 @@ const Experiences = () => {
           title="I. Choisissez votre"
           titleHighlight="expérience"
         />
-        <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-8 xl:px-12">
+        <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
           <li>
             <ExperienceLongerCard
               src={HorrorImg}
