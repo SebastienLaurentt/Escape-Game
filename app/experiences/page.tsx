@@ -3,16 +3,16 @@
 import ExperienceLongerCard from "@/components/shared/ExperienceLongerCard";
 import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
+import SectionHeader from "@/components/shared/SectionHeader";
 import { Calendar } from "@/components/ui/calendar";
 import React, { useState } from "react";
 import HorrorImg from "../../public/images/Experience1.jpg";
 import ThrillerImg from "../../public/images/Experience2.jpg";
 import NightImg from "../../public/images/Experience3.jpg";
 
-
 const Experiences = () => {
   const [selectedCard, setSelectedCard] = useState(null);
-  const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const handleCardClick = (cardName: any) => {
     setSelectedCard(cardName);
@@ -20,8 +20,12 @@ const Experiences = () => {
 
   return (
     <main>
-      <PageTitle title="I. Sélectionnez votre expérience" />
+      <PageTitle title="Prêts à affronter l'horreur ?" />
       <Section marginBottom={true} marginTop={false} classname="">
+        <SectionHeader
+          title="I. Choisissez votre"
+          titleHighlight="expérience"
+        />
         <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-8 xl:px-28">
           <li>
             <ExperienceLongerCard
@@ -66,21 +70,13 @@ const Experiences = () => {
       </Section>
 
       {selectedCard && (
-        <Section
-          marginBottom={true}
-          marginTop={true}
-          classname="flex flex-col items-center"
-        >
-          <PageTitle
-            title="II. Réservez votre expérience"
-            titleDescription="Sélectionnez la date et l'heure qui vous conviennent le mieux pour votre expérience."
-          />
-          <div>
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-            />
+        <Section marginBottom={true} marginTop={true}>
+          <SectionHeader title="II. Réservez votre" titleHighlight="créneau" />
+          <div className="justify-center gap-x-8 lg:flex lg:flex-row">
+            <Calendar mode="single" selected={date} onSelect={setDate} />
+            <div>
+              Les créneaux disponibles pour l&apos;expérience {selectedCard} le{" "}
+            </div>
           </div>
         </Section>
       )}
