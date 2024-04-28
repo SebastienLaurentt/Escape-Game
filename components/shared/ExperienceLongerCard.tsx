@@ -8,7 +8,6 @@ interface ExperienceLongerCardProps {
   description: string;
   peopleNumber: string;
   duration: string;
-  price: string;
   isSelected: boolean;
   onClick: () => void;
 }
@@ -20,7 +19,6 @@ const ExperienceLongerCard = ({
   description,
   peopleNumber,
   duration,
-  price,
   isSelected,
   onClick,
 }: ExperienceLongerCardProps) => {
