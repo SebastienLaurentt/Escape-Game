@@ -37,7 +37,7 @@ const Header = () => {
                 <Link
                   href={link.href}
                   className={
-                    "hover:font-bold" + (pathname === link.href ? "" : "")
+                    "xl:hover:text-accent" + (pathname === link.href ? "" : "")
                   }
                 >
                   {link.name}

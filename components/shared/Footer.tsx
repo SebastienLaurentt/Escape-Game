@@ -11,9 +11,15 @@ const Footer = () => {
         <div className="mb-6">
           <span className="text-lg uppercase text-slate-400">Services </span>
           <div className="mt-3 flex flex-col gap-y-2 text-sm">
-            <span>Team Building</span>
-            <span>Anniversaire</span>
-            <span>Bon cadeau</span>
+            <Link href="/faq" className="xl:hover:text-accent">
+              Team Building{" "}
+            </Link>
+            <Link href="/faq" className="xl:hover:text-accent">
+              Anniversaire
+            </Link>
+            <Link href="/faq" className="xl:hover:text-accent">
+              Bon cadeau
+            </Link>
           </div>
         </div>
         <div className="mb-6">
@@ -44,9 +50,15 @@ const Footer = () => {
             Informations
           </span>
           <div className="mt-3 flex flex-col gap-y-2 text-sm">
-            <Link href="/faq">Foire aux questions</Link>
-            <Link href="/mentions">Mentions légales</Link>
-            <Link href="/cgv">Conditions générales de vente</Link>
+            <Link href="/faq" className="xl:hover:text-accent">
+              Foire aux questions
+            </Link>
+            <Link href="/mentions" className="xl:hover:text-accent">
+              Mentions légales
+            </Link>
+            <Link href="/cgv" className="xl:hover:text-accent">
+              Conditions générales de vente
+            </Link>
           </div>
         </div>
       </div>
