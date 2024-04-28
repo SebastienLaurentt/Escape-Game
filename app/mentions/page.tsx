@@ -6,7 +6,7 @@ const Mentions = () => {
     <main>
       <Section marginBottom={true} marginTop={true}>
         <PageTitle title="Mentions légales" />
-        <div className="flex flex-col gap-y-4 text-balance text-sm md:text-md">
+        <div className="flex flex-col gap-y-4  text-sm md:text-md">
           <p>
             Le présent site est la propriété de la société TEST, SAS au capital
             de 100€ immatriculée sous le numéro XXX XXX XXX au RCS de LYON, dont

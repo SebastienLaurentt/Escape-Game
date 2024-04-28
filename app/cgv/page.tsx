@@ -6,7 +6,7 @@ const CGV = () => {
     <main>
       <Section marginBottom={true} marginTop={true}>
         <PageTitle title="Conditions Générales de Ventes" />
-        <div className="flex flex-col gap-y-12 text-balance text-sm md:text-md">
+        <div className="flex flex-col gap-y-12  text-sm md:text-md">
           <div>
             <h3>ARTICLE 1 – APPLICATION ET CONCEPT</h3>
             <p>
