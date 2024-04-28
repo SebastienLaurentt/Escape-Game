@@ -1,7 +1,7 @@
 import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
 
-const page = () => {
+const Mentions = () => {
   return (
     <main>
       <Section marginBottom={true} marginTop={true}>
@@ -63,7 +63,6 @@ const page = () => {
             et pour les finalités décrites ci-dessus.
           </p>
           <p>
-            {" "}
             L&pos;utilisateur dispose d&pos;un droit d&pos;accès, de
             modification, de rectification et de suppression des données qui le
             concernent (article 38 et suivants de la loi &pos; Informatique et
@@ -71,7 +70,6 @@ const page = () => {
             s&pos;adresser à XXXXXXXXXXX XXXXXXXX
           </p>
           <p>
-            {" "}
             Ce site est la propriété exclusive de XXX XXXXX. Toute reproduction
             ou représentation totale ou partielle de ce site par quelque procédé
             que ce soit, sans l&pos;autorisation expresse de SAS XXX XXXX est
@@ -112,4 +110,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Mentions;
