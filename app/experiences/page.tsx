@@ -5,9 +5,10 @@ import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
 import { Calendar } from "@/components/ui/calendar";
 import React, { useState } from "react";
-import HorrorImg from "../../../public/images/Experience1.jpg";
-import ThrillerImg from "../../../public/images/Experience2.jpg";
-import NightImg from "../../../public/images/Experience3.jpg";
+import HorrorImg from "../../public/images/Experience1.jpg";
+import ThrillerImg from "../../public/images/Experience2.jpg";
+import NightImg from "../../public/images/Experience3.jpg";
+
 
 const Experiences = () => {
   const [selectedCard, setSelectedCard] = useState(null);
