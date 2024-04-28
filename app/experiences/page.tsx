@@ -26,16 +26,16 @@ const Experiences = () => {
           title="I. Choisissez votre"
           titleHighlight="expérience"
         />
-        <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-8 xl:px-28">
+        <ul className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-8 xl:px-12">
           <li>
             <ExperienceLongerCard
               src={HorrorImg}
               alt="Logo de l'expérience Horror"
               name="Horror"
+              price="35€"
               description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante."
-              peopleNumber="4-6"
-              duration="1"
-              price="40"
+              peopleNumber="3 à 4 personnes"
+              duration="45 minutes"
               isSelected={selectedCard === "Horror"}
               onClick={() => handleCardClick("Horror")}
             />
@@ -45,10 +45,10 @@ const Experiences = () => {
               src={ThrillerImg}
               alt="Logo de l'expérience Thriller"
               name="Thriller"
+              price="30€"
               description="Vivez une montée d'adrénaline palpitante alors que vous explorez des mystères sombres et des secrets sinistres."
-              peopleNumber="4-6"
-              duration="1"
-              price="40"
+              peopleNumber="5 à 6 personnes"
+              duration="1 heure"
               isSelected={selectedCard === "Thriller"}
               onClick={() => handleCardClick("Thriller")}
             />
@@ -58,10 +58,10 @@ const Experiences = () => {
               src={NightImg}
               alt="Logo de l'expérience Night"
               name="Night"
+              price="25€"
               description="Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité de cette aventure nocturne."
-              peopleNumber="4-6"
-              duration="1"
-              price="40"
+              peopleNumber="6 à 7 personnes"
+              duration="1 heure 30"
               isSelected={selectedCard === "Night"}
               onClick={() => handleCardClick("Night")}
             />

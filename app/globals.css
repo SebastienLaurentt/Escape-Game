@@ -50,7 +50,7 @@
     }
   
     h2 {
-      @apply text-xl md:text-3xl leading-8 md:leading-[48px] font-bold mb-4  max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
+      @apply text-xl md:text-3xl  leading-6 md:leading-7 font-bold   max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
     }
   
     h3 {
