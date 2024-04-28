@@ -30,8 +30,8 @@ const Header = () => {
           <Image src={logo} alt="Escape Room" width={50} height={50} />
         </Link>
 
-        <nav className="hidden xl:block ">
-          <ul className="gap-8 uppercase xl:flex xl:font-medium">
+        <nav className="hidden lg:block ">
+          <ul className="gap-8 uppercase lg:flex lg:font-medium">
             {navData.map((link, idx) => (
               <li key={idx}>
                 <Link
@@ -47,11 +47,11 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="flex items-center xl:hidden ">
+        <div className="flex items-center lg:hidden ">
           <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
 
-        <SocialIcons classname="hidden xl:flex gap-x-4"/>
+        <SocialIcons classname="hidden lg:flex gap-x-4"/>
       </div>
     </header>
   );
