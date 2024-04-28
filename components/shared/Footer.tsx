@@ -1,8 +1,9 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" mx-6 flex flex-col  justify-between border-t border-slate-400 pt-4 lg:py-8 text-xs  md:mx-10 md:text-sm  xl:mx-16   2xl:max-w-[2000px] ">
+    <footer className=" mx-6 flex flex-col  justify-between border-t border-slate-400 pt-4 text-xs md:mx-10  md:text-sm lg:py-8  xl:mx-16   2xl:max-w-[2000px] ">
       <span className="mb-6 text-2xl uppercase md:text-3xl xl:text-4xl">
         La Villa de l&apos; <span className="text-accent">Effroi</span>
       </span>
@@ -43,9 +44,9 @@ const Footer = () => {
             Informations
           </span>
           <div className="mt-3 flex flex-col gap-y-2 text-sm">
-            <span>Foire aux questions</span>
-            <span>Mentions légales</span>
-            <span>Conditions générales de vente</span>
+            <Link href="/faq">Foire aux questions</Link>
+            <Link href="/mentions">Mentions légales</Link>
+            <Link href="/cgv">Conditions générales de vente</Link>
           </div>
         </div>
       </div>
