@@ -1,6 +1,5 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -22,12 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <Header />
-        <body className={poppins.className}>{children}</body>
-        <Footer />
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <Header />
+      <body className={poppins.className}>{children}</body>
+      <Footer />
+    </html>
   );
 }
