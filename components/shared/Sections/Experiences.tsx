@@ -21,6 +21,7 @@ const Experiences = () => {
             description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante."
             peopleNumber="3 à 4 personnes"
             duration="45 minutes"
+            hover={false}
           />
         </li>
         <li>
@@ -32,6 +33,7 @@ const Experiences = () => {
             description="Vivez une montée d'adrénaline palpitante alors que vous explorez des mystères sombres et des secrets sinistres."
             peopleNumber="5 à 6 personnes"
             duration="1 heure"
+            hover={false}
           />
         </li>
         <li>
@@ -43,6 +45,7 @@ const Experiences = () => {
             description="Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité de cette aventure nocturne."
             peopleNumber="6 à 7 personnes"
             duration="1 heure 30"
+            hover={false}
           />
         </li>
       </ul>

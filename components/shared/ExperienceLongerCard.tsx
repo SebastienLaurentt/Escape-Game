@@ -9,6 +9,7 @@ interface ExperienceLongerCardProps {
   description: string;
   peopleNumber: string;
   duration: string;
+  hover?: boolean;
   isSelected?: boolean;
   onClick?: () => void;
 }
@@ -21,14 +22,18 @@ const ExperienceLongerCard = ({
   description,
   peopleNumber,
   duration,
+  hover,
   isSelected,
   onClick,
 }: ExperienceLongerCardProps) => {
+
+  const hasHover = hover ? "hover:border-accent  cursor-pointer" : "";
+
   return (
     <div
-      className={`relative cursor-pointer rounded-xl border-2 ${
+      className={`relative  rounded-xl border-2 ${hasHover} ${
         isSelected ? "border-accent" : ""
-      }  hover:border-accent`}
+      }`}
       onClick={onClick}
     >
       {/* Img */}
@@ -56,7 +61,9 @@ const ExperienceLongerCard = ({
         <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center gap-x-1">
             <User className="cardIcon" />
-            <span className="text-sm md:text-md xl:text-sm">{peopleNumber}</span>
+            <span className="text-sm md:text-md xl:text-sm">
+              {peopleNumber}
+            </span>
           </div>
           <div className="flex flex-row items-center gap-x-1">
             <Hourglass className="cardIcon" />
