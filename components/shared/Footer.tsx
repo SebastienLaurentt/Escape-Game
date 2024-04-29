@@ -1,6 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import logo from "../../public/images/Logo.svg";
 
 const Footer = () => {
   return (
@@ -11,10 +12,11 @@ const Footer = () => {
             La Villa de <span className="text-accent">l&apos; Effroi</span>
           </span>
           <Image
-            src="/images/logo.svg"
+            src={logo}
             alt="Logo de la Villa de l'Effroi"
             width={50}
             height={50}
+            className="hidden md:block"
           />
         </div>
 
