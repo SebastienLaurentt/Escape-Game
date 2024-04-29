@@ -7,15 +7,14 @@ interface PriceCardProps {
 
 const PriceCard = ({ peopleNumber, price }: PriceCardProps) => {
   return (
-    <div className="flex flex-col rounded-lg bg-accent">
-      <div className="flex flex-row">
+    <div className="flex w-[226px] flex-col items-center gap-y-3 rounded-lg border p-4 md:w-[282px] md:p-6">
+      <div className="flex flex-row items-center">
         <User className="cardIcon" />
-        <span className="text-sm md:text-md xl:text-sm">{peopleNumber}</span>
+        <span className="text-md md:text-lg ">{peopleNumber}</span>
       </div>
       <div className="flex flex-row">
-        <span className="flex flex-row items-center gap-x-1 md:text-md xl:text-sm">
-          dès
-          <span className="text-xl font-semibold italic text-accent md:text-3xl ">
+        <span className="flex flex-row items-center gap-x-1 text-md md:text-lg">
+          <span className=" text-xl font-semibold italic text-accent md:text-2xl ">
             {price}
           </span>
           / personne
