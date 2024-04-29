@@ -14,12 +14,8 @@ const Hero = () => {
     // Hero Text Animation
     gsap.fromTo(
       "#hero-text",
-      {
-        x: screenWidth < 1280 ? 0 : -30,
-        y: screenWidth < 1280 ? -30 : 0,
-        opacity: 0,
-      },
-      { x: 0, opacity: 1, y: 0, duration: 1 }
+      { opacity: 0},
+      { opacity: 1, duration: 1 }
     );
   }, []);
 
@@ -29,12 +25,16 @@ const Hero = () => {
       <div className="relative flex h-screen  w-full flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
-      <Section id="hero-text" classname="absolute z-10 flex flex-col items-center w-full xl:items-center  text-center">
+      <Section
+        id="hero-text"
+        classname="absolute z-10 flex flex-col items-center w-full xl:items-center  text-center"
+      >
         <h1 className="uppercase">
-        La Villa de <span className="text-accent">l&apos;Effroi</span> 
+          La Villa de <span className="text-accent">l&apos;Effroi</span>
         </h1>
         <p className="my-4 w-[250px]  md:w-[500px] md:text-lg lg:text-xl">
-        Explorez la Villa de l&apos;Effroi. <br /> Échappez-vous avant l&apos;horreur.
+          Explorez la Villa de l&apos;Effroi. <br /> Échappez-vous avant
+          l&apos;horreur.
         </p>
         <Button asChild>
           <Link href="/experiences">Réserver</Link>
