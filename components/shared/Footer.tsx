@@ -3,62 +3,64 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" mx-6 flex flex-col  justify-between border-t border-slate-400 pt-4 text-xs md:mx-10  md:text-sm lg:py-8  xl:mx-16   2xl:max-w-[2000px] ">
-      <span className="mb-6 text-2xl uppercase md:text-3xl xl:text-4xl">
-        La Villa de l&apos; <span className="text-accent">Effroi</span>
-      </span>
-      <div className="gap-x-2 md:flex md:flex-row md:justify-between ">
-        <div className="mb-6">
-          <span className="text-lg uppercase text-slate-400">Services </span>
-          <div className="mt-3 flex flex-col gap-y-2 text-sm">
-            <Link href="/faq" className="xl:hover:text-accent">
-              Team Building{" "}
-            </Link>
-            <Link href="/faq" className="xl:hover:text-accent">
-              Anniversaire
-            </Link>
-            <Link href="/faq" className="xl:hover:text-accent">
-              Bon cadeau
-            </Link>
+    <footer className="px-6  md:px-10 xl:px-16 2xl:mx-auto 2xl:max-w-[2000px]">
+      <div className=" flex flex-col justify-between border-t border-slate-400 pt-4 text-xs  md:text-sm lg:py-8">
+        <span className="mb-6 text-2xl uppercase md:text-3xl xl:text-4xl">
+          La Villa de l&apos; <span className="text-accent">Effroi</span>
+        </span>
+        <div className="gap-x-2 md:flex md:flex-row md:justify-between ">
+          <div className="mb-6">
+            <span className="text-lg uppercase text-slate-400">Services </span>
+            <div className="mt-3 flex flex-col gap-y-2 text-sm">
+              <Link href="/faq" className="xl:hover:text-accent">
+                Team Building{" "}
+              </Link>
+              <Link href="/faq" className="xl:hover:text-accent">
+                Anniversaire
+              </Link>
+              <Link href="/faq" className="xl:hover:text-accent">
+                Bon cadeau
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="mb-6">
-          <span className="text-lg  uppercase text-slate-400">Contact </span>
-          <div className="mt-3 flex flex-col gap-y-2 text-sm">
-            <span className="flex flex-row items-center gap-x-2">
-              <span className="text-slate-400">
-                <MapPin />
+          <div className="mb-6">
+            <span className="text-lg  uppercase text-slate-400">Contact </span>
+            <div className="mt-3 flex flex-col gap-y-2 text-sm">
+              <span className="flex flex-row items-center gap-x-2">
+                <span className="text-slate-400">
+                  <MapPin />
+                </span>
+                5 Rue Marcel Pagnol, 13000, Marseille
               </span>
-              5 Rue Marcel Pagnol, 13000, Marseille
-            </span>
-            <span className="flex flex-row items-center gap-x-2">
-              <span className="text-slate-400">
-                <Phone />
+              <span className="flex flex-row items-center gap-x-2">
+                <span className="text-slate-400">
+                  <Phone />
+                </span>
+                06 12 34 56 78
               </span>
-              06 12 34 56 78
-            </span>
-            <span className="flex flex-row items-center gap-x-2">
-              <span className="text-slate-400">
-                <Mail />
+              <span className="flex flex-row items-center gap-x-2">
+                <span className="text-slate-400">
+                  <Mail />
+                </span>
+                lavilladeleffroi@gmail.com
               </span>
-              lavilladeleffroi@gmail.com
-            </span>
+            </div>
           </div>
-        </div>
-        <div className="mb-6">
-          <span className="text-lg  uppercase text-slate-400">
-            Informations
-          </span>
-          <div className="mt-3 flex flex-col gap-y-2 text-sm">
-            <Link href="/faq" className="xl:hover:text-accent">
-              Foire aux questions
-            </Link>
-            <Link href="/mentions" className="xl:hover:text-accent">
-              Mentions légales
-            </Link>
-            <Link href="/cgv" className="xl:hover:text-accent">
-              Conditions générales de vente
-            </Link>
+          <div className="mb-6">
+            <span className="text-lg  uppercase text-slate-400">
+              Informations
+            </span>
+            <div className="mt-3 flex flex-col gap-y-2 text-sm">
+              <Link href="/faq" className="xl:hover:text-accent">
+                Foire aux questions
+              </Link>
+              <Link href="/mentions" className="xl:hover:text-accent">
+                Mentions légales
+              </Link>
+              <Link href="/cgv" className="xl:hover:text-accent">
+                Conditions générales de vente
+              </Link>
+            </div>
           </div>
         </div>
       </div>
