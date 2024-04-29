@@ -49,7 +49,7 @@ const Experiences = () => {
           />
         </li>
       </ul>
-      <div className="my-12 flex flex-row justify-center">
+      <div className="my-8 flex flex-row justify-center lg:my-12">
         <Button asChild>
           <Link href="/experiences">Réserver</Link>
         </Button>
