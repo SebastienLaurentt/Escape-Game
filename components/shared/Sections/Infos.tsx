@@ -1,6 +1,8 @@
 import { Calendar, LocateFixed, Mail, Phone } from "lucide-react";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Infos = () => {
   return (
@@ -65,6 +67,11 @@ const Infos = () => {
             </li>
           </ul>
         </div>
+      </div>
+      <div className="my-8 flex flex-row justify-center lg:my-12">
+        <Button asChild>
+          <Link href="/faq">Foire aux questions</Link>
+        </Button>
       </div>
     </Section>
   );
