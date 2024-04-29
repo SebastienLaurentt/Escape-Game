@@ -7,8 +7,8 @@ import {
 
 const Faq = () => {
   return (
-    <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1">
+    <Accordion type="single" collapsible className="w-full md:px-8 xl:px-24" >
+      <AccordionItem value="item-1" >
         <AccordionTrigger>
           Quel est l&apos;âge minimum requis pour participer ?
         </AccordionTrigger>
