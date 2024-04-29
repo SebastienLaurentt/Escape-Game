@@ -34,10 +34,14 @@ const ExperienceLongerCard = ({
       <Image src={src} alt={alt} className="rounded-xl" />
       <div className="flex flex-col gap-y-3 p-4">
         <div className="flex flex-row items-center justify-between">
-          <h2>{name}</h2>
+          <span className="cardTitle">{name}</span>
           <span className="flex flex-row items-center gap-x-2">
-            dès <span className="text-2xl font-semibold italic text-accent"> {price}</span> /
-            personnes{" "}
+            dès{" "}
+            <span className="text-2xl font-semibold italic text-accent">
+              {" "}
+              {price}
+            </span>{" "}
+            / personnes{" "}
           </span>
         </div>
 

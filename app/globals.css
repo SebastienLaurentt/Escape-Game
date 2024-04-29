@@ -1,59 +1,62 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
-    :root {
-      --background: 20 14% 4%;
-      --foreground: 210 40% 98%;
+@layer base {
+  :root {
+    --background: 20 14% 4%;
+    --foreground: 210 40% 98%;
 
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-      --primary: 210 40% 96%;
-      --primary-foreground: 20 14% 4%;
+    --primary: 210 40% 96%;
+    --primary-foreground: 20 14% 4%;
 
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-      --accent: 0 70% 35%;
-      --accent-foreground: 0 70% 35%;
+    --accent: 0 70% 35%;
+    --accent-foreground: 0 70% 35%;
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
-      --radius: 0.5rem;
-    }
+    --radius: 0.5rem;
+  }
+}
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply bg-background text-foreground;
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    html {
-      @apply bg-background text-foreground;
-    }
-
-    h1 {
-      @apply text-3xl md:text-5xl lg:text-7xl leading-[3rem] md:leading-[4rem] lg:leading-[5rem] font-bold;
-    }
-  
-    h2 {
-      @apply text-xl md:text-3xl  leading-6 md:leading-7 font-bold   max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
-    }
-  
-    h3 {
-      @apply text-lg md:text-2xl leading-8 md:leading-10 font-medium mb-4 md:mb-6 lg:mb-8;
-    }
+  h1 {
+    @apply text-3xl md:text-5xl lg:text-7xl leading-[3rem] md:leading-[4rem] lg:leading-[5rem] font-bold;
   }
+
+  h2 {
+    @apply text-xl md:text-3xl leading-8 md:leading-10   font-bold   max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
+  }
+
+  .cardTitle {
+    @apply text-xl md:text-3xl  leading-6 md:leading-7 font-semibold   max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
+  }
+
+  h3 {
+    @apply text-lg md:text-2xl leading-8 md:leading-10 font-medium mb-4 md:mb-6 lg:mb-8;
+  }
+}
