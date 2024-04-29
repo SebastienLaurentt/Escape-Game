@@ -9,8 +9,8 @@ interface ExperienceLongerCardProps {
   description: string;
   peopleNumber: string;
   duration: string;
-  isSelected: boolean;
-  onClick: () => void;
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
 const ExperienceLongerCard = ({
