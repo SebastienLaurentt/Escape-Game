@@ -49,7 +49,7 @@
   }
 
   h2 {
-    @apply text-xl md:text-3xl leading-8 md:leading-10   font-bold   max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
+    @apply text-2xl md:text-3xl leading-9 md:leading-10   font-bold   max-w-[325px] md:max-w-[460px] lg:max-w-[480px];
   }
 
   h3 {

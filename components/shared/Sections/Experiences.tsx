@@ -10,7 +10,7 @@ import SectionHeader from "../SectionHeader";
 const Experiences = () => {
   return (
     <Section marginBottom={true} marginTop={true} classname="">
-      <SectionHeader title="Choisissez votre" titleHighlight="expérience !" />
+      <SectionHeader title="Des expériences" titleHighlight="variées" />
       <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
         <li>
           <ExperienceLongerCard

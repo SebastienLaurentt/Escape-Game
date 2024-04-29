@@ -12,7 +12,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   titleDescription,
 }) => {
   return (
-    <div className="mb-12 text-center md:mb-16 md:text-left ">
+    <div className="mb-12 flex flex-col items-center  text-center md:mb-16 ">
       <h2>
         {title} <span className="text-accent-foreground">{titleHighlight}</span>
       </h2>
