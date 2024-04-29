@@ -23,7 +23,7 @@ const Experiences = () => {
       <PageTitle title="Prêts à affronter l'horreur ?" />
       <Section marginBottom={true} marginTop={false} classname="">
         <SectionHeader
-          title="I. Choisissez votre"
+          title="1. Choisissez votre"
           titleHighlight="expérience"
         />
         <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
@@ -74,7 +74,7 @@ const Experiences = () => {
 
       {selectedCard && (
         <Section marginBottom={true} marginTop={true}>
-          <SectionHeader title="II. Réservez votre" titleHighlight="créneau" />
+          <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
           <div className="justify-center gap-x-8 lg:flex lg:flex-row">
             <Calendar mode="single" selected={date} onSelect={setDate} />
             <div>
