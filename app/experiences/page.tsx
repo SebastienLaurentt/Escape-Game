@@ -75,10 +75,16 @@ const Experiences = () => {
       {selectedCard && (
         <Section marginBottom={true} marginTop={true}>
           <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
-          <div className="justify-center gap-x-8 lg:flex lg:flex-row">
-            <Calendar mode="single" selected={date} onSelect={setDate} />
+          <div className="flex flex-col items-center justify-around gap-y-6 lg:flex-row">
+            <div className="flex flex-col items-center gap-y-2">
+              <span>A. Combien êtes vous ? </span>
+            </div>
+            <div className="flex flex-col items-center gap-y-2">
+              <span>B. Quel jour souhaitez vous venir ? </span>
+              <Calendar mode="single" selected={date} onSelect={setDate} />
+            </div>
             <div>
-              Les créneaux disponibles pour l&apos;expérience {selectedCard} le{" "}
+              <span>C. Choissisez une horaire ?</span>
             </div>
           </div>
         </Section>
