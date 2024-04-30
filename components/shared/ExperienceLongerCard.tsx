@@ -27,7 +27,7 @@ const ExperienceLongerCard = ({
   onClick,
 }: ExperienceLongerCardProps) => {
 
-  const hasHover = hover ? "hover:border-accent  cursor-pointer" : "";
+  const hasHover = hover ? "xl:hover:border-accent  cursor-pointer" : "";
 
   return (
     <div
