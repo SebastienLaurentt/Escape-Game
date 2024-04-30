@@ -144,8 +144,14 @@ const Experiences = () => {
                   {date && (
                     <div>
                       <span className="italic">
-                        Disponibilités du{" "}
-                        {format(date, "EEEE dd MMMM", { locale: fr })}
+                        Disponibilités du {""}
+                        <span className="text-accent">
+                          {
+                            format(date, " EEEE dd MMMM", { locale: fr })
+                              .replace(/^\w/, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre du jour
+                              .replace(/ \w/g, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre de chaque mot du mois
+                          }
+                        </span>
                       </span>
                       <div className="grid grid-cols-3 gap-4 px-2 py-6">
                         <HoursChips hours="9:00" />
