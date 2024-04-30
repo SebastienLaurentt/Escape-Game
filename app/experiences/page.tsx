@@ -5,6 +5,15 @@ import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Calendar } from "@/components/ui/calendar";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import React, { useState } from "react";
 import HorrorImg from "../../public/images/Experience1.jpg";
 import ThrillerImg from "../../public/images/Experience2.jpg";
@@ -78,6 +87,22 @@ const Experiences = () => {
           <div className="flex flex-col items-center justify-around gap-y-6 lg:flex-row">
             <div className="flex flex-col items-center gap-y-2">
               <span>A. Combien êtes vous ? </span>
+              <Select>
+                <SelectTrigger className="w-[280px]">
+                  <SelectValue placeholder="Sélectionner votre nombre" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="1">1</SelectItem>
+                    <SelectItem value="2">2</SelectItem>
+                    <SelectItem value="3">3</SelectItem>
+                    <SelectItem value="4">4</SelectItem>
+                    <SelectItem value="5">5</SelectItem>
+                    <SelectItem value="6">6</SelectItem>
+                    <SelectItem value="7">7</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
             <div className="flex flex-col items-center gap-y-2">
               <span>B. Quel jour souhaitez vous venir ? </span>
