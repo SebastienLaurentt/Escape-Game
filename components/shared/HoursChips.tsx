@@ -4,9 +4,9 @@ interface HoursChipsProps {
 
 const HoursChips = ({ hours }: HoursChipsProps) => {
   return (
-    <div className="flex flex-row items-center justify-center rounded-xl bg-primary px-2 py-1 text-primary-foreground">
+    <button className="flex flex-row items-center justify-center rounded-xl bg-primary px-2 py-1 text-primary-foreground hover:bg-accent hover:text-foreground">
       {hours}
-    </div>
+    </button>
   );
 };
 
