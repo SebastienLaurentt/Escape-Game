@@ -54,7 +54,7 @@ const Footer = () => {
                 <span className="text-slate-400">
                   <Mail />
                 </span>
-                lavilladeleffroi@gmail.com
+                villaeffroi@gmail.com
               </span>
             </div>
           </div>
