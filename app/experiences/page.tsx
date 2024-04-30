@@ -19,11 +19,20 @@ import ThrillerImg from "../../public/images/Experience2.jpg";
 import NightImg from "../../public/images/Experience3.jpg";
 
 const Experiences = () => {
+  // Card Selected State
   const [selectedCard, setSelectedCard] = useState(null);
+  // Select State
+  const [peopleNumber, setPeopleNumber] = useState(null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
+  console.log(peopleNumber);
 
   const handleCardClick = (cardName: any) => {
     setSelectedCard(cardName);
+  };
+
+  // Handle select change
+  const handleSelectChange = (value: any) => {
+    setPeopleNumber(value);
   };
 
   return (
@@ -83,7 +92,6 @@ const Experiences = () => {
       {selectedCard && (
         <Section marginBottom={true} marginTop={true}>
           <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
-
           <div className="flex flex-col items-center  gap-y-12 lg:gap-y-20 ">
             <div className="flex flex-col items-center">
               <span>Vous avez choisi l&apos;expérience </span>
@@ -94,11 +102,11 @@ const Experiences = () => {
 
             <div className="flex flex-col items-center gap-y-2">
               <span>A. Combien êtes vous ? </span>
-              <Select>
+              <Select onValueChange={handleSelectChange}>
                 <SelectTrigger className="w-[280px]">
                   <SelectValue placeholder="Sélectionner votre nombre" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent >
                   <SelectGroup>
                     <SelectItem value="1">1</SelectItem>
                     <SelectItem value="2">2</SelectItem>
@@ -112,6 +120,7 @@ const Experiences = () => {
               </Select>
             </div>
 
+            {peopleNumber && (
             <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-32">
               <div className="flex flex-col items-center gap-y-2">
                 <span>B. Quel jour souhaitez vous venir ? </span>
@@ -121,6 +130,7 @@ const Experiences = () => {
                 <span>C. Choisissez une horaire ?</span>
               </div>
             </div>
+            )}
           </div>
         </Section>
       )}
