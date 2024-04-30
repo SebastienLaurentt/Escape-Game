@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { Facebook, Instagram, X } from "lucide-react";
+import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -79,7 +79,12 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
 
         <div className="mt-32 flex flex-col gap-y-12">
           <Link href="/">
-            <Image id="LogoBurgerMenu" src={Logo} alt="logo" className="mx-auto  size-40" />
+            <Image
+              id="LogoBurgerMenu"
+              src={Logo}
+              alt="logo"
+              className="mx-auto  size-40"
+            />
           </Link>
 
           <ul
@@ -88,14 +93,18 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
           >
             {navData.map((link) => (
               <li key={link.name}>
-                <Link href={link.href} onClick={() => setIsOpen(false)}>
+                <Link
+                  href={link.href}
+                  aria-label={link.ariaLabel}
+                  onClick={() => setIsOpen(false)}
+                >
                   {link.burgerMenuName}
                 </Link>
               </li>
             ))}
           </ul>
 
-            <SocialIcons id="SocialBurgerMenu" classname="gap-x-8"/>
+          <SocialIcons id="SocialBurgerMenu" classname="gap-x-8" />
         </div>
       </div>
     </>
