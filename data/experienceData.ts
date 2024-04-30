@@ -1,23 +1,34 @@
-
-
-const experienceData = {
-  horror: {
+const experienceData = [
+  {
+    src: "HorrorImg",
+    alt: "Logo de l'expérience Horror",
     name: "Horror",
-    description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    price: "35€",
+    description:
+      "Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante.",
+    peopleNumber: "2 personnes",
+    duration: "45 minutes",
   },
-  thriller: {
+  {
+    src: "ThrillerImg",
+    alt: "Logo de l'expérience Thriller",
     name: "Thriller",
-    description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    price: "30€",
+    description:
+      "Vivez une montée d'adrénaline palpitante alors que vous explorez des mystères sombres et des secrets sinistres.",
+    peopleNumber: "3 à 4 personnes",
+    duration: "1 heure",
   },
-  night: {
+  {
+    src: "NightImg",
+    alt: "Logo de l'expérience Night",
     name: "Night",
-    description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    // images: [
-    //   { src: GalopinsLarge1, description: "Page Parcours" },
-    //   { src: GalopinsLarge2, description: "Page Club" },
-    //   { src: GalopinsLarge3, description: "Contact" }
-    // ],
+    price: "25€",
+    description:
+      "Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité de cette aventure nocturne.",
+    peopleNumber: "5 à 6 personnes",
+    duration: "1 heure 15",
   },
-};
+];
 
 export default experienceData;

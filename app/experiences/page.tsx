@@ -41,6 +41,8 @@ const Experiences = () => {
   return (
     <main>
       <PageTitle title="Prêts à affronter l'horreur ?" />
+
+      {/* 1) Experience Selection */}
       <Section marginBottom={true} marginTop={false} classname="">
         <SectionHeader
           title="1. Choisissez votre"
@@ -92,6 +94,7 @@ const Experiences = () => {
         </ul>
       </Section>
 
+      {/* 2) Booking */}
       {selectedCard && (
         <Section marginBottom={true} marginTop={true}>
           <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
@@ -105,6 +108,7 @@ const Experiences = () => {
               </span>
             </div>
 
+            {/* A) PeopleNumber Select */}
             <div className="flex flex-col items-center gap-y-2">
               <h3>A. Combien êtes vous ?</h3>
               <Select onValueChange={handleSelectChange}>
@@ -133,12 +137,15 @@ const Experiences = () => {
               </Select>
             </div>
 
+            {/* B) Day Picking */}
             {peopleNumber && (
               <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-40">
                 <div className="flex flex-col items-center gap-y-2">
                   <h3>B. Quel jour souhaitez vous venir ?</h3>
                   <Calendar mode="single" selected={date} onSelect={setDate} />
                 </div>
+
+                {/* C) Hours Picking */}
                 <div className="flex flex-col items-center">
                   <h3>C. Choisissez une horaire</h3>
                   {date && (
