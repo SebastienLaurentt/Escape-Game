@@ -14,10 +14,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import experienceData from "@/data/experienceData";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import React, { useState } from "react";
-import experienceData from "@/data/experienceData";
 
 const Experiences = () => {
   // Card Selected State
@@ -121,8 +121,8 @@ const Experiences = () => {
                 <div className="flex flex-col items-center">
                   <h3>C. Choisissez une horaire</h3>
                   {date && (
-                    <div>
-                      <span className="italic">
+                    <div className="flex w-[300px] flex-col items-center">
+                      <span className=" italic">
                         Disponibilités du {""}
                         <span className="text-accent">
                           {
@@ -132,7 +132,7 @@ const Experiences = () => {
                           }
                         </span>
                       </span>
-                      <div className="grid grid-cols-3 gap-4 px-2 py-6">
+                      <div className="grid grid-cols-3 gap-4 py-6">
                         <HoursChips hours="9:00" />
                         <HoursChips hours="10:00" />
                         <HoursChips hours="11:00" />
