@@ -1,6 +1,10 @@
+import HorrorImg from "../public/images/Experience1.jpg"
+import ThrillerImg from "../public/images/Experience2.jpg"
+import NightImg from "../public/images/Experience3.jpg"
+
 const experienceData = [
   {
-    src: "HorrorImg",
+    src: HorrorImg,
     alt: "Logo de l'expérience Horror",
     name: "Horror",
     price: "35€",
@@ -10,7 +14,7 @@ const experienceData = [
     duration: "45 minutes",
   },
   {
-    src: "ThrillerImg",
+    src: ThrillerImg,
     alt: "Logo de l'expérience Thriller",
     name: "Thriller",
     price: "30€",
@@ -20,7 +24,7 @@ const experienceData = [
     duration: "1 heure",
   },
   {
-    src: "NightImg",
+    src: NightImg,
     alt: "Logo de l'expérience Night",
     name: "Night",
     price: "25€",
