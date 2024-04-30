@@ -1,6 +1,7 @@
 "use client";
 
 import ExperienceLongerCard from "@/components/shared/ExperienceCard";
+import HoursChips from "@/components/shared/HoursChips";
 import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
 import SectionHeader from "@/components/shared/SectionHeader";
@@ -19,7 +20,6 @@ import React, { useState } from "react";
 import HorrorImg from "../../public/images/Experience1.jpg";
 import ThrillerImg from "../../public/images/Experience2.jpg";
 import NightImg from "../../public/images/Experience3.jpg";
-import HoursChips from "@/components/shared/HoursChips";
 
 const Experiences = () => {
   // Card Selected State
@@ -147,12 +147,22 @@ const Experiences = () => {
                         Disponibilités du{" "}
                         {format(date, "EEEE dd MMMM", { locale: fr })}
                       </span>
-                      <div className="py-2">
+                      <div className="grid grid-cols-3 gap-4 px-2 py-6">
+                        <HoursChips hours="9:00" />
                         <HoursChips hours="10:00" />
                         <HoursChips hours="11:00" />
                         <HoursChips hours="12:00" />
                         <HoursChips hours="13:00" />
                         <HoursChips hours="14:00" />
+                        <HoursChips hours="15:00" />
+                        <HoursChips hours="16:00" />
+                        <HoursChips hours="17:00" />
+                        <HoursChips hours="18:00" />
+                        <HoursChips hours="19:00" />
+                        <HoursChips hours="20:00" />
+                        <HoursChips hours="21:00" />
+                        <HoursChips hours="22:00" />
+                        <HoursChips hours="23:00" />
                       </div>
                     </div>
                   )}
