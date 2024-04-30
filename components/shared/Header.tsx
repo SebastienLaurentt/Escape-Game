@@ -27,7 +27,7 @@ const Header = () => {
     <header id="header" className={`${headerPosition} w-full `}>
       <div className="flex flex-row items-center  justify-between  px-6 py-4 lg:px-10 lg:py-6 xl:mx-auto xl:px-16 2xl:max-w-[2000px]">
         <Link href="/">
-          <Image src={logo} alt="Escape Room" width={50} height={50} />
+          <Image src={logo} alt="Logo de la Villa de l'Effroi" width={50} height={50} />
         </Link>
 
         <nav className="hidden lg:block ">
@@ -47,7 +47,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="flex items-center lg:hidden ">
+        <div className="flex items-center lg:hidden" aria-label="Ouvrir le Menu">
           <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
 
