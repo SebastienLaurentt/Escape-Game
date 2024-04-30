@@ -30,7 +30,7 @@ const Experiences = () => {
 
       {/* Link Button to Experience / Reservation page */}
       <div className="my-8 flex flex-row justify-center lg:my-12">
-        <Button asChild>
+        <Button asChild aria-label="Aller à la page pour réserver son expérience">
           <Link href="/experiences">Réserver</Link>
         </Button>
       </div>

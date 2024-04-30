@@ -63,13 +63,13 @@ const Footer = () => {
               Informations
             </span>
             <div className="mt-3 flex flex-col gap-y-2 text-sm">
-              <Link href="/faq" className="xl:hover:text-accent">
+              <Link href="/faq" aria-label="Aller à la page de la foire aux questions" className="xl:hover:text-accent">
                 Foire aux questions
               </Link>
-              <Link href="/mentions" className="xl:hover:text-accent">
+              <Link href="/mentions" aria-label="Aller à la page des mentions légales" className="xl:hover:text-accent">
                 Mentions légales
               </Link>
-              <Link href="/cgv" className="xl:hover:text-accent">
+              <Link href="/cgv" aria-label="Aller à la page des conditions générales de ventes" className="xl:hover:text-accent">
                 Conditions générales de vente
               </Link>
             </div>

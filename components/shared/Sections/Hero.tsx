@@ -41,7 +41,7 @@ const Hero = () => {
           Explorez la Villa de l&apos;Effroi. <br /> Échappez-vous avant
           l&apos;horreur.
         </p>
-        <Button asChild>
+        <Button asChild aria-label="Aller à la page pour réserver son expérience">
           <Link href="/experiences">Réserver</Link>
         </Button>
       </Section>
