@@ -94,14 +94,14 @@ const Experiences = () => {
           <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
           <div className="flex flex-col items-center  gap-y-12 lg:gap-y-20 ">
             <div className="flex flex-col items-center">
-              <span>Vous avez choisi l&apos;expérience </span>
+              <span className="md:text-lg xl:text-md">Vous avez choisi l&apos;expérience </span>
               <span className="text-3xl font-bold uppercase text-accent xl:text-5xl">
                 {selectedCard}
               </span>
             </div>
 
             <div className="flex flex-col items-center gap-y-2">
-              <span>A. Combien êtes vous ? </span>
+              <span className="md:text-lg xl:text-md">A. Combien êtes vous ? </span>
               <Select onValueChange={handleSelectChange}>
                 <SelectTrigger className="w-[280px]">
                   <SelectValue placeholder="Sélectionner votre nombre" />
@@ -123,11 +123,11 @@ const Experiences = () => {
             {peopleNumber && (
             <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-32">
               <div className="flex flex-col items-center gap-y-2">
-                <span>B. Quel jour souhaitez vous venir ? </span>
+                <span className="md:text-lg xl:text-md">B. Quel jour souhaitez vous venir ? </span>
                 <Calendar mode="single" selected={date} onSelect={setDate} />
               </div>
               <div className="flex flex-col items-center">
-                <span>C. Choisissez une horaire ?</span>
+                <span className="md:text-lg xl:text-md">C. Choisissez une horaire ?</span>
               </div>
             </div>
             )}
