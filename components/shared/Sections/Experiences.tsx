@@ -19,7 +19,7 @@ const Experiences = () => {
             name="Horror"
             price="35€"
             description="Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante."
-            peopleNumber="3 à 4 personnes"
+            peopleNumber="2 personnes"
             duration="45 minutes"
             hover={false}
           />
@@ -31,7 +31,7 @@ const Experiences = () => {
             name="Thriller"
             price="30€"
             description="Vivez une montée d'adrénaline palpitante alors que vous explorez des mystères sombres et des secrets sinistres."
-            peopleNumber="5 à 6 personnes"
+            peopleNumber="3 à 4  personnes"
             duration="1 heure"
             hover={false}
           />
@@ -43,8 +43,8 @@ const Experiences = () => {
             name="Night"
             price="25€"
             description="Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité de cette aventure nocturne."
-            peopleNumber="6 à 7 personnes"
-            duration="1 heure 30"
+            peopleNumber="5 à 6 personnes"
+            duration="1 heure 15"
             hover={false}
           />
         </li>
