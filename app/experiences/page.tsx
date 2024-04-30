@@ -13,6 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import React, { useState } from "react";
 import HorrorImg from "../../public/images/Experience1.jpg";
 import ThrillerImg from "../../public/images/Experience2.jpg";
@@ -24,7 +26,7 @@ const Experiences = () => {
   // Select State
   const [peopleNumber, setPeopleNumber] = useState(null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
-  console.log(peopleNumber);
+  console.log(date);
 
   const handleCardClick = (cardName: any) => {
     setSelectedCard(cardName);
@@ -94,19 +96,23 @@ const Experiences = () => {
           <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
           <div className="flex flex-col items-center  gap-y-12 lg:gap-y-20 ">
             <div className="flex flex-col items-center">
-              <span className="md:text-lg xl:text-md">Vous avez choisi l&apos;expérience </span>
+              <span className="md:text-lg xl:text-md">
+                Vous avez choisi l&apos;expérience{" "}
+              </span>
               <span className="text-3xl font-bold uppercase text-accent xl:text-5xl">
                 {selectedCard}
               </span>
             </div>
 
             <div className="flex flex-col items-center gap-y-2">
-              <span className="md:text-lg xl:text-md">A. Combien êtes vous ? </span>
+              <span className="md:text-lg xl:text-md">
+                A. Combien êtes vous ?{" "}
+              </span>
               <Select onValueChange={handleSelectChange}>
                 <SelectTrigger className="w-[280px]">
                   <SelectValue placeholder="Sélectionner votre nombre" />
                 </SelectTrigger>
-                <SelectContent >
+                <SelectContent>
                   <SelectGroup>
                     <SelectItem value="1">1</SelectItem>
                     <SelectItem value="2">2</SelectItem>
@@ -121,15 +127,24 @@ const Experiences = () => {
             </div>
 
             {peopleNumber && (
-            <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-32">
-              <div className="flex flex-col items-center gap-y-2">
-                <span className="md:text-lg xl:text-md">B. Quel jour souhaitez vous venir ? </span>
-                <Calendar mode="single" selected={date} onSelect={setDate} />
+              <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-32">
+                <div className="flex flex-col items-center gap-y-2">
+                  <span className="md:text-lg xl:text-md">
+                    B. Quel jour souhaitez vous venir ?{" "}
+                  </span>
+                  <Calendar mode="single" selected={date} onSelect={setDate} />
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="md:text-lg xl:text-md">
+                    C. Choisissez une horaire{" "}
+                  </span>
+                  {date && (
+                    <span className="italic">
+                      Disponibilités du {format(date, "EEEE dd MMMM", { locale: fr })}
+                    </span>
+                  )}
+                </div>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="md:text-lg xl:text-md">C. Choisissez une horaire ?</span>
-              </div>
-            </div>
             )}
           </div>
         </Section>
