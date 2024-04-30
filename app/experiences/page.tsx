@@ -10,10 +10,9 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import React, { useState } from "react";
 import HorrorImg from "../../public/images/Experience1.jpg";
 import ThrillerImg from "../../public/images/Experience2.jpg";
@@ -84,7 +83,15 @@ const Experiences = () => {
       {selectedCard && (
         <Section marginBottom={true} marginTop={true}>
           <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
-          <div className="flex flex-col items-center justify-around gap-y-6 lg:flex-row">
+
+          <div className="flex flex-col items-center  gap-y-12 lg:gap-y-20 ">
+            <div className="flex flex-col items-center">
+              <span>Vous avez choisi l&apos;expérience </span>
+              <span className="text-3xl font-bold uppercase text-accent xl:text-5xl">
+                {selectedCard}
+              </span>
+            </div>
+
             <div className="flex flex-col items-center gap-y-2">
               <span>A. Combien êtes vous ? </span>
               <Select>
@@ -104,12 +111,15 @@ const Experiences = () => {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex flex-col items-center gap-y-2">
-              <span>B. Quel jour souhaitez vous venir ? </span>
-              <Calendar mode="single" selected={date} onSelect={setDate} />
-            </div>
-            <div>
-              <span>C. Choissisez une horaire ?</span>
+
+            <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-32">
+              <div className="flex flex-col items-center gap-y-2">
+                <span>B. Quel jour souhaitez vous venir ? </span>
+                <Calendar mode="single" selected={date} onSelect={setDate} />
+              </div>
+              <div className="flex flex-col items-center">
+                <span>C. Choisissez une horaire ?</span>
+              </div>
             </div>
           </div>
         </Section>
