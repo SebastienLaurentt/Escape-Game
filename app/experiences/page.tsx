@@ -19,6 +19,7 @@ import React, { useState } from "react";
 import HorrorImg from "../../public/images/Experience1.jpg";
 import ThrillerImg from "../../public/images/Experience2.jpg";
 import NightImg from "../../public/images/Experience3.jpg";
+import HoursChips from "@/components/shared/HoursChips";
 
 const Experiences = () => {
   // Card Selected State
@@ -105,20 +106,28 @@ const Experiences = () => {
             </div>
 
             <div className="flex flex-col items-center gap-y-2">
-              <h3>
-                A. Combien êtes vous ?
-              </h3>
+              <h3>A. Combien êtes vous ?</h3>
               <Select onValueChange={handleSelectChange}>
                 <SelectTrigger className=" w-[280px] ">
                   <SelectValue placeholder="Sélectionner votre nombre" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectGroup >
-                    <SelectItem value="2">2 personnes - <span className="font-bold">35€</span></SelectItem>
-                    <SelectItem value="3">3 personnes - <span className="font-bold">30€</span></SelectItem>
-                    <SelectItem value="4">4 personnes - <span className="font-bold">30€</span></SelectItem>
-                    <SelectItem value="5">5 personnes - <span className="font-bold">25€</span></SelectItem>
-                    <SelectItem value="6">6 personnes - <span className="font-bold">25€</span> </SelectItem>
+                  <SelectGroup>
+                    <SelectItem value="2">
+                      2 personnes - <span className="font-bold">35€</span>
+                    </SelectItem>
+                    <SelectItem value="3">
+                      3 personnes - <span className="font-bold">30€</span>
+                    </SelectItem>
+                    <SelectItem value="4">
+                      4 personnes - <span className="font-bold">30€</span>
+                    </SelectItem>
+                    <SelectItem value="5">
+                      5 personnes - <span className="font-bold">25€</span>
+                    </SelectItem>
+                    <SelectItem value="6">
+                      6 personnes - <span className="font-bold">25€</span>{" "}
+                    </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -127,20 +136,25 @@ const Experiences = () => {
             {peopleNumber && (
               <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-40">
                 <div className="flex flex-col items-center gap-y-2">
-                  <h3>
-                    B. Quel jour souhaitez vous venir ?
-                  </h3>
+                  <h3>B. Quel jour souhaitez vous venir ?</h3>
                   <Calendar mode="single" selected={date} onSelect={setDate} />
                 </div>
                 <div className="flex flex-col items-center">
-                  <h3>
-                    C. Choisissez une horaire
-                  </h3>
+                  <h3>C. Choisissez une horaire</h3>
                   {date && (
-                    <span className="italic">
-                      Disponibilités du{" "}
-                      {format(date, "EEEE dd MMMM", { locale: fr })}
-                    </span>
+                    <div>
+                      <span className="italic">
+                        Disponibilités du{" "}
+                        {format(date, "EEEE dd MMMM", { locale: fr })}
+                      </span>
+                      <div className="py-2">
+                        <HoursChips hours="10:00" />
+                        <HoursChips hours="11:00" />
+                        <HoursChips hours="12:00" />
+                        <HoursChips hours="13:00" />
+                        <HoursChips hours="14:00" />
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
