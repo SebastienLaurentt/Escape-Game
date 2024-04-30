@@ -48,7 +48,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="flex items-center lg:hidden" aria-label="Ouvrir le Menu">
+        <div className="flex items-center lg:hidden">
           <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
 
