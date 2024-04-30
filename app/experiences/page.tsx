@@ -109,18 +109,16 @@ const Experiences = () => {
                 A. Combien êtes vous ?{" "}
               </span>
               <Select onValueChange={handleSelectChange}>
-                <SelectTrigger className="w-[280px]">
+                <SelectTrigger className=" w-[280px] ">
                   <SelectValue placeholder="Sélectionner votre nombre" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="1">1</SelectItem>
-                    <SelectItem value="2">2</SelectItem>
-                    <SelectItem value="3">3</SelectItem>
-                    <SelectItem value="4">4</SelectItem>
-                    <SelectItem value="5">5</SelectItem>
-                    <SelectItem value="6">6</SelectItem>
-                    <SelectItem value="7">7</SelectItem>
+                  <SelectGroup >
+                    <SelectItem value="2">2 personnes - <span className="font-bold">35€</span></SelectItem>
+                    <SelectItem value="3">3 personnes - <span className="font-bold">30€</span></SelectItem>
+                    <SelectItem value="4">4 personnes - <span className="font-bold">30€</span></SelectItem>
+                    <SelectItem value="5">5 personnes - <span className="font-bold">25€</span></SelectItem>
+                    <SelectItem value="6">6 personnes - <span className="font-bold">25€</span> </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
