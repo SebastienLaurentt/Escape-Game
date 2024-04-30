@@ -105,9 +105,9 @@ const Experiences = () => {
             </div>
 
             <div className="flex flex-col items-center gap-y-2">
-              <span className="md:text-lg xl:text-md">
-                A. Combien êtes vous ?{" "}
-              </span>
+              <h3>
+                A. Combien êtes vous ?
+              </h3>
               <Select onValueChange={handleSelectChange}>
                 <SelectTrigger className=" w-[280px] ">
                   <SelectValue placeholder="Sélectionner votre nombre" />
@@ -125,17 +125,17 @@ const Experiences = () => {
             </div>
 
             {peopleNumber && (
-              <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-32">
+              <div className="flex flex-col gap-y-12 md:flex-row md:gap-x-20 lg:gap-x-40">
                 <div className="flex flex-col items-center gap-y-2">
-                  <span className="md:text-lg xl:text-md">
-                    B. Quel jour souhaitez vous venir ?{" "}
-                  </span>
+                  <h3>
+                    B. Quel jour souhaitez vous venir ?
+                  </h3>
                   <Calendar mode="single" selected={date} onSelect={setDate} />
                 </div>
                 <div className="flex flex-col items-center">
-                  <span className="md:text-lg xl:text-md">
-                    C. Choisissez une horaire{" "}
-                  </span>
+                  <h3>
+                    C. Choisissez une horaire
+                  </h3>
                   {date && (
                     <span className="italic">
                       Disponibilités du{" "}

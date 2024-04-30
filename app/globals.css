@@ -53,7 +53,7 @@
   }
 
   h3 {
-    @apply text-lg mb-6 md:text-2xl leading-8 md:leading-10 font-medium md:text-center md:max-w-[252px];
+    @apply text-lg  mb-4 md:text-xl leading-7 md:leading-8  text-center ;
   }
 
   /* Custom Class */
