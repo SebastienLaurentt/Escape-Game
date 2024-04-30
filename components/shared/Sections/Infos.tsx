@@ -1,8 +1,8 @@
-import { Calendar, LocateFixed, Mail, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const Infos = () => {
   return (
@@ -29,7 +29,7 @@ const Infos = () => {
             {/* Address */}
             <div className="flex flex-row gap-x-8  md:gap-y-2 ">
               <div>
-                <LocateFixed size={48} color="#991b1b" />
+                <MapPin size={48} color="#991b1b" />
               </div>
               <div className="flex flex-col">
                 <span>5 Rue Marcel Pagnol </span>
@@ -50,7 +50,7 @@ const Infos = () => {
                 <Phone size={48} color="#991b1b" />
                 <div className="flex flex-col">
                   <span>Téléphone</span>
-                  <span>XX XX XX XX XX</span>
+                  <span>06 12 34 56 78</span>
                 </div>
               </div>
             </li>
@@ -61,7 +61,7 @@ const Infos = () => {
                 <Mail size={48} color="#991b1b" />
                 <div className="flex flex-col">
                   <span>Email</span>
-                  <span>xxx.xxxx@xxxx.fr</span>
+                  <span>lavilladeleffroi@gmail.com</span>
                 </div>
               </div>
             </li>
