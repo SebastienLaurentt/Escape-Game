@@ -9,6 +9,8 @@ const Experiences = () => {
   return (
     <Section marginBottom={true} marginTop={true} classname="">
       <SectionHeader title="Des expériences" titleHighlight="variées" />
+
+      {/* Experience Card List */}
       <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
         {experienceData.map((experience, index) => (
           <li key={index}>
@@ -25,6 +27,8 @@ const Experiences = () => {
           </li>
         ))}
       </ul>
+
+      {/* Link Button to Experience / Reservation page */}
       <div className="my-8 flex flex-row justify-center lg:my-12">
         <Button asChild>
           <Link href="/experiences">Réserver</Link>

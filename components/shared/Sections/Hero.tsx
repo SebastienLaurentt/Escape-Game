@@ -21,10 +21,15 @@ const Hero = () => {
 
   return (
     <div className="relative flex  h-screen flex-row items-center justify-center xl:justify-center">
+      {/* Black Overlay */}
       <div className="absolute left-0 top-0 z-10 size-full bg-black opacity-80" />
+
+      {/* Bg Img */}
       <div className="relative flex h-screen  w-full flex-row justify-center">
         <Image src={BgHome} alt="home picture" className="object-cover" />
       </div>
+
+      {/* Hero Text */}
       <Section
         id="hero-text"
         classname="absolute z-10 flex flex-col items-center w-full xl:items-center  text-center"
