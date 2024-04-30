@@ -1,6 +1,6 @@
 "use client";
 
-import ExperienceLongerCard from "@/components/shared/ExperienceLongerCard";
+import ExperienceLongerCard from "@/components/shared/ExperienceCard";
 import PageTitle from "@/components/shared/PageTitle";
 import Section from "@/components/shared/Section";
 import SectionHeader from "@/components/shared/SectionHeader";
@@ -140,7 +140,8 @@ const Experiences = () => {
                   </span>
                   {date && (
                     <span className="italic">
-                      Disponibilités du {format(date, "EEEE dd MMMM", { locale: fr })}
+                      Disponibilités du{" "}
+                      {format(date, "EEEE dd MMMM", { locale: fr })}
                     </span>
                   )}
                 </div>

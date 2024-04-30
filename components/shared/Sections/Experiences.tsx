@@ -3,7 +3,7 @@ import Link from "next/link";
 import HorrorImg from "../../../public/images/Experience1.jpg";
 import ThrillerImg from "../../../public/images/Experience2.jpg";
 import NightImg from "../../../public/images/Experience3.jpg";
-import ExperienceLongerCard from "../ExperienceLongerCard";
+import ExperienceCard from "../ExperienceCard";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 
@@ -13,7 +13,7 @@ const Experiences = () => {
       <SectionHeader title="Des expériences" titleHighlight="variées" />
       <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
         <li>
-          <ExperienceLongerCard
+          <ExperienceCard
             src={HorrorImg}
             alt="Logo de l'expérience Horror"
             name="Horror"
@@ -25,7 +25,7 @@ const Experiences = () => {
           />
         </li>
         <li>
-          <ExperienceLongerCard
+          <ExperienceCard
             src={ThrillerImg}
             alt="Logo de l'expérience Thriller"
             name="Thriller"
@@ -37,7 +37,7 @@ const Experiences = () => {
           />
         </li>
         <li>
-          <ExperienceLongerCard
+          <ExperienceCard
             src={NightImg}
             alt="Logo de l'expérience Night"
             name="Night"

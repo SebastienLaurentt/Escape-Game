@@ -1,7 +1,7 @@
 import { Hourglass, User } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 
-interface ExperienceLongerCardProps {
+interface ExperienceCardProps {
   src: StaticImageData;
   alt: string;
   name: string;
@@ -14,7 +14,7 @@ interface ExperienceLongerCardProps {
   onClick?: () => void;
 }
 
-const ExperienceLongerCard = ({
+const ExperienceCard = ({
   src,
   alt,
   name,
@@ -25,7 +25,7 @@ const ExperienceLongerCard = ({
   hover,
   isSelected,
   onClick,
-}: ExperienceLongerCardProps) => {
+}: ExperienceCardProps) => {
 
   const hasHover = hover ? "xl:hover:border-accent  cursor-pointer" : "";
 
@@ -84,4 +84,4 @@ const ExperienceLongerCard = ({
   );
 };
 
-export default ExperienceLongerCard;
+export default ExperienceCard;
