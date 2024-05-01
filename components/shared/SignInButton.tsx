@@ -11,7 +11,7 @@ const SignInButton = () => {
           await signIn();
         }}
       >
-        Sign In
+        Se connecter
       </Button>
     </form>
   );
