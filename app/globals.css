@@ -60,4 +60,8 @@
   .cardIcon {
     @apply size-8 md:size-10 xl:size-8
   }
+
+  .cgvTitle {
+    @apply mb-4 text-left
+  }
 }

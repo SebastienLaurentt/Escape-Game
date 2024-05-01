@@ -8,7 +8,7 @@ const CGV = () => {
         <PageTitle title="Conditions Générales de Ventes" />
         <div className="flex flex-col gap-y-12  text-sm md:text-md">
           <div>
-            <h3>ARTICLE 1 – APPLICATION ET CONCEPT</h3>
+            <h3 className="cgvTitle">ARTICLE 1 – APPLICATION ET CONCEPT</h3>
             <p>
               XXXX est un concept de jeu d’évasion grandeur nature
               appartenant à la société XXX. Les présentes conditions
@@ -36,7 +36,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 2 : RÉSERVATION</h3>
+            <h3 className="cgvTitle">ARTICLE 2 : RÉSERVATION</h3>
             <p>
               L’accès aux installations et services de XXX XXX
               s’effectue exclusivement après réservation soit sur le SITE
@@ -61,7 +61,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 3 – MISE À DISPOSITION ET UTILISATION DE LA SALLE</h3>
+            <h3 className="cgvTitle">ARTICLE 3 – MISE À DISPOSITION ET UTILISATION DE LA SALLE</h3>
             <p>
               Selon le principe même du jeu, XXX XXX accorde aux
               UTILISATEURS le droit d’occuper la SALLE pour une durée maximale
@@ -122,7 +122,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 4 – PRIX</h3>
+            <h3 className="cgvTitle">ARTICLE 4 – PRIX</h3>
             <p>
               Les tarifs indiqués par XXX XXX sont en euros, toutes
               taxes comprises, tenant compte de la TVA applicable au jour de la
@@ -153,7 +153,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 5 – ENTREPRISES</h3>
+            <h3 className="cgvTitle">ARTICLE 5 – ENTREPRISES</h3>
             <p>
               Cet article concerne les entreprises ayant réservé hors site
               internet. Les prix pratiqués par XXX XXX sont indiqués sur
@@ -193,7 +193,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 6 – DROIT DE RÉTRACTATION</h3>
+            <h3 className="cgvTitle">ARTICLE 6 – DROIT DE RÉTRACTATION</h3>
             <p>
               Conformément à l’article 121-21-8 du code de la consommation, le
               droit de rétractation ne peut être exercé pour les contrats de
@@ -208,7 +208,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 7 – DONNÉES PERSONNELLES</h3>
+            <h3 className="cgvTitle">ARTICLE 7 – DONNÉES PERSONNELLES</h3>
             <p>
               L’ACHETEUR est responsable de l’exactitude des informations
               saisies sur le formulaire de réservation en ligne sur le SITE
@@ -228,7 +228,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 8 – SÉCURITÉ</h3>
+            <h3 className="cgvTitle">ARTICLE 8 – SÉCURITÉ</h3>
             <p>
               L’UTILISATEUR s’engage à respecter toutes les mesures de sécurité
               qui lui sont données, qu’elles soient contractuelles, affichées
@@ -255,7 +255,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 9 – PHOTOS ET CAMÉRAS</h3>
+            <h3 className="cgvTitle">ARTICLE 9 – PHOTOS ET CAMÉRAS</h3>
             <p>
               Des photos de chaque équipe d’UTILISATEURS pourront être prises
               avant ou après la session de jeu. Ces photos pourront être
@@ -270,7 +270,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 10 – PROPRIÉTÉ</h3>
+            <h3 className="cgvTitle">ARTICLE 10 – PROPRIÉTÉ</h3>
             <p>
               L’ensemble des éléments, textes, vides, images du site
               www.lyon-escape-game.fr sont la propriété exclusive de XXX
@@ -278,7 +278,7 @@ const CGV = () => {
             </p>
           </div>
           <div>
-            <h3>ARTICLE 11 – TRIBUNAUX COMPÉTENTS</h3>
+            <h3 className="cgvTitle">ARTICLE 11 – TRIBUNAUX COMPÉTENTS</h3>
             <p>
               Les présentes conditions générales et tout contrat conclu
               incorporant ces termes et conditions sont régis par le droit
