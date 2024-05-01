@@ -1,4 +1,5 @@
-import { signIn } from "next-auth/react";
+
+import { signIn } from "@/src/auth/auth";
 import { Button } from "../ui/button";
 
 const SignInButton = () => {

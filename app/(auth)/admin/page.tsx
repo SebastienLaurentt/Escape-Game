@@ -1,8 +1,8 @@
-import React from 'react'
+import SignInButton from '@/components/shared/SignInButton'
 
 const page = () => {
   return (
-    <div>Admin</div>
+    <div><SignInButton/></div>
   )
 }
 
