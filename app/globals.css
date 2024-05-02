@@ -53,7 +53,7 @@
   }
 
   h3 {
-    @apply text-lg  mb-4 md:text-xl leading-7 md:leading-8  text-center ;
+    @apply text-lg  md:text-xl leading-7 md:leading-8  text-center ;
   }
 
   /* Custom Class */
@@ -62,6 +62,6 @@
   }
 
   .cgvTitle {
-    @apply md:text-left;
+    @apply md:text-left mb-4;
   }
 }
