@@ -14,7 +14,7 @@ export default async function SignIn() {
   return (
     <main className="flex h-screen flex-row items-center justify-center">
       <Section>
-        <div className="flex flex-col items-center gap-y-4 rounded-xl bg-slate-900 py-12">
+        <div className="flex flex-col items-center gap-y-4 rounded-xl bg-slate-900 p-12 lg:p-20">
           <h2 className="flex flex-col text-center uppercase">
             <span>La Villa de</span>
             <span className="text-accent">l&apos;effroi</span>
