@@ -75,3 +75,16 @@ model Authenticator {
  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model Day {
+  id String @id @default(cuid())
+  name String // monday, tuesday, wednesday, thursday, friday, saturday, sunday
+  dayOfWeek Int // @see getDay () documentation, 0 for sunday, 1 for monday, 2 for tuesday, 3 for wednesday, 4 for thursday, 5 for friday, 6 for saturday
+  openTime String
+  closeTime String
+}
+
+model ClosedDay {
+  id String @id @default(cuid())
+  date DateTime
+}
