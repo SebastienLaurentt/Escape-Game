@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
+import { Calendar, Mail, MapPin, Phone } from "lucide-react";
 
 const Infos = () => {
   return (
