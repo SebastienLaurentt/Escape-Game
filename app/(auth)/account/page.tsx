@@ -2,8 +2,8 @@ import SignOutButton from "@/components/shared/SignOutButton";
 import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
 
-const Account = () => {
-  const session = auth();
+export default async function Account ()  {
+  const session = await auth();
 
   // If the user is not authenticated, redirect to the sign-in page
   if (!session) {
@@ -20,4 +20,3 @@ const Account = () => {
   );
 };
 
-export default Account;
