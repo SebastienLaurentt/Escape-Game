@@ -38,7 +38,7 @@ const Mentions = () => {
             www.cnil.fr.
           </p>
           <p>
-            Ce siteee utilise Google Analytics, un service d&apos;analyse de site
+            Ce site utilise Google Analytics, un service d&apos;analyse de site
             Internet fourni par Google Inc. (« Google »). Google Analytics
             utilise des cookies, qui sont des fichiers texte placés sur votre
             ordinateur, pour aider le site internet à analyser
