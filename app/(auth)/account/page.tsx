@@ -1,3 +1,4 @@
+import SignOutButton from "@/components/shared/SignOutButton";
 import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
 
@@ -9,7 +10,14 @@ const Account = () => {
     redirect("/signin");
   }
 
-  return <div>Account</div>;
+  return (
+    <div>
+      <div>
+        <SignOutButton />
+      </div>
+      <div>Account</div>
+    </div>
+  );
 };
 
 export default Account;
