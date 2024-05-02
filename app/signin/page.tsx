@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 export default async function SignIn() {
   const session = await auth();
 
-  // If the user is not authenticated, redirect to the sign-in page
+  // If the user is authenticated, redirect to the account page
   if (session) {
     redirect("/account");
   }
