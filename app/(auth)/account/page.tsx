@@ -1,9 +1,15 @@
-import React from 'react'
+import { auth } from "@/src/auth/auth";
+import { redirect } from "next/navigation";
 
 const Account = () => {
-  return (
-    <div>Account</div>
-  )
-}
+  const session = auth();
 
-export default Account
+  // If the user is not authenticated, redirect to the sign-in page
+  if (!session) {
+    redirect("/signin");
+  }
+
+  return <div>Account</div>;
+};
+
+export default Account;
