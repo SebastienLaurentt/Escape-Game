@@ -15,7 +15,7 @@ export default async function Account ()  {
       <div>
         <SignOutButton />
       </div>
-      <div>Account</div>
+      <div>Compte administrateur</div>
     </div>
   );
 };
