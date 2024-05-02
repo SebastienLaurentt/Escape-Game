@@ -1,4 +1,5 @@
-import prisma from "@/lib/client";
+import { prisma } from "@/lib/prisma";
+
 
 async function getExperiences() {
   const experiences = await prisma.experience.findMany();
