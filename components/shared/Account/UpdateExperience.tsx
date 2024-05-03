@@ -51,7 +51,7 @@ const UpdateForm = ({ experience }: { experience: Experience }) => {
           <Label htmlFor="Name">Durée de l&apos;expérience</Label>
           <Input
             type="text"
-            defaultValue={experience.name}
+            defaultValue={experience.duration}
             placeholder="Durée de l'expérience"
             name="duration"
             id="duration"
@@ -66,7 +66,7 @@ const UpdateForm = ({ experience }: { experience: Experience }) => {
           <Label htmlFor="Name">Unité de durée (minutes ou heure)</Label>
           <Input
             type="text"
-            defaultValue={experience.name}
+            defaultValue={experience.durationUnit}
             placeholder="Unité de durée (minutes ou heure)"
             name="durationUnit"
             id="durationUnit"
