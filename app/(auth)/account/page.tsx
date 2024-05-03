@@ -14,9 +14,6 @@ export default async function Account() {
 
   return (
     <div className="flex h-screen flex-col">
-      <header className="flex justify-end p-6 md:px-10 xl:px-16">
-        <SignOutButton />
-      </header>
       <Section classname="bg-gray-600 rounded-xl flex-1 p-4">
         <ExperienceFetch query="" />
       </Section>
