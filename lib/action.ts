@@ -23,9 +23,6 @@ const ExperienceSchema = z.object({
 export const getExperiencesList = async (query: string) => {
   try {
     const experiences = await prisma.experience.findMany({
-      select: {
-        name: true,
-      },
     });
     return experiences;
   } catch (error) {
