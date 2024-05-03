@@ -110,7 +110,7 @@ const UpdateForm = ({ experience }: { experience: Experience }) => {
           <Label htmlFor="Name">Nombre de personnes maximum</Label>
           <Input
             type="text"
-            defaultValue={experience.maxPeople}
+            defaultValue={experience.maxPeople ?? ''}
             placeholder="Nombre de personnes maximum"
             name="maxPeople"
             id="maxPeople"
