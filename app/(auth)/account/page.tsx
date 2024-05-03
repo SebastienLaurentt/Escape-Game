@@ -12,7 +12,7 @@ export default async function Account() {
   }
 
   return (
-    <Section classname="bg-gray-600 rounded-xl h-full p-4">
+    <Section classname="bg-gray-700 rounded-xl h-full p-4">
       <ExperienceFetch query="" />
     </Section>
   );

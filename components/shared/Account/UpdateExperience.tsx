@@ -14,7 +14,7 @@ const UpdateForm = ({ experience }: { experience: Experience }) => {
   const [state, formAction] = useFormState(UpdateExperienceWithId, null);
 
   return (
-    <div>
+    <div className="md:mx-12 lg:mx-20 xl:mx-32">
       <form action={formAction}>
 
         {/* Name */}

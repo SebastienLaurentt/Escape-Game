@@ -3,13 +3,12 @@ import Link from "next/link";
 
 const ExperienceFetch = async ({ query }: { query: string }) => {
   const experiences = await getExperiencesList(query);
-  console.log(experiences)
   return (
-    <ul className="flex flex-row gap-x-4">
+    <ul className="flex flex-row justify-center gap-x-4">
       {experiences.map((experience) => (
         <li
           key={experience.id}
-          className="rounded-lg bg-background px-3 py-1"
+          className="rounded-lg bg-primary px-3 py-2 font-bold uppercase text-primary-foreground"
         >
           <Link href={`/account/${experience.id}`}>{experience.name}</Link>
         </li>
