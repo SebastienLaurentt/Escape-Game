@@ -6,9 +6,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="flex h-screen flex-col">
       <AccountHeader />
-      <div>{children}</div>
+      <div className="flex-1">{children}</div>
     </div>
   );
 }
