@@ -80,11 +80,11 @@ model Experience {
   id String @id @default(cuid())
   name String
   description String
-  duration Int
+  duration String
   durationUnit String
-  minPrice Int
-  minPeople Int
-  maxPeople Int? 
+  minPrice String
+  minPeople String
+  maxPeople String? 
 }
 
 model Day {
