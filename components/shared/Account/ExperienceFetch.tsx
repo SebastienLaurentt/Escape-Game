@@ -1,28 +1,21 @@
-import { prisma } from "@/lib/prisma";
+import { getExperiencesList } from "@/lib/action";
+import Link from "next/link";
 
-
-async function getExperiences() {
-  const experiences = await prisma.experience.findMany();
-  return experiences;
-}
-
-export default async function ExperienceFetch() {
-  const experiences = await getExperiences();
-  console.log(experiences);
+const ExperienceFetch = async ({ query }: { query: string }) => {
+  const experiences = await getExperiencesList(query);
+  console.log(experiences)
   return (
-    <div>
-      <ul>
-        {experiences.map((experience) => (
-          <li key={experience.id}>
-            <div>
-              <h2>{experience.name}</h2>
-              <p>{experience.description}</p>
-              <span> Nombre de personnes: {experience.minPeople} à {experience.maxPeople} personnes  </span>
-              <span> Durée : {experience.duration} {experience.durationUnit}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="flex flex-row gap-x-4">
+      {experiences.map((experience) => (
+        <li
+          key={experience.id}
+          className="rounded-lg bg-background px-3 py-1"
+        >
+          <Link href={`/account/${experience.id}`}>{experience.name}</Link>
+        </li>
+      ))}
+    </ul>
   );
-}
+};
+
+export default ExperienceFetch;
