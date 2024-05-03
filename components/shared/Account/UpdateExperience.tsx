@@ -1,6 +1,7 @@
 //components/editform.tsx
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -107,7 +108,7 @@ const UpdateForm = ({ experience }: { experience: Experience }) => {
 
         {/* Max People */}
         <div className="mb-5">
-          <Label htmlFor="Name">Nombre de personnes maximum</Label>
+          <Label htmlFor="Name">Nombre de personnes maximum (optionnel) </Label>
           <Input
             type="text"
             defaultValue={experience.maxPeople ?? ''}
@@ -123,7 +124,7 @@ const UpdateForm = ({ experience }: { experience: Experience }) => {
         <div id="message-error" aria-live="polite" aria-atomic="true">
           <p className="mt-2 text-sm text-red-500">{state?.message}</p>
         </div>
-        <button>Update</button>
+        <Button>Update</Button>
       </form>
     </div>
   );
