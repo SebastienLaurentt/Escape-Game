@@ -13,8 +13,8 @@ const UpdateExperiencePage = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <Section classname="my-8">
-      <h1 className="mb-8 text-center">Update Experience</h1>
+    <Section classname="my-12 md:my-20">
+      <h2 className="mb-8 text-center">Mise à Jour <br /> Experience</h2>
       <UpdateForm experience={experience} />
     </Section>
   );
