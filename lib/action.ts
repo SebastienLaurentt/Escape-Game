@@ -17,8 +17,6 @@ const ExperienceSchema = z.object({
   maxPeople: z.string().min(1),
 });
 
-
-
 // Read all experiences
 export const getExperiencesList = async (query: string) => {
   try {
@@ -36,6 +34,7 @@ export const getExperienceById = async (id: string) => {
     const experience = await prisma.experience.findUnique({
       where: { id },
     });
+    console.log(experience)
     return experience;
   } catch (error) {
     throw new Error("Failed to fetch experience data");

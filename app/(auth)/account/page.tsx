@@ -18,7 +18,7 @@ export default async function Account() {
         <SignOutButton />
       </header>
       <Section classname="bg-gray-600 rounded-xl flex-1 p-4">
-        <ExperienceFetch />
+        <ExperienceFetch query="" />
       </Section>
     </div>
   );
