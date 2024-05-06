@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 
 // Experience schema type with Zod
 const ExperienceSchema = z.object({
+  image: z.string().min(6),
   name: z.string().min(6),
   description: z.string().min(6),
   duration: z.string().min(2),
