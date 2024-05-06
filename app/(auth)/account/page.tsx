@@ -3,6 +3,7 @@ import Section from "@/components/shared/Section";
 import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
 
+
 export default async function Account() {
   const session = await auth();
 
