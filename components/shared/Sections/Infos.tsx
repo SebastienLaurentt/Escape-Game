@@ -11,7 +11,7 @@ const Infos = () => {
 
       <div className="flex flex-col gap-y-16 md:flex-row md:justify-center md:gap-x-20 md:gap-y-0 lg:gap-x-28">
         {/* When and Where  */}
-        <div className="flex w-[255px] flex-col items-center">
+        <div className="flex w-[255px] flex-col items-center mx-auto md:mx-0">
           <h3 className="mb-4 w-full text-center md:text-left">
             Quand et où nous trouver ?
           </h3>
@@ -44,7 +44,7 @@ const Infos = () => {
         </div>
 
         {/* Contact  */}
-        <div className="flex w-[255px] flex-col items-center">
+        <div className="flex w-[255px] flex-col items-center mx-auto md:mx-0">
           <h3 className="mb-4 w-full text-center md:text-left">Comment nous contacter ?</h3>
 
           <div className="flex w-full flex-col gap-y-4">
