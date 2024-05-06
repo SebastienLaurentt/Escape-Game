@@ -35,7 +35,7 @@ const Hero = () => {
         classname="absolute z-10 flex flex-col items-center w-full xl:items-center  text-center"
       >
         <h1 className="uppercase">
-          La Villa de <span className="text-accent">l&apos;Effroi</span>
+          La Villa de <span className="text-primary">l&apos;Effroi</span>
         </h1>
         <p className="my-4 w-[250px]  md:w-[500px] md:text-lg lg:text-xl">
           Explorez la Villa de l&apos;Effroi. <br /> Échappez-vous avant

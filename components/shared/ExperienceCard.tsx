@@ -47,7 +47,7 @@ const ExperienceCard = ({
           </span>
           <span className="flex flex-row items-center gap-x-1 md:text-md xl:text-sm">
             dès
-            <span className="text-xl font-semibold italic text-accent md:text-3xl ">
+            <span className="text-xl font-semibold italic text-primary md:text-3xl ">
               {price}
             </span>
             / personne
@@ -74,7 +74,7 @@ const ExperienceCard = ({
         {/* Selected */}
         <div className="absolute right-4 top-4 flex flex-row gap-x-1">
           {isSelected ? (
-            <span className="rounded-xl bg-accent px-2 py-1">
+            <span className="rounded-xl bg-primary px-2 py-1">
               Votre Sélection
             </span>
           ) : null}

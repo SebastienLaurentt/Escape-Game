@@ -14,7 +14,7 @@ const PriceCard = ({ peopleNumber, price }: PriceCardProps) => {
       </div>
       <div className="flex flex-row">
         <span className="flex flex-row items-center gap-x-1 text-md md:text-lg">
-          <span className=" text-xl font-semibold italic text-accent md:text-2xl ">
+          <span className=" text-xl font-semibold italic text-primary md:text-2xl ">
             {price}
           </span>
           / personne

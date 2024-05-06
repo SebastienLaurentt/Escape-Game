@@ -38,7 +38,7 @@ const Header = () => {
                   href={link.href}
                   aria-label={link.ariaLabel}
                   className={
-                    "xl:hover:text-accent" + (pathname === link.href ? "" : "")
+                    "xl:hover:text-primary" + (pathname === link.href ? "" : "")
                   }
                 >
                   {link.name}

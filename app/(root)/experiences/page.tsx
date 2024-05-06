@@ -75,7 +75,7 @@ const Experiences = () => {
               <span className="md:text-lg xl:text-md">
                 Vous avez choisi l&apos;expérience{" "}
               </span>
-              <span className="text-3xl font-bold uppercase text-accent xl:text-5xl">
+              <span className="text-3xl font-bold uppercase text-primary xl:text-5xl">
                 {selectedCard}
               </span>
             </div>

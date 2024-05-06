@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { Calendar, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
-import { Calendar, Mail, MapPin, Phone } from "lucide-react";
 
 const Infos = () => {
   return (
@@ -19,8 +19,8 @@ const Infos = () => {
           <div className="flex flex-col gap-y-4">
             {/* Opening hours */}
             <div className="flex flex-row gap-x-8  md:gap-y-2 ">
-              <div>
-                <Calendar size={48} color="#991b1b" />
+              <div className="text-primary">
+                <Calendar size={48} />
               </div>
               <div className="flex flex-col">
                 <span>7 jours / 7 </span>
@@ -30,8 +30,8 @@ const Infos = () => {
 
             {/* Address */}
             <div className="flex flex-row gap-x-8  md:gap-y-2 ">
-              <div>
-                <MapPin size={48} color="#991b1b" />
+              <div className="text-primary">
+                <MapPin size={48} />
               </div>
               <div className="flex flex-col">
                 <span>5 Rue Marcel Pagnol </span>
@@ -50,7 +50,10 @@ const Infos = () => {
           <div className="flex flex-col gap-y-4">
             {/* Phone */}
             <div className="flex flex-row  gap-x-8  md:gap-y-2 ">
-              <Phone size={48} color="#991b1b" />
+              <div className="text-primary">
+                <Phone size={48} />
+              </div>
+
               <div className="flex flex-col">
                 <span>Téléphone</span>
                 <span>06 12 34 56 78</span>
@@ -59,7 +62,10 @@ const Infos = () => {
 
             {/* Email */}
             <div className="flex flex-row  gap-x-8 md:gap-y-2">
-              <Mail size={48} color="#991b1b" />
+              <div className="text-primary">
+                <Mail size={48} />
+              </div>
+
               <div className="flex flex-col">
                 <span>Email</span>
                 <span>villaeffroi@gmail.com</span>
