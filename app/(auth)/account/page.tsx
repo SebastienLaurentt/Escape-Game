@@ -109,7 +109,7 @@ export default async function Account() {
               <TooltipTrigger asChild>
                 <Link
                   href="#"
-                  className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:size-8"
+                  className="flex size-9 items-center justify-center rounded-lg bg-accent text-foreground transition-colors hover:text-foreground md:size-8"
                 >
                   <ShoppingCart className="size-5" />
                   <span className="sr-only">Orders</span>
