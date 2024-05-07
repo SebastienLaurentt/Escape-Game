@@ -14,7 +14,7 @@ const ExperienceSchema = z.object({
   durationUnit: z.string().min(7),
   minPrice: z.string().min(2),
   minPeople: z.string().min(1),
-  maxPeople: z.string().min(1),
+  maxPeople: z.string().min(0),
 });
 
 // Read all experiences
@@ -65,9 +65,8 @@ export const updateExperience = async (
         duration: validatedFields.data.duration,
         durationUnit: validatedFields.data.durationUnit,
         minPrice: validatedFields.data.minPrice,
-        minPeople: validatedFields.data.maxPeople,
+        minPeople: validatedFields.data.minPeople,
         maxPeople: validatedFields.data.maxPeople,
-
       },
       where: { id },
     });

@@ -75,7 +75,7 @@ const Experiences = () => {
               <span className="md:text-lg xl:text-md">
                 Vous avez choisi l&apos;expérience{" "}
               </span>
-              <span className="text-3xl font-bold uppercase text-accent xl:text-5xl">
+              <span className="text-3xl font-bold uppercase text-primary xl:text-5xl">
                 {selectedCard}
               </span>
             </div>
@@ -114,7 +114,7 @@ const Experiences = () => {
               <div className="w-full ">
                 <div className=" mx-8 flex flex-col gap-y-12 md:flex-row md:justify-around xl:justify-center xl:gap-x-28">
                   <div className="flex  flex-col items-center gap-y-2">
-                    <h3 className="w-[320px]">
+                    <h3 className="w-[320px] text-center">
                       B. Quel jour souhaitez vous venir ?
                     </h3>
                     <Calendar
@@ -126,12 +126,14 @@ const Experiences = () => {
 
                   {/* C) Hours Picking */}
                   <div className="flex flex-col items-center">
-                    <h3 className="w-[320px]">C. Choisissez une horaire</h3>
+                    <h3 className="mb-2 w-[320px] text-center">
+                      C. Choisissez une horaire
+                    </h3>
                     {date && (
-                      <div className="flex  flex-col items-center">
-                        <span className=" italic">
-                          Disponibilités du {""}
-                          <span className="text-accent">
+                      <div className="flex flex-col items-center">
+                        <span className=" italic ">
+                          Disponibilités du
+                          <span className="text-primary">
                             {
                               format(date, " EEEE dd MMMM", { locale: fr })
                                 .replace(/^\w/, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre du jour
