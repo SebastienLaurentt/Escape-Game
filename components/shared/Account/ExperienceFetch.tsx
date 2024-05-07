@@ -42,7 +42,7 @@ const ExperienceFetch = async ({ query }: { query: string }) => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Nom</TableHead>
-                  <TableHead className="hidden sm:table-cell">Desc</TableHead>
+                  <TableHead className="hidden lg:table-cell">Desc</TableHead>
                   <TableHead className="hidden sm:table-cell">Durée</TableHead>
                   <TableHead className="hidden md:table-cell">Unité</TableHead>
                   <TableHead className="hidden md:table-cell">
@@ -62,7 +62,7 @@ const ExperienceFetch = async ({ query }: { query: string }) => {
                 {experiences.map((experience) => (
                   <TableRow key={experience.id} className="bg-accent">
                     <TableCell>{experience.name}</TableCell>
-                    <TableCell className="hidden sm:table-cell">
+                    <TableCell className="hidden lg:table-cell">
                       {truncateDescription(experience.description, 50)}{" "}
                       {/* Limite à 50 caractères */}
                     </TableCell>
