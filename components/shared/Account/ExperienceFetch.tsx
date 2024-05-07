@@ -83,7 +83,7 @@ const ExperienceFetch = async ({ query }: { query: string }) => {
                     </TableCell>
 
                     <TableCell className="flex flex-row justify-center xl:cursor-pointer">
-                      <Link href={`/account/${experience.id}`} className="">
+                      <Link href={`/account/${experience.id}`}>
                         <Pencil />
                       </Link>
                     </TableCell>
