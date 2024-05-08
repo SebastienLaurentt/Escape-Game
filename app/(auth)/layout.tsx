@@ -16,13 +16,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  Calendar,
+  Gamepad2,
   Home,
+  LayoutDashboard,
   LineChart,
-  Package,
-  Package2,
   PanelLeft,
   Settings,
-  ShoppingCart,
   Users2,
 } from "lucide-react";
 import Link from "next/link";
@@ -42,35 +42,35 @@ export default function RootLayout({
               href="#"
               className="group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:size-8 md:text-base"
             >
-              <Package2 className="size-4 transition-all group-hover:scale-110" />
-              <span className="sr-only">Acme Inc</span>
+              <LayoutDashboard className="size-4" />
+              <span className="sr-only">Dashboard Logo</span>
             </Link>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href="#"
+                    href="/account/"
                     className="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:size-8"
                   >
                     <Home className="size-5" />
-                    <span className="sr-only">Dashboard</span>
+                    <span className="sr-only">Onglet Accueil</span>
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent side="right">Dashboard</TooltipContent>
+                <TooltipContent side="right">Accueil</TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href="#"
+                    href="/account/experiences/"
                     className="flex size-9 items-center justify-center rounded-lg bg-accent text-foreground transition-colors hover:text-foreground md:size-8"
                   >
-                    <ShoppingCart className="size-5" />
-                    <span className="sr-only">Orders</span>
+                    <Gamepad2 className="size-5" />
+                    <span className="sr-only">Onglet Experiences</span>
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent side="right">Orders</TooltipContent>
+                <TooltipContent side="right">Experiences</TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <TooltipProvider>
@@ -80,11 +80,11 @@ export default function RootLayout({
                     href="#"
                     className="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:size-8"
                   >
-                    <Package className="size-5" />
-                    <span className="sr-only">Products</span>
+                    <Calendar className="size-5" />
+                    <span className="sr-only">Onglet Réservations</span>
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent side="right">Products</TooltipContent>
+                <TooltipContent side="right">Réservations</TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <TooltipProvider>
@@ -150,29 +150,29 @@ export default function RootLayout({
                     href="#"
                     className="group flex size-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                   >
-                    <Package2 className="size-5 transition-all group-hover:scale-110" />
-                    <span className="sr-only">Acme Inc</span>
+                    <LayoutDashboard className="size-5 transition-all group-hover:scale-110" />
+                    <span className="sr-only">Dashboard Logo</span>
                   </Link>
                   <Link
                     href="#"
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
                     <Home className="size-5" />
-                    Dashboard
+                    Accueil
                   </Link>
                   <Link
                     href="#"
                     className="flex items-center gap-4 px-2.5 text-foreground"
                   >
-                    <ShoppingCart className="size-5" />
-                    Orders
+                    <Gamepad2 className="size-5" />
+                    Experiences
                   </Link>
                   <Link
                     href="#"
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
-                    <Package className="size-5" />
-                    Products
+                    <Calendar className="size-5" />
+                    Réservations
                   </Link>
                   <Link
                     href="#"
