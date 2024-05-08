@@ -8,7 +8,7 @@ export default async function SignIn() {
 
   // If the user is authenticated, redirect to the account page
   if (session) {
-    redirect("/account");
+    redirect("/account/experiences");
   }
 
   return (
