@@ -6,6 +6,6 @@ interface ExperienceNameState {
 }
 
 export const useExperienceNameStore = create<ExperienceNameState>()((set) => ({
-  experienceName: 'horror',
+  experienceName: 'clvv571y2000013kkmos8kdth',
   setExperienceName: (experienceName) => set({ experienceName }),
 }))

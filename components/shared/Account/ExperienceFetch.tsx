@@ -54,7 +54,9 @@ const ExperienceFetch = async ({ query }: { query: string }) => {
                   <TableHead className="hidden md:table-cell">
                     Max pers
                   </TableHead>
-                  <TableHead className="text-center md:table-cell">Edit</TableHead>
+                  <TableHead className="text-center md:table-cell">
+                    Edit
+                  </TableHead>
                 </TableRow>
               </TableHeader>
 
@@ -83,7 +85,7 @@ const ExperienceFetch = async ({ query }: { query: string }) => {
                     </TableCell>
 
                     <TableCell className="flex flex-row justify-center xl:cursor-pointer">
-                      <Link href={`/account/${experience.id}`}>
+                      <Link href={`/account/experiences/${experience.id}`}>
                         <Pencil />
                       </Link>
                     </TableCell>
