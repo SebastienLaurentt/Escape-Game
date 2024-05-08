@@ -25,7 +25,7 @@ const truncateDescription = (description: any, maxLength: number) => {
   return description.substring(0, maxLength - 3) + "...";
 };
 
-const ExperienceFetch = async ({ query }: { query: string }) => {
+const ExperiencesFetch = async ({ query }: { query: string }) => {
   const experiences = await getExperiencesList(query);
   return (
     <Tabs defaultValue="week">
@@ -62,7 +62,7 @@ const ExperienceFetch = async ({ query }: { query: string }) => {
 
               <TableBody>
                 {experiences.map((experience) => (
-                  <TableRow key={experience.id} className="bg-accent">
+                  <TableRow key={experience.id} className="bg-accent ">
                     <TableCell>{experience.name}</TableCell>
                     <TableCell className="hidden lg:table-cell">
                       {truncateDescription(experience.description, 50)}{" "}
@@ -100,4 +100,4 @@ const ExperienceFetch = async ({ query }: { query: string }) => {
   );
 };
 
-export default ExperienceFetch;
+export default ExperiencesFetch;

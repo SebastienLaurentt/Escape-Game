@@ -1,4 +1,3 @@
-import ExperienceFetch from "@/components/shared/Account/ExperienceFetch";
 import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
 
@@ -10,9 +9,5 @@ export default async function Account() {
     redirect("/signin");
   }
 
-  return (
-    <>
-
-    </>
-  );
+  return <></>;
 }

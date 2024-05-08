@@ -1,10 +1,10 @@
-import ExperienceFetch from "@/components/shared/Account/ExperienceFetch";
-import UpdateExperience from "@/components/shared/Account/UpdateExperience";
+import ExperienceIdUpdate from "@/components/shared/Account/ExperienceIdUpdate";
+import ExperienceFetch from "@/components/shared/Account/ExperiencesFetch";
 import { getExperienceById } from "@/lib/action";
 import { auth } from "@/src/auth/auth";
 import { notFound, redirect } from "next/navigation";
 
-const UpdateExperiencePage = async ({ params }: { params: { id: string } }) => {
+const ExperienceIdFetch = async ({ params }: { params: { id: string } }) => {
   const session = await auth();
   const id = params.id;
   const experience = await getExperienceById(id);
@@ -28,9 +28,9 @@ const UpdateExperiencePage = async ({ params }: { params: { id: string } }) => {
       </div>
 
       {/* Right */}
-      <UpdateExperience experience={experience} />
+      <ExperienceIdUpdate experience={experience} />
     </>
   );
 };
 
-export default UpdateExperiencePage;
+export default ExperienceIdFetch;
