@@ -10,8 +10,8 @@ import { redirect } from "next/navigation";
 const ExperienceSchema = z.object({
   name: z.string().min(6),
   description: z.string().min(6),
-  duration: z.string().min(2),
-  durationUnit: z.string().min(7),
+  duration: z.string().min(1),
+  durationUnit: z.string().min(5),
   minPrice: z.string().min(2),
   minPeople: z.string().min(1),
   maxPeople: z.string().min(0),
