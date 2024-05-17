@@ -13,6 +13,7 @@ import React from "react";
 
 const ReservationsCalendar = () => {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
+  console.log(date);
   return (
     <Tabs defaultValue="week">
       <TabsContent value="week">

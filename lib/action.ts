@@ -1,9 +1,9 @@
 "use server"
 
-import { z } from "zod";
-import { prisma } from "./prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { z } from "zod";
+import { prisma } from "./prisma";
 
 
 // Experience schema type with Zod
@@ -16,6 +16,24 @@ const ExperienceSchema = z.object({
   minPeople: z.string().min(1),
   maxPeople: z.string().min(0),
 });
+
+// Closed Day Schema type with Zod
+const ClosedDaySchema = z.object({
+  date: z.date(),
+});
+
+// Create Closed Day
+export const createClosedDay = async (date:Date) => {
+  try {
+    await prisma.closedDay.create({
+      data: {
+        date: date,
+      },
+    });
+  }
+  catch (error) {
+    throw new Error("Failed to create closed day");
+  }};
 
 // Read all experiences
 export const getExperiencesList = async (query: string) => {
