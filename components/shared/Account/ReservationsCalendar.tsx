@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import {
   Card,
   CardContent,
@@ -10,11 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import React from "react";
+import SetOpeningDays from "./SetOpeningDays";
 
 const ReservationsCalendar = () => {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
-  console.log(date);
   return (
     <Tabs defaultValue="week">
       <TabsContent value="week">
@@ -24,7 +21,7 @@ const ReservationsCalendar = () => {
             <CardDescription>Gestion des réservations</CardDescription>
           </CardHeader>
           <CardContent>
-            <Calendar mode="single" selected={date} onSelect={setDate} />
+            <SetOpeningDays />
             <Button>Fermer le jour</Button>
           </CardContent>
         </Card>
