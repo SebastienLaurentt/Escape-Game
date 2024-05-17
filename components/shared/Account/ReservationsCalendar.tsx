@@ -1,5 +1,6 @@
-'use client'
+"use client";
 
+import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Card,
@@ -24,6 +25,7 @@ const ReservationsCalendar = () => {
           </CardHeader>
           <CardContent>
             <Calendar mode="single" selected={date} onSelect={setDate} />
+            <Button>Fermer le jour</Button>
           </CardContent>
         </Card>
       </TabsContent>

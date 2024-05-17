@@ -23,17 +23,30 @@ const ClosedDaySchema = z.object({
 });
 
 // Create Closed Day
-export const createClosedDay = async (date:Date) => {
+export const createClosedDay = async (
+  formData: FormData
+) => {
+  const validatedFields = ClosedDaySchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+ 
+  if (!validatedFields.success) {
+    return {
+      Error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+ 
   try {
     await prisma.closedDay.create({
       data: {
-        date: date,
+        date: validatedFields.data.date,
       },
     });
+  } catch (error) {
+    return { message: "Failed to create closedDay" };
   }
-  catch (error) {
-    throw new Error("Failed to create closed day");
-  }};
+};
+
 
 // Read all experiences
 export const getExperiencesList = async (query: string) => {
