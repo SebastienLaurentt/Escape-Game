@@ -11,7 +11,7 @@ const experienceData = [
     description:
       "Plongez dans les ténèbres, résolvez les énigmes terrifiantes et échappez aux griffes du mal dans cette expérience d'épouvante.",
     peopleNumber: "2 personnes",
-    duration: "45 minutes",
+    duration: "1 heure",
   },
   {
     src: ThrillerImg,
@@ -31,7 +31,7 @@ const experienceData = [
     description:
       "Soyez prêt à affronter vos pires cauchemars et à découvrir ce qui se cache dans l'obscurité de cette aventure nocturne.",
     peopleNumber: "5 à 6 personnes",
-    duration: "1 heure 15",
+    duration: "1 heure",
   },
 ];
 
