@@ -8,7 +8,7 @@ import { ClosedDay } from "@prisma/client";
 import React from "react";
 import { useFormState } from "react-dom";
 
-const SetOpeningDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
+const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   const [state, formAction] = useFormState(createClosedDay, null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   console.log(date);
@@ -36,4 +36,4 @@ const SetOpeningDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   );
 };
 
-export default SetOpeningDays;
+export default CloseDays;

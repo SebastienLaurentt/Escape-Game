@@ -1,4 +1,3 @@
-
 import {
   Card,
   CardContent,
@@ -7,8 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import SetOpeningDays from "./SetOpeningDays";
 import { getClosedDay } from "@/lib/action";
+import OpenDays from "./OpenDays";
+import CloseDays from "./CloseDays";
 
 const ReservationsCalendar = async ({ query }: { query: string }) => {
   const closedDays = await getClosedDay(query);
@@ -21,7 +21,8 @@ const ReservationsCalendar = async ({ query }: { query: string }) => {
             <CardDescription>Gestion des réservations</CardDescription>
           </CardHeader>
           <CardContent>
-            <SetOpeningDays closedDays={closedDays} />
+            <CloseDays closedDays={closedDays} />
+            <OpenDays closedDays={closedDays} />
           </CardContent>
         </Card>
       </TabsContent>
