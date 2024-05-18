@@ -116,3 +116,15 @@ export const getClosedDay = async (query: string) => {
     throw new Error("Failed to fetch closedDays data");
   }
 };
+
+export const deleteClosedDay = async (id: string) => {
+  try {
+    await prisma.closedDay.delete({
+      where: { id },
+    });
+  } catch (error) {
+    return { message: "Failed to delete closed day" };
+  }
+ 
+  redirect("/account/reservations");
+};

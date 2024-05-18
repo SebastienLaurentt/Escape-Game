@@ -20,7 +20,7 @@ const ReservationsCalendar = async ({ query }: { query: string }) => {
             <CardTitle>Les Réservations</CardTitle>
             <CardDescription>Gestion des réservations</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col md:flex-row gap-4">
             <CloseDays closedDays={closedDays} />
             <OpenDays closedDays={closedDays} />
           </CardContent>
