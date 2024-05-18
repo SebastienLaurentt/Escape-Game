@@ -7,7 +7,7 @@ import { DayPicker } from "react-day-picker"
 import { fr } from 'date-fns/locale';
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { isPast } from "date-fns";
+import { isPast, startOfDay } from "date-fns";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -20,11 +20,14 @@ function Calendar({
 
   // Fonction pour vérifier si une date est passée
   const isPastDate = (date: Date) => {
-    return isPast(date);
+    // Compare la date sans l'heure pour exclure le jour actuel
+    const today = startOfDay(new Date());
+    const checkDate = startOfDay(date);
+    return isPast(checkDate) && checkDate < today;
   };
 
   // Fonction pour filtrer les dates passées
-  const disabledDays = (date: Date) => {
+  const pastDays = (date: Date) => {
     return isPastDate(date);
   };
 
@@ -32,7 +35,7 @@ function Calendar({
     <DayPicker
     locale={fr}
       showOutsideDays={showOutsideDays}
-      disabled={disabledDays}
+      hidden={pastDays}
       className={cn("p-3", className)}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
