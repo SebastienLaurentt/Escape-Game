@@ -14,11 +14,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import experienceData from "@/data/experienceData";
+import { ClosedDay } from "@prisma/client";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import React, { useState } from "react";
 
-const ReservationFlow = () => {
+const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   // Card Selected State
   const [selectedCard, setSelectedCard] = useState(null);
   // Select State
@@ -26,6 +27,7 @@ const ReservationFlow = () => {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   console.log(date);
 
+  const disabledDates = closedDays.map((day) => new Date(day.date));
   const handleCardClick = (cardName: any) => {
     setSelectedCard(cardName);
   };
@@ -118,6 +120,7 @@ const ReservationFlow = () => {
                       mode="single"
                       selected={date}
                       onSelect={setDate}
+                      disabled={disabledDates}
                     />
                   </div>
 
