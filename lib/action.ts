@@ -103,7 +103,7 @@ export const createClosedDay = async (prevSate: any, formData: FormData) => {
     return { message: "Failed to create new closedDay" };
   }
 
-  redirect("/account/reservations");
+  redirect("/account/opening");
 };
 
 // Mise à jour de la fonction getClosedDay pour ne récupérer que les dates
@@ -126,5 +126,5 @@ export const deleteClosedDay = async (id: string) => {
     return { message: "Failed to delete closed day" };
   }
  
-  redirect("/account/reservations");
+  redirect("/account/opening");
 };

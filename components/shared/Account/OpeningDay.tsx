@@ -7,10 +7,10 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { getClosedDay } from "@/lib/action";
-import OpenDays from "./OpenDays";
 import CloseDays from "./CloseDays";
+import OpenDays from "./OpenDays";
 
-const ReservationsCalendar = async ({ query }: { query: string }) => {
+const OpeningDays = async ({ query }: { query: string }) => {
   const closedDays = await getClosedDay(query);
   return (
     <Tabs defaultValue="week">
@@ -20,7 +20,7 @@ const ReservationsCalendar = async ({ query }: { query: string }) => {
             <CardTitle>Les Réservations</CardTitle>
             <CardDescription>Gestion des réservations</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col md:flex-row gap-4">
+          <CardContent className="flex flex-col gap-4 md:flex-row">
             <CloseDays closedDays={closedDays} />
             <OpenDays closedDays={closedDays} />
           </CardContent>
@@ -30,4 +30,4 @@ const ReservationsCalendar = async ({ query }: { query: string }) => {
   );
 };
 
-export default ReservationsCalendar;
+export default OpeningDays;
