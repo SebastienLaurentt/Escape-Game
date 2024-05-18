@@ -1,27 +1,30 @@
-"use server"
+"use server";
 
-import { z } from "zod";
-import { prisma } from "./prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
+import { z } from "zod";
+import { prisma } from "./prisma";
 
 // Experience schema type with Zod
 const ExperienceSchema = z.object({
   name: z.string().min(6),
   description: z.string().min(6),
-  duration: z.string().min(2),
-  durationUnit: z.string().min(7),
+  duration: z.string().min(1),
+  durationUnit: z.string().min(5),
   minPrice: z.string().min(2),
   minPeople: z.string().min(1),
   maxPeople: z.string().min(0),
 });
 
+// Closed Day Schema type with Zod
+const ClosedDaySchema = z.object({
+  date: z.string(),
+});
+
 // Read all experiences
 export const getExperiencesList = async (query: string) => {
   try {
-    const experiences = await prisma.experience.findMany({
-    });
+    const experiences = await prisma.experience.findMany({});
     return experiences;
   } catch (error) {
     throw new Error("Failed to fetch experiences data");
@@ -34,7 +37,7 @@ export const getExperienceById = async (id: string) => {
     const experience = await prisma.experience.findUnique({
       where: { id },
     });
-    console.log(experience)
+    console.log(experience);
     return experience;
   } catch (error) {
     throw new Error("Failed to fetch experience data");
@@ -50,13 +53,13 @@ export const updateExperience = async (
   const validatedFields = ExperienceSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
- 
+
   if (!validatedFields.success) {
     return {
       Error: validatedFields.error.flatten().fieldErrors,
     };
   }
- 
+
   try {
     await prisma.experience.update({
       data: {
@@ -73,7 +76,55 @@ export const updateExperience = async (
   } catch (error) {
     return { message: "Failed to update experience" };
   }
- 
+
   revalidatePath("/account");
   redirect("/account");
+};
+
+// Create Closed Day
+export const createClosedDay = async (prevSate: any, formData: FormData) => {
+  const validatedFields = ClosedDaySchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!validatedFields.success) {
+    return {
+      Error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    await prisma.closedDay.create({
+      data: {
+        date: validatedFields.data.date,
+      },
+    });
+  } catch (error) {
+    return { message: "Failed to create new closedDay" };
+  }
+
+  redirect("/account/opening");
+};
+
+// Mise à jour de la fonction getClosedDay pour ne récupérer que les dates
+export const getClosedDay = async (query: string) => {
+  try {
+    const closedDays = await prisma.closedDay.findMany({
+    });
+    return closedDays;
+  } catch (error) {
+    throw new Error("Failed to fetch closedDays data");
+  }
+};
+
+export const deleteClosedDay = async (id: string) => {
+  try {
+    await prisma.closedDay.delete({
+      where: { id },
+    });
+  } catch (error) {
+    return { message: "Failed to delete closed day" };
+  }
+ 
+  redirect("/account/opening");
 };

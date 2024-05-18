@@ -41,17 +41,23 @@ const ExperiencesFetch = async ({ query }: { query: string }) => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Nom</TableHead>
-                  <TableHead className="hidden lg:table-cell">Desc</TableHead>
-                  <TableHead className="hidden sm:table-cell">Durée</TableHead>
-                  <TableHead className="hidden md:table-cell">Unité</TableHead>
-                  <TableHead className="hidden md:table-cell">
+                  <TableHead className="text-center">Nom</TableHead>
+                  <TableHead className="hidden text-center lg:table-cell">
+                    Description
+                  </TableHead>
+                  <TableHead className="hidden text-center sm:table-cell">
+                    Durée
+                  </TableHead>
+                  <TableHead className="hidden text-center md:table-cell">
+                    Unité
+                  </TableHead>
+                  <TableHead className="hidden text-center md:table-cell">
                     Prix min
                   </TableHead>
-                  <TableHead className="hidden md:table-cell">
+                  <TableHead className="hidden text-center md:table-cell">
                     Min Pers
                   </TableHead>
-                  <TableHead className="hidden md:table-cell">
+                  <TableHead className="hidden text-center md:table-cell">
                     Max pers
                   </TableHead>
                   <TableHead className="text-center md:table-cell">
@@ -62,7 +68,10 @@ const ExperiencesFetch = async ({ query }: { query: string }) => {
 
               <TableBody>
                 {experiences.map((experience) => (
-                  <TableRow key={experience.id} className="bg-accent ">
+                  <TableRow
+                    key={experience.id}
+                    className="bg-accent text-center "
+                  >
                     <TableCell>{experience.name}</TableCell>
                     <TableCell className="hidden lg:table-cell">
                       {truncateDescription(experience.description, 50)}{" "}
@@ -80,11 +89,11 @@ const ExperiencesFetch = async ({ query }: { query: string }) => {
                     <TableCell className="hidden md:table-cell">
                       {experience.minPeople}
                     </TableCell>
-                    <TableCell className="hidden md:table-cell">
+                    <TableCell className="hidden md:table-cell ">
                       {experience.maxPeople}
                     </TableCell>
 
-                    <TableCell className="flex flex-row justify-center xl:cursor-pointer">
+                    <TableCell className="flex flex-row justify-center md:table-cell xl:cursor-pointer">
                       <Link href={`/account/experiences/${experience.id}`}>
                         <Pencil />
                       </Link>
