@@ -19,7 +19,7 @@ const OpeningDays = async ({ query }: { query: string }) => {
             <Separator className="md:hidden" />
             <Separator
               orientation="vertical"
-              className="my-auto hidden h-48 mx-2 md:flex"
+              className="mx-2 my-auto hidden h-48 md:flex"
             />
             <OpenDays closedDays={closedDays} />
           </CardContent>

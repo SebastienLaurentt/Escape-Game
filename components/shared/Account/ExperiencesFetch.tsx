@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -31,11 +25,8 @@ const ExperiencesFetch = async ({ query }: { query: string }) => {
     <Tabs defaultValue="week">
       <TabsContent value="week">
         <Card x-chunk="dashboard-07-chunk-3">
-          <CardHeader className="px-7">
-            <CardTitle>Les Expériences</CardTitle>
-            <CardDescription>
-              Les expériences proposées sur le site
-            </CardDescription>
+          <CardHeader className="bg-muted/50 px-7">
+            <CardTitle>Liste des Expériences</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
