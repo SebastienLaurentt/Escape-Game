@@ -1,9 +1,10 @@
 
-import OpeningDays from "@/components/shared/Account/OpeningDays";
-import OpeningHeader from "@/components/shared/Account/OpeningHeader";
-import OpeningHours from "@/components/shared/Account/OpeningHours";
+
 import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
+import OpeningHeader from "./OpeningHeader";
+import OpeningDays from "./OpeningDays";
+import OpeningHours from "./OpeningHours";
 
 export default async function Opening() {
   const session = await auth();
