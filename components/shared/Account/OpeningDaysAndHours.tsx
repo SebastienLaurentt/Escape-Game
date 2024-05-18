@@ -10,7 +10,7 @@ import { getClosedDay } from "@/lib/action";
 import CloseDays from "./CloseDays";
 import OpenDays from "./OpenDays";
 
-const OpeningDays = async ({ query }: { query: string }) => {
+const OpeningDaysAndHours = async ({ query }: { query: string }) => {
   const closedDays = await getClosedDay(query);
   return (
     <Tabs defaultValue="week">
@@ -30,4 +30,4 @@ const OpeningDays = async ({ query }: { query: string }) => {
   );
 };
 
-export default OpeningDays;
+export default OpeningDaysAndHours;
