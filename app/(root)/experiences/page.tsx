@@ -1,14 +1,11 @@
-
 import PageTitle from "@/components/shared/PageTitle";
-import ReservationFlow from "@/components/shared/ReservationFlow";
-import { getClosedDay } from "@/lib/action";
+import ReservationPreflow from "@/components/shared/ReservationPreflow";
 
-const Experiences = async ({ query }: { query: string }) => {
-  const closedDays = await getClosedDay(query);
+const Experiences = () => {
   return (
     <main>
       <PageTitle title="Prêts à affronter l'horreur ?" />
-      <ReservationFlow closedDays={closedDays} />
+      <ReservationPreflow query="" />
     </main>
   );
 };
