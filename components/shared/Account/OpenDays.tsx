@@ -1,3 +1,4 @@
+import { CardDescription } from "@/components/ui/card";
 import { ClosedDay } from "@prisma/client";
 import { DeleteButton } from "./DeleteClosedDay";
 
@@ -16,12 +17,18 @@ const OpenDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
 
   return (
     <div>
-      {closedDays.map((day) => (
-        <div key={day.id} className="flex flex-row items-center gap-x-4">
-          <span>{formatDate(new Date(day.date))}</span>{" "}
-          <DeleteButton id={day.id} />
-        </div>
-      ))}
+      <CardDescription>Réouvrir des jours</CardDescription>
+      <ul className="flex flex-col gap-y-2">
+        {closedDays.map((day) => (
+          <li
+            key={day.id}
+            className="flex flex-row items-center justify-between gap-x-4"
+          >
+            <span>{formatDate(new Date(day.date))}</span>{" "}
+            <DeleteButton id={day.id} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
