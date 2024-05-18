@@ -81,10 +81,10 @@ export default function RootLayout({
                     className="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:size-8"
                   >
                     <Calendar className="size-5" />
-                    <span className="sr-only">Onglet Réservations</span>
+                    <span className="sr-only">Onglet Ouverture</span>
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent side="right">Réservations</TooltipContent>
+                <TooltipContent side="right">Ouverture</TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <TooltipProvider>
@@ -172,7 +172,7 @@ export default function RootLayout({
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
                     <Calendar className="size-5" />
-                    Réservations
+                    Ouverture
                   </Link>
                   <Link
                     href="#"
