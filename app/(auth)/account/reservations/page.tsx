@@ -1,3 +1,4 @@
+import OpeningsHeader from "@/components/shared/Account/OpeningsHeader";
 import ReservationsCalendar from "@/components/shared/Account/ReservationsCalendar";
 import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
@@ -12,6 +13,7 @@ export default async function Reservations() {
 
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+      <OpeningsHeader />
       <ReservationsCalendar query="" />
     </div>
   );
