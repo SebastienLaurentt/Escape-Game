@@ -1,3 +1,4 @@
+import ExperiencesHeader from "@/components/shared/Account/ExperienceHeader";
 import ExperienceIdUpdate from "@/components/shared/Account/ExperienceIdUpdate";
 import ExperienceFetch from "@/components/shared/Account/ExperiencesFetch";
 import { getExperienceById } from "@/lib/action";
@@ -22,7 +23,7 @@ const ExperienceIdFetch = async ({ params }: { params: { id: string } }) => {
     <>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
         {/* Top Left */}
-
+        <ExperiencesHeader />
         {/* Bottom Left */}
         <ExperienceFetch query="" />
       </div>
