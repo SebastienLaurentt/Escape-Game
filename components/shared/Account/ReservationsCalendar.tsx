@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -22,7 +21,6 @@ const ReservationsCalendar = () => {
           </CardHeader>
           <CardContent>
             <SetOpeningDays />
-            <Button>Fermer le jour</Button>
           </CardContent>
         </Card>
       </TabsContent>

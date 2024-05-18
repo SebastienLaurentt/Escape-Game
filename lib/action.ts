@@ -19,13 +19,11 @@ const ExperienceSchema = z.object({
 
 // Closed Day Schema type with Zod
 const ClosedDaySchema = z.object({
-  date: z.date(),
+  date: z.string(),
 });
 
 // Create Closed Day
-export const createClosedDay = async (
-  formData: FormData
-) => {
+export const createClosedDay = async (prevSate: any, formData: FormData) => {
   const validatedFields = ClosedDaySchema.safeParse(
     Object.fromEntries(formData.entries())
   );
@@ -42,9 +40,13 @@ export const createClosedDay = async (
         date: validatedFields.data.date,
       },
     });
+     
   } catch (error) {
-    return { message: "Failed to create closedDay" };
+    return { message: "Failed to create new closedDay" };
   }
+ 
+  revalidatePath("/account");
+  redirect("/account");
 };
 
 
