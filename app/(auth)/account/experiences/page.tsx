@@ -1,7 +1,8 @@
-import ExperiencesHeader from "@/components/shared/Account/ExperienceHeader";
-import ExperienceFetch from "@/components/shared/Account/ExperiencesFetch";
+import ExperienceFetch from "@/app/(auth)/account/experiences/ExperiencesFetch";
+
 import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
+import ExperiencesHeader from "./ExperienceHeader";
 
 export default async function Experiences() {
   const session = await auth();
