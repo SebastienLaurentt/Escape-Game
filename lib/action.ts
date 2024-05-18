@@ -103,21 +103,15 @@ export const createClosedDay = async (prevSate: any, formData: FormData) => {
     return { message: "Failed to create new closedDay" };
   }
 
-  revalidatePath("/account");
-  redirect("/account");
+  redirect("/account/reservations");
 };
 
 // Mise à jour de la fonction getClosedDay pour ne récupérer que les dates
 export const getClosedDay = async (query: string) => {
   try {
     const closedDays = await prisma.closedDay.findMany({
-      select: {
-        date: true, // Sélectionner uniquement le champ date
-      },
     });
-    // Extraire les dates des objets retournés
-    const dates = closedDays.map(closedDay => closedDay.date);
-    return dates;
+    return closedDays;
   } catch (error) {
     throw new Error("Failed to fetch closedDays data");
   }
