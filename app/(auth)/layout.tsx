@@ -38,13 +38,13 @@ export default function RootLayout({
         {/* Left Aside : Tablette and Desktop */}
         <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-            <Link
+            <span
               href="#"
               className="group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:size-8 md:text-base"
             >
               <LayoutDashboard className="size-4" />
               <span className="sr-only">Dashboard Logo</span>
-            </Link>
+            </span>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
