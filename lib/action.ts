@@ -16,6 +16,18 @@ const ExperienceSchema = z.object({
   maxPeople: z.string().min(0),
 });
 
+// Experience schema type with Zod
+const ReservationsSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().min(0),
+  phone: z.string().min(6),
+  date: z.string().min(3),
+  time: z.string().min(3),
+  people: z.string().min(1),
+  experience: z.string().min(3),
+  price: z.string().min(2),
+});
+
 // Closed Day Schema type with Zod
 const ClosedDaySchema = z.object({
   date: z.string(),
