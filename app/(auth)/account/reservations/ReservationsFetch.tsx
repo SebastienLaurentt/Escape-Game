@@ -10,6 +10,17 @@ import {
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { getReservationsList } from "@/lib/action";
 
+// Function to format date as "Jour de la semaine DD MM AAAA"
+const formatDate = (dateString:string) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('fr-FR', {
+    weekday: 'long',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(date);
+};
+
 const ReservationsFetch = async ({ query }: { query: string }) => {
   const reservations = await getReservationsList(query);
   return (
@@ -24,25 +35,25 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
               <TableHeader>
                 <TableRow>
                   <TableHead className="text-center">Nom</TableHead>
-                  <TableHead className="hidden text-center lg:table-cell">
+                  <TableHead className="hidden text-center xl:table-cell">
                     Email
                   </TableHead>
                   <TableHead className="hidden text-center sm:table-cell">
                     Téléphone
                   </TableHead>
-                  <TableHead className="hidden text-center md:table-cell">
+                  <TableHead className="text-center md:table-cell">
                     Date
                   </TableHead>
-                  <TableHead className="hidden text-center md:table-cell">
+                  <TableHead className="text-center md:table-cell">
                     Heure
                   </TableHead>
                   <TableHead className="hidden text-center md:table-cell">
-                    Personnes
+                    Nombre
                   </TableHead>
                   <TableHead className="hidden text-center md:table-cell">
-                    Expérience
+                    Expé
                   </TableHead>
-                  <TableHead className="text-center md:table-cell">
+                  <TableHead className="hidden text-center xl:table-cell">
                     Prix
                   </TableHead>
                 </TableRow>
@@ -55,16 +66,16 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                     className="bg-accent text-center "
                   >
                     <TableCell>{reservation.name}</TableCell>
-                    <TableCell className="hidden lg:table-cell">
+                    <TableCell className="hidden xl:table-cell">
                       {reservation.email}
                     </TableCell>
                     <TableCell className="hidden sm:table-cell">
                       {reservation.phone}
                     </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      {reservation.date.toString()}
+                    <TableCell className=" md:table-cell">
+                    {formatDate(reservation.date.toDateString())}
                     </TableCell>
-                    <TableCell className="hidden md:table-cell">
+                    <TableCell className="md:table-cell">
                       {reservation.time}
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
@@ -73,7 +84,7 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                     <TableCell className="hidden md:table-cell ">
                       {reservation.experienceId}
                     </TableCell>
-                    <TableCell className="hidden md:table-cell ">
+                    <TableCell className="hidden xl:table-cell ">
                       {reservation.price}
                     </TableCell>
                   </TableRow>
