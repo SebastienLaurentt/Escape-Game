@@ -27,7 +27,7 @@ const OpeningHours = () => {
           </div>
         </CardHeader>
 
-        <CardContent className="px-2 2xl:px-10 py-6 text-sm">
+        <CardContent className="px-2 py-6 text-sm 2xl:px-10">
           <ul className="flex flex-col gap-y-6">
             <li>
               <div className="flex flex-row items-center justify-between">
