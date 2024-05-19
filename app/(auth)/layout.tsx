@@ -1,12 +1,4 @@
 import SignOutButton from "@/components/shared/SignOutButton";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -18,9 +10,7 @@ import {
 import {
   Calendar,
   Gamepad2,
-  Home,
   LayoutDashboard,
-  LineChart,
   PanelLeft,
   Settings,
   Users2,
@@ -38,9 +28,7 @@ export default function RootLayout({
         {/* Left Aside : Tablette and Desktop */}
         <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-            <span
-              className="group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:size-8 md:text-base"
-            >
+            <span className="group flex size-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:size-8 md:text-base">
               <LayoutDashboard className="size-4" />
               <span className="sr-only">Dashboard Logo</span>
             </span>
@@ -148,19 +136,6 @@ export default function RootLayout({
                 </nav>
               </SheetContent>
             </Sheet>
-            <Breadcrumb className="hidden md:flex">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link href="#">Accueil</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Expériences</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
 
             <div className="ml-auto">
               <SignOutButton />
