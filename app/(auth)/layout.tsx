@@ -49,20 +49,6 @@ export default function RootLayout({
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href="/account/"
-                    className="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:size-8"
-                  >
-                    <Home className="size-5" />
-                    <span className="sr-only">Onglet Accueil</span>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent side="right">Accueil</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
                     href="/account/experiences/"
                     className="flex size-9 items-center justify-center rounded-lg bg-accent text-foreground transition-colors hover:text-foreground md:size-8"
                   >
@@ -99,20 +85,6 @@ export default function RootLayout({
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent side="right">Reservations</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
-                    href="#"
-                    className="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:size-8"
-                  >
-                    <LineChart className="size-5" />
-                    <span className="sr-only">Analytics</span>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent side="right">Analytics</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </nav>
@@ -154,13 +126,6 @@ export default function RootLayout({
                     <span className="sr-only">Dashboard Logo</span>
                   </Link>
                   <Link
-                    href="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Home className="size-5" />
-                    Accueil
-                  </Link>
-                  <Link
                     href="/account/experiences/"
                     className="flex items-center gap-4 px-2.5 text-foreground"
                   >
@@ -180,13 +145,6 @@ export default function RootLayout({
                   >
                     <Users2 className="size-5" />
                     Reservations
-                  </Link>
-                  <Link
-                    href="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <LineChart className="size-5" />
-                    Settings
                   </Link>
                 </nav>
               </SheetContent>
