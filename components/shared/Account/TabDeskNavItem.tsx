@@ -29,7 +29,7 @@ const TabDeskNavItem = ({ href, icon, label, tooltip }: NavItemProps) => {
         <TooltipTrigger asChild>
           <Link
             href={href}
-            className={`flex p-1.5 size-5 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-primary hover:text-white md:size-8 ${
+            className={`flex size-5 items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-primary hover:text-white md:size-8 ${
               isActive ? "bg-primary text-white" : ""
             }`}
           >
