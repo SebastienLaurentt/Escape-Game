@@ -43,6 +43,7 @@ export const getExperiencesList = async (query: string) => {
   }
 };
 
+
 // Find one experience by its ID
 export const getExperienceById = async (id: string) => {
   try {
@@ -93,6 +94,16 @@ export const updateExperience = async (
   redirect("/account");
 };
 
+// Read all reservations
+export const getReservationsList = async (query: string) => {
+  try {
+    const reservations = await prisma.reservation.findMany({});
+    return reservations;
+  } catch (error) {
+    throw new Error("Failed to fetch reservations data");
+  }
+};
+
 // Create Closed Day
 export const createClosedDay = async (prevSate: any, formData: FormData) => {
   const validatedFields = ClosedDaySchema.safeParse(
@@ -118,7 +129,7 @@ export const createClosedDay = async (prevSate: any, formData: FormData) => {
   redirect("/account/opening");
 };
 
-// Mise à jour de la fonction getClosedDay pour ne récupérer que les dates
+// Get ClosedDay list
 export const getClosedDay = async (query: string) => {
   try {
     const closedDays = await prisma.closedDay.findMany({
