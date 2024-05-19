@@ -91,14 +91,14 @@ export default function RootLayout({
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href="#"
+                    href="/account/reservations/"
                     className="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:size-8"
                   >
                     <Users2 className="size-5" />
-                    <span className="sr-only">Customers</span>
+                    <span className="sr-only">Onglet Reservations</span>
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent side="right">Customers</TooltipContent>
+                <TooltipContent side="right">Reservations</TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <TooltipProvider>
@@ -161,7 +161,7 @@ export default function RootLayout({
                     Accueil
                   </Link>
                   <Link
-                    href="#"
+                    href="/account/experiences/"
                     className="flex items-center gap-4 px-2.5 text-foreground"
                   >
                     <Gamepad2 className="size-5" />
@@ -175,11 +175,11 @@ export default function RootLayout({
                     Ouverture
                   </Link>
                   <Link
-                    href="#"
+                    href="/account/reservations/"
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
                     <Users2 className="size-5" />
-                    Customers
+                    Reservations
                   </Link>
                   <Link
                     href="#"
