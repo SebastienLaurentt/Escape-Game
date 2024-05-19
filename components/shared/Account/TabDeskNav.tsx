@@ -10,31 +10,27 @@ import TabDeskNavItem from "./TabDeskNavItem";
 const navItems = [
   {
     href: "/account/experiences/",
-    icon: <Gamepad2 className="size-5" />,
+    icon: <Gamepad2 />,
     label: "Onglet Experiences",
     tooltip: "Expériences",
-    className: "bg-accent text-foreground",
   },
   {
     href: "/account/opening/",
-    icon: <Calendar className="size-5" />,
+    icon: <Calendar />,
     label: "Onglet Ouverture",
     tooltip: "Ouverture",
-    className: "text-muted-foreground",
   },
   {
     href: "/account/reservations/",
-    icon: <Users2 className="size-5" />,
+    icon: <Users2 />,
     label: "Onglet Réservations",
     tooltip: "Réservations",
-    className: "text-muted-foreground",
   },
   {
     href: "#",
-    icon: <Settings className="size-5" />,
+    icon: <Settings />,
     label: "Settings",
     tooltip: "Settings",
-    className: "text-muted-foreground",
   },
 ];
 
