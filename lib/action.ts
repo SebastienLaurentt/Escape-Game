@@ -16,6 +16,18 @@ const ExperienceSchema = z.object({
   maxPeople: z.string().min(0),
 });
 
+// Experience schema type with Zod
+const ReservationsSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().min(0),
+  phone: z.string().min(6),
+  date: z.string().min(3),
+  time: z.string().min(3),
+  people: z.string().min(1),
+  experience: z.string().min(3),
+  price: z.string().min(2),
+});
+
 // Closed Day Schema type with Zod
 const ClosedDaySchema = z.object({
   date: z.string(),
@@ -30,6 +42,7 @@ export const getExperiencesList = async (query: string) => {
     throw new Error("Failed to fetch experiences data");
   }
 };
+
 
 // Find one experience by its ID
 export const getExperienceById = async (id: string) => {
@@ -81,6 +94,16 @@ export const updateExperience = async (
   redirect("/account");
 };
 
+// Read all reservations
+export const getReservationsList = async (query: string) => {
+  try {
+    const reservations = await prisma.reservation.findMany({});
+    return reservations;
+  } catch (error) {
+    throw new Error("Failed to fetch reservations data");
+  }
+};
+
 // Create Closed Day
 export const createClosedDay = async (prevSate: any, formData: FormData) => {
   const validatedFields = ClosedDaySchema.safeParse(
@@ -106,7 +129,7 @@ export const createClosedDay = async (prevSate: any, formData: FormData) => {
   redirect("/account/opening");
 };
 
-// Mise à jour de la fonction getClosedDay pour ne récupérer que les dates
+// Get ClosedDay list
 export const getClosedDay = async (query: string) => {
   try {
     const closedDays = await prisma.closedDay.findMany({
