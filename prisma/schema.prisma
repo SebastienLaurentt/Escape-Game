@@ -87,6 +87,18 @@ model Experience {
   maxPeople String? 
 }
 
+model Reservation {
+  id String @id @default(cuid())
+  name String // monday, tuesday, wednesday, thursday, friday, saturday, sunday
+  email String
+  phone String
+  date DateTime
+  time String
+  people Int
+  experienceId String
+  price String
+}
+
 model Day {
   id String @id @default(cuid())
   name String // monday, tuesday, wednesday, thursday, friday, saturday, sunday
