@@ -1,23 +1,5 @@
 import MobileNav from "@/components/shared/Account/MobileNav";
 import TabDeskNav from "@/components/shared/Account/TabDeskNav";
-import SignOutButton from "@/components/shared/SignOutButton";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
-  Calendar,
-  Gamepad2,
-  LayoutDashboard,
-  PanelLeft,
-  Settings,
-  Users2,
-} from "lucide-react";
-import Link from "next/link";
 
 export default function RootLayout({
   children,
