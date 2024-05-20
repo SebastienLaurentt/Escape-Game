@@ -94,7 +94,7 @@ model Reservation {
   phone String
   date DateTime
   time String
-  people Int
+  people String
   experienceId String
   price String
 }
