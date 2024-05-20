@@ -18,14 +18,16 @@ const ExperienceSchema = z.object({
 
 // Experience schema type with Zod
 const ReservationsSchema = z.object({
-  name: z.string().min(0),
-  email: z.string().min(0),
-  phone: z.string().min(0),
-  date: z.string().min(0),
-  time: z.string().min(0),
+  experienceId: z.string().min(0),
   people: z.string().min(0),
-  experience: z.string().min(0),
+  date: z.string().min(0),
   price: z.string().min(0),
+  time: z.string().min(0),
+  // name: z.string().min(0),
+  // email: z.string().min(0),
+  // phone: z.string().min(0),
+
+
 });
 
 // Closed Day Schema type with Zod
@@ -119,14 +121,16 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
   try {
     await prisma.reservation.create({
       data: {
-        name: validatedFields.data.name,
-        email: validatedFields.data.email,
-        phone: validatedFields.data.phone,
-        date: validatedFields.data.date,
-        time: validatedFields.data.time,
+        experienceId: validatedFields.data.experienceId,
         people: validatedFields.data.people,
-        experienceId: validatedFields.data.experience,
+        date: validatedFields.data.date,
         price: validatedFields.data.price,
+        time: validatedFields.data.time,
+        // name: validatedFields.data.name,
+        // email: validatedFields.data.email,
+        // phone: validatedFields.data.phone,
+
+
       },
     });
   } catch (error) {

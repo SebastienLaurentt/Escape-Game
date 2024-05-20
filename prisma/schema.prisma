@@ -89,14 +89,16 @@ model Experience {
 
 model Reservation {
   id String @id @default(cuid())
-  name String // monday, tuesday, wednesday, thursday, friday, saturday, sunday
-  email String
-  phone String
-  date DateTime
-  time String
-  people String
-  experienceId String
-  price String
+  experienceId String?
+  people String?
+  date DateTime?
+  price String?
+  time String?
+  // name String? 
+  // email String?
+  // phone String?
+
+
 }
 
 model Day {
