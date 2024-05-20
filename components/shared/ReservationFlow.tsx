@@ -229,11 +229,12 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                             </span>
                           </span>
                           <div className="grid grid-cols-3 gap-4 py-6">
-                            {timeSlots.map((time, index) => (
+                            {timeSlots.map((timeSlot, index) => (
                               <HoursChips
                                 key={index}
-                                hours={time}
+                                hours={timeSlot}
                                 onClick={handleTimeSelect}
+                                isSelected={time === timeSlot} 
                               />
                             ))}
                           </div>
