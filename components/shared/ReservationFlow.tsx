@@ -18,18 +18,23 @@ import { createReservation } from "@/lib/action";
 import { ClosedDay } from "@prisma/client";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
-
-const generateTimeSlots = (startHour: number, endHour: number, interval: number): string[] => {
+const generateTimeSlots = (
+  startHour: number,
+  endHour: number,
+  interval: number
+): string[] => {
   const times: string[] = [];
   let currentHour: number = startHour;
 
   while (currentHour <= endHour) {
-    const hours: string = String(currentHour).padStart(2, '0');
+    const hours: string = String(currentHour).padStart(2, "0");
     times.push(`${hours}:00`);
     currentHour += interval;
   }
@@ -89,7 +94,11 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
             titleHighlight="expérience"
           />
 
-          <Input type="hidden" name="experienceId" defaultValue={experienceId ?? ""} />
+          <Input
+            type="hidden"
+            name="experienceId"
+            defaultValue={experienceId ?? ""}
+          />
           <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
             {experienceData.map((experience, index) => (
               <li key={index}>
@@ -179,7 +188,11 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                       <h3 className="w-[320px] text-center">
                         B. Quel jour souhaitez vous venir ?
                       </h3>
-                      <Input type="hidden" name="date" value={date?.toISOString()} />
+                      <Input
+                        type="hidden"
+                        name="date"
+                        value={date?.toISOString()}
+                      />
                       <Calendar
                         mode="single"
                         selected={date}
@@ -242,7 +255,47 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
             </div>
           </Section>
         )}
-        <Button type="submit">Valider</Button>
+
+        {/* 3) Personnal Information */}
+        {time && (
+          <Section marginBottom={true} marginTop={true}>
+            <SectionHeader
+              title="3. Vos informations"
+              titleHighlight="personnelles"
+            />
+            <div className="md:flex md:flex-row md:items-center md:justify-around">
+              <div className="hidden md:flex md:w-1/2">
+                <Image
+                  src="/images/BgHome2.webp"
+                  alt="Villa de l'effroi image"
+                  width={1000}
+                  height={1000}
+                />
+              </div>
+              <div className="flex flex-col gap-y-4 px-8 lg:w-1/2 lg:px-20 ">
+                <div>
+                  <Label htmlFor="name">Nom</Label>
+                  <Input type="text" name="name" placeholder="Votre nom" />
+                </div>
+                <div>
+                  <Label htmlFor="email">Nom</Label>
+                  <Input type="email" name="email" placeholder="Votre email" />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Nom</Label>
+                  <Input
+                    type="tel"
+                    name="phone"
+                    placeholder="Votre téléphone"
+                  />
+                </div>
+                <div className="flex flex-row justify-end">
+                  <Button type="submit">Valider et Payer</Button>
+                </div>
+              </div>
+            </div>
+          </Section>
+        )}
       </form>
     </>
   );
