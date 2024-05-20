@@ -89,7 +89,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
             titleHighlight="expérience"
           />
 
-          <Input name="experienceId" defaultValue={experienceId ?? ""} />
+          <Input type="hidden" name="experienceId" defaultValue={experienceId ?? ""} />
           <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
             {experienceData.map((experience, index) => (
               <li key={index}>
@@ -132,8 +132,8 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
               {/* A) PeopleNumber Select */}
               <div className="flex flex-col items-center gap-y-2">
                 <h3>A. Combien êtes vous ?</h3>
-                <Input name="people" value={people ?? ""} />
-                <Input name="price" value={price.toString()} />
+                <Input type="hidden" name="people" value={people ?? ""} />
+                <Input type="hidden" name="price" value={price.toString()} />
 
                 <Select onValueChange={handlePeopleSelect}>
                   <SelectTrigger className=" w-[280px] ">
@@ -179,7 +179,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                       <h3 className="w-[320px] text-center">
                         B. Quel jour souhaitez vous venir ?
                       </h3>
-                      <Input name="date" value={date?.toISOString()} />
+                      <Input type="hidden" name="date" value={date?.toISOString()} />
                       <Calendar
                         mode="single"
                         selected={date}
@@ -202,7 +202,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                       <h3 className="mb-2 w-[320px] text-center">
                         C. Choisissez une horaire
                       </h3>
-                      <Input name="time" value={time ?? ""} />
+                      <Input type="hidden" name="time" value={time ?? ""} />
                       {date && (
                         <div className="flex flex-col items-center">
                           <span className=" italic ">
