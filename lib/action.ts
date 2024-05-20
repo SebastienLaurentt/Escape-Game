@@ -18,14 +18,16 @@ const ExperienceSchema = z.object({
 
 // Experience schema type with Zod
 const ReservationsSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().min(0),
-  phone: z.string().min(6),
-  date: z.string().min(3),
-  time: z.string().min(3),
-  people: z.string().min(1),
-  experience: z.string().min(3),
-  price: z.string().min(2),
+  experienceId: z.string().min(0),
+  people: z.string().min(0),
+  date: z.string().min(0),
+  price: z.string().min(0),
+  time: z.string().min(0),
+  // name: z.string().min(0),
+  // email: z.string().min(0),
+  // phone: z.string().min(0),
+
+
 });
 
 // Closed Day Schema type with Zod
@@ -104,6 +106,40 @@ export const getReservationsList = async (query: string) => {
   }
 };
 
+// Create Reservation
+export const createReservation = async (prevSate: any, formData: FormData) => {
+  const validatedFields = ReservationsSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!validatedFields.success) {
+    return {
+      Error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    await prisma.reservation.create({
+      data: {
+        experienceId: validatedFields.data.experienceId,
+        people: validatedFields.data.people,
+        date: validatedFields.data.date,
+        price: validatedFields.data.price,
+        time: validatedFields.data.time,
+        // name: validatedFields.data.name,
+        // email: validatedFields.data.email,
+        // phone: validatedFields.data.phone,
+
+
+      },
+    });
+  } catch (error) {
+    return { message: "Failed to create new reservation" };
+  }
+
+  redirect("/account/opening");
+};
+
 // Create Closed Day
 export const createClosedDay = async (prevSate: any, formData: FormData) => {
   const validatedFields = ClosedDaySchema.safeParse(
@@ -151,3 +187,6 @@ export const deleteClosedDay = async (id: string) => {
  
   redirect("/account/opening");
 };
+
+
+
