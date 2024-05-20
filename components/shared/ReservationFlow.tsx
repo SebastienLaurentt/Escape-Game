@@ -23,6 +23,7 @@ import { useFormState } from "react-dom";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
+
 const generateTimeSlots = (startHour: number, endHour: number, interval: number): string[] => {
   const times: string[] = [];
   let currentHour: number = startHour;
@@ -37,25 +38,24 @@ const generateTimeSlots = (startHour: number, endHour: number, interval: number)
 };
 
 const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
+  // Global Form State
   const [state, formAction] = useFormState(createReservation, null);
-  // Card Selected State
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
-  // Select State
-  const [peopleNumber, setPeopleNumber] = useState<number | null>(null);
+
+  // Individuals Form States
+  const [experienceId, setExperienceId] = useState<string | null>(null);
+  const [people, setPeople] = useState<number | null>(null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   const [price, setPrice] = useState(0);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  console.log(price);
+  const [time, setTime] = useState<string | null>(null);
 
-  const disabledDates = closedDays.map((day) => new Date(day.date));
+  // Handles
   const handleCardClick = (cardName: any) => {
-    setSelectedCard(cardName);
+    setExperienceId(cardName);
   };
 
-  // Handle select change
-  const handleSelectChange = (value: string) => {
+  const handlePeopleSelect = (value: string) => {
     const numberOfPeople = parseInt(value);
-    setPeopleNumber(numberOfPeople);
+    setPeople(numberOfPeople);
     // Update price based on selected people number
     const prices: { [key: number]: number } = {
       2: 35,
@@ -70,9 +70,13 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   };
 
   const handleTimeSelect = (time: string) => {
-    setSelectedTime(time);
+    setTime(time);
   };
 
+  // Fetch Disabled Dates
+  const disabledDates = closedDays.map((day) => new Date(day.date));
+
+  // Define Time Slots
   const timeSlots = generateTimeSlots(9, 23, 1); // Générer des créneaux horaires de 9h00 à 23h00 avec un intervalle de 1 heure
 
   return (
@@ -85,7 +89,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
             titleHighlight="expérience"
           />
 
-          <Input name="experienceId" defaultValue={selectedCard ?? ""} />
+          <Input name="experienceId" defaultValue={experienceId ?? ""} />
           <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
             {experienceData.map((experience, index) => (
               <li key={index}>
@@ -98,7 +102,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                   peopleNumber={experience.peopleNumber}
                   duration={experience.duration}
                   hover={true}
-                  isSelected={selectedCard === experience.name}
+                  isSelected={experienceId === experience.name}
                   onClick={() => handleCardClick(experience.name)}
                 />
               </li>
@@ -112,7 +116,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
         </Section>
 
         {/* 2) Booking */}
-        {selectedCard && (
+        {experienceId && (
           <Section marginBottom={true} marginTop={true}>
             <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
             <div className="flex flex-col items-center  gap-y-12 lg:gap-y-20 ">
@@ -121,17 +125,17 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                   Vous avez choisi l&apos;expérience{" "}
                 </span>
                 <span className="text-3xl font-bold uppercase text-primary xl:text-5xl">
-                  {selectedCard}
+                  {experienceId}
                 </span>
               </div>
 
               {/* A) PeopleNumber Select */}
               <div className="flex flex-col items-center gap-y-2">
                 <h3>A. Combien êtes vous ?</h3>
-                <Input name="people" value={peopleNumber ?? ""} />
+                <Input name="people" value={people ?? ""} />
                 <Input name="price" value={price.toString()} />
 
-                <Select onValueChange={handleSelectChange}>
+                <Select onValueChange={handlePeopleSelect}>
                   <SelectTrigger className=" w-[280px] ">
                     <SelectValue placeholder="Sélectionner votre nombre" />
                   </SelectTrigger>
@@ -168,7 +172,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
               </div>
 
               {/* B) Day Picking */}
-              {peopleNumber && (
+              {people && (
                 <div className="w-full ">
                   <div className=" mx-8 flex flex-col gap-y-12 md:flex-row md:justify-around xl:justify-center xl:gap-x-28">
                     <div className="flex  flex-col items-center gap-y-2">
@@ -198,7 +202,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                       <h3 className="mb-2 w-[320px] text-center">
                         C. Choisissez une horaire
                       </h3>
-                      <Input name="time" value={selectedTime ?? ""} />
+                      <Input name="time" value={time ?? ""} />
                       {date && (
                         <div className="flex flex-col items-center">
                           <span className=" italic ">
