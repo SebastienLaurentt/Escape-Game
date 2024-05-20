@@ -229,11 +229,12 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                             </span>
                           </span>
                           <div className="grid grid-cols-3 gap-4 py-6">
-                            {timeSlots.map((time, index) => (
+                            {timeSlots.map((timeSlot, index) => (
                               <HoursChips
                                 key={index}
-                                hours={time}
+                                hours={timeSlot}
                                 onClick={handleTimeSelect}
+                                isSelected={time === timeSlot}
                               />
                             ))}
                           </div>
@@ -264,14 +265,20 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
               titleHighlight="personnelles"
             />
             <div className="md:flex md:flex-row md:items-center md:justify-around">
-              <div className="hidden md:flex md:w-1/2">
+              <div className="hidden md:flex md:w-1/2 md:items-center  md:justify-center ">
                 <Image
                   src="/images/BgHome2.webp"
                   alt="Villa de l'effroi image"
                   width={1000}
                   height={1000}
+                  className="rounded-xl opacity-30"
                 />
+                <span className="absolute text-center font-bold uppercase md:text-xl md:leading-9 lg:text-3xl lg:leading-[48px] xl:text-4xl ">
+                  La villa vous <br />
+                  <span className="text-primary">attend</span>
+                </span>
               </div>
+
               <div className="flex flex-col gap-y-4 px-8 lg:w-1/2 lg:px-20 ">
                 <div>
                   <Label htmlFor="name">Nom</Label>

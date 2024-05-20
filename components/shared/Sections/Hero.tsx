@@ -12,11 +12,7 @@ const Hero = () => {
   useEffect(() => {
     const screenWidth = window.innerWidth;
     // Hero Text Animation
-    gsap.fromTo(
-      "#hero-text",
-      { opacity: 0},
-      { opacity: 1, duration: 1 }
-    );
+    gsap.fromTo("#hero-text", { opacity: 0 }, { opacity: 1, duration: 1 });
   }, []);
 
   return (
@@ -32,7 +28,7 @@ const Hero = () => {
       {/* Hero Text */}
       <Section
         id="hero-text"
-        classname="absolute z-10 flex flex-col items-center w-full xl:items-center  text-center"
+        classname="absolute z-10 opacity-0 flex flex-col items-center w-full xl:items-center  text-center"
       >
         <h1 className="uppercase">
           La Villa de <span className="text-primary">l&apos;Effroi</span>
@@ -41,7 +37,10 @@ const Hero = () => {
           Explorez la Villa de l&apos;Effroi. <br /> Échappez-vous avant
           l&apos;horreur.
         </p>
-        <Button asChild aria-label="Aller à la page pour réserver son expérience">
+        <Button
+          asChild
+          aria-label="Aller à la page pour réserver son expérience"
+        >
           <Link href="/experiences">Réserver</Link>
         </Button>
       </Section>
