@@ -23,6 +23,19 @@ import { useFormState } from "react-dom";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
+const generateTimeSlots = (startHour: number, endHour: number, interval: number): string[] => {
+  const times: string[] = [];
+  let currentHour: number = startHour;
+
+  while (currentHour <= endHour) {
+    const hours: string = String(currentHour).padStart(2, '0');
+    times.push(`${hours}:00`);
+    currentHour += interval;
+  }
+
+  return times;
+};
+
 const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   const [state, formAction] = useFormState(createReservation, null);
   // Card Selected State
@@ -59,6 +72,8 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   const handleTimeSelect = (time: string) => {
     setSelectedTime(time);
   };
+
+  const timeSlots = generateTimeSlots(9, 23, 1); // Générer des créneaux horaires de 9h00 à 23h00 avec un intervalle de 1 heure
 
   return (
     <>
@@ -197,66 +212,13 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                             </span>
                           </span>
                           <div className="grid grid-cols-3 gap-4 py-6">
-                            <HoursChips
-                              hours="9:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="10:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="11:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="12:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="13:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="14:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="15:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="16:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="17:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="18:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="19:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="20:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="21:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="22:00"
-                              onClick={handleTimeSelect}
-                            />
-                            <HoursChips
-                              hours="23:00"
-                              onClick={handleTimeSelect}
-                            />
+                            {timeSlots.map((time, index) => (
+                              <HoursChips
+                                key={index}
+                                hours={time}
+                                onClick={handleTimeSelect}
+                              />
+                            ))}
                           </div>
                           <div
                             id="name-error"
