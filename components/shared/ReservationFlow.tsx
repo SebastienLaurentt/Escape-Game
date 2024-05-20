@@ -278,11 +278,11 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
                   <Input type="text" name="name" placeholder="Votre nom" />
                 </div>
                 <div>
-                  <Label htmlFor="email">Nom</Label>
+                  <Label htmlFor="email">Email</Label>
                   <Input type="email" name="email" placeholder="Votre email" />
                 </div>
                 <div>
-                  <Label htmlFor="phone">Nom</Label>
+                  <Label htmlFor="phone">Téléphone</Label>
                   <Input
                     type="tel"
                     name="phone"
