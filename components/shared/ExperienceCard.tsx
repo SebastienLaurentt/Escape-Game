@@ -27,12 +27,12 @@ const ExperienceCard = ({
   onClick,
 }: ExperienceCardProps) => {
 
-  const hasHover = hover ? "xl:hover:border-accent  cursor-pointer" : "";
+  const hasHover = hover ? "xl:hover:border-primary  cursor-pointer" : "";
 
   return (
     <div
       className={`relative  rounded-xl border-2 ${hasHover} ${
-        isSelected ? "border-accent" : ""
+        isSelected ? "border-primary" : ""
       }`}
       onClick={onClick}
     >
