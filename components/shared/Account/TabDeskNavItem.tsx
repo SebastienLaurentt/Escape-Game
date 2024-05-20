@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Tooltip,
@@ -18,9 +18,9 @@ interface NavItemProps {
 
 const TabDeskNavItem = ({ href, icon, label, tooltip }: NavItemProps) => {
   const pathname = usePathname();
-  
+
   // Normalize paths to remove trailing slashes for comparison
-  const normalizePath = (path: string) => path.replace(/\/$/, '');
+  const normalizePath = (path: string) => path.replace(/\/$/, "");
   const isActive = normalizePath(pathname) === normalizePath(href);
 
   return (
@@ -29,8 +29,8 @@ const TabDeskNavItem = ({ href, icon, label, tooltip }: NavItemProps) => {
         <TooltipTrigger asChild>
           <Link
             href={href}
-            className={`flex size-5 items-center justify-center rounded-lg transition-colors hover:text-primary md:size-8 ${
-              isActive ? 'text-primary' : 'text-muted-foreground'
+            className={`flex size-5 items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-primary hover:text-white md:size-8 ${
+              isActive ? "bg-primary text-white" : ""
             }`}
           >
             {icon}
