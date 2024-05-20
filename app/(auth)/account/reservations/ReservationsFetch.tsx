@@ -65,18 +65,18 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                     key={reservation.id}
                     className="bg-accent text-center "
                   >
-                    {/* <TableCell>{reservation.name}</TableCell> */}
+                    <TableCell>{reservation.name}</TableCell>
                     <TableCell className="hidden xl:table-cell">
-                      {/* {reservation.email} */}
+                      {reservation.email}
                     </TableCell>
                     <TableCell className="hidden sm:table-cell">
-                      {/* {reservation.phone} */}
+                      {reservation.phone}
                     </TableCell>
                     <TableCell className=" md:table-cell">
                       {reservation.date ? formatDate(reservation.date.toDateString()) : ''}
                     </TableCell>
                     <TableCell className="md:table-cell">
-                      {/* {reservation.time} */}
+                      {reservation.time}
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
                       {reservation.people}
@@ -85,7 +85,7 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                       {reservation.experienceId}
                     </TableCell>
                     <TableCell className="hidden xl:table-cell ">
-                      {/* {reservation.price} */}
+                      {reservation.price}
                     </TableCell>
                   </TableRow>
                 ))}

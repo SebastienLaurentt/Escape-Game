@@ -23,11 +23,9 @@ const ReservationsSchema = z.object({
   date: z.string().min(0),
   price: z.string().min(0),
   time: z.string().min(0),
-  // name: z.string().min(0),
-  // email: z.string().min(0),
-  // phone: z.string().min(0),
-
-
+  name: z.string().min(0),
+  email: z.string().min(0),
+  phone: z.string().min(0),
 });
 
 // Closed Day Schema type with Zod
@@ -126,11 +124,9 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
         date: validatedFields.data.date,
         price: validatedFields.data.price,
         time: validatedFields.data.time,
-        // name: validatedFields.data.name,
-        // email: validatedFields.data.email,
-        // phone: validatedFields.data.phone,
-
-
+        name: validatedFields.data.name,
+        email: validatedFields.data.email,
+        phone: validatedFields.data.phone,
       },
     });
   } catch (error) {
