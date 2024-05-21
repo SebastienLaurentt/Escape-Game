@@ -133,7 +133,19 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
     return { message: "Failed to create new reservation" };
   }
 
-  redirect("/account/opening");
+  redirect("/account/reservations");
+};
+
+export const deleteReservation = async (id: string) => {
+  try {
+    await prisma.reservation.delete({
+      where: { id },
+    });
+  } catch (error) {
+    return { message: "Failed to delete reservation" };
+  }
+ 
+  redirect("/account/reservations");
 };
 
 // Create Closed Day
