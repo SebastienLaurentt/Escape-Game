@@ -58,7 +58,7 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                   <TableHead className="hidden text-center xl:table-cell">
                     Prix
                   </TableHead>
-                  <TableHead className="text-center md:table-cell">
+                  <TableHead className="hidden text-center lg:table-cell">
                     Edit
                   </TableHead>
                 </TableRow>
@@ -94,7 +94,7 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                     <TableCell className="hidden xl:table-cell ">
                       {reservation.price}
                     </TableCell>
-                    <TableCell className="flex flex-row justify-center md:table-cell xl:cursor-pointer">
+                    <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
                       <DeleteReservation id={reservation.id} />
                     </TableCell>
                   </TableRow>
