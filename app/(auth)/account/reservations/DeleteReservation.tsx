@@ -6,7 +6,7 @@ export const DeleteReservation = ({ id }: { id: string }) => {
   const DeleteReservationWithId = deleteReservation.bind(null, id);
   return (
     <form action={DeleteReservationWithId}>
-      <Button>
+      <Button size="sm">
         <Trash />
       </Button>
     </form>
