@@ -80,6 +80,7 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
 
   // Fetch Disabled Dates
   const disabledDates = closedDays.map((day) => new Date(day.date));
+  console.log(disabledDates);
 
   // Define Time Slots
   const timeSlots = generateTimeSlots(9, 23, 1); // Générer des créneaux horaires de 9h00 à 23h00 avec un intervalle de 1 heure
