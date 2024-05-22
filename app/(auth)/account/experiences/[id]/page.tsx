@@ -2,18 +2,17 @@ import ExperienceIdUpdate from "@/app/(auth)/account/experiences/ExperienceIdUpd
 import ExperienceFetch from "@/app/(auth)/account/experiences/ExperiencesFetch";
 
 import { getExperienceById } from "@/lib/action";
-import { auth } from "@/src/auth/auth";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import ExperiencesHeader from "../ExperienceHeader";
 
 const ExperienceIdFetch = async ({ params }: { params: { id: string } }) => {
-  const session = await auth();
   const id = params.id;
   const experience = await getExperienceById(id);
 
-  // If the user is not authenticated, redirect to the signIn page
-  if (!session) {
-    redirect("/signin");
+  const { isAuthenticated } = getKindeServerSession();
+  if (!(await isAuthenticated())) {
+    redirect("/login");
   }
 
   if (!experience) {
