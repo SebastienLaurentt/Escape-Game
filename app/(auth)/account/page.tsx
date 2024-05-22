@@ -1,12 +1,10 @@
-import { auth } from "@/src/auth/auth";
 import { redirect } from "next/navigation";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Account() {
-  const session = await auth();
-
-  // If the user is not authenticated, redirect to the signIn page
-  if (!session) {
-    redirect("/signin");
+  const { isAuthenticated } = getKindeServerSession();
+  if (!(await isAuthenticated())) {
+    redirect("/login");
   }
 
   return <></>;

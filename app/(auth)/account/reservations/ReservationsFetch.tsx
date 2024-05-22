@@ -9,15 +9,17 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { getReservationsList } from "@/lib/action";
+import { Trash } from "lucide-react";
+import { DeleteReservation } from "./DeleteReservation";
 
 // Function to format date as "Jour de la semaine DD MM AAAA"
-const formatDate = (dateString:string) => {
+const formatDate = (dateString: string) => {
   const date = new Date(dateString);
-  return new Intl.DateTimeFormat('fr-FR', {
-    weekday: 'long',
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
+  return new Intl.DateTimeFormat("fr-FR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
   }).format(date);
 };
 
@@ -56,6 +58,9 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                   <TableHead className="hidden text-center xl:table-cell">
                     Prix
                   </TableHead>
+                  <TableHead className="hidden text-center lg:table-cell">
+                    Edit
+                  </TableHead>
                 </TableRow>
               </TableHeader>
 
@@ -73,7 +78,9 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                       {reservation.phone}
                     </TableCell>
                     <TableCell className=" md:table-cell">
-                      {reservation.date ? formatDate(reservation.date.toDateString()) : ''}
+                      {reservation.date
+                        ? formatDate(reservation.date.toDateString())
+                        : ""}
                     </TableCell>
                     <TableCell className="md:table-cell">
                       {reservation.time}
@@ -86,6 +93,9 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                     </TableCell>
                     <TableCell className="hidden xl:table-cell ">
                       {reservation.price}
+                    </TableCell>
+                    <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
+                      <DeleteReservation id={reservation.id} />
                     </TableCell>
                   </TableRow>
                 ))}
