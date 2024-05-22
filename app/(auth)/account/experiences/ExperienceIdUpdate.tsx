@@ -21,12 +21,8 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
         <CardHeader className="flex flex-row items-start bg-muted/50">
           <div className="grid gap-0.5">
             <CardTitle className="group flex items-center gap-2 text-lg">
-              Mise à jour expérience {experience.name}
-              <Button
-                size="icon"
-                variant="outline"
-                className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
-              ></Button>
+              <span>Mise à jour</span>
+              <span className=" text-primary"> {experience.name} </span>
             </CardTitle>
           </div>
         </CardHeader>
@@ -67,7 +63,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
-            
+
             {/* Duration */}
             <div className="mb-5">
               <Label htmlFor="Name">Durée de l&apos;expérience</Label>
