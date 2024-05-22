@@ -1,19 +1,11 @@
-import { signOut } from "@/src/auth/auth";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { Button } from "../ui/button";
 
 const SignOutButton = () => {
   return (
-    <form>
-      <Button
-        formAction={async () => {
-          "use server";
-          await signOut();
-        }}
-      >
-        Se déconnecter
-      </Button>
-    </form>
-  );
-};
+  <Button>
+    <LogoutLink>Se déconnecter</LogoutLink>
+  </Button>
+)};
 
 export default SignOutButton;
