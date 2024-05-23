@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { getExperiencesList } from "@/lib/action";
 import Link from "next/link";
-import ExperienceCard from "../../components/shared/ExperienceCard";
-import Section from "../../components/shared/Section";
-import SectionHeader from "../../components/shared/SectionHeader";
+import ExperienceCard from "../ExperienceCard";
+import Section from "../Section";
+import SectionHeader from "../SectionHeader";
 
 const Experiences = async () => {
   const experiences = await getExperiencesList();
