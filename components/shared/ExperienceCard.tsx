@@ -1,14 +1,15 @@
 import { Hourglass, User } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface ExperienceCardProps {
-  src: StaticImageData;
-  alt: string;
+  src: string;
   name: string;
-  price: string;
+  minPrice: string;
   description: string;
-  peopleNumber: string;
+  minPeople: string;
+  maxPeople?: string;
   duration: string;
+  durationUnit?: string;
   hover?: boolean;
   isSelected?: boolean;
   onClick?: () => void;
@@ -16,29 +17,34 @@ interface ExperienceCardProps {
 
 const ExperienceCard = ({
   src,
-  alt,
   name,
-  price,
+  minPrice,
   description,
-  peopleNumber,
+  minPeople,
+  maxPeople,
   duration,
+  durationUnit,
   hover,
   isSelected,
   onClick,
 }: ExperienceCardProps) => {
-
   const hasHover = hover ? "xl:hover:border-primary  cursor-pointer" : "";
 
   return (
     <div
-      className={`relative  rounded-xl border-2 ${hasHover} ${
+      className={`relative  rounded-xl border-2 xl:w-[403px] 2xl:w-[440px]  ${hasHover} ${
         isSelected ? "border-primary" : ""
       }`}
       onClick={onClick}
     >
       {/* Img */}
-      <Image src={src} alt={alt} className="rounded-xl" />
-
+      <Image
+        src={src}
+        alt={`Image de l'expérience ${name}`}
+        height={600}
+        width={1000}
+        className="rounded-xl"
+      />
       {/* Experience Name and Price */}
       <div className="flex flex-col gap-y-3 p-4">
         <div className="flex flex-row items-center justify-between">
@@ -48,7 +54,7 @@ const ExperienceCard = ({
           <span className="flex flex-row items-center gap-x-1 md:text-md xl:text-sm">
             dès
             <span className="text-xl font-semibold italic text-primary md:text-3xl ">
-              {price}
+              {minPrice}€
             </span>
             / personne
           </span>
@@ -62,12 +68,15 @@ const ExperienceCard = ({
           <div className="flex flex-row items-center gap-x-1">
             <User className="cardIcon" />
             <span className="text-sm md:text-md xl:text-sm">
-              {peopleNumber}
+              <span>{minPeople}</span> {maxPeople ? ` à ${maxPeople}` : ""}{" "}
+              personnes
             </span>
           </div>
           <div className="flex flex-row items-center gap-x-1">
             <Hourglass className="cardIcon" />
-            <span className="text-sm md:text-md xl:text-sm">{duration}</span>
+            <span className="text-sm md:text-md xl:text-sm">
+              {duration} {durationUnit}
+            </span>
           </div>
         </div>
 

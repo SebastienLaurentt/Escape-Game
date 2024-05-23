@@ -1,4 +1,4 @@
-import ExperienceFetch from "@/app/(auth)/account/experiences/ExperiencesFetch";
+ import ExperienceFetch from "@/app/(auth)/account/experiences/ExperiencesFetch";
 
 import ExperiencesHeader from "./ExperienceHeader";
 import { redirect } from "next/navigation";
