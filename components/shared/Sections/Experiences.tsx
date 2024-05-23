@@ -4,9 +4,10 @@ import Link from "next/link";
 import ExperienceCard from "../ExperienceCard";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
+import { Experience } from "@prisma/client";
 
-const Experiences = async () => {
-  const experiences = await getExperiencesList();
+const Experiences =  ({experiences}: { experiences: Experience[] }) => {
+
   return (
     <Section marginBottom={true} marginTop={true} classname="">
       <SectionHeader title="Des expériences" titleHighlight="variées" />
