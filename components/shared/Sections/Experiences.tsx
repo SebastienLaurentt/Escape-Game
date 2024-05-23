@@ -5,8 +5,8 @@ import ExperienceCard from "../ExperienceCard";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 
-const Experiences = async ({ query }: { query: string }) => {
-  const experiences = await getExperiencesList(query);
+const Experiences = async () => {
+  const experiences = await getExperiencesList();
   return (
     <Section marginBottom={true} marginTop={true} classname="">
       <SectionHeader title="Des expériences" titleHighlight="variées" />
