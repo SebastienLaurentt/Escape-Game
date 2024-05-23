@@ -1,13 +1,14 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { prisma } from "./prisma";
+import { supabase } from "./supabase";
 
 // Experience schema type with Zod
 const ExperienceSchema = z.object({
-  name: z.string().min(6),
+  name: z.string().min(5),
+  image: z.any(),
   description: z.string().min(6),
   duration: z.string().min(1),
   durationUnit: z.string().min(5),
@@ -43,7 +44,6 @@ export const getExperiencesList = async (query: string) => {
   }
 };
 
-
 // Find one experience by its ID
 export const getExperienceById = async (id: string) => {
   try {
@@ -60,9 +60,10 @@ export const getExperienceById = async (id: string) => {
 // Update an experience by its ID
 export const updateExperience = async (
   id: string,
-  prevSate: any,
+  prevState: any,
   formData: FormData
 ) => {
+  // Validate form data
   const validatedFields = ExperienceSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
@@ -74,24 +75,54 @@ export const updateExperience = async (
   }
 
   try {
+    const {
+      name,
+      image,
+      description,
+      duration,
+      durationUnit,
+      minPrice,
+      minPeople,
+      maxPeople,
+    } = validatedFields.data;
+
+    // Extract the actual file from FormData
+    const actualImageFile = formData.get("image") as File;
+
+    // Convert the file to a string and upload the image to Supabase
+    const { data: imageData, error: uploadError } = await supabase.storage
+      .from("images")
+      .upload(
+        `images/${actualImageFile?.name}-${Date.now()}`,
+        actualImageFile,
+        {
+          cacheControl: "2592000",
+          contentType: "image/png",
+        }
+      );
+
+    // Update the experience in the database
     await prisma.experience.update({
       data: {
-        name: validatedFields.data.name,
-        description: validatedFields.data.description,
-        duration: validatedFields.data.duration,
-        durationUnit: validatedFields.data.durationUnit,
-        minPrice: validatedFields.data.minPrice,
-        minPeople: validatedFields.data.minPeople,
-        maxPeople: validatedFields.data.maxPeople,
+        name,
+        image: imageData?.path,
+        description,
+        duration,
+        durationUnit,
+        minPrice,
+        minPeople,
+        maxPeople,
       },
       where: { id },
     });
-  } catch (error) {
-    return { message: "Failed to update experience" };
-  }
 
-  revalidatePath("/account");
-  redirect("/account");
+    // Revalidate and redirect
+    redirect(`/account/experiences/${id}`);
+  
+
+  } catch (error) {
+    return { message: "Expérience mise à jour !" };
+  }
 };
 
 // Read all reservations
@@ -113,6 +144,7 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
   if (!validatedFields.success) {
     return {
       Error: validatedFields.error.flatten().fieldErrors,
+      message: "Validation failed. Please check the input fields.",
     };
   }
 
@@ -144,7 +176,7 @@ export const deleteReservation = async (id: string) => {
   } catch (error) {
     return { message: "Failed to delete reservation" };
   }
- 
+
   redirect("/account/reservations");
 };
 
@@ -176,8 +208,7 @@ export const createClosedDay = async (prevSate: any, formData: FormData) => {
 // Get ClosedDay list
 export const getClosedDay = async (query: string) => {
   try {
-    const closedDays = await prisma.closedDay.findMany({
-    });
+    const closedDays = await prisma.closedDay.findMany({});
     return closedDays;
   } catch (error) {
     throw new Error("Failed to fetch closedDays data");
@@ -192,9 +223,6 @@ export const deleteClosedDay = async (id: string) => {
   } catch (error) {
     return { message: "Failed to delete closed day" };
   }
- 
+
   redirect("/account/opening");
 };
-
-
-

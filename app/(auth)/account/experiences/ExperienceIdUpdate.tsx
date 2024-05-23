@@ -8,11 +8,25 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
+import Image from "next/image";
+import { useState } from "react";
 import { useFormState } from "react-dom";
 
 const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
   const UpdateExperienceWithId = updateExperience.bind(null, experience.id);
   const [state, formAction] = useFormState(UpdateExperienceWithId, null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div>
@@ -33,7 +47,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             {/* Name */}
 
             <div className="mb-5">
-              <Label htmlFor="Name">Nom de l&apos;expérience</Label>
+              <Label htmlFor="Name">Nom</Label>
               <Input
                 type="text"
                 defaultValue={experience.name}
@@ -47,10 +61,49 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
+            <div className="mb-5">
+              <Label htmlFor="Name">Image</Label>
+              <Input
+                type="file"
+                name="image"
+                id="image"
+                onChange={handleImageChange}
+              />
+              <div className="mt-3 flex flex-row gap-x-4">
+                <div className="flex flex-col gap-y-1">
+                  <span className="italic">Image Actuelle</span>
+                  <Image
+                    alt="image de l'expérience"
+                    src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
+                    height={200}
+                    width={200}
+                    className="rounded-md"
+                  />
+                </div>
+                {selectedImage && (
+                  <div className="flex flex-col gap-y-1">
+                    <span className="italic">Nouvelle Image</span>
+                    <Image
+                      alt="image sélectionnée"
+                      src={selectedImage}
+                      height={200}
+                      width={200}
+                      className="rounded-md"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div id="name-error" aria-live="polite" aria-atomic="true">
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.image}
+                </p>
+              </div>
+            </div>
 
             {/* Description */}
             <div className="mb-5">
-              <Label htmlFor="Name">Description de l&apos;expérience</Label>
+              <Label htmlFor="Name">Description</Label>
               <Textarea
                 defaultValue={experience.description}
                 placeholder="Description de l'experience"
@@ -66,7 +119,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
 
             {/* Duration */}
             <div className="mb-5">
-              <Label htmlFor="Name">Durée de l&apos;expérience</Label>
+              <Label htmlFor="Name">Durée</Label>
               <Input
                 type="text"
                 defaultValue={experience.duration}
@@ -151,10 +204,14 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
             </div>
 
-            <div id="message-error" aria-live="polite" aria-atomic="true">
-              <p className="mt-2 text-sm text-red-500">{state?.message}</p>
+            <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
+              <Button>Update</Button>
+              <div id="message-error" aria-live="polite" aria-atomic="true">
+                <p className="text-center text-base text-green-600">
+                  {state?.message}
+                </p>
+              </div>
             </div>
-            <Button>Update</Button>
           </form>
         </CardContent>
       </Card>
