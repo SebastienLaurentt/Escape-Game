@@ -35,7 +35,7 @@ const ClosedDaySchema = z.object({
 });
 
 // Read all experiences
-export const getExperiencesList = async (query: string) => {
+export const getExperiencesList = async () => {
   try {
     const experiences = await prisma.experience.findMany({});
     return experiences;
@@ -206,7 +206,7 @@ export const createClosedDay = async (prevSate: any, formData: FormData) => {
 };
 
 // Get ClosedDay list
-export const getClosedDay = async (query: string) => {
+export const getClosedDay = async () => {
   try {
     const closedDays = await prisma.closedDay.findMany({});
     return closedDays;

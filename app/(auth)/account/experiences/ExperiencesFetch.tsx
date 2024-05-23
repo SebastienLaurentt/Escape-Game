@@ -19,8 +19,8 @@ const truncateDescription = (description: any, maxLength: number) => {
   return description.substring(0, maxLength - 3) + "...";
 };
 
-const ExperiencesFetch = async ({ query }: { query: string }) => {
-  const experiences = await getExperiencesList(query);
+const ExperiencesFetch = async () => {
+  const experiences = await getExperiencesList();
   return (
     <Tabs defaultValue="week">
       <TabsContent value="week">
