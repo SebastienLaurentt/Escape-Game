@@ -80,6 +80,7 @@ model Authenticator {
 model Experience {
   id String @id @default(cuid())
   name String
+  image String?
   description String
   duration String
   durationUnit String

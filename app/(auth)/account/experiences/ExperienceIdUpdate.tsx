@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
+import Image from "next/image";
 import { useFormState } from "react-dom";
 
 const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
@@ -33,7 +34,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             {/* Name */}
 
             <div className="mb-5">
-              <Label htmlFor="Name">Nom de l&apos;expérience</Label>
+              <Label htmlFor="Name">Nom</Label>
               <Input
                 type="text"
                 defaultValue={experience.name}
@@ -47,10 +48,29 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
+            <div className="mb-5">
+              <Label htmlFor="Name">Image</Label>
+              <Input type="file" name="image" id="image" />
+              <div className="mt-2">
+                <Image
+                  alt="image de l'expérience"
+                  src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
+                  height={100}
+                  width={100}
+                  className="rounded-md"
+                />
+              </div>
+
+              <div id="name-error" aria-live="polite" aria-atomic="true">
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.image}
+                </p>
+              </div>
+            </div>
 
             {/* Description */}
             <div className="mb-5">
-              <Label htmlFor="Name">Description de l&apos;expérience</Label>
+              <Label htmlFor="Name">Description</Label>
               <Textarea
                 defaultValue={experience.description}
                 placeholder="Description de l'experience"
@@ -66,7 +86,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
 
             {/* Duration */}
             <div className="mb-5">
-              <Label htmlFor="Name">Durée de l&apos;expérience</Label>
+              <Label htmlFor="Name">Durée</Label>
               <Input
                 type="text"
                 defaultValue={experience.duration}
@@ -151,9 +171,9 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
             </div>
 
-            <div id="message-error" aria-live="polite" aria-atomic="true">
+            {/* <div id="message-error" aria-live="polite" aria-atomic="true">
               <p className="mt-2 text-sm text-red-500">{state?.message}</p>
-            </div>
+            </div> */}
             <Button>Update</Button>
           </form>
         </CardContent>
