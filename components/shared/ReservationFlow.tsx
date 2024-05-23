@@ -13,9 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import experienceData from "@/data/experienceData";
 import { createReservation } from "@/lib/action";
-import { ClosedDay } from "@prisma/client";
+import { ClosedDay, Experience } from "@prisma/client";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Image from "next/image";
@@ -42,7 +41,13 @@ const generateTimeSlots = (
   return times;
 };
 
-const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
+const ReservationFlow = ({
+  closedDays,
+  experiences,
+}: {
+  closedDays: ClosedDay[];
+  experiences: Experience[]; // Add the 'experiences' property to the type definition
+}) => {
   // Global Form State
   const [state, formAction] = useFormState(createReservation, null);
 
@@ -101,16 +106,17 @@ const ReservationFlow = ({ closedDays }: { closedDays: ClosedDay[] }) => {
             defaultValue={experienceId ?? ""}
           />
           <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
-            {experienceData.map((experience, index) => (
+            {experiences.map((experience, index) => (
               <li key={index}>
                 <ExperienceCard
-                  src={experience.src}
-                  alt={experience.alt}
+                  src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
                   name={experience.name}
-                  price={experience.price}
+                  minPrice={experience.minPrice}
                   description={experience.description}
-                  peopleNumber={experience.peopleNumber}
+                  minPeople={experience.minPeople}
+                  maxPeople={experience.maxPeople || ""}
                   duration={experience.duration}
+                  durationUnit={experience.durationUnit}
                   hover={true}
                   isSelected={experienceId === experience.name}
                   onClick={() => handleCardClick(experience.name)}
