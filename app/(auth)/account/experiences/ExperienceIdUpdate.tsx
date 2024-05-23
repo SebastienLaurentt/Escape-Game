@@ -9,11 +9,24 @@ import { Textarea } from "@/components/ui/textarea";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
 import Image from "next/image";
+import { useState } from "react";
 import { useFormState } from "react-dom";
 
 const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
   const UpdateExperienceWithId = updateExperience.bind(null, experience.id);
   const [state, formAction] = useFormState(UpdateExperienceWithId, null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div>
@@ -50,15 +63,35 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             </div>
             <div className="mb-5">
               <Label htmlFor="Name">Image</Label>
-              <Input type="file" name="image" id="image" />
-              <div className="mt-2">
-                <Image
-                  alt="image de l'expérience"
-                  src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
-                  height={100}
-                  width={100}
-                  className="rounded-md"
-                />
+              <Input
+                type="file"
+                name="image"
+                id="image"
+                onChange={handleImageChange}
+              />
+              <div className="mt-3 flex flex-row gap-x-4">
+                <div className="flex flex-col gap-y-1">
+                  <span className="italic">Image Actuelle</span>
+                  <Image
+                    alt="image de l'expérience"
+                    src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
+                    height={200}
+                    width={200}
+                    className="rounded-md"
+                  />
+                </div>
+                {selectedImage && (
+                  <div className="flex flex-col gap-y-1">
+                    <span className="italic">Nouvelle Image</span>
+                    <Image
+                      alt="image sélectionnée"
+                      src={selectedImage}
+                      height={200}
+                      width={200}
+                      className="rounded-md"
+                    />
+                  </div>
+                )}
               </div>
 
               <div id="name-error" aria-live="polite" aria-atomic="true">
@@ -171,10 +204,12 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
             </div>
 
-            {/* <div id="message-error" aria-live="polite" aria-atomic="true">
-              <p className="mt-2 text-sm text-red-500">{state?.message}</p>
-            </div> */}
-            <Button>Update</Button>
+            <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
+              <Button>Update</Button>
+              <div id="message-error" aria-live="polite" aria-atomic="true">
+                <p className="text-base text-center text-green-600">{state?.message}</p>
+              </div>
+            </div>
           </form>
         </CardContent>
       </Card>

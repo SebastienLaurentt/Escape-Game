@@ -74,44 +74,55 @@ export const updateExperience = async (
     };
   }
 
-  const {
-    name,
-    image,
-    description,
-    duration,
-    durationUnit,
-    minPrice,
-    minPeople,
-    maxPeople,
-  } = validatedFields.data;
-
-  // Extract the actual file from FormData
-  const actualImageFile = formData.get("image") as File;
-
-  // Convert the file to a string and upload the image to Supabase
-  const { data: imageData, error: uploadError } = await supabase.storage
-    .from("images")
-    .upload(`images/${actualImageFile?.name}-${Date.now()}`, actualImageFile, {
-      cacheControl: "2592000",
-      contentType: "image/png",
-    });
-
-  // Update the experience in the database
-  await prisma.experience.update({
-    data: {
+  try {
+    const {
       name,
-      image: imageData?.path,
+      image,
       description,
       duration,
       durationUnit,
       minPrice,
       minPeople,
       maxPeople,
-    },
-    where: { id },
-  });
+    } = validatedFields.data;
 
-  // Revalidate and redirect
+    // Extract the actual file from FormData
+    const actualImageFile = formData.get("image") as File;
+
+    // Convert the file to a string and upload the image to Supabase
+    const { data: imageData, error: uploadError } = await supabase.storage
+      .from("images")
+      .upload(
+        `images/${actualImageFile?.name}-${Date.now()}`,
+        actualImageFile,
+        {
+          cacheControl: "2592000",
+          contentType: "image/png",
+        }
+      );
+
+    // Update the experience in the database
+    await prisma.experience.update({
+      data: {
+        name,
+        image: imageData?.path,
+        description,
+        duration,
+        durationUnit,
+        minPrice,
+        minPeople,
+        maxPeople,
+      },
+      where: { id },
+    });
+
+    // Revalidate and redirect
+    redirect(`/account/experiences/${id}`);
+  
+
+  } catch (error) {
+    return { message: "Expérience mise à jour !" };
+  }
 };
 
 // Read all reservations
@@ -133,6 +144,7 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
   if (!validatedFields.success) {
     return {
       Error: validatedFields.error.flatten().fieldErrors,
+      message: "Validation failed. Please check the input fields.",
     };
   }
 
