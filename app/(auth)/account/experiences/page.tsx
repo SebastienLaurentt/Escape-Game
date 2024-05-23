@@ -14,7 +14,7 @@ export default async function Experiences() {
       {/* Top Left */}
       <ExperiencesHeader />
       {/* Bottom Left */}
-      <ExperienceFetch query="" />
+      <ExperienceFetch  />
     </div>
   );
 }

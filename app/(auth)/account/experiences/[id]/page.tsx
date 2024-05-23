@@ -25,7 +25,7 @@ const ExperienceIdFetch = async ({ params }: { params: { id: string } }) => {
         {/* Top Left */}
         <ExperiencesHeader />
         {/* Bottom Left */}
-        <ExperienceFetch query="" />
+        <ExperienceFetch  />
       </div>
 
       {/* Right */}
