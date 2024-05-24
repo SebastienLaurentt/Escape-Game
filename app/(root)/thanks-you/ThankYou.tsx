@@ -1,6 +1,8 @@
 "use client";
 
-const ThankYou = () => {
+import { Reservation } from "@prisma/client";
+
+const ThankYou = ({ reservation }: { reservation: Reservation }) => {
 
 
   return (
@@ -12,12 +14,12 @@ const ThankYou = () => {
             Your case is on the way!
           </h1>
           <p className="mt-2 text-base text-zinc-500">
-            We've received your order and are now processing it.
+            We&apos;ve received your order and are now processing it.
           </p>
 
           <div className="mt-12 text-sm font-medium">
             <p className="text-zinc-900">Order number</p>
-            {/* <p className="mt-2 text-zinc-500">{orderId}</p> */}
+            <p className="mt-2 text-zinc-500">{reservation.id}</p>
           </div>
         </div>
 
