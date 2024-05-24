@@ -50,7 +50,6 @@ export const getExperienceById = async (id: string) => {
     const experience = await prisma.experience.findUnique({
       where: { id },
     });
-    console.log(experience);
     return experience;
   } catch (error) {
     throw new Error("Failed to fetch experience data");
@@ -132,6 +131,18 @@ export const getReservationsList = async (query: string) => {
     return reservations;
   } catch (error) {
     throw new Error("Failed to fetch reservations data");
+  }
+};
+
+// Find one reservation by its ID
+export const getReservationById = async (id: string) => {
+  try {
+    const reservation = await prisma.reservation.findUnique({
+      where: { id },
+    });
+    return reservation;
+  } catch (error) {
+    throw new Error("Failed to fetch reservation data");
   }
 };
 
