@@ -7,27 +7,48 @@ import { Input } from "@/components/ui/input";
 import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
 import { useState } from "react";
-import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation"; // Importez useRouter de next/navigation
 
 const ExperienceChoice = ({
   experiences,
 }: {
-  experiences: Experience[]; // Add the 'experiences' property to the type definition
+  experiences: Experience[];
 }) => {
-  const [state, formAction] = useFormState(createReservation, null);
   const [experienceName, setExperienceName] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter(); // Utilisez useRouter pour la redirection
+
   console.log(experienceName);
 
-  const handleCardClick = (cardName: any) => {
+  const handleCardClick = (cardName: string) => {
     setExperienceName(cardName);
   };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    try {
+      const result = await createReservation(null, formData);
+      console.log("Form action result:", result);
+
+      if (result && result.reservationId) { // Assurez-vous que result est défini et contient reservationId
+        router.push(`/reservation/booking/${result.reservationId}`); // Redirigez vers la page avec l'ID de la réservation
+      } else {
+        setError("Failed to create reservation.");
+      }
+    } catch (error) {
+      console.error("Error during form submission:", error);
+      setError("An error occurred while creating the reservation.");
+    }
+  };
+
   return (
     <div className="py-12">
       <SectionHeader title="1. Choisissez votre" titleHighlight="expérience" />
 
-      <form action={formAction}>
+      <form onSubmit={handleSubmit}>
         <Input
-          type="text"
+          type="hidden"
           name="experienceName"
           value={experienceName ?? ""}
         />
@@ -51,10 +72,8 @@ const ExperienceChoice = ({
           ))}
         </ul>
         <div id="name-error" aria-live="polite" aria-atomic="true">
-            <p className="mt-2 text-sm text-red-500">
-              {state?.Error?.experienceName}
-            </p>
-          </div>
+          {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+        </div>
         <div className="flex flex-row justify-end">
           <Button type="submit">Continuer</Button>
         </div>

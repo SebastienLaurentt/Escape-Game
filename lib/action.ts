@@ -147,12 +147,13 @@ export const getReservationById = async (id: string) => {
 };
 
 // Create Reservation
-export const createReservation = async (prevSate: any, formData: FormData) => {
+export const createReservation = async (prevState: any, formData: FormData) => {
   const validatedFields = ReservationsSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
 
   if (!validatedFields.success) {
+    console.log("Validation failed:", validatedFields.error.flatten().fieldErrors);
     return {
       Error: validatedFields.error.flatten().fieldErrors,
       message: "Validation failed. Please check the input fields.",
@@ -160,16 +161,17 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
   }
 
   try {
-    await prisma.reservation.create({
+    const newReservation = await prisma.reservation.create({
       data: {
         experienceName: validatedFields.data.experienceName,
       },
     });
+    console.log("Reservation created successfully, ID:", newReservation.id);
+    return { reservationId: newReservation.id }; // Retourne l'ID de la réservation créée
   } catch (error) {
-    return { message: "Failed to create new reservation" };
+    console.error("Failed to create new reservation:", error);
+    return { message: "Failed to create new reservation", Error: error };
   }
-
-  redirect("/");
 };
 
 export const deleteReservation = async (id: string) => {
