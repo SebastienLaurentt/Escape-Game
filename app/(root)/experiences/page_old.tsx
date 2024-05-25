@@ -10,7 +10,7 @@ const Experiences = async () => {
   return (
     <main>
       <PageTitle title="Prêts à affronter l'horreur ?" />
-      <ReservationFlow closedDays={closedDays} experiences={experiences} />
+      {/* <ReservationFlow closedDays={closedDays} experiences={experiences} /> */}
     </main>
   );
 };

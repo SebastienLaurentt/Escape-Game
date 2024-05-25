@@ -1,5 +1,3 @@
-import { ar } from "date-fns/locale";
-
 const navData = [
   {
     href: "/",
@@ -8,10 +6,10 @@ const navData = [
     burgerMenuName: "ACCUEIL",
   },
   {
-    href: "/experiences",
+    href: "/reservation/experiences",
     ariaLabel: "Aller à la page pour réserver une expérience",
-    name: "Expériences",
-    burgerMenuName: "EXPERIENCES",
+    name: "Réservation",
+    burgerMenuName: "RÉSERVATION",
   },
   {
     href: "/contact",
