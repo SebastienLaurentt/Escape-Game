@@ -91,7 +91,7 @@ model Experience {
 
 model Reservation {
   id String @id @default(cuid())
-  experienceId String?
+  experienceName String
   people String?
   date DateTime?
   price String?

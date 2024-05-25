@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { getReservationsList } from "@/lib/action";
-import { Trash } from "lucide-react";
 import { DeleteReservation } from "./DeleteReservation";
 
 // Function to format date as "Jour de la semaine DD MM AAAA"
@@ -89,7 +88,7 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                       {reservation.people}
                     </TableCell>
                     <TableCell className="hidden md:table-cell ">
-                      {reservation.experienceId}
+                      {reservation.experienceName}
                     </TableCell>
                     <TableCell className="hidden xl:table-cell ">
                       {reservation.price}

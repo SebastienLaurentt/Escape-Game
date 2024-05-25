@@ -41,7 +41,7 @@ const Hero = () => {
           asChild
           aria-label="Aller à la page pour réserver son expérience"
         >
-          <Link href="/experiences">Réserver</Link>
+          <Link href="/reservation/experiences">Réserver</Link>
         </Button>
       </Section>
     </div>
