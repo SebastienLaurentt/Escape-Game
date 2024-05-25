@@ -20,7 +20,7 @@ const ExperienceSchema = z.object({
 
 // Experience schema type with Zod
 const ReservationsSchema = z.object({
-  experienceName: z.string().min(0),
+  experienceName: z.string().optional(),
   people: z.string().optional(),
   date: z.string().optional(),
   price: z.string().optional(),
@@ -171,16 +171,15 @@ export const updateReservation = async (
         date: validatedFields.data.date,
         price: validatedFields.data.price,
         time: validatedFields.data.time,
-        name: validatedFields.data.name,
-        email: validatedFields.data.email,
-        phone: validatedFields.data.phone,
       },
       where: { id },
     });
+
+    
   } catch (error) {
     return { message: "Failed to update reservation" };
   }
- 
+  redirect("/");
 };
 
 // Create Reservation
@@ -203,7 +202,7 @@ export const createReservation = async (prevState: any, formData: FormData) => {
   try {
     const newReservation = await prisma.reservation.create({
       data: {
-        experienceName: validatedFields.data.experienceName,
+        experienceName: validatedFields.data.experienceName || '', // Assign an empty string if experienceName is undefined
       },
     });
     console.log("Reservation created successfully, ID:", newReservation.id);
