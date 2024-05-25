@@ -17,6 +17,7 @@ import { updateReservation } from "@/lib/action";
 import { ClosedDay, Reservation } from "@prisma/client";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
 
@@ -81,115 +82,143 @@ const BookingInfos = ({
   const timeSlots = generateTimeSlots(9, 23, 1);
 
   return (
-    <div className="pb-4">
+    <div className="py-8 xl:pt-0">
       <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
-      <form action={formAction}>
-        {/* A) PeopleNumber Select */}
-        <div className="flex flex-col items-center gap-y-2">
-          <h3>A. Combien êtes vous ?</h3>
-          <Input type="hidden" name="people" value={people ?? ""} />
-          <Input type="hidden" name="price" value={price.toString()} />
-
-          <Select onValueChange={handlePeopleSelect}>
-            <SelectTrigger className=" w-[280px] ">
-              <SelectValue placeholder="Sélectionner votre nombre" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="2">
-                  2 personnes - <span className="font-bold">35€</span>
-                </SelectItem>
-                <SelectItem value="3">
-                  3 personnes - <span className="font-bold">30€</span>
-                </SelectItem>
-                <SelectItem value="4">
-                  4 personnes - <span className="font-bold">30€</span>
-                </SelectItem>
-                <SelectItem value="5">
-                  5 personnes - <span className="font-bold">25€</span>
-                </SelectItem>
-                <SelectItem value="6">
-                  6 personnes - <span className="font-bold">25€</span>{" "}
-                </SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <div id="name-error" aria-live="polite" aria-atomic="true">
-            <p className="mt-2 text-sm text-red-500">{state?.Error?.people}</p>
-          </div>
-          <div id="name-error" aria-live="polite" aria-atomic="true">
-            <p className="mt-2 text-sm text-red-500">{state?.Error?.price}</p>
-          </div>
+      <div className="xl:flex xl:flex-row ">
+        <div className="hidden items-center justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0 ">
+          <Image
+            src="/images/BgHome2.webp"
+            alt="Villa de l'effroi image"
+            width={1000}
+            height={1000}
+            className="rounded-xl opacity-30"
+          />
+          <span className="absolute text-center text-xl font-bold uppercase md:leading-9 lg:text-3xl lg:leading-[48px] xl:text-4xl ">
+            La villa vous <br />
+            <span className="text-primary">attend</span>
+          </span>
         </div>
+        <div className="xl:w-1/2">
+          <form action={formAction}>
+            {/* A) PeopleNumber Select */}
+            <div className="flex flex-col items-center">
+              <h3>A. Combien êtes vous ?</h3>
+              <Input type="hidden" name="people" value={people ?? ""} />
+              <Input type="hidden" name="price" value={price.toString()} />
 
-        {/* B) Day Picking */}
-        {people && (
-          <div className="w-full ">
-            <div className=" mx-8 flex flex-col gap-y-12 md:flex-row md:justify-around xl:justify-center xl:gap-x-28">
-              <div className="flex  flex-col items-center gap-y-2">
-                <h3 className="w-[320px] text-center">
-                  B. Quel jour souhaitez vous venir ?
-                </h3>
-                <Input type="hidden" name="date" value={date?.toISOString()} />
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  disabled={disabledDates}
-                />
-                <div id="name-error" aria-live="polite" aria-atomic="true">
-                  <p className="mt-2 text-sm text-red-500">
-                    {state?.Error?.date}
-                  </p>
-                </div>
+              <Select onValueChange={handlePeopleSelect}>
+                <SelectTrigger className=" w-[280px] ">
+                  <SelectValue placeholder="Sélectionner votre nombre" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="2">
+                      2 personnes - <span className="font-bold">35€</span>
+                    </SelectItem>
+                    <SelectItem value="3">
+                      3 personnes - <span className="font-bold">30€</span>
+                    </SelectItem>
+                    <SelectItem value="4">
+                      4 personnes - <span className="font-bold">30€</span>
+                    </SelectItem>
+                    <SelectItem value="5">
+                      5 personnes - <span className="font-bold">25€</span>
+                    </SelectItem>
+                    <SelectItem value="6">
+                      6 personnes - <span className="font-bold">25€</span>{" "}
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <div id="name-error" aria-live="polite" aria-atomic="true">
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.people}
+                </p>
               </div>
+              <div id="name-error" aria-live="polite" aria-atomic="true">
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.price}
+                </p>
+              </div>
+            </div>
 
-              {/* C) Hours Picking */}
-              <div className="flex flex-col items-center">
-                <h3 className="mb-2 w-[320px] text-center">
-                  C. Choisissez une horaire
-                </h3>
-                <Input type="hidden" name="time" value={time ?? ""} />
-                {date && (
-                  <div className="flex flex-col items-center">
-                    <span className=" italic ">
-                      Disponibilités du
-                      <span className="text-primary">
-                        {
-                          format(date, " EEEE dd MMMM", { locale: fr })
-                            .replace(/^\w/, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre du jour
-                            .replace(/ \w/g, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre de chaque mot du mois
-                        }
-                      </span>
-                    </span>
-                    <div className="grid grid-cols-3 gap-4 py-6">
-                      {timeSlots.map((timeSlot, index) => (
-                        <HoursChips
-                          key={index}
-                          hours={timeSlot}
-                          onClick={handleTimeSelect}
-                          isSelected={time === timeSlot}
-                        />
-                      ))}
-                    </div>
+            {/* B) Day Picking */}
+            {people && (
+              <div className="">
+                <div className="flex flex-col gap-y-8 xl:flex-row xl:justify-between 2xl:gap-x-4">
+                  <div className="flex flex-col items-center gap-y-2">
+                    <h3 className="w-[320px] text-center">
+                      B. Choisissez un jour
+                    </h3>
+                    <Input
+                      type="hidden"
+                      name="date"
+                      value={date?.toISOString()}
+                    />
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      disabled={disabledDates}
+                    />
                     <div id="name-error" aria-live="polite" aria-atomic="true">
                       <p className="mt-2 text-sm text-red-500">
-                        {state?.Error?.time}
+                        {state?.Error?.date}
                       </p>
                     </div>
                   </div>
+
+                  {/* C) Hours Picking */}
+                  <div className="flex flex-col items-center">
+                    <h3 className="w-[320px] text-center">
+                      C. Choisissez une horaire
+                    </h3>
+                    <Input type="hidden" name="time" value={time ?? ""} />
+                    {date && (
+                      <div className="flex flex-col items-center">
+                        <span className=" italic ">
+                          Disponibilités du
+                          <span className="text-primary">
+                            {
+                              format(date, " EEEE dd MMMM", { locale: fr })
+                                .replace(/^\w/, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre du jour
+                                .replace(/ \w/g, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre de chaque mot du mois
+                            }
+                          </span>
+                        </span>
+                        <div className="grid grid-cols-3 gap-4 py-6">
+                          {timeSlots.map((timeSlot, index) => (
+                            <HoursChips
+                              key={index}
+                              hours={timeSlot}
+                              onClick={handleTimeSelect}
+                              isSelected={time === timeSlot}
+                            />
+                          ))}
+                        </div>
+                        <div
+                          id="name-error"
+                          aria-live="polite"
+                          aria-atomic="true"
+                        >
+                          <p className="mt-2 text-sm text-red-500">
+                            {state?.Error?.time}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                {time && (
+                  <div className="flex flex-row justify-end">
+                    <Button type="submit">Continuer</Button>
+                  </div>
                 )}
               </div>
-            </div>
-          </div>
-        )}
-
-        {time && (
-        <div className="flex flex-row justify-end">
-          <Button type="submit">Continuer</Button>
+            )}
+          </form>
         </div>
-        )}
-      </form>
+      </div>
     </div>
   );
 };
