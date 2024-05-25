@@ -19,7 +19,7 @@ const ExperienceSchema = z.object({
 
 // Experience schema type with Zod
 const ReservationsSchema = z.object({
-  experienceId: z.string().min(0),
+  experienceName: z.string().min(0),
   people: z.string().min(0),
   date: z.string().min(0),
   price: z.string().min(0),
@@ -162,7 +162,7 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
   try {
     await prisma.reservation.create({
       data: {
-        experienceId: validatedFields.data.experienceId,
+        experienceName: validatedFields.data.experienceName,
         people: validatedFields.data.people,
         date: validatedFields.data.date,
         price: validatedFields.data.price,
