@@ -43,7 +43,7 @@ const ExperienceChoice = ({
   };
 
   return (
-    <div className="py-12">
+    <div className="pb-4">
       <SectionHeader title="1. Choisissez votre" titleHighlight="expérience" />
 
       <form onSubmit={handleSubmit}>
@@ -74,9 +74,11 @@ const ExperienceChoice = ({
         <div id="name-error" aria-live="polite" aria-atomic="true">
           {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
+        {experienceName && (
         <div className="flex flex-row justify-end">
           <Button type="submit">Continuer</Button>
         </div>
+        )}
       </form>
     </div>
   );
