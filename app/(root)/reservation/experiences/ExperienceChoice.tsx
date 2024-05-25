@@ -16,6 +16,7 @@ const ExperienceChoice = ({
 }) => {
   const [state, formAction] = useFormState(createReservation, null);
   const [experienceName, setExperienceName] = useState<string | null>(null);
+  console.log(experienceName);
 
   const handleCardClick = (cardName: any) => {
     setExperienceName(cardName);
@@ -26,9 +27,9 @@ const ExperienceChoice = ({
 
       <form action={formAction}>
         <Input
-          type="hidden"
-          name="experienceId"
-          defaultValue={experienceName ?? ""}
+          type="text"
+          name="experienceName"
+          value={experienceName ?? ""}
         />
         <ul className="mb-6 flex flex-col justify-between gap-y-8 xl:flex-row xl:gap-x-2 2xl:gap-x-4">
           {experiences.map((experience, index) => (
@@ -49,6 +50,11 @@ const ExperienceChoice = ({
             </li>
           ))}
         </ul>
+        <div id="name-error" aria-live="polite" aria-atomic="true">
+            <p className="mt-2 text-sm text-red-500">
+              {state?.Error?.experienceName}
+            </p>
+          </div>
         <div className="flex flex-row justify-end">
           <Button type="submit">Continuer</Button>
         </div>

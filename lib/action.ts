@@ -20,13 +20,13 @@ const ExperienceSchema = z.object({
 // Experience schema type with Zod
 const ReservationsSchema = z.object({
   experienceName: z.string().min(0),
-  people: z.string().min(0),
-  date: z.string().min(0),
-  price: z.string().min(0),
-  time: z.string().min(0),
-  name: z.string().min(0),
-  email: z.string().min(0),
-  phone: z.string().min(0),
+  people: z.string().optional(),
+  date: z.string().optional(),
+  price: z.string().optional(),
+  time: z.string().optional(),
+  name: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
 });
 
 // Closed Day Schema type with Zod
@@ -163,20 +163,13 @@ export const createReservation = async (prevSate: any, formData: FormData) => {
     await prisma.reservation.create({
       data: {
         experienceName: validatedFields.data.experienceName,
-        people: validatedFields.data.people,
-        date: validatedFields.data.date,
-        price: validatedFields.data.price,
-        time: validatedFields.data.time,
-        name: validatedFields.data.name,
-        email: validatedFields.data.email,
-        phone: validatedFields.data.phone,
       },
     });
   } catch (error) {
     return { message: "Failed to create new reservation" };
   }
 
-  redirect("/account/reservations");
+  redirect("/");
 };
 
 export const deleteReservation = async (id: string) => {
