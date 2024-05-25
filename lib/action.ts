@@ -189,10 +189,6 @@ export const createReservation = async (prevState: any, formData: FormData) => {
   );
 
   if (!validatedFields.success) {
-    console.log(
-      "Validation failed:",
-      validatedFields.error.flatten().fieldErrors
-    );
     return {
       Error: validatedFields.error.flatten().fieldErrors,
       message: "Validation failed. Please check the input fields.",
@@ -205,10 +201,8 @@ export const createReservation = async (prevState: any, formData: FormData) => {
         experienceName: validatedFields.data.experienceName || '', // Assign an empty string if experienceName is undefined
       },
     });
-    console.log("Reservation created successfully, ID:", newReservation.id);
     return { reservationId: newReservation.id }; // Retourne l'ID de la réservation créée
   } catch (error) {
-    console.error("Failed to create new reservation:", error);
     return { message: "Failed to create new reservation", Error: error };
   }
 };
