@@ -5,6 +5,7 @@ import { z } from "zod";
 import { prisma } from "./prisma";
 import { supabase } from "./supabase";
 
+// Schemas
 // Experience schema type with Zod
 const ExperienceSchema = z.object({
   name: z.string().min(5),
@@ -34,6 +35,9 @@ const ClosedDaySchema = z.object({
   date: z.string(),
 });
 
+
+
+// Experience
 // Read all experiences
 export const getExperiencesList = async () => {
   try {
@@ -117,13 +121,12 @@ export const updateExperience = async (
 
     // Revalidate and redirect
     redirect(`/account/experiences/${id}`);
-  
-
   } catch (error) {
     return { message: "Expérience mise à jour !" };
   }
 };
 
+// Reservation
 // Read all reservations
 export const getReservationsList = async (query: string) => {
   try {
@@ -146,6 +149,40 @@ export const getReservationById = async (id: string) => {
   }
 };
 
+export const updateReservation = async (
+  id: string,
+  prevSate: any,
+  formData: FormData
+) => {
+  const validatedFields = ReservationsSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+ 
+  if (!validatedFields.success) {
+    return {
+      Error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+ 
+  try {
+    await prisma.reservation.update({
+      data: {
+        people: validatedFields.data.people,
+        date: validatedFields.data.date,
+        price: validatedFields.data.price,
+        time: validatedFields.data.time,
+        name: validatedFields.data.name,
+        email: validatedFields.data.email,
+        phone: validatedFields.data.phone,
+      },
+      where: { id },
+    });
+  } catch (error) {
+    return { message: "Failed to update reservation" };
+  }
+ 
+};
+
 // Create Reservation
 export const createReservation = async (prevState: any, formData: FormData) => {
   const validatedFields = ReservationsSchema.safeParse(
@@ -153,7 +190,10 @@ export const createReservation = async (prevState: any, formData: FormData) => {
   );
 
   if (!validatedFields.success) {
-    console.log("Validation failed:", validatedFields.error.flatten().fieldErrors);
+    console.log(
+      "Validation failed:",
+      validatedFields.error.flatten().fieldErrors
+    );
     return {
       Error: validatedFields.error.flatten().fieldErrors,
       message: "Validation failed. Please check the input fields.",
@@ -186,6 +226,8 @@ export const deleteReservation = async (id: string) => {
   redirect("/account/reservations");
 };
 
+
+// ClosedDay
 // Create Closed Day
 export const createClosedDay = async (prevSate: any, formData: FormData) => {
   const validatedFields = ClosedDaySchema.safeParse(
