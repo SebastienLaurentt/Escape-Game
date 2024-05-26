@@ -20,6 +20,10 @@ import { fr } from "date-fns/locale";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
+import { useMutation } from '@tanstack/react-query'
+import { createCheckoutSession } from "./CheckoutAction";
+import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 const generateTimeSlots = (
   startHour: number,
@@ -80,6 +84,24 @@ const BookingInfos = ({
 
   // Define Time Slots
   const timeSlots = generateTimeSlots(9, 23, 1);
+
+  const router = useRouter()
+
+  const { mutate: createPaymentSession } = useMutation({
+    mutationKey: ['get-checkout-session'],
+    mutationFn: createCheckoutSession,
+    onSuccess: ({ url }) => {
+      if (url) router.push(url)
+      else throw new Error('Unable to retrieve payment URL.')
+    },
+    onError: () => {
+      toast({
+        title: 'Something went wrong',
+        description: 'There was an error on our end. Please try again.',
+        variant: 'destructive',
+      })
+    },
+  })
 
   return (
     <div className="py-8 xl:pt-0">

@@ -99,6 +99,7 @@ model Reservation {
   name String? 
   email String?
   phone String?
+  Order Order[]
 }
 
 model Day {
@@ -112,4 +113,29 @@ model Day {
 model ClosedDay {
   id String @id @default(cuid())
   date DateTime
+}
+
+model Order {
+  id String @id @default(cuid())
+  reservationId String 
+  reservation Reservation @relation(fields: [reservationId], references: [id])
+  amount          Float
+  isPaid          Boolean       @default(false)
+  billingAddress    BillingAddress?  @relation(fields: [billingAddressId], references: [id])
+  billingAddressId  String?
+
+  createdAt DateTime @default(now())
+  updated   DateTime @updatedAt
+}
+
+model BillingAddress {
+  id          String  @id @default(cuid())
+  name        String
+  street      String
+  city        String
+  postalCode  String
+  country     String
+  state       String?
+  phoneNumber String?
+  orders      Order[]
 }

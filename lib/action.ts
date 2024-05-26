@@ -179,7 +179,7 @@ export const updateReservation = async (
   } catch (error) {
     return { message: "Failed to update reservation" };
   }
-  redirect(`/thanks-you/${id}`);
+  redirect(`/thank-you/${id}`);
 };
 
 // Create Reservation
