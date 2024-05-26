@@ -2,11 +2,10 @@
 
 import Section from "@/components/shared/Section";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
 import { Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
 const Preview = ({ reservation }: { reservation: Reservation }) => {
@@ -55,11 +54,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
             </p>
           </div>
 
-          <Separator className="mb-2 mt-8" />
-          <div>
-            <span className="text-md font-semibold uppercase md:text-lg">
-              Details de votre reservation
-            </span>
+          <div className="mb-2 mt-8 md:mb-4">
             <div className="mt-4 flex flex-col gap-y-3">
               <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
@@ -99,7 +94,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
             onClick={() => createPaymentSession(id)}
             className="px-4 sm:px-6 lg:px-8"
           >
-            Check out
+            Confirmer et Payer
           </Button>
         </div>
       </Section>
