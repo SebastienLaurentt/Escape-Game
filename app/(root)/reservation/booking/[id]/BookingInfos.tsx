@@ -19,7 +19,8 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Image from "next/image";
 import React, { useState } from "react";
-import { useFormState } from "react-dom";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation"; 
 
 const generateTimeSlots = (
   startHour: number,
@@ -37,6 +38,7 @@ const generateTimeSlots = (
 
   return times;
 };
+
 const BookingInfos = ({
   closedDays,
   reservation,
@@ -44,11 +46,14 @@ const BookingInfos = ({
   closedDays: ClosedDay[];
   reservation: Reservation;
 }) => {
-  const UpdateReservationWithId = updateReservation.bind(null, reservation.id);
-  // Global Form State
-  const [state, formAction] = useFormState(UpdateReservationWithId, null);
+  const { mutate: updateReservationMutation, isPending } = useMutation({
+    mutationKey: ["update-reservation"],
+    mutationFn: async (formData: FormData) => {
+      const result = await updateReservation(reservation.id, formData);
+      return result;
+    },
+  });
 
-  // Individuals Form States
   const [people, setPeople] = useState<number | null>(null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   const [price, setPrice] = useState(0);
@@ -57,13 +62,12 @@ const BookingInfos = ({
   const handlePeopleSelect = (value: string) => {
     const numberOfPeople = parseInt(value);
     setPeople(numberOfPeople);
-    // Update price based on selected people number
     const prices: { [key: number]: number } = {
-      2: 35,
-      3: 30,
-      4: 30,
-      5: 25,
-      6: 25,
+      2: 70,
+      3: 90,
+      4: 120,
+      5: 125,
+      6: 150,
     };
     if (prices[numberOfPeople]) {
       setPrice(prices[numberOfPeople]);
@@ -74,10 +78,13 @@ const BookingInfos = ({
     setTime(time);
   };
 
-  // Fetch Disabled Dates
-  const disabledDates = closedDays.map((day) => new Date(day.date));
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    updateReservationMutation(formData);
+  };
 
-  // Define Time Slots
+  const disabledDates = closedDays.map((day) => new Date(day.date));
   const timeSlots = generateTimeSlots(9, 23, 1);
 
   return (
@@ -98,8 +105,7 @@ const BookingInfos = ({
           </span>
         </div>
         <div className="xl:w-1/2">
-          <form action={formAction}>
-            {/* A) PeopleNumber Select */}
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center">
               <h3>A. Combien êtes vous ?</h3>
               <Input type="hidden" name="people" value={people ?? ""} />
@@ -124,64 +130,39 @@ const BookingInfos = ({
                       5 personnes - <span className="font-bold">25€</span>
                     </SelectItem>
                     <SelectItem value="6">
-                      6 personnes - <span className="font-bold">25€</span>{" "}
+                      6 personnes - <span className="font-bold">25€</span>
                     </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.people}
-                </p>
-              </div>
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.price}
-                </p>
-              </div>
             </div>
 
-            {/* B) Day Picking */}
             {people && (
               <div className="">
                 <div className="flex flex-col gap-y-8 xl:flex-row xl:justify-between 2xl:gap-x-4">
                   <div className="flex flex-col items-center gap-y-2">
-                    <h3 className="w-[320px] text-center">
-                      B. Choisissez un jour
-                    </h3>
-                    <Input
-                      type="hidden"
-                      name="date"
-                      value={date?.toISOString()}
-                    />
+                    <h3 className="w-[320px] text-center">B. Choisissez un jour</h3>
+                    <Input type="hidden" name="date" value={date?.toISOString()} />
                     <Calendar
                       mode="single"
                       selected={date}
                       onSelect={setDate}
                       disabled={disabledDates}
                     />
-                    <div id="name-error" aria-live="polite" aria-atomic="true">
-                      <p className="mt-2 text-sm text-red-500">
-                        {state?.Error?.date}
-                      </p>
-                    </div>
                   </div>
 
-                  {/* C) Hours Picking */}
                   <div className="flex flex-col items-center">
-                    <h3 className="w-[320px] text-center">
-                      C. Choisissez une horaire
-                    </h3>
+                    <h3 className="w-[320px] text-center">C. Choisissez une horaire</h3>
                     <Input type="hidden" name="time" value={time ?? ""} />
                     {date && (
                       <div className="flex flex-col items-center">
-                        <span className=" italic ">
+                        <span className="italic">
                           Disponibilités du
                           <span className="text-primary">
                             {
                               format(date, " EEEE dd MMMM", { locale: fr })
-                                .replace(/^\w/, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre du jour
-                                .replace(/ \w/g, (c) => c.toUpperCase()) // Mettre en majuscule la première lettre de chaque mot du mois
+                                .replace(/^\w/, (c) => c.toUpperCase())
+                                .replace(/ \w/g, (c) => c.toUpperCase())
                             }
                           </span>
                         </span>
@@ -195,22 +176,15 @@ const BookingInfos = ({
                             />
                           ))}
                         </div>
-                        <div
-                          id="name-error"
-                          aria-live="polite"
-                          aria-atomic="true"
-                        >
-                          <p className="mt-2 text-sm text-red-500">
-                            {state?.Error?.time}
-                          </p>
-                        </div>
                       </div>
                     )}
                   </div>
                 </div>
                 {time && (
                   <div className="flex flex-row justify-end">
-                    <Button type="submit">Continuer</Button>
+                    <Button disabled={isPending} isLoading={isPending} loadingText="Chargement" type="submit">
+                      Continuer
+                    </Button>
                   </div>
                 )}
               </div>

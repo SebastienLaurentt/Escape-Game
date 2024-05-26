@@ -7,7 +7,8 @@ import { Input } from "@/components/ui/input";
 import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // Importez useRouter de next/navigation
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 
 const ExperienceChoice = ({
   experiences,
@@ -16,9 +17,25 @@ const ExperienceChoice = ({
 }) => {
   const [experienceName, setExperienceName] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter(); // Utilisez useRouter pour la redirection
+  const router = useRouter();
 
-  console.log(experienceName);
+  const { mutate: createReservationMutation, isPending } = useMutation({
+    mutationKey: ["create-reservation"],
+    mutationFn: async (formData: FormData) => {
+      const result = await createReservation(null, formData);
+      return result;
+    },
+    onError: () => {
+      setError("An error occurred while creating the reservation.");
+    },
+    onSuccess: (result) => {
+      if (result && result.reservationId) {
+        router.push(`/reservation/booking/${result.reservationId}`);
+      } else {
+        setError("Failed to create reservation.");
+      }
+    },
+  });
 
   const handleCardClick = (cardName: string) => {
     setExperienceName(cardName);
@@ -27,19 +44,7 @@ const ExperienceChoice = ({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    try {
-      const result = await createReservation(null, formData);
-      console.log("Form action result:", result);
-
-      if (result && result.reservationId) { // Assurez-vous que result est défini et contient reservationId
-        router.push(`/reservation/booking/${result.reservationId}`); // Redirigez vers la page avec l'ID de la réservation
-      } else {
-        setError("Failed to create reservation.");
-      }
-    } catch (error) {
-      console.error("Error during form submission:", error);
-      setError("An error occurred while creating the reservation.");
-    }
+    createReservationMutation(formData);
   };
 
   return (
@@ -75,9 +80,11 @@ const ExperienceChoice = ({
           {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
         {experienceName && (
-        <div className="flex flex-row justify-end">
-          <Button type="submit">Continuer</Button>
-        </div>
+          <div className="flex flex-row justify-end">
+            <Button disabled={isPending} isLoading={isPending} loadingText="Chargement" type="submit">
+              Continuer
+            </Button>
+          </div>
         )}
       </form>
     </div>
