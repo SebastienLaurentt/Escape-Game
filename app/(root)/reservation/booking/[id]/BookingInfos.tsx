@@ -13,17 +13,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "@/components/ui/use-toast";
 import { updateReservation } from "@/lib/action";
 import { ClosedDay, Reservation } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
-import { useMutation } from '@tanstack/react-query'
 import { createCheckoutSession } from "./CheckoutAction";
-import { useRouter } from "next/navigation";
-import { toast } from "@/components/ui/use-toast";
 
 const generateTimeSlots = (
   startHour: number,
@@ -51,13 +51,14 @@ const BookingInfos = ({
   const UpdateReservationWithId = updateReservation.bind(null, reservation.id);
   // Global Form State
   const [state, formAction] = useFormState(UpdateReservationWithId, null);
-  console.log(state);
 
   // Individuals Form States
   const [people, setPeople] = useState<number | null>(null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   const [price, setPrice] = useState(0);
   const [time, setTime] = useState<string | null>(null);
+
+  const { id } = reservation
 
   const handlePeopleSelect = (value: string) => {
     const numberOfPeople = parseInt(value);
@@ -85,23 +86,23 @@ const BookingInfos = ({
   // Define Time Slots
   const timeSlots = generateTimeSlots(9, 23, 1);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const { mutate: createPaymentSession } = useMutation({
-    mutationKey: ['get-checkout-session'],
+    mutationKey: ["get-checkout-session"],
     mutationFn: createCheckoutSession,
     onSuccess: ({ url }) => {
-      if (url) router.push(url)
-      else throw new Error('Unable to retrieve payment URL.')
+      if (url) router.push(url);
+      else throw new Error("Unable to retrieve payment URL.");
     },
     onError: () => {
       toast({
-        title: 'Something went wrong',
-        description: 'There was an error on our end. Please try again.',
-        variant: 'destructive',
-      })
+        title: "Something went wrong",
+        description: "There was an error on our end. Please try again.",
+        variant: "destructive",
+      });
     },
-  })
+  });
 
   return (
     <div className="py-8 xl:pt-0">
@@ -240,6 +241,12 @@ const BookingInfos = ({
             )}
           </form>
         </div>
+        <Button
+          onClick={() => createPaymentSession(id)}
+          className="px-4 sm:px-6 lg:px-8"
+        >
+          Check out
+        </Button>
       </div>
     </div>
   );

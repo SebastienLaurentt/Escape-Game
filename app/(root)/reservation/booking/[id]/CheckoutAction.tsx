@@ -14,13 +14,12 @@ export const createCheckoutSession = async (id: string) => {
     throw new Error("No such reservation found");
   }
 
-  let price = 50;
+  let price = 5000;
 
   let order: Order | undefined = undefined;
 
   const existingOrder = await prisma.order.findFirst({
     where: {
-
       reservationId: reservation.id,
     },
   });
@@ -32,7 +31,7 @@ export const createCheckoutSession = async (id: string) => {
   } else {
     order = await prisma.order.create({
       data: {
-        amount: price / 100,
+        amount: price,
         reservationId: reservation.id,
       },
     });
