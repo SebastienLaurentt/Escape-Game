@@ -63,11 +63,11 @@ const BookingInfos = ({
     const numberOfPeople = parseInt(value);
     setPeople(numberOfPeople);
     const prices: { [key: number]: number } = {
-      2: 35,
-      3: 30,
-      4: 30,
-      5: 25,
-      6: 25,
+      2: 70,
+      3: 90,
+      4: 120,
+      5: 125,
+      6: 150,
     };
     if (prices[numberOfPeople]) {
       setPrice(prices[numberOfPeople]);
