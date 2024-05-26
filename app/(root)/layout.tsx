@@ -1,5 +1,6 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
+import Providers from "@/components/shared/Providers";
 
 export default function RootLayout({
   children,
@@ -9,7 +10,7 @@ export default function RootLayout({
   return (
     <div>
       <Header />
-      {children}
+      <Providers>{children}</Providers>
       <Footer />
     </div>
   );
