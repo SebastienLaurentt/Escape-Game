@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
+  AreaChart,
   Calendar,
   Gamepad2,
   LayoutDashboard,
@@ -49,6 +50,13 @@ const MobileNav = () => {
             >
               <Users2 className="size-5" />
               Réservations
+            </Link>
+            <Link
+              href="/account/insights/"
+              className="flex items-center gap-4 px-2.5 text-foreground"
+            >
+              <AreaChart  className="size-5" />
+              Comptabilité
             </Link>
           </nav>
         </SheetContent>
