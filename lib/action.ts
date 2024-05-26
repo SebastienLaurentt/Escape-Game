@@ -35,8 +35,6 @@ const ClosedDaySchema = z.object({
   date: z.string(),
 });
 
-
-
 // Experience
 // Read all experiences
 export const getExperiencesList = async () => {
@@ -179,7 +177,7 @@ export const updateReservation = async (
   } catch (error) {
     return { message: "Failed to update reservation" };
   }
-  redirect(`/thanks-you/${id}`);
+  redirect(`/reservation/preview/${id}`);
 };
 
 // Create Reservation

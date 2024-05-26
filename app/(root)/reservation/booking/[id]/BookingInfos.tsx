@@ -47,7 +47,6 @@ const BookingInfos = ({
   const UpdateReservationWithId = updateReservation.bind(null, reservation.id);
   // Global Form State
   const [state, formAction] = useFormState(UpdateReservationWithId, null);
-  console.log(state);
 
   // Individuals Form States
   const [people, setPeople] = useState<number | null>(null);
