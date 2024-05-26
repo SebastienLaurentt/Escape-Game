@@ -7,14 +7,13 @@ export default async function Insights() {
     redirect("/login");
   }
   return (
-    <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+    <div className="grid auto-rows-max items-start justify-center gap-4 md:gap-8 lg:col-span-2">
       {/* Top Left */}
-      <div>
+      <div className="mt-8 flex flex-col text-center text-lg md:text-xl">
         <span>Les informations concernant la comptabilité.</span>
-        <span>Bientôt disponible ! </span>
+        <span className="text-primary">Bientôt disponible ! </span>
       </div>
       {/* Bottom Left */}
-
     </div>
   );
 }
