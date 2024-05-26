@@ -149,7 +149,6 @@ export const getReservationById = async (id: string) => {
 
 export const updateReservation = async (
   id: string,
-  prevSate: any,
   formData: FormData
 ) => {
   const validatedFields = ReservationsSchema.safeParse(
