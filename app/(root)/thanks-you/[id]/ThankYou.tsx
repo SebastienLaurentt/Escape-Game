@@ -6,12 +6,15 @@ import { Reservation } from "@prisma/client";
 
 const ThankYou = ({ reservation }: { reservation: Reservation }) => {
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString("fr-FR", {
+    const formattedDate = date.toLocaleDateString("fr-FR", {
       weekday: "long",
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
     });
+
+    // Capitalize the first letter of the weekday
+    return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
   };
 
   return (
