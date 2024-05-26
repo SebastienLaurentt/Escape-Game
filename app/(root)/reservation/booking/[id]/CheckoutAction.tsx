@@ -41,7 +41,7 @@ export const createCheckoutSession = async (id: string) => {
     name: "La Villa de l'Effroi",
     // images: [configuration.imageUrl],
     default_price_data: {
-      currency: "USD",
+      currency: "eur",
       unit_amount: price,
     },
   });
