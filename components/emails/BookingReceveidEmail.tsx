@@ -12,13 +12,7 @@ import {
   Text,
 } from "@react-email/components";
 
-const BookingReceveidEmail = ({
-  orderId,
-  orderDate,
-}: {
-  orderId: string;
-  orderDate: string;
-}) => {
+const BookingReceveidEmail = () => {
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
@@ -46,11 +40,9 @@ const BookingReceveidEmail = ({
             <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Order Number</Text>
-                <Text style={track.number}>{orderId}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Order Date</Text>
-                <Text style={track.number}>{orderDate}</Text>
               </Column>
             </Row>
           </Section>
