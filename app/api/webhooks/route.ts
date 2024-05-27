@@ -74,19 +74,7 @@ export async function POST(req: Request) {
         from: 'VillaEffroi <lavillaeffroi@gmail.com>',
         to: 'slaurent.26@gmail.com',
         subject: 'Thanks for your order!',
-        react: BookingReceivedEmail({
-          orderId,
-          orderDate: updatedOrder.createdAt.toLocaleDateString(),
-          // @ts-ignore
-          // shippingAddress: {
-          //   name: session.customer_details!.name!,
-          //   city: shippingAddress!.city!,
-          //   country: shippingAddress!.country!,
-          //   postalCode: shippingAddress!.postal_code!,
-          //   street: shippingAddress!.line1!,
-          //   state: shippingAddress!.state,
-          // },
-        }),
+        react: BookingReceivedEmail(),
       })
     }
 
