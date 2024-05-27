@@ -10,8 +10,12 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
   try {
+    console.log('Starting POST request handler')
     const body = await req.text()
     const signature = headers().get('stripe-signature')
+
+    console.log('Received body:', body)
+    console.log('Received signature:', signature)
 
     if (!signature) {
       console.log('Missing signature')
@@ -24,7 +28,10 @@ export async function POST(req: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     )
 
+    console.log('Constructed Stripe event:', event)
+
     if (event.type === 'checkout.session.completed') {
+      console.log('Checkout session completed event received')
       if (!event.data.object.customer_details?.email) {
         throw new Error('Missing user email')
       }
@@ -32,6 +39,8 @@ export async function POST(req: Request) {
       const session = event.data.object as Stripe.Checkout.Session
 
       const { orderId } = session.metadata || { orderId: null }
+
+      console.log('Order ID from session metadata:', orderId)
 
       if (!orderId) {
         throw new Error('Invalid request metadata')
@@ -65,7 +74,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ result: event, ok: true })
   } catch (err) {
-    console.error(err)
+    console.error('Error handling POST request:', err)
 
     return NextResponse.json(
       { message: 'Something went wrong', ok: false },
