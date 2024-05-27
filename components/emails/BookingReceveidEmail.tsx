@@ -12,7 +12,7 @@ import {
   Text,
 } from "@react-email/components";
 
-const OrderReceivedEmail = ({
+const BookingReceveidEmail = ({
   orderId,
   orderDate,
 }: {
@@ -82,7 +82,7 @@ const OrderReceivedEmail = ({
   );
 };
 
-export default OrderReceivedEmail;
+export default BookingReceveidEmail;
 
 const paddingX = {
   paddingLeft: "40px",
