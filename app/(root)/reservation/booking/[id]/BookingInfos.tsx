@@ -15,12 +15,11 @@ import {
 } from "@/components/ui/select";
 import { updateReservation } from "@/lib/action";
 import { ClosedDay, Reservation } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Image from "next/image";
 import React, { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation"; 
 
 const generateTimeSlots = (
   startHour: number,
@@ -106,8 +105,8 @@ const BookingInfos = ({
         </div>
         <div className="xl:w-1/2">
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col items-center">
-              <h3>A. Combien êtes vous ?</h3>
+            <div className="mb-8 flex flex-col items-center">
+              <h3 className="mb-1">A. Combien êtes vous ?</h3>
               <Input type="hidden" name="people" value={people ?? ""} />
               <Input type="hidden" name="price" value={price.toString()} />
 
@@ -141,8 +140,14 @@ const BookingInfos = ({
               <div className="">
                 <div className="flex flex-col gap-y-8 xl:flex-row xl:justify-between 2xl:gap-x-4">
                   <div className="flex flex-col items-center gap-y-2">
-                    <h3 className="w-[320px] text-center">B. Choisissez un jour</h3>
-                    <Input type="hidden" name="date" value={date?.toISOString()} />
+                    <h3 className="w-[320px] text-center">
+                      B. Choisissez un jour
+                    </h3>
+                    <Input
+                      type="hidden"
+                      name="date"
+                      value={date?.toISOString()}
+                    />
                     <Calendar
                       mode="single"
                       selected={date}
@@ -152,18 +157,18 @@ const BookingInfos = ({
                   </div>
 
                   <div className="flex flex-col items-center">
-                    <h3 className="w-[320px] text-center">C. Choisissez une horaire</h3>
+                    <h3 className="w-[320px] text-center">
+                      C. Choisissez une horaire
+                    </h3>
                     <Input type="hidden" name="time" value={time ?? ""} />
                     {date && (
                       <div className="flex flex-col items-center">
                         <span className="italic">
                           Disponibilités du
                           <span className="text-primary">
-                            {
-                              format(date, " EEEE dd MMMM", { locale: fr })
-                                .replace(/^\w/, (c) => c.toUpperCase())
-                                .replace(/ \w/g, (c) => c.toUpperCase())
-                            }
+                            {format(date, " EEEE dd MMMM", { locale: fr })
+                              .replace(/^\w/, (c) => c.toUpperCase())
+                              .replace(/ \w/g, (c) => c.toUpperCase())}
                           </span>
                         </span>
                         <div className="grid grid-cols-3 gap-4 py-6">
@@ -182,7 +187,12 @@ const BookingInfos = ({
                 </div>
                 {time && (
                   <div className="flex flex-row justify-end">
-                    <Button disabled={isPending} isLoading={isPending} loadingText="Chargement" type="submit">
+                    <Button
+                      disabled={isPending}
+                      isLoading={isPending}
+                      loadingText="Chargement"
+                      type="submit"
+                    >
                       Continuer
                     </Button>
                   </div>
