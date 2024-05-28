@@ -1,7 +1,6 @@
 "use client";
 
 import Section from "@/components/shared/Section";
-import { Separator } from "@/components/ui/separator";
 import { Reservation } from "@prisma/client";
 
 const ThankYou = ({ reservation }: { reservation: Reservation }) => {
@@ -30,47 +29,6 @@ const ThankYou = ({ reservation }: { reservation: Reservation }) => {
               Vous allez recevoir un email de confirmation dans quelques
               minutes.
             </p>
-          </div>
-
-          <Separator className="mb-2 mt-8" />
-          <div>
-            <span className="text-md font-semibold uppercase md:text-lg">
-              Details de la reservation
-            </span>
-            <div className="mt-4 flex flex-col gap-y-3">
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Date</span>
-                  <span>
-                    {reservation.date
-                      ? formatDate(new Date(reservation.date))
-                      : "N/A"}
-                  </span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Heure</span>
-                  <span>{reservation.time}</span>
-                </div>
-              </div>
-
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Experience</span>
-                  <span>{reservation.experienceName}</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Personnes</span>
-                  <span>{reservation.people}</span>
-                </div>
-              </div>
-
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Prix</span>
-                  <span>{reservation.price}</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </Section>
