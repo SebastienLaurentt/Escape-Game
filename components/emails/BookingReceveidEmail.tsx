@@ -1,3 +1,4 @@
+import { Reservation } from "@prisma/client";
 import {
   Body,
   Column,
@@ -12,7 +13,7 @@ import {
   Text,
 } from "@react-email/components";
 
-const BookingReceveidEmail = () => {
+const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation}) => {
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
@@ -40,9 +41,11 @@ const BookingReceveidEmail = () => {
             <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Date</Text>
+                <Text style={global.paragraphWithBold}>{reservationData.date?.toString() || ''}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>
+                <Text style={global.paragraphWithBold}>{reservationData.time || ''}</Text>
               </Column>
             </Row>
           </Section>

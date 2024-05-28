@@ -30,16 +30,11 @@ export async function POST(req: Request) {
 
       const session = event.data.object as Stripe.Checkout.Session
 
-      const {  orderId } = session.metadata || {
-        orderId: null,
-      }
+      const { orderId } = session.metadata || { orderId: null }
 
-      if ( !orderId) {
+      if (!orderId) {
         throw new Error('Invalid request metadata')
       }
-
-      // const billingAddress = session.customer_details!.address
-      // const shippingAddress = session.shipping_details!.address
 
       const updatedOrder = await prisma.order.update({
         where: {
@@ -47,34 +42,19 @@ export async function POST(req: Request) {
         },
         data: {
           isPaid: true,
-          // shippingAddress: {
-          //   create: {
-          //     name: session.customer_details!.name!,
-          //     city: shippingAddress!.city!,
-          //     country: shippingAddress!.country!,
-          //     postalCode: shippingAddress!.postal_code!,
-          //     street: shippingAddress!.line1!,
-          //     state: shippingAddress!.state,
-          //   },
-          // },
-          // billingAddress: {
-          //   create: {
-          //     name: session.customer_details!.name!,
-          //     city: billingAddress!.city!,
-          //     country: billingAddress!.country!,
-          //     postalCode: billingAddress!.postal_code!,
-          //     street: billingAddress!.line1!,
-          //     state: billingAddress!.state,
-          //   },
-          // },
+        },
+        include: {
+          reservation: true, // Include the reservation details
         },
       })
+
+      const reservationData = updatedOrder.reservation
 
       await resend.emails.send({
         from: "Villa Effroi <noreply@villaeffroi.info>",
         to: [event.data.object.customer_details.email],
         subject: 'Réservation confirmée',
-        react: BookingReceivedEmail(),
+        react: BookingReceivedEmail({ reservationData }), // Pass reservation data to the email component
       })
     }
 
