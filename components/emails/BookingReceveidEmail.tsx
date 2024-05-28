@@ -21,25 +21,25 @@ const BookingReceveidEmail = () => {
   return (
     <Html>
       <Head />
-      <Preview>Your order summary and estimated delivery date</Preview>
+      <Preview>VOtre réservation chez la Villa de l&pos;Effroi</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
-            <Heading style={global.heading}>Thank you for your order!</Heading>
+            <Heading style={global.heading}>
+              Votre réservation est confirmée !
+            </Heading>
             <Text style={global.text}>
-              We&apos;re preparing everything for delivery and will notify you
-              once your package has been shipped. Delivery usually takes 2 days.
+              La Villa a hâte que vous veniez la défier.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
-              If you have any questions regarding your order, please feel free
-              to contact us with your order number and we&apos;re here to help.
+              Vous trouverez ci-dessous les détails de votre réservation.
             </Text>
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
               <Column style={{ width: 170 }}>
-                <Text style={global.paragraphWithBold}>Order Number</Text>
+                <Text style={global.paragraphWithBold}>Date</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Order Date</Text>
@@ -58,14 +58,12 @@ const BookingReceveidEmail = () => {
                   paddingBottom: 30,
                 }}
               >
-                Please contact us if you have any questions. (If you reply to
-                this email, we won&apos;t be able to see it.)
+                Contactez-nous à lavillaeffroi@gmail.com pour toutes questions.
+                (Ne pas répondre à cet email))
               </Text>
             </Row>
             <Row>
-              <Text style={footer.text}>
-                © CaseCobra, Inc. All Rights Reserved.
-              </Text>
+              <Text style={footer.text}>© La Villa de l&apos;Effroi.</Text>
             </Row>
           </Section>
         </Container>
