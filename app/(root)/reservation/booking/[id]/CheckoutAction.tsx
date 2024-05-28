@@ -14,7 +14,8 @@ export const createCheckoutSession = async (id: string) => {
     throw new Error("No such reservation found");
   }
 
-  let price = 5000;
+  // Convert to cents for Stripe
+  const price = parseFloat(reservation.price || "0") * 100; 
 
   let order: Order | undefined = undefined;
 
