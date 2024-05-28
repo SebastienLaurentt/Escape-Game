@@ -13,7 +13,6 @@ import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 const Preview = ({ reservation }: { reservation: Reservation }) => {
   const formatDate = (date: Date) => {
     const formattedDate = date.toLocaleDateString("fr-FR", {
-      weekday: "long",
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
@@ -46,8 +45,8 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
   return (
     <main>
       <Section>
-        <div className="mx-auto flex items-center justify-between px-4 py-16 sm:px-6 sm:py-24 md:flex-col-reverse xl:flex-row ">
-          <div className="hidden md:mt-10 md:flex md:w-full xl:mt-0 xl:w-1/2 xl:flex-row">
+        <div className="mx-auto flex flex-col-reverse items-center  justify-between  py-16 sm:py-24 xl:flex-row ">
+          <div className="mt-14 md:flex md:w-full xl:mt-0 xl:w-1/2 xl:flex-row">
             <Image
               alt="image experience"
               src={previewImg}
@@ -67,7 +66,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
             </div>
 
             {/* Reservation Description */}
-            <div className=" text-md md:my-6 md:mb-4 lg:my-8 xl:my-10">
+            <div className=" my-8 text-md md:mb-4 xl:my-10">
               <div className="flex flex-col gap-y-3">
                 <div className="flex flex-row gap-x-4">
                   <div className="flex flex-col">
@@ -100,7 +99,9 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
             {/* Price and Checkout */}
             <div className="flex flex-row items-center gap-x-4">
               <div className="flex flex-col">
-                <span className="text-lg font-bold">{reservation.price}€</span>
+                <span className="text-lg font-bold md:text-lg">
+                  {reservation.price}€
+                </span>
               </div>
               <Button
                 disabled={isPending}

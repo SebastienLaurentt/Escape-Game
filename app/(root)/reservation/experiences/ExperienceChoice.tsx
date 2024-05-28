@@ -6,15 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const ExperienceChoice = ({
-  experiences,
-}: {
-  experiences: Experience[];
-}) => {
+const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   const [experienceName, setExperienceName] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -48,7 +44,7 @@ const ExperienceChoice = ({
   };
 
   return (
-    <div className="pb-4">
+    <div className="py-8 pb-4 xl:pt-0">
       <SectionHeader title="1. Choisissez votre" titleHighlight="expérience" />
 
       <form onSubmit={handleSubmit}>
@@ -81,7 +77,12 @@ const ExperienceChoice = ({
         </div>
         {experienceName && (
           <div className="flex flex-row justify-end">
-            <Button disabled={isPending} isLoading={isPending} loadingText="Chargement" type="submit">
+            <Button
+              disabled={isPending}
+              isLoading={isPending}
+              loadingText="Chargement"
+              type="submit"
+            >
               Continuer
             </Button>
           </div>
