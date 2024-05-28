@@ -13,6 +13,15 @@ import {
   Text,
 } from "@react-email/components";
 
+const formatDate = (date: Date | null | undefined): string => {
+  if (!date) return '';
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(new Date(date));
+};
+
 const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation}) => {
   const baseUrl =
     process.env.NODE_ENV === "development"
@@ -41,11 +50,27 @@ const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation})
             <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Date</Text>
-                <Text style={global.paragraphWithBold}>{reservationData.date?.toString() || ''}</Text>
+                <Text style={global.paragraphWithBold}>{formatDate(reservationData.date)}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>
                 <Text style={global.paragraphWithBold}>{reservationData.time || ''}</Text>
+              </Column>
+            </Row>
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
+              <Column style={{ width: 170 }}>
+                <Text style={global.paragraphWithBold}>Experience</Text>
+                <Text style={global.paragraphWithBold}>{reservationData.experienceName}</Text>
+              </Column>
+              <Column style={{ marginLeft: 20 }}>
+                <Text style={global.paragraphWithBold}>Nombre de personnes</Text>
+                <Text style={global.paragraphWithBold}>{reservationData.people}</Text>
+              </Column>
+            </Row>
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
+              <Column style={{ width: 170 }}>
+                <Text style={global.paragraphWithBold}>Prix</Text>
+                <Text style={global.paragraphWithBold}>{reservationData.price}</Text>
               </Column>
             </Row>
           </Section>
@@ -62,7 +87,7 @@ const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation})
                 }}
               >
                 Contactez-nous à lavillaeffroi@gmail.com pour toutes questions.
-                (Ne pas répondre à cet email))
+                (Ne pas répondre à cet email)
               </Text>
             </Row>
             <Row>
