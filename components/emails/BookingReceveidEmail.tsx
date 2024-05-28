@@ -15,14 +15,15 @@ import {
 
 const formatDate = (date: Date | null | undefined): string => {
   if (!date) return '';
-  return new Intl.DateTimeFormat('fr-FR', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  }).format(new Date(date));
+  return date.toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 };
 
-const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation}) => {
+const BookingReceveidEmail = ({ reservationData }: { reservationData: Reservation }) => {
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
@@ -39,7 +40,7 @@ const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation})
               Réservation confirmée !
             </Heading>
             <Text style={global.text}>
-              Êtes vous prêt à venir défier la Villa ?
+              Êtes-vous prêt à venir défier la Villa ?
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
               Vous trouverez ci-dessous les détails de votre réservation.
@@ -59,7 +60,7 @@ const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation})
             </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
-                <Text style={global.paragraphWithBold}>Experience</Text>
+                <Text style={global.paragraphWithBold}>Expérience</Text>
                 <Text style={global.paragraphDescription}>{reservationData.experienceName}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
