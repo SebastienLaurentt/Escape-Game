@@ -36,7 +36,7 @@ const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation})
         <Container style={container}>
           <Section style={message}>
             <Heading style={global.heading}>
-              Votre réservation est confirmée !
+              Réservation confirmée !
             </Heading>
             <Text style={global.text}>
               Êtes vous prêt à venir défier la Villa ?
@@ -47,30 +47,30 @@ const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation})
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Date</Text>
-                <Text style={global.paragraphWithBold}>{formatDate(reservationData.date)}</Text>
+                <Text style={global.paragraphDescription}>{formatDate(reservationData.date)}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>
-                <Text style={global.paragraphWithBold}>{reservationData.time || ''}</Text>
+                <Text style={global.paragraphDescription}>{reservationData.time || ''}</Text>
               </Column>
             </Row>
-            <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Experience</Text>
-                <Text style={global.paragraphWithBold}>{reservationData.experienceName}</Text>
+                <Text style={global.paragraphDescription}>{reservationData.experienceName}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Nombre de personnes</Text>
-                <Text style={global.paragraphWithBold}>{reservationData.people}</Text>
+                <Text style={global.paragraphDescription}>{reservationData.people}</Text>
               </Column>
             </Row>
-            <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Prix</Text>
-                <Text style={global.paragraphWithBold}>{reservationData.price}</Text>
+                <Text style={global.paragraphDescription}>{reservationData.price}</Text>
               </Column>
             </Row>
           </Section>
@@ -86,8 +86,8 @@ const BookingReceveidEmail = ({reservationData}: {reservationData: Reservation})
                   paddingBottom: 30,
                 }}
               >
-                Contactez-nous à lavillaeffroi@gmail.com pour toutes questions.
-                (Ne pas répondre à cet email)
+                Contactez-nous à lavillaeffroi@gmail.com pour toutes questions. <br />
+                (Ne pas répondre à cet email).
               </Text>
             </Row>
             <Row>
@@ -114,7 +114,7 @@ const paddingY = {
 
 const paragraph = {
   margin: "0",
-  lineHeight: "2",
+  lineHeight: "1.5",
 };
 
 const global = {
@@ -125,6 +125,7 @@ const global = {
     ...paddingY,
   },
   paragraphWithBold: { ...paragraph, fontWeight: "bold" },
+  paragraphDescription: { ...paragraph },
   heading: {
     fontSize: "32px",
     lineHeight: "1.3",
