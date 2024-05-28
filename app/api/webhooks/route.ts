@@ -72,7 +72,7 @@ export async function POST(req: Request) {
 
       await resend.emails.send({
         from: "Villa Effroi <noreply@villaeffroi.info>",
-        to: 'slaurent.26@gmail.com',
+        to: [event.data.object.customer_details.email],
         subject: 'Réservation confirmée',
         react: BookingReceivedEmail(),
       })
