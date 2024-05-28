@@ -21,7 +21,7 @@ const BookingReceveidEmail = () => {
   return (
     <Html>
       <Head />
-      <Preview>VOtre réservation chez la Villa de l&pos;Effroi</Preview>
+      <Preview>Votre réservation chez la Villa de l&apos;Effroi</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
