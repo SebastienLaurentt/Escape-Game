@@ -118,19 +118,19 @@ const BookingInfos = ({
                 <SelectContent>
                   <SelectGroup>
                     <SelectItem value="2">
-                      2 personnes - <span className="font-bold">35€</span>
+                      2 personnes - <span className="font-bold">70€</span>
                     </SelectItem>
                     <SelectItem value="3">
-                      3 personnes - <span className="font-bold">30€</span>
+                      3 personnes - <span className="font-bold">90€</span>
                     </SelectItem>
                     <SelectItem value="4">
-                      4 personnes - <span className="font-bold">30€</span>
+                      4 personnes - <span className="font-bold">120€</span>
                     </SelectItem>
                     <SelectItem value="5">
-                      5 personnes - <span className="font-bold">25€</span>
+                      5 personnes - <span className="font-bold">125€</span>
                     </SelectItem>
                     <SelectItem value="6">
-                      6 personnes - <span className="font-bold">25€</span>
+                      6 personnes - <span className="font-bold">150€</span>
                     </SelectItem>
                   </SelectGroup>
                 </SelectContent>
