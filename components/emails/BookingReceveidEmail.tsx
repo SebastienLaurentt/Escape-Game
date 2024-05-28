@@ -29,7 +29,7 @@ const BookingReceveidEmail = () => {
               Votre réservation est confirmée !
             </Heading>
             <Text style={global.text}>
-              La Villa a hâte que vous veniez la défier.
+              Êtes vous prêt à venir défier la Villa ?
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
               Vous trouverez ci-dessous les détails de votre réservation.
@@ -42,7 +42,7 @@ const BookingReceveidEmail = () => {
                 <Text style={global.paragraphWithBold}>Date</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
-                <Text style={global.paragraphWithBold}>Order Date</Text>
+                <Text style={global.paragraphWithBold}>Heure</Text>
               </Column>
             </Row>
           </Section>
