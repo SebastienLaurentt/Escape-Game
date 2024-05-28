@@ -3,8 +3,10 @@
 import Section from "@/components/shared/Section";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+import previewImg from "@/public/images/Experience2.jpg";
 import { Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
@@ -44,61 +46,73 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
   return (
     <main>
       <Section>
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <div className="flex max-w-xl flex-col gap-y-2">
-            <span className="text-lg font-medium text-primary">
-              Bientôt terminé !
-            </span>
-            <p className="text-2xl font-bold leading-10 tracking-tight md:text-4xl md:leading-[52px]">
-              Details de votre reservation
-            </p>
+        <div className="mx-auto flex items-center justify-between px-4 py-16 sm:px-6 sm:py-24 md:flex-col-reverse xl:flex-row ">
+          <div className="hidden md:mt-10 md:flex md:w-full xl:mt-0 xl:w-1/2 xl:flex-row">
+            <Image
+              alt="image experience"
+              src={previewImg}
+              className="rounded-xl"
+            />
           </div>
 
-          <div className="mb-2 mt-8 md:mb-4">
-            <div className="mt-4 flex flex-col gap-y-3">
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Date</span>
-                  <span>
-                    {reservation.date
-                      ? formatDate(new Date(reservation.date))
-                      : "N/A"}
-                  </span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Heure</span>
-                  <span>{reservation.time}</span>
-                </div>
-              </div>
+          {/* Preview Header */}
+          <div className="flex max-w-xl flex-col gap-y-2">
+            <div>
+              <span className="text-lg font-medium text-primary">
+                Bientôt terminé !
+              </span>
+              <p className="text-2xl font-bold leading-10 tracking-tight md:text-4xl md:leading-[52px]">
+                Details de votre reservation
+              </p>
+            </div>
 
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Experience</span>
-                  <span>{reservation.experienceName}</span>
+            {/* Reservation Description */}
+            <div className=" text-md md:my-6 md:mb-4 lg:my-8 xl:my-10">
+              <div className="flex flex-col gap-y-3">
+                <div className="flex flex-row gap-x-4">
+                  <div className="flex flex-col">
+                    <span className="uppercase text-zinc-500">Date</span>
+                    <span>
+                      {reservation.date
+                        ? formatDate(new Date(reservation.date))
+                        : "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="uppercase text-zinc-500">Heure</span>
+                    <span>{reservation.time}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Personnes</span>
-                  <span>{reservation.people}</span>
-                </div>
-              </div>
 
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Prix</span>
-                  <span>{reservation.price}</span>
+                <div className="flex flex-row gap-x-4">
+                  <div className="flex flex-col">
+                    <span className="uppercase text-zinc-500">Experience</span>
+                    <span>{reservation.experienceName}</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="uppercase text-zinc-500">Personnes</span>
+                    <span>{reservation.people}</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Price and Checkout */}
+            <div className="flex flex-row items-center gap-x-4">
+              <div className="flex flex-col">
+                <span className="text-lg font-bold">{reservation.price}€</span>
+              </div>
+              <Button
+                disabled={isPending}
+                isLoading={isPending}
+                loadingText="Chargement"
+                onClick={() => createPaymentSession(id)}
+                className="px-4 sm:px-6 lg:px-8"
+              >
+                Confirmer et Payer
+              </Button>
+            </div>
           </div>
-          <Button
-            disabled={isPending}
-            isLoading={isPending}
-            loadingText="Chargement"
-            onClick={() => createPaymentSession(id)}
-            className="px-4 sm:px-6 lg:px-8"
-          >
-            Confirmer et Payer
-          </Button>
         </div>
       </Section>
     </main>
