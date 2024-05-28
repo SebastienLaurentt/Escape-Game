@@ -71,9 +71,9 @@ export async function POST(req: Request) {
       })
 
       await resend.emails.send({
-        from: 'VillaEffroi <noreply@villaeffroi.info>',
+        from: "La Villa de l'Effroi <noreply@villaeffroi.info>",
         to: 'slaurent.26@gmail.com',
-        subject: 'Thanks for your order!',
+        subject: 'Réservation confirmée',
         react: BookingReceivedEmail(),
       })
     }
