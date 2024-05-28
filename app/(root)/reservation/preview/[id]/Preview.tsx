@@ -25,7 +25,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
 
   const router = useRouter();
 
-  const { mutate: createPaymentSession } = useMutation({
+  const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],
     mutationFn: createCheckoutSession,
     onSuccess: ({ url }) => {
@@ -91,6 +91,9 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
             </div>
           </div>
           <Button
+            disabled={isPending}
+            isLoading={isPending}
+            loadingText="Chargement"
             onClick={() => createPaymentSession(id)}
             className="px-4 sm:px-6 lg:px-8"
           >
