@@ -54,19 +54,19 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
 
         {/* Preview Header */}
         <div className="flex flex-col gap-y-2">
-          <div>
+          <div className="flex flex-col items-center xl:items-start">
             <span className="text-lg font-medium text-primary">
               Bientôt terminé !
             </span>
-            <p className="text-2xl font-bold leading-10 tracking-tight md:text-4xl md:leading-[52px] xl:max-w-[400px]">
+            <p className="max-w-[400px] text-center text-2xl font-bold leading-10 tracking-tight md:text-4xl md:leading-[52px] xl:text-left">
               Details de votre reservation
             </p>
           </div>
 
           {/* Reservation Description */}
-          <div className=" my-8 text-md md:mb-4 xl:my-10">
+          <div className=" my-12 flex flex-col items-center text-md xl:items-start">
             <div className="flex flex-col gap-y-3">
-              <div className="flex flex-row gap-x-4">
+              <div className="flex flex-row  gap-x-4">
                 <div className="flex flex-col">
                   <span className="uppercase text-zinc-500">Date</span>
                   <span>
@@ -95,7 +95,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
           </div>
 
           {/* Price and Checkout */}
-          <div className="flex flex-row items-center gap-x-4">
+          <div className="flex flex-row items-center justify-center gap-x-4 xl:justify-start">
             <div className="flex flex-col">
               <span className="text-lg font-bold md:text-lg">
                 {reservation.price}€
