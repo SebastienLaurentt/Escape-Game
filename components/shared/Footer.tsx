@@ -5,7 +5,7 @@ import logo from "../../public/images/Logo.svg";
 
 const Footer = () => {
   return (
-    <footer className="px-6  md:px-10 xl:mx-auto xl:max-w-[1600px] xl:px-16">
+    <footer className="w-full px-6  md:px-10 xl:mx-auto xl:max-w-[1600px] xl:px-16">
       <div className=" flex flex-col justify-between border-t border-slate-400 pt-4 text-xs  md:text-sm lg:py-8">
         <div className="mb-6 flex flex-row items-center md:gap-x-4 lg:gap-x-8">
           <span className=" text-2xl uppercase md:text-3xl xl:text-4xl">
