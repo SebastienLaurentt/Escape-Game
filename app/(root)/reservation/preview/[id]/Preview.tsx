@@ -44,7 +44,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
   return (
     <main>
       <div className="mx-auto flex flex-col-reverse items-center  justify-between  py-16 sm:py-24 xl:flex-row ">
-        <div className="mt-14 md:flex md:w-full xl:mt-0 xl:w-3/5 xl:flex-row 2xl:w-2/3">
+        <div className="mt-14 xl:mt-0 xl:w-3/5 2xl:w-2/3">
           <Image
             alt="image experience"
             src={previewImg}
@@ -97,7 +97,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
           {/* Price and Checkout */}
           <div className="flex flex-row items-center justify-center gap-x-4 xl:justify-start">
             <div className="flex flex-col">
-              <span className="text-lg font-bold md:text-lg">
+              <span className="text-lg font-bold">
                 {reservation.price}€
               </span>
             </div>
@@ -106,7 +106,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
               isLoading={isPending}
               loadingText="Chargement"
               onClick={() => createPaymentSession(id)}
-              className="px-4 sm:px-6 lg:px-8"
+             
             >
               Confirmer et Payer
             </Button>
