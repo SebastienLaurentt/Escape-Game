@@ -1,3 +1,4 @@
+import Section from "@/components/shared/Section";
 import { getReservationById } from "@/lib/action";
 import ThankYou from "./ThankYou";
 
@@ -8,8 +9,12 @@ const Page = async ({ params }: { params: { id: string } }) => {
   if (!reservation) {
     return <div>La réservation avec l&apos;ID {id} n&apos;existe pas.</div>;
   }
-  
-  return <ThankYou reservation={reservation}/>
+
+  return (
+  <Section>
+    <ThankYou reservation={reservation} />
+  </Section>
+  )
 };
 
 export default Page;
