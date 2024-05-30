@@ -27,7 +27,7 @@ const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
           mode="single"
           selected={date}
           onSelect={setDate}
-          disabled={disabledDates}
+          closedDays={closedDays.map((day) => day.date)}
           className="px-0"
         />
         <div id="name-error" aria-live="polite" aria-atomic="true">
