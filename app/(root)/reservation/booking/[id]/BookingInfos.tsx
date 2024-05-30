@@ -83,7 +83,6 @@ const BookingInfos = ({
     updateReservationMutation(formData);
   };
 
-  const disabledDates = closedDays.map((day) => new Date(day.date));
   const timeSlots = generateTimeSlots(9, 23, 1);
 
   return (
@@ -152,7 +151,7 @@ const BookingInfos = ({
                       mode="single"
                       selected={date}
                       onSelect={setDate}
-                      disabled={disabledDates}
+                      closedDays={closedDays.map((day) => day.date)} // Map the closedDays array to extract only the date property
                     />
                   </div>
 
