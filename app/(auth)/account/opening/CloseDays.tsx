@@ -13,9 +13,6 @@ const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   const [state, formAction] = useFormState(createClosedDay, null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
-  // Retrieve only the date of ClosedDay to send to the Calendar component with the disabled prop
-  const disabledDates = closedDays.map((day) => new Date(day.date));
-
   return (
     <div className="flex flex-col">
       <CardDescription>
