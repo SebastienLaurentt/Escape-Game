@@ -95,7 +95,7 @@ model Reservation {
   people     String?
   date       DateTime?
   price      String?
-  time       TimeSlot? @relation(fields: [timeId], references: [id])
+  timeSlot   TimeSlot? @relation(fields: [timeId], references: [id])
   timeId     String?
   name       String?
   email      String?

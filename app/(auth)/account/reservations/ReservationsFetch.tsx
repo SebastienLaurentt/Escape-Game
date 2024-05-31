@@ -82,7 +82,7 @@ const ReservationsFetch = async () => {
                         : ""}
                     </TableCell>
                     {/* <TableCell className="md:table-cell">
-                      {reservation.time}
+                      {reservation.timeSlot.time}
                     </TableCell> */}
                     <TableCell className="hidden md:table-cell">
                       {reservation.people}

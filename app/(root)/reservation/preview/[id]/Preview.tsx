@@ -3,16 +3,22 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import previewImg from "@/public/images/Experience2.jpg";
-import { Reservation, TimeSlot } from "@prisma/client";
+
+import { Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
-// Extend the Reservation type to include the time slot
-type ReservationWithTimeSlot = Reservation & { timeSlot: TimeSlot };
+// Extend the Reservation interface to include the time slot (Can't successfully extend the interface from the prisma client directly)
+interface ReservationWithTime extends Reservation {
+  timeSlot: {
+    id?: string;
+    time: string;
+  } | null;
+}
 
-const Preview = ({ reservation }: {reservation: ReservationWithTimeSlot }) => {
+const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
   const formatDate = (date: Date) => {
     const formattedDate = date.toLocaleDateString("fr-FR", {
       day: "2-digit",
@@ -20,8 +26,7 @@ const Preview = ({ reservation }: {reservation: ReservationWithTimeSlot }) => {
       year: "numeric",
     });
 
-    // Capitalize the first letter of the weekday
-    return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+    return formattedDate
   };
 
   const { id } = reservation;
@@ -80,7 +85,7 @@ const Preview = ({ reservation }: {reservation: ReservationWithTimeSlot }) => {
                 </div>
                 <div className="flex flex-col">
                   <span className="uppercase text-zinc-500">Heure</span>
-                  <span>{reservation.timeSlot.time}</span>
+                  <span>{reservation.timeSlot?.time ?? ""}</span>
                 </div>
               </div>
 
@@ -100,16 +105,13 @@ const Preview = ({ reservation }: {reservation: ReservationWithTimeSlot }) => {
           {/* Price and Checkout */}
           <div className="flex flex-row items-center justify-center gap-x-4 xl:justify-start">
             <div className="flex flex-col">
-              <span className="text-lg font-bold">
-                {reservation.price}€
-              </span>
+              <span className="text-lg font-bold">{reservation.price}€</span>
             </div>
             <Button
               disabled={isPending}
               isLoading={isPending}
               loadingText="Chargement"
               onClick={() => createPaymentSession(id)}
-             
             >
               Confirmer et Payer
             </Button>

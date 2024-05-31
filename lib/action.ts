@@ -18,12 +18,19 @@ const ExperienceSchema = z.object({
   maxPeople: z.string().min(0),
 });
 
-// Experience schema type with Zod
+// TimeSlot Schema type with Zod
+const TimeSlotSchema = z.object({
+  id: z.string().optional(),
+  time: z.string().min(1),
+});
+
+// Reservation schema type with Zod
 const ReservationsSchema = z.object({
   experienceName: z.string().optional(),
   people: z.string().optional(),
   date: z.string().optional(),
   price: z.string().optional(),
+  timeSlot: TimeSlotSchema.optional(),
   timeId: z.string().optional(),
   name: z.string().optional(),
   email: z.string().optional(),
@@ -129,57 +136,33 @@ export const updateExperience = async (
 export const getReservationsList = async () => {
   try {
     const reservations = await prisma.reservation.findMany({});
+
     return reservations;
   } catch (error) {
     throw new Error("Failed to fetch reservations data");
   }
 };
 
-// Find one reservation by its ID
 export const getReservationById = async (id: string) => {
   try {
     const reservation = await prisma.reservation.findUnique({
       where: { id },
-    });
-    return reservation;
-  } catch (error) {
-    throw new Error("Failed to fetch reservation data");
-  }
-};
-
-export const getReservationByIdWithTime = async (id: string) => {
-  try {
-    // Récupérer la réservation
-    const reservation = await prisma.reservation.findUnique({
-      where: { id },
+      include: {
+        timeSlot: true,
+      },
     });
 
     if (!reservation) {
       throw new Error("Reservation not found");
     }
 
-    // Récupérer le créneau horaire associé à l'ID de temps
-    const timeSlot = await prisma.timeSlot.findUnique({
-      where: { id: reservation.timeId || undefined }, // Add a default value of undefined for reservation.timeId
-    });
-
-    if (!timeSlot) {
-      throw new Error("Time slot not found");
-    }
-
-    // Time Reservation
-    const reservationWithTime = { ...reservation, timeSlot };
-
-    return reservationWithTime;
+    return reservation;
   } catch (error) {
     throw new Error("Failed to fetch reservation data");
   }
 };
 
-export const updateReservation = async (
-  id: string,
-  formData: FormData
-) => {
+export const updateReservation = async (id: string, formData: FormData) => {
   const validatedFields = ReservationsSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
@@ -197,10 +180,10 @@ export const updateReservation = async (
     if (timeId) {
       const createdTimeSlot = await prisma.timeSlot.create({
         data: {
-          time: timeId.toString(), 
+          time: timeId.toString(),
         },
       });
-      
+
       // Assign the ID of the created time slot
       timeId = createdTimeSlot.id;
     }
@@ -211,13 +194,13 @@ export const updateReservation = async (
         people: validatedFields.data.people,
         date: validatedFields.data.date,
         price: validatedFields.data.price,
-        timeId: timeId, 
+        timeId: timeId,
       },
       where: { id },
     });
-} catch (error) {
+  } catch (error) {
     return { message: "Failed to update reservation" };
-}
+  }
   redirect(`/reservation/preview/${id}`);
 };
 
@@ -237,7 +220,7 @@ export const createReservation = async (prevState: any, formData: FormData) => {
   try {
     const newReservation = await prisma.reservation.create({
       data: {
-        experienceName: validatedFields.data.experienceName || '', // Assign an empty string if experienceName is undefined
+        experienceName: validatedFields.data.experienceName || "", // Assign an empty string if experienceName is undefined
       },
     });
     return { reservationId: newReservation.id }; // Retourne l'ID de la réservation créée
@@ -257,7 +240,6 @@ export const deleteReservation = async (id: string) => {
 
   redirect("/account/reservations");
 };
-
 
 // ClosedDay
 // Create Closed Day
