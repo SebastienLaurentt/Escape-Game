@@ -293,3 +293,13 @@ export const deleteClosedDay = async (id: string) => {
 
   redirect("/account/opening");
 };
+
+// Get TimeSlot list
+export const getTimeSlots = async () => {
+  try {
+    const timeSlots = await prisma.timeSlot.findMany({});
+    return timeSlots;
+  } catch (error) {
+    throw new Error("Failed to fetch time slots data");
+  }
+};
