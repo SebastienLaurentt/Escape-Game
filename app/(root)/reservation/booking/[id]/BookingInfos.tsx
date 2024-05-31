@@ -159,7 +159,7 @@ const BookingInfos = ({
                     <h3 className="w-[320px] text-center">
                       C. Choisissez une horaire
                     </h3>
-                    <Input type="hidden" name="time" value={time ?? ""} />
+                    <Input type="hidden" name="timeId" value={time ?? ""} />
                     {date && (
                       <div className="flex flex-col items-center">
                         <span className="italic">

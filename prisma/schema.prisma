@@ -90,22 +90,29 @@ model Experience {
 }
 
 model Reservation {
-  id String @id @default(cuid())
+  id        String    @id @default(cuid())
   experienceName String
-  people String?
-  date DateTime?
-  price String?
-  time String?
-  name String? 
-  email String?
-  phone String?
-  Order Order[]
+  people     String?
+  date       DateTime?
+  price      String?
+  time       TimeSlot? @relation(fields: [timeId], references: [id])
+  timeId     String?
+  name       String?
+  email      String?
+  phone      String?
+  Order      Order[]
+}
+
+model TimeSlot {
+  id          String   @id @default(cuid())
+  time        String
+  reservations Reservation[]
 }
 
 model Day {
   id String @id @default(cuid())
-  name String // monday, tuesday, wednesday, thursday, friday, saturday, sunday
-  dayOfWeek Int // @see getDay () documentation, 0 for sunday, 1 for monday, 2 for tuesday, 3 for wednesday, 4 for thursday, 5 for friday, 6 for saturday
+  name String 
+  dayOfWeek Int 
   openTime String
   closeTime String
 }

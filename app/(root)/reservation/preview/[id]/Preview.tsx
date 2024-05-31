@@ -3,13 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import previewImg from "@/public/images/Experience2.jpg";
-import { Reservation } from "@prisma/client";
+import { Reservation, TimeSlot } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
-const Preview = ({ reservation }: { reservation: Reservation }) => {
+// Extend the Reservation type to include the time slot
+type ReservationWithTimeSlot = Reservation & { timeSlot: TimeSlot };
+
+const Preview = ({ reservation }: {reservation: ReservationWithTimeSlot }) => {
   const formatDate = (date: Date) => {
     const formattedDate = date.toLocaleDateString("fr-FR", {
       day: "2-digit",
@@ -77,7 +80,7 @@ const Preview = ({ reservation }: { reservation: Reservation }) => {
                 </div>
                 <div className="flex flex-col">
                   <span className="uppercase text-zinc-500">Heure</span>
-                  <span>{reservation.time}</span>
+                  <span>{reservation.timeSlot.time}</span>
                 </div>
               </div>
 
