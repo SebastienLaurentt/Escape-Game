@@ -41,11 +41,11 @@ const generateTimeSlots = (
 const BookingInfos = ({
   closedDays,
   reservation,
-  timeSlots,
+  bookedSlots,
 }: {
   closedDays: ClosedDay[];
   reservation: Reservation;
-  timeSlots: TimeSlot[];
+  bookedSlots: TimeSlot[];
 }) => {
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
@@ -85,11 +85,11 @@ const BookingInfos = ({
     updateReservationMutation(formData);
   };
 
-  const AlltimeSlots = generateTimeSlots(9, 23, 1);
+  const timeSlots = generateTimeSlots(9, 23, 1);
 
   // Filtrer les créneaux horaires disponibles
-  const reservedTimes = timeSlots.map(slot => slot.time);
-  const availableTimes = AlltimeSlots.filter(time => !reservedTimes.includes(time));
+  const reservedTimes = bookedSlots.map(slot => slot.time);
+  const availableTimes = timeSlots.filter(time => !reservedTimes.includes(time));
 
   return (
     <div className="py-8 xl:pt-0">
