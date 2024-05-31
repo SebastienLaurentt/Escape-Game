@@ -29,7 +29,6 @@ export async function POST(req: Request) {
       }
 
       const session = event.data.object as Stripe.Checkout.Session
-
       const { orderId } = session.metadata || { orderId: null }
 
       if (!orderId) {
@@ -44,17 +43,33 @@ export async function POST(req: Request) {
           isPaid: true,
         },
         include: {
-          reservation: true, // Include the reservation details
+          reservation: true,
         },
       })
 
       const reservationData = updatedOrder.reservation
 
+      if (!reservationData) {
+        throw new Error('Reservation not found')
+      }
+
+      // Récupérer les informations du créneau horaire
+      const timeSlot = await prisma.timeSlot.findUnique({
+        where: { id: reservationData.timeId || undefined },
+      })
+
+      if (!timeSlot) {
+        throw new Error('Time slot not found')
+      }
+
+      // Ajouter les informations du créneau horaire aux données de la réservation
+      const reservationWithTime = { ...reservationData, timeSlot }
+
       await resend.emails.send({
         from: "Villa Effroi <noreply@villaeffroi.info>",
         to: [event.data.object.customer_details.email],
         subject: 'Réservation confirmée',
-        react: BookingReceivedEmail({ reservationData }), // Pass reservation data to the email component
+        react: BookingReceivedEmail({ reservationData: reservationWithTime }), // Pass reservation with time data to the email component
       })
     }
 

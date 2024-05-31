@@ -1,4 +1,4 @@
-import { Reservation } from "@prisma/client";
+import { Reservation, TimeSlot } from "@prisma/client";
 import {
   Body,
   Column,
@@ -23,7 +23,9 @@ const formatDate = (date: Date | null | undefined): string => {
   });
 };
 
-const BookingReceveidEmail = ({ reservationData }: { reservationData: Reservation }) => {
+type ReservationWithTime = Reservation & { timeSlot: TimeSlot }
+
+const BookingReceveidEmail = ({ reservationData }: { reservationData: ReservationWithTime }) => {
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
@@ -55,7 +57,7 @@ const BookingReceveidEmail = ({ reservationData }: { reservationData: Reservatio
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>
-
+                <Text style={global.paragraphDescription}>{reservationData.timeSlot.time}</Text>
               </Column>
             </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
@@ -195,13 +197,18 @@ const adressTitle = {
 
 const footer = {
   policy: {
-    width: "166px",
-    margin: "auto",
+    width: "600px",
+    maxWidth: "100%",
+    margin: "0 auto",
   },
+  links: {
+    marginTop: "8px",
+  } as React.CSSProperties,
   text: {
-    margin: "0",
-    color: "#AFAFAF",
-    fontSize: "13px",
-    textAlign: "center",
+    color: "#A3A3A3",
+    fontWeight: 500,
+    margin: 0,
+    lineHeight: "1.5",
+    fontSize: "12px",
   } as React.CSSProperties,
 };
