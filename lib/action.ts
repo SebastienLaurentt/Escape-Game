@@ -135,13 +135,18 @@ export const updateExperience = async (
 // Read all reservations
 export const getReservationsList = async () => {
   try {
-    const reservations = await prisma.reservation.findMany({});
+    const reservations = await prisma.reservation.findMany({
+      include: {
+        timeSlot: true, // Inclure les créneaux horaires pour chaque réservation
+      },
+    });
 
     return reservations;
   } catch (error) {
     throw new Error("Failed to fetch reservations data");
   }
 };
+
 
 export const getReservationById = async (id: string) => {
   try {
