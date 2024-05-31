@@ -19,7 +19,7 @@ const ExperienceSchema = z.object({
 });
 
 // TimeSlot Schema type with Zod
-const TimeSlotSchema = z.object({
+const BookedSlotSchema = z.object({
   id: z.string().optional(),
   time: z.string().min(1),
 });
@@ -30,7 +30,7 @@ const ReservationsSchema = z.object({
   people: z.string().optional(),
   date: z.string().optional(),
   price: z.string().optional(),
-  timeSlot: TimeSlotSchema.optional(),
+  bookedSlot: BookedSlotSchema.optional(),
   timeId: z.string().optional(),
   name: z.string().optional(),
   email: z.string().optional(),
@@ -135,7 +135,11 @@ export const updateExperience = async (
 // Read all reservations
 export const getReservationsList = async () => {
   try {
-    const reservations = await prisma.reservation.findMany({});
+    const reservations = await prisma.reservation.findMany({
+      include: {
+        bookedSlot: true, 
+      },
+    });
 
     return reservations;
   } catch (error) {
@@ -143,12 +147,13 @@ export const getReservationsList = async () => {
   }
 };
 
+
 export const getReservationById = async (id: string) => {
   try {
     const reservation = await prisma.reservation.findUnique({
       where: { id },
       include: {
-        timeSlot: true,
+        bookedSlot: true,
       },
     });
 
@@ -178,7 +183,7 @@ export const updateReservation = async (id: string, formData: FormData) => {
 
     // Create a new time slot if timeId is not provided
     if (timeId) {
-      const createdTimeSlot = await prisma.timeSlot.create({
+      const createdTimeSlot = await prisma.bookedSlot.create({
         data: {
           time: timeId.toString(),
         },
@@ -287,4 +292,14 @@ export const deleteClosedDay = async (id: string) => {
   }
 
   redirect("/account/opening");
+};
+
+// Get BookedSlots list
+export const getBookedSlots = async () => {
+  try {
+    const BookedSlots = await prisma.bookedSlot.findMany({});
+    return BookedSlots;
+  } catch (error) {
+    throw new Error("Failed to fetch BookedSlots data");
+  }
 };

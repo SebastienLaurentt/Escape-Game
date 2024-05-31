@@ -81,9 +81,9 @@ const ReservationsFetch = async () => {
                         ? formatDate(reservation.date.toDateString())
                         : ""}
                     </TableCell>
-                    {/* <TableCell className="md:table-cell">
-                      {reservation.timeSlot.time}
-                    </TableCell> */}
+                    <TableCell className="md:table-cell">
+                      {reservation.bookedSlot?.time}
+                    </TableCell>
                     <TableCell className="hidden md:table-cell">
                       {reservation.people}
                     </TableCell>

@@ -95,7 +95,7 @@ model Reservation {
   people     String?
   date       DateTime?
   price      String?
-  timeSlot   TimeSlot? @relation(fields: [timeId], references: [id])
+  bookedSlot   BookedSlot? @relation(fields: [timeId], references: [id])
   timeId     String?
   name       String?
   email      String?
@@ -103,7 +103,7 @@ model Reservation {
   Order      Order[]
 }
 
-model TimeSlot {
+model BookedSlot {
   id          String   @id @default(cuid())
   time        String
   reservations Reservation[]

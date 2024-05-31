@@ -54,16 +54,16 @@ export async function POST(req: Request) {
       }
 
       // Fetch the time slot according to the reservation data time slot ID
-      const timeSlot = await prisma.timeSlot.findUnique({
+      const bookedSlot = await prisma.bookedSlot.findUnique({
         where: { id: reservationData.timeId || undefined },
       })
 
-      if (!timeSlot) {
+      if (!bookedSlot) {
         throw new Error('Time slot not found')
       }
 
       // Add the time slot to the reservation data
-      const reservationWithTime = { ...reservationData, timeSlot }
+      const reservationWithTime = { ...reservationData, bookedSlot }
 
       await resend.emails.send({
         from: "Villa Effroi <noreply@villaeffroi.info>",

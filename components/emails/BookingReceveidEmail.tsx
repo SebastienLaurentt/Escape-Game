@@ -1,4 +1,4 @@
-import { Reservation, TimeSlot } from "@prisma/client";
+import { Reservation, BookedSlot } from "@prisma/client";
 import {
   Body,
   Column,
@@ -23,7 +23,7 @@ const formatDate = (date: Date | null | undefined): string => {
   });
 };
 
-type ReservationWithTime = Reservation & { timeSlot: TimeSlot }
+type ReservationWithTime = Reservation & { bookedSlot: BookedSlot }
 
 const BookingReceveidEmail = ({ reservationData }: { reservationData: ReservationWithTime }) => {
   const baseUrl =
@@ -57,7 +57,7 @@ const BookingReceveidEmail = ({ reservationData }: { reservationData: Reservatio
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>
-                <Text style={global.paragraphDescription}>{reservationData.timeSlot.time}</Text>
+                <Text style={global.paragraphDescription}>{reservationData.bookedSlot.time}</Text>
               </Column>
             </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>

@@ -10,9 +10,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
-// Extend the Reservation interface to include the time slot (Can't successfully extend the interface from the prisma client directly)
+// Extend the Reservation interface to include the booked slot (Can't successfully extend the interface from the prisma client directly)
 interface ReservationWithTime extends Reservation {
-  timeSlot: {
+  bookedSlot: {
     id?: string;
     time: string;
   } | null;
@@ -85,7 +85,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
                 </div>
                 <div className="flex flex-col">
                   <span className="uppercase text-zinc-500">Heure</span>
-                  <span>{reservation.timeSlot?.time ?? ""}</span>
+                  <span>{reservation.bookedSlot?.time ?? ""}</span>
                 </div>
               </div>
 

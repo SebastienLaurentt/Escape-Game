@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { updateReservation } from "@/lib/action";
-import { ClosedDay, Reservation } from "@prisma/client";
+import { ClosedDay, Reservation, TimeSlot } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -41,9 +41,11 @@ const generateTimeSlots = (
 const BookingInfos = ({
   closedDays,
   reservation,
+  bookedSlots,
 }: {
   closedDays: ClosedDay[];
   reservation: Reservation;
+  bookedSlots: TimeSlot[];
 }) => {
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
@@ -84,6 +86,10 @@ const BookingInfos = ({
   };
 
   const timeSlots = generateTimeSlots(9, 23, 1);
+
+  // Filtrer les créneaux horaires disponibles
+  const reservedTimes = bookedSlots.map(slot => slot.time);
+  const availableTimes = timeSlots.filter(time => !reservedTimes.includes(time));
 
   return (
     <div className="py-8 xl:pt-0">
@@ -171,11 +177,11 @@ const BookingInfos = ({
                           </span>
                         </span>
                         <div className="grid grid-cols-3 gap-4 py-6">
-                          {timeSlots.map((timeSlot, index) => (
+                          {availableTimes.map((timeSlot, index) => (
                             <HoursChips
                               key={index}
                               hours={timeSlot}
-                              onClick={handleTimeSelect}
+                              onClick={() => handleTimeSelect(timeSlot)}
                               isSelected={time === timeSlot}
                             />
                           ))}
