@@ -1,4 +1,4 @@
-import { Reservation } from "@prisma/client";
+import { Reservation, TimeSlot } from "@prisma/client";
 import {
   Body,
   Column,
@@ -14,7 +14,7 @@ import {
 } from "@react-email/components";
 
 const formatDate = (date: Date | null | undefined): string => {
-  if (!date) return "";
+  if (!date) return '';
   return date.toLocaleDateString("fr-FR", {
     weekday: "long",
     day: "2-digit",
@@ -23,19 +23,14 @@ const formatDate = (date: Date | null | undefined): string => {
   });
 };
 
-// Extend the Reservation interface to include the time slot (Can't successfully extend the interface from the prisma client directly)
-interface ReservationWithTime extends Reservation {
-  timeSlot: {
-    id?: string;
-    time: string;
-  } | null;
-}
+type ReservationWithTime = Reservation & { timeSlot: TimeSlot }
 
-const BookingReceveidEmail = ({
-  reservation,
-}: {
-  reservation: ReservationWithTime;
-}) => {
+const BookingReceveidEmail = ({ reservationData }: { reservationData: ReservationWithTime }) => {
+  const baseUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://escape-game-pi.vercel.app";
+
   return (
     <Html>
       <Head />
@@ -43,7 +38,9 @@ const BookingReceveidEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
-            <Heading style={global.heading}>Réservation confirmée !</Heading>
+            <Heading style={global.heading}>
+              Réservation confirmée !
+            </Heading>
             <Text style={global.text}>
               Êtes-vous prêt à venir défier la Villa ?
             </Text>
@@ -56,39 +53,27 @@ const BookingReceveidEmail = ({
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Date</Text>
-                <Text style={global.paragraphDescription}>
-                  {formatDate(reservation.date)}
-                </Text>
+                <Text style={global.paragraphDescription}>{formatDate(reservationData.date)}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>
-                <Text style={global.paragraphDescription}>
-                  {reservation.timeSlot?.time ?? ""}
-                </Text>
+                <Text style={global.paragraphDescription}>{reservationData.timeSlot.time}</Text>
               </Column>
             </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Expérience</Text>
-                <Text style={global.paragraphDescription}>
-                  {reservation.experienceName}
-                </Text>
+                <Text style={global.paragraphDescription}>{reservationData.experienceName}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
-                <Text style={global.paragraphWithBold}>
-                  Nombre de personnes
-                </Text>
-                <Text style={global.paragraphDescription}>
-                  {reservation.people}
-                </Text>
+                <Text style={global.paragraphWithBold}>Nombre de personnes</Text>
+                <Text style={global.paragraphDescription}>{reservationData.people}</Text>
               </Column>
             </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Prix</Text>
-                <Text style={global.paragraphDescription}>
-                  {reservation.price}
-                </Text>
+                <Text style={global.paragraphDescription}>{reservationData.price}</Text>
               </Column>
             </Row>
           </Section>
@@ -104,8 +89,7 @@ const BookingReceveidEmail = ({
                   paddingBottom: 30,
                 }}
               >
-                Contactez-nous à lavillaeffroi@gmail.com pour toutes questions.{" "}
-                <br />
+                Contactez-nous à lavillaeffroi@gmail.com pour toutes questions. <br />
                 (Ne pas répondre à cet email).
               </Text>
             </Row>
