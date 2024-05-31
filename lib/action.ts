@@ -24,7 +24,7 @@ const ReservationsSchema = z.object({
   people: z.string().optional(),
   date: z.string().optional(),
   price: z.string().optional(),
-  time: z.string().optional(),
+  timeId: z.string().optional(),
   name: z.string().optional(),
   email: z.string().optional(),
   phone: z.string().optional(),
@@ -147,6 +147,35 @@ export const getReservationById = async (id: string) => {
   }
 };
 
+export const getReservationByIdWithTime = async (id: string) => {
+  try {
+    // Récupérer la réservation
+    const reservation = await prisma.reservation.findUnique({
+      where: { id },
+    });
+
+    if (!reservation) {
+      throw new Error("Reservation not found");
+    }
+
+    // Récupérer le créneau horaire associé à l'ID de temps
+    const timeSlot = await prisma.timeSlot.findUnique({
+      where: { id: reservation.timeId || undefined }, // Add a default value of undefined for reservation.timeId
+    });
+
+    if (!timeSlot) {
+      throw new Error("Time slot not found");
+    }
+
+    // Time Reservation
+    const reservationWithTime = { ...reservation, timeSlot };
+
+    return reservationWithTime;
+  } catch (error) {
+    throw new Error("Failed to fetch reservation data");
+  }
+};
+
 export const updateReservation = async (
   id: string,
   formData: FormData
@@ -154,28 +183,41 @@ export const updateReservation = async (
   const validatedFields = ReservationsSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
- 
+
   if (!validatedFields.success) {
     return {
       Error: validatedFields.error.flatten().fieldErrors,
     };
   }
- 
+
   try {
+    let timeId: string | null = formData.get("timeId") as string | null;
+
+    // Create a new time slot if timeId is not provided
+    if (timeId) {
+      const createdTimeSlot = await prisma.timeSlot.create({
+        data: {
+          time: timeId.toString(), 
+        },
+      });
+      
+      // Assign the ID of the created time slot
+      timeId = createdTimeSlot.id;
+    }
+
+    // Update the reservation with the new data and time slot ID
     await prisma.reservation.update({
       data: {
         people: validatedFields.data.people,
         date: validatedFields.data.date,
         price: validatedFields.data.price,
-        time: validatedFields.data.time,
+        timeId: timeId, 
       },
       where: { id },
     });
-
-    
-  } catch (error) {
+} catch (error) {
     return { message: "Failed to update reservation" };
-  }
+}
   redirect(`/reservation/preview/${id}`);
 };
 
