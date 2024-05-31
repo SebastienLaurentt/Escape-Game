@@ -22,8 +22,8 @@ const formatDate = (dateString: string) => {
   }).format(date);
 };
 
-const ReservationsFetch = async ({ query }: { query: string }) => {
-  const reservations = await getReservationsList(query);
+const ReservationsFetch = async () => {
+  const reservations = await getReservationsList();
   return (
     <Tabs defaultValue="week">
       <TabsContent value="week">

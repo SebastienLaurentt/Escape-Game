@@ -126,7 +126,7 @@ export const updateExperience = async (
 
 // Reservation
 // Read all reservations
-export const getReservationsList = async (query: string) => {
+export const getReservationsList = async () => {
   try {
     const reservations = await prisma.reservation.findMany({});
     return reservations;
