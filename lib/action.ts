@@ -137,7 +137,7 @@ export const getReservationsList = async () => {
   try {
     const reservations = await prisma.reservation.findMany({
       include: {
-        timeSlot: true, // Inclure les créneaux horaires pour chaque réservation
+        timeSlot: true, 
       },
     });
 
