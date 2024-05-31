@@ -81,9 +81,9 @@ const ReservationsFetch = async ({ query }: { query: string }) => {
                         ? formatDate(reservation.date.toDateString())
                         : ""}
                     </TableCell>
-                    <TableCell className="md:table-cell">
+                    {/* <TableCell className="md:table-cell">
                       {reservation.time}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell className="hidden md:table-cell">
                       {reservation.people}
                     </TableCell>
