@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { updateReservation } from "@/lib/action";
-import { ClosedDay, Reservation, TimeSlot } from "@prisma/client";
+import { ClosedDay, Reservation, BookedSlot } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -45,7 +45,7 @@ const BookingInfos = ({
 }: {
   closedDays: ClosedDay[];
   reservation: Reservation;
-  bookedSlots: TimeSlot[];
+  bookedSlots: BookedSlot[];
 }) => {
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
