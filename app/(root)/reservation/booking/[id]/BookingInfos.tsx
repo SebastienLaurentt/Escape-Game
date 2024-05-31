@@ -110,7 +110,7 @@ const BookingInfos = ({
               <Input type="hidden" name="price" value={price.toString()} />
 
               <Select onValueChange={handlePeopleSelect}>
-                <SelectTrigger className=" w-[280px] ">
+                <SelectTrigger className=" w-[280px]" aria-label="Choisir le nombre de personnes">
                   <SelectValue placeholder="Sélectionner votre nombre" />
                 </SelectTrigger>
                 <SelectContent>
