@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { updateReservation } from "@/lib/action";
-import { ClosedDay, Reservation, BookedSlot } from "@prisma/client";
+import { BookedSlot, ClosedDay, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -88,11 +88,13 @@ const BookingInfos = ({
   const timeSlots = generateTimeSlots(9, 23, 1);
 
   // Filtrer les créneaux horaires disponibles
-  const reservedTimes = bookedSlots.map(slot => slot.time);
-  const availableTimes = timeSlots.filter(time => !reservedTimes.includes(time));
+  const reservedTimes = bookedSlots.map((slot) => slot.time);
+  const availableTimes = timeSlots.filter(
+    (time) => !reservedTimes.includes(time)
+  );
 
   return (
-    <div className="py-8 xl:pt-0">
+    <div className="w-full py-8 ">
       <SectionHeader title="2. Réservez votre" titleHighlight="créneau" />
       <div className="xl:flex xl:flex-row ">
         <div className="hidden items-center justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0 ">
@@ -116,7 +118,10 @@ const BookingInfos = ({
               <Input type="hidden" name="price" value={price.toString()} />
 
               <Select onValueChange={handlePeopleSelect}>
-                <SelectTrigger className=" w-[280px]" aria-label="Choisir le nombre de personnes">
+                <SelectTrigger
+                  className=" w-[280px]"
+                  aria-label="Choisir le nombre de personnes"
+                >
                   <SelectValue placeholder="Sélectionner votre nombre" />
                 </SelectTrigger>
                 <SelectContent>
