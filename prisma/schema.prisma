@@ -105,16 +105,9 @@ model Reservation {
 
 model BookedSlot {
   id          String   @id @default(cuid())
+  date        DateTime
   time        String
   reservations Reservation[]
-}
-
-model Day {
-  id String @id @default(cuid())
-  name String 
-  dayOfWeek Int 
-  openTime String
-  closeTime String
 }
 
 model ClosedDay {
