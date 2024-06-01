@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import HoursChips from "@/components/shared/HoursChips";
 import SectionHeader from "@/components/shared/SectionHeader";
@@ -22,6 +22,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const generateTimeSlots = (
+  date: Date,
   startHour: number,
   endHour: number,
   interval: number
@@ -56,7 +57,7 @@ const BookingInfos = ({
   });
 
   const [people, setPeople] = useState<number | null>(null);
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(new Date());
   const [price, setPrice] = useState(0);
   const [time, setTime] = useState<string | null>(null);
 
@@ -78,19 +79,20 @@ const BookingInfos = ({
   const handleTimeSelect = (time: string) => {
     setTime(time);
   };
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     updateReservationMutation(formData);
   };
 
-  const timeSlots = generateTimeSlots(9, 23, 1);
+  const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
 
   // Filtrer les créneaux horaires disponibles
-  const reservedTimes = bookedSlots.map((slot) => slot.time);
+  const reservedTimesForDate = bookedSlots
+    .filter((slot) => slot.date?.toISOString().split('T')[0] === date?.toISOString().split('T')[0]) // Filtrer les créneaux réservés pour la date sélectionnée
+    .map((slot) => slot.time);
   const availableTimes = timeSlots.filter(
-    (time) => !reservedTimes.includes(time)
+    (time) => !reservedTimesForDate.includes(time)
   );
 
   return (
