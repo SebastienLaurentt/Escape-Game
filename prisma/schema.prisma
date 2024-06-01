@@ -105,7 +105,7 @@ model Reservation {
 
 model BookedSlot {
   id          String   @id @default(cuid())
-  date        DateTime
+  date        DateTime?
   time        String
   reservations Reservation[]
 }
