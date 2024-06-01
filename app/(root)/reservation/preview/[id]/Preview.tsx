@@ -14,7 +14,7 @@ interface ReservationWithTime extends Reservation {
   bookedSlot: {
     id?: string;
     time: string;
-    date: string; // Assurez-vous que la date est incluse ici
+    date: Date | null; 
   } | null;
 }
 
@@ -78,7 +78,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
                   <span className="uppercase text-zinc-500">Date</span>
                   <span>
                     {reservation.bookedSlot?.date
-                      ? formatDate(reservation.bookedSlot.date)
+                      ? formatDate(reservation.bookedSlot.date.toString()) // Convert the Date object to a string
                       : "N/A"}
                   </span>
                 </div>
