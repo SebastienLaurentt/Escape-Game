@@ -21,6 +21,7 @@ const ExperienceSchema = z.object({
 // TimeSlot Schema type with Zod
 const BookedSlotSchema = z.object({
   id: z.string().optional(),
+  date: z.string().optional(),
   time: z.string().min(1),
 });
 
@@ -28,7 +29,6 @@ const BookedSlotSchema = z.object({
 const ReservationsSchema = z.object({
   experienceName: z.string().optional(),
   people: z.string().optional(),
-  date: z.string().optional(),
   price: z.string().optional(),
   bookedSlot: BookedSlotSchema.optional(),
   timeId: z.string().optional(),
@@ -180,12 +180,14 @@ export const updateReservation = async (id: string, formData: FormData) => {
 
   try {
     let timeId: string | null = formData.get("timeId") as string | null;
+    const date = formData.get("date") as string;
 
     // Create a new time slot if timeId is not provided
     if (timeId) {
       const createdTimeSlot = await prisma.bookedSlot.create({
         data: {
           time: timeId.toString(),
+          date: new Date(date), // Associer la date au créneau horaire
         },
       });
 
@@ -197,7 +199,6 @@ export const updateReservation = async (id: string, formData: FormData) => {
     await prisma.reservation.update({
       data: {
         people: validatedFields.data.people,
-        date: validatedFields.data.date,
         price: validatedFields.data.price,
         timeId: timeId,
       },

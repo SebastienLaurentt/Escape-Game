@@ -53,7 +53,7 @@ const BookingReceveidEmail = ({ reservationData }: { reservationData: Reservatio
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Date</Text>
-                <Text style={global.paragraphDescription}>{formatDate(reservationData.date)}</Text>
+                <Text style={global.paragraphDescription}>{formatDate(reservationData.bookedSlot.date)}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>

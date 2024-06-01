@@ -3,34 +3,33 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import previewImg from "@/public/images/Experience2.jpg";
-
 import { Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
-// Extend the Reservation interface to include the booked slot (Can't successfully extend the interface from the prisma client directly)
+// Extend the Reservation interface to include the booked slot
 interface ReservationWithTime extends Reservation {
   bookedSlot: {
     id?: string;
     time: string;
+    date: string; // Assurez-vous que la date est incluse ici
   } | null;
 }
 
 const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
-  const formatDate = (date: Date) => {
-    const formattedDate = date.toLocaleDateString("fr-FR", {
+  const formatDate = (date: string) => {
+    const formattedDate = new Date(date).toLocaleDateString("fr-FR", {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
     });
 
-    return formattedDate
+    return formattedDate;
   };
 
   const { id } = reservation;
-
   const router = useRouter();
 
   const { mutate: createPaymentSession, isPending } = useMutation({
@@ -51,7 +50,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
 
   return (
     <main>
-      <div className="mx-auto flex flex-col-reverse items-center  justify-between  py-16 sm:py-24 xl:flex-row ">
+      <div className="mx-auto flex flex-col-reverse items-center justify-between py-16 sm:py-24 xl:flex-row">
         <div className="mt-14 xl:mt-0 xl:w-3/5 2xl:w-2/3">
           <Image
             alt="image experience"
@@ -72,14 +71,14 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
           </div>
 
           {/* Reservation Description */}
-          <div className=" my-12 flex flex-col items-center text-md xl:items-start">
+          <div className="my-12 flex flex-col items-center text-md xl:items-start">
             <div className="flex flex-col gap-y-3">
-              <div className="flex flex-row  gap-x-4">
+              <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
                   <span className="uppercase text-zinc-500">Date</span>
                   <span>
-                    {reservation.date
-                      ? formatDate(new Date(reservation.date))
+                    {reservation.bookedSlot?.date
+                      ? formatDate(reservation.bookedSlot.date)
                       : "N/A"}
                   </span>
                 </div>

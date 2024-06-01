@@ -93,7 +93,6 @@ model Reservation {
   id        String    @id @default(cuid())
   experienceName String
   people     String?
-  date       DateTime?
   price      String?
   bookedSlot   BookedSlot? @relation(fields: [timeId], references: [id])
   timeId     String?

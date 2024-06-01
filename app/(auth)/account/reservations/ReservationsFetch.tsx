@@ -77,9 +77,9 @@ const ReservationsFetch = async () => {
                       {reservation.phone}
                     </TableCell>
                     <TableCell className=" md:table-cell">
-                      {reservation.date
-                        ? formatDate(reservation.date.toDateString())
-                        : ""}
+                    {reservation.bookedSlot?.date
+                      ? formatDate(reservation.bookedSlot.date.toString()) // Convert the Date object to a string
+                      : "N/A"}
                     </TableCell>
                     <TableCell className="md:table-cell">
                       {reservation.bookedSlot?.time}
