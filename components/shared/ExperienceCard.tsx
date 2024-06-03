@@ -61,7 +61,9 @@ const ExperienceCard = ({
         </div>
 
         {/* Description */}
-        <span className="md:text-lg xl:text-md">{description}</span>
+        <span className="text-secondary-foreground md:text-lg xl:text-md">
+          {description}
+        </span>
 
         {/* People Number and Duration */}
         <div className="flex flex-row justify-between">

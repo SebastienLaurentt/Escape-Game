@@ -1,3 +1,5 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,7 +19,7 @@
     --primary-foreground: 0 85.7% 97.3%;
 
     --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 240 5% 65%;
 
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
@@ -45,7 +47,7 @@
   }
 
   h1 {
-    @apply text-3xl md:text-5xl lg:text-7xl leading-[3rem] md:leading-[4rem] lg:leading-[5rem] font-bold;
+    @apply text-5xl md:text-7xl lg:text-9xl leading-[3.5rem] md:leading-[4.5rem] lg:leading-[5rem] font-bold;
   }
 
   h2 {
