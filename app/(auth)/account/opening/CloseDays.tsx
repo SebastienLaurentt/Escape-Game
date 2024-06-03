@@ -13,18 +13,31 @@ const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   const [state, formAction] = useFormState(createClosedDay, null);
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
+  const handleDateChange = (selectedDate: Date | undefined) => {
+    if (selectedDate) {
+      const utcDate = new Date(Date.UTC(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate()
+      ));
+      setDate(utcDate);
+    } else {
+      setDate(undefined);
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <CardDescription>
         Fermer des jours
       </CardDescription>
       <form action={formAction}>
-        <Input type="hidden" name="date" defaultValue={date?.toISOString()} />
+        <Input type="hidden" name="date" value={date?.toISOString()} />
         <Calendar
           mode="single"
           selected={date}
-          onSelect={setDate}
-          closedDays={closedDays.map((day) => day.date)}
+          onSelect={handleDateChange}
+          closedDays={closedDays.map((day) => new Date(day.date))}
           className="px-0"
         />
         <div id="name-error" aria-live="polite" aria-atomic="true">

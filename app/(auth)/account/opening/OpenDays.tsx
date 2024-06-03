@@ -4,7 +4,6 @@ import { DeleteButton } from "./DeleteClosedDay";
 
 const OpenDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   const formatDate = (date: string) => {
-    // Convertir la chaîne de date en objet Date
     const parsedDate = new Date(date);
 
     const formattedDate = parsedDate.toLocaleDateString("fr-FR", {
@@ -14,7 +13,6 @@ const OpenDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
       year: "numeric",
     });
 
-    // Uppercase to Weekday
     return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
   };
 
