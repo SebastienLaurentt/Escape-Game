@@ -62,14 +62,23 @@ export async function POST(req: Request) {
         throw new Error('Time slot not found')
       }
 
-      // Add the time slot to the reservation data
-      const reservationWithTime = { ...reservationData, bookedSlot }
+      // Fetch the experience according to the reservation data experience ID
+      const experience = await prisma.experience.findUnique({
+        where: { id: reservationData.experienceId || undefined },
+      })
+
+      if (!experience) {
+        throw new Error('Experience not found')
+      }
+
+      // Add the time slot and experience to the reservation data
+      const reservationWithDetails = { ...reservationData, bookedSlot, experience }
 
       await resend.emails.send({
         from: "Villa Effroi <noreply@villaeffroi.info>",
         to: [event.data.object.customer_details.email],
         subject: 'Réservation confirmée',
-        react: BookingReceivedEmail({ reservationData: reservationWithTime }),
+        react: BookingReceivedEmail({ reservationData: reservationWithDetails }),
       })
     }
 

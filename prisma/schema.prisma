@@ -18,11 +18,13 @@ model Experience {
   minPrice String
   minPeople String
   maxPeople String? 
+  reservations  Reservation[]
 }
 
 model Reservation {
   id        String    @id @default(cuid())
-  experienceName String
+    experienceId   String
+  experience     Experience   @relation(fields: [experienceId], references: [id])
   people     String?
   price      String?
   bookedSlot   BookedSlot? @relation(fields: [timeId], references: [id])

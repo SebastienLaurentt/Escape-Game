@@ -1,17 +1,17 @@
-"use client";
+'use client'
 
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import ExperienceCard from "@/components/shared/ExperienceCard";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
-  const [experienceName, setExperienceName] = useState<string | null>(null);
+  const [experienceId, setExperienceId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
@@ -33,13 +33,14 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
     },
   });
 
-  const handleCardClick = (cardName: string) => {
-    setExperienceName(cardName);
+  const handleCardClick = (id: string) => {
+    setExperienceId(id);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    formData.set("experienceId", experienceId ?? "");
     createReservationMutation(formData);
   };
 
@@ -48,11 +49,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
       <SectionHeader title="1. Choisissez votre" titleHighlight="expérience" />
 
       <form onSubmit={handleSubmit}>
-        <Input
-          type="hidden"
-          name="experienceName"
-          value={experienceName ?? ""}
-        />
+        <Input type="hidden" name="experienceId" value={experienceId ?? ""} />
         <ul className="mb-6 flex flex-col justify-between gap-y-8 xl:flex-row xl:gap-x-2 2xl:gap-x-4">
           {experiences.map((experience, index) => (
             <li key={index}>
@@ -66,8 +63,8 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
                 duration={experience.duration}
                 durationUnit={experience.durationUnit}
                 hover={true}
-                isSelected={experienceName === experience.name}
-                onClick={() => handleCardClick(experience.name)}
+                isSelected={experienceId === experience.id}
+                onClick={() => handleCardClick(experience.id)}
               />
             </li>
           ))}
@@ -75,7 +72,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         <div id="name-error" aria-live="polite" aria-atomic="true">
           {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
-        {experienceName && (
+        {experienceId && (
           <div className="flex flex-row justify-end">
             <Button
               disabled={isPending}
