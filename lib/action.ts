@@ -27,7 +27,7 @@ const BookedSlotSchema = z.object({
 
 // Reservation schema type with Zod
 const ReservationsSchema = z.object({
-  experienceName: z.string().optional(),
+  experienceId: z.string().optional(),
   people: z.string().optional(),
   price: z.string().optional(),
   bookedSlot: BookedSlotSchema.optional(),
@@ -154,6 +154,7 @@ export const getReservationById = async (id: string) => {
       where: { id },
       include: {
         bookedSlot: true,
+        experience: true,
       },
     });
 
@@ -226,10 +227,10 @@ export const createReservation = async (prevState: any, formData: FormData) => {
   try {
     const newReservation = await prisma.reservation.create({
       data: {
-        experienceName: validatedFields.data.experienceName || "", // Assign an empty string if experienceName is undefined
+        experienceId: validatedFields.data.experienceId || "", 
       },
     });
-    return { reservationId: newReservation.id }; // Retourne l'ID de la réservation créée
+    return { reservationId: newReservation.id }; 
   } catch (error) {
     return { message: "Failed to create new reservation", Error: error };
   }

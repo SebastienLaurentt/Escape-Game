@@ -9,13 +9,17 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
-// Extend the Reservation interface to include the booked slot
+// Extend the Reservation interface to include the booked slot and experience
 interface ReservationWithTime extends Reservation {
   bookedSlot: {
     id?: string;
     time: string;
     date: Date | null; 
   } | null;
+  experience: {
+    name: string;
+    image: string;
+  };
 }
 
 const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
@@ -29,7 +33,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
     return formattedDate;
   };
 
-  const { id } = reservation;
+  const { id, experience, bookedSlot, people, price } = reservation;
   const router = useRouter();
 
   const { mutate: createPaymentSession, isPending } = useMutation({
@@ -54,8 +58,10 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
         <div className="mt-14 xl:mt-0 xl:w-3/5 2xl:w-2/3">
           <Image
             alt="image experience"
-            src={previewImg}
+            src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
             className="rounded-xl"
+            width={1000}
+            height={1000}
           />
         </div>
 
@@ -75,27 +81,35 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
             <div className="flex flex-col gap-y-3">
               <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">Date</span>
+                  <span className="uppercase text-secondary-foreground">
+                    Date
+                  </span>
                   <span>
-                    {reservation.bookedSlot?.date
-                      ? formatDate(reservation.bookedSlot.date.toString()) // Convert the Date object to a string
+                    {bookedSlot?.date
+                      ? formatDate(bookedSlot.date.toString()) // Convert the Date object to a string
                       : "N/A"}
                   </span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">Heure</span>
-                  <span>{reservation.bookedSlot?.time ?? ""}</span>
+                  <span className="uppercase text-secondary-foreground">
+                    Heure
+                  </span>
+                  <span>{bookedSlot?.time ?? ""}</span>
                 </div>
               </div>
 
               <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">Experience</span>
-                  <span>{reservation.experienceName}</span>
+                  <span className="uppercase text-secondary-foreground">
+                    Experience
+                  </span>
+                  <span>{experience.name}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">Personnes</span>
-                  <span>{reservation.people}</span>
+                  <span className="uppercase text-secondary-foreground">
+                    Personnes
+                  </span>
+                  <span>{people}</span>
                 </div>
               </div>
             </div>
@@ -104,7 +118,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
           {/* Price and Checkout */}
           <div className="flex flex-row items-center justify-center gap-x-4 xl:justify-start">
             <div className="flex flex-col">
-              <span className="text-lg font-bold">{reservation.price}€</span>
+              <span className="text-lg font-bold">{price}€</span>
             </div>
             <Button
               disabled={isPending}
