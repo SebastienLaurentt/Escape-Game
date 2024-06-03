@@ -1,4 +1,4 @@
-import { Reservation, BookedSlot } from "@prisma/client";
+import { Reservation, BookedSlot, Experience } from "@prisma/client";
 import {
   Body,
   Column,
@@ -23,9 +23,9 @@ const formatDate = (date: Date | null | undefined): string => {
   });
 };
 
-type ReservationWithTime = Reservation & { bookedSlot: BookedSlot }
+type ReservationWithDetails = Reservation & { bookedSlot: BookedSlot, experience: Experience };
 
-const BookingReceveidEmail = ({ reservationData }: { reservationData: ReservationWithTime }) => {
+const BookingReceivedEmail = ({ reservationData }: { reservationData: ReservationWithDetails }) => {
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
@@ -63,7 +63,7 @@ const BookingReceveidEmail = ({ reservationData }: { reservationData: Reservatio
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Expérience</Text>
-                <Text style={global.paragraphDescription}>{reservationData.experienceName}</Text>
+                <Text style={global.paragraphDescription}>{reservationData.experience.name}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Nombre de personnes</Text>
@@ -103,7 +103,7 @@ const BookingReceveidEmail = ({ reservationData }: { reservationData: Reservatio
   );
 };
 
-export default BookingReceveidEmail;
+export default BookingReceivedEmail;
 
 const paddingX = {
   paddingLeft: "40px",
