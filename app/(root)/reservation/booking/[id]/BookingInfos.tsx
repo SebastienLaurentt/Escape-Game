@@ -16,7 +16,7 @@ import {
 import { updateReservation } from "@/lib/action";
 import { BookedSlot, ClosedDay, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -98,17 +98,15 @@ const BookingInfos = ({
 
   // Filtrer les créneaux horaires disponibles
   const reservedTimesForDate: string[] = bookedSlots
-  .filter((slot) => {
-    if (date instanceof Date && slot.date instanceof Date) {
-      const slotDateString = slot.date.toLocaleDateString('fr-FR'); // Utilisez le code de langue 'fr-FR' pour le format français
-      const currentDate = date.toLocaleDateString('fr-FR');
-      return slotDateString === currentDate;
-    }
-    return false;
-  })
-  .map((slot) => slot.time);
-
-
+    .filter((slot) => {
+      if (date instanceof Date && slot.date instanceof Date) {
+        const slotDateString = slot.date.toLocaleDateString("fr-FR"); // Utilisez le code de langue 'fr-FR' pour le format français
+        const currentDate = date.toLocaleDateString("fr-FR");
+        return slotDateString === currentDate;
+      }
+      return false;
+    })
+    .map((slot) => slot.time);
 
   const availableTimes = timeSlots.filter(
     (time) => !reservedTimesForDate.includes(time)
@@ -194,14 +192,12 @@ const BookingInfos = ({
                     <Input type="hidden" name="timeId" value={time ?? ""} />
                     {date && (
                       <div className="flex flex-col items-center">
-                        <span className="italic">
-                          Disponibilités du
-                          <span className="text-primary">
-                            {format(date, " EEEE dd MMMM", { locale: fr })
-                              .replace(/^\w/, (c) => c.toUpperCase())
-                              .replace(/ \w/g, (c) => c.toUpperCase())}
-                          </span>
+                        <span className="mt-1 text-md text-primary">
+                          {format(date, " EEEE dd MMMM", { locale: fr })
+                            .replace(/^\w/, (c) => c.toUpperCase())
+                            .replace(/ \w/g, (c) => c.toUpperCase())}
                         </span>
+
                         <div className="grid grid-cols-3 gap-4 py-6">
                           {availableTimes.map((timeSlot, index) => (
                             <HoursChips
