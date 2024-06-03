@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import HoursChips from "@/components/shared/HoursChips";
 import SectionHeader from "@/components/shared/SectionHeader";
@@ -16,7 +16,7 @@ import {
 import { updateReservation } from "@/lib/action";
 import { BookedSlot, ClosedDay, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { fr } from "date-fns/locale";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -80,24 +80,36 @@ const BookingInfos = ({
     setTime(time);
   };
 
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-  const formData = new FormData(event.currentTarget);
-  
-  const utcDate = date ? new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())) : null;
-  if (utcDate) {
-    formData.set('date', utcDate.toISOString());
-  }
-  
-  updateReservationMutation(formData);
-};
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const utcDate = date
+      ? new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+      : null;
+    if (utcDate) {
+      formData.set("date", utcDate.toISOString());
+    }
+
+    updateReservationMutation(formData);
+  };
 
   const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
 
   // Filtrer les créneaux horaires disponibles
-  const reservedTimesForDate = bookedSlots
-    .filter((slot) => slot.date?.toISOString().split('T')[0] === date?.toISOString().split('T')[0]) // Filtrer les créneaux réservés pour la date sélectionnée
-    .map((slot) => slot.time);
+  const reservedTimesForDate: string[] = bookedSlots
+  .filter((slot) => {
+    if (date instanceof Date && slot.date instanceof Date) {
+      const slotDateString = slot.date.toLocaleDateString('fr-FR'); // Utilisez le code de langue 'fr-FR' pour le format français
+      const currentDate = date.toLocaleDateString('fr-FR');
+      return slotDateString === currentDate;
+    }
+    return false;
+  })
+  .map((slot) => slot.time);
+
+
+
   const availableTimes = timeSlots.filter(
     (time) => !reservedTimesForDate.includes(time)
   );
