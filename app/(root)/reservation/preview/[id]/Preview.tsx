@@ -75,7 +75,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
             <div className="flex flex-col gap-y-3">
               <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Date</span>
+                  <span className="uppercase text-secondary-foreground">Date</span>
                   <span>
                     {reservation.bookedSlot?.date
                       ? formatDate(reservation.bookedSlot.date.toString()) // Convert the Date object to a string
@@ -83,18 +83,18 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
                   </span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Heure</span>
+                  <span className="uppercase text-secondary-foreground">Heure</span>
                   <span>{reservation.bookedSlot?.time ?? ""}</span>
                 </div>
               </div>
 
               <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Experience</span>
+                  <span className="uppercase text-secondary-foreground">Experience</span>
                   <span>{reservation.experienceName}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="uppercase text-zinc-500">Personnes</span>
+                  <span className="uppercase text-secondary-foreground">Personnes</span>
                   <span>{reservation.people}</span>
                 </div>
               </div>
