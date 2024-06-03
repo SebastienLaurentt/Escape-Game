@@ -4,12 +4,12 @@ import { DeleteButton } from "./DeleteClosedDay";
 
 const OpenDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
   const formatDate = (date: Date) => {
-    const formattedDate = new Intl.DateTimeFormat("fr-FR", {
+    const formattedDate = new Date(date).toLocaleDateString("fr-FR", {
       weekday: "long",
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
-    }).format(date);
+    });
 
     // Uppercase to Weekday
     return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
