@@ -79,11 +79,18 @@ const BookingInfos = ({
   const handleTimeSelect = (time: string) => {
     setTime(time);
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    updateReservationMutation(formData);
-  };
+
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  const formData = new FormData(event.currentTarget);
+  
+  const utcDate = date ? new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())) : null;
+  if (utcDate) {
+    formData.set('date', utcDate.toISOString());
+  }
+  
+  updateReservationMutation(formData);
+};
 
   const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
 
