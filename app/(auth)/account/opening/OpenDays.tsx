@@ -3,8 +3,11 @@ import { ClosedDay } from "@prisma/client";
 import { DeleteButton } from "./DeleteClosedDay";
 
 const OpenDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
-  const formatDate = (date: Date) => {
-    const formattedDate = new Date(date).toLocaleDateString("fr-FR", {
+  const formatDate = (date: string) => {
+    // Convertir la chaîne de date en objet Date
+    const parsedDate = new Date(date);
+
+    const formattedDate = parsedDate.toLocaleDateString("fr-FR", {
       weekday: "long",
       day: "2-digit",
       month: "2-digit",
@@ -24,7 +27,7 @@ const OpenDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
             key={day.id}
             className="flex flex-row items-center justify-between gap-x-4"
           >
-            <span>{formatDate(new Date(day.date))}</span>{" "}
+            <span>{formatDate(day.date.toString())}</span>
             <DeleteButton id={day.id} />
           </li>
         ))}
