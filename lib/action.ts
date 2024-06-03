@@ -138,6 +138,7 @@ export const getReservationsList = async () => {
     const reservations = await prisma.reservation.findMany({
       include: {
         bookedSlot: true, 
+        experience: true,
       },
     });
 

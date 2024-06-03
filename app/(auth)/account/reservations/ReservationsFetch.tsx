@@ -77,9 +77,9 @@ const ReservationsFetch = async () => {
                       {reservation.phone}
                     </TableCell>
                     <TableCell className=" md:table-cell">
-                    {reservation.bookedSlot?.date
-                      ? formatDate(reservation.bookedSlot.date.toString()) // Convert the Date object to a string
-                      : "N/A"}
+                      {reservation.bookedSlot?.date
+                        ? formatDate(reservation.bookedSlot.date.toString()) // Convert the Date object to a string
+                        : "N/A"}
                     </TableCell>
                     <TableCell className="md:table-cell">
                       {reservation.bookedSlot?.time}
@@ -87,10 +87,10 @@ const ReservationsFetch = async () => {
                     <TableCell className="hidden md:table-cell">
                       {reservation.people}
                     </TableCell>
-                    <TableCell className="hidden md:table-cell ">
-                      {reservation.experienceName}
+                    <TableCell className="hidden md:table-cell">
+                      {reservation.experience.name ?? "N/A"}
                     </TableCell>
-                    <TableCell className="hidden xl:table-cell ">
+                    <TableCell className="hidden xl:table-cell">
                       {reservation.price}
                     </TableCell>
                     <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
