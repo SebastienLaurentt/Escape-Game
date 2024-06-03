@@ -14,7 +14,7 @@ interface ReservationWithTime extends Reservation {
   bookedSlot: {
     id?: string;
     time: string;
-    date: Date | null; 
+    date: Date | null;
   } | null;
   experience: {
     name: string;
@@ -56,13 +56,23 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
     <main>
       <div className="mx-auto flex flex-col-reverse items-center justify-between py-16 sm:py-24 xl:flex-row">
         <div className="mt-14 xl:mt-0 xl:w-3/5 2xl:w-2/3">
-          <Image
-            alt="image experience"
-            src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
-            className="rounded-xl"
-            width={1000}
-            height={1000}
-          />
+          {experience.image !== null ? (
+            <Image
+              alt="image experience"
+              src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
+              className="rounded-xl"
+              width={1000}
+              height={1000}
+            />
+          ) : (
+            <Image
+              alt="image experience par défaut"
+              src={previewImg}
+              className="rounded-xl"
+              width={1000}
+              height={1000}
+            />
+          )}
         </div>
 
         {/* Preview Header */}
