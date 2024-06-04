@@ -15,7 +15,7 @@ const TESTIMONIALS = [
   },
   {
     text: "Une expérience intense et inoubliable. La Villa de l'Effroi m'a fait frissonner du début à la fin. Bravo pour cette ambiance incroyable!",
-    name: "Maxime",
+    name: "Tom Hardy",
     experienceType: "Thriller",
   },
   {
@@ -25,7 +25,7 @@ const TESTIMONIALS = [
   },
   {
     text: "L'ambiance, les décors, les énigmes... Tout était parfait. La Villa de l'Effroi est une expérience à ne pas manquer pour les amateurs de sensations fortes.",
-    name: "Julien",
+    name: "Thorfinn",
     experienceType: "Horror",
   },
   {
@@ -35,7 +35,7 @@ const TESTIMONIALS = [
   },
   {
     text: "La peur était réelle, mais l'excitation l'était encore plus. La Villa de l'Effroi a offert une aventure terrifiante et captivante.",
-    name: "Lucas",
+    name: "Ana de Armas",
     experienceType: "Night",
   },
   {
