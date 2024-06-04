@@ -18,7 +18,7 @@ model Experience {
   minPrice      String
   minPeople     String
   maxPeople     String? 
-  bookedSlot    BookedSlot[]
+  bookedSlots   BookedSlot[]
   reservations  Reservation[]
 }
 
@@ -56,3 +56,4 @@ model Order {
   createdAt       DateTime    @default(now())
   updated         DateTime    @updatedAt
 }
+

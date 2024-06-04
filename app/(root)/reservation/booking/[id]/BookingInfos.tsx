@@ -133,6 +133,8 @@ const BookingInfos = ({
           <form onSubmit={handleSubmit}>
             <div className="mb-8 flex flex-col items-center">
               <h3 className="mb-1">A. Combien êtes vous ?</h3>
+              {/* Fetch reservation experienceId in input to link bookedSlot to correct experienceId (ExperienceUpdate) */}
+              <Input type="hidden" name="experienceId" value={reservation.experienceId ?? ""} />
               <Input type="hidden" name="people" value={people ?? ""} />
               <Input type="hidden" name="price" value={price.toString()} />
 
@@ -189,7 +191,7 @@ const BookingInfos = ({
                     <h3 className="w-[320px] text-center">
                       C. Choisissez une horaire
                     </h3>
-                    <Input type="hidden" name="timeId" value={time ?? ""} />
+                    <Input type="hidden" name="time" value={time ?? ""} />
                     {date && (
                       <div className="flex flex-col items-center">
                         <span className="mt-1 text-md text-primary">

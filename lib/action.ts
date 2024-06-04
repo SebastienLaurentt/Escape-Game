@@ -140,7 +140,7 @@ export const getReservationsList = async () => {
       include: {
         experience: {
           include: {
-            bookedSlot: true,
+            bookedSlots: true,
           },
         },
       },
@@ -160,7 +160,7 @@ export const getReservationById = async (id: string) => {
       include: {
         experience: {
           include: {
-            bookedSlot: true,
+            bookedSlots: true,
           },
         },
       },
@@ -188,34 +188,44 @@ export const updateReservation = async (id: string, formData: FormData) => {
   }
 
   try {
-    let timeId: string | null = formData.get("timeId") as string | null;
     const date = formData.get("date") as string;
+    const experienceId = formData.get("experienceId") as string;
+    const time = formData.get("time") as string;
 
-    // Create a new time slot if timeId is not provided
-    if (timeId) {
-      const createdTimeSlot = await prisma.bookedSlot.create({
-        data: {
-          time: timeId.toString(),
-          date: new Date(date), // Associer la date au créneau horaire
-        },
-      });
+    // Create a new booked slot with the correct experience ID
+    const createdTimeSlot = await prisma.bookedSlot.create({
+      data: {
+        time: time.toString(),
+        date: new Date(date),
+        experienceId: experienceId, 
+      },
+    });
 
-      // Assign the ID of the created time slot
-      timeId = createdTimeSlot.id;
-    }
-
-    // Update the reservation with the new data and time slot ID
+    // Update the reservation with the new data 
     await prisma.reservation.update({
       data: {
         people: validatedFields.data.people,
         price: validatedFields.data.price,
-        timeId: timeId,
       },
       where: { id },
     });
+
+    // Set the booked slot for the relevant experience Id
+    await prisma.experience.update({
+      data: {
+        bookedSlots: {
+          connect: { id: createdTimeSlot.id }
+        },
+      },
+      where: { id: experienceId },
+    });
+
   } catch (error) {
+    console.error('Failed to update reservation:', error); 
     return { message: "Failed to update reservation" };
   }
+
+  // Redirect to the preview page
   redirect(`/reservation/preview/${id}`);
 };
 
