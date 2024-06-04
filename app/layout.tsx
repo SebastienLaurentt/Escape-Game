@@ -1,13 +1,6 @@
-import { cn } from "@/lib/utils";
+import { poppins } from "@/lib/font";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-});
 
 export const metadata: Metadata = {
   title: "The Escape Game Experience",
@@ -21,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={cn(poppins.className, "min-h-screen")}>{children}</body>
+      <body className={`${poppins} min-h-screen`}>{children}</body>
     </html>
   );
 }
