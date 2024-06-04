@@ -14,12 +14,14 @@ import { DeleteReservation } from "./DeleteReservation";
 // Function to format date as "Jour de la semaine DD MM AAAA"
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
-  return new Intl.DateTimeFormat("fr-FR", {
+  const formattedDate = new Intl.DateTimeFormat("fr-FR", {
     weekday: "long",
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   }).format(date);
+
+  return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 };
 
 const ReservationsFetch = async () => {
@@ -64,40 +66,44 @@ const ReservationsFetch = async () => {
               </TableHeader>
 
               <TableBody>
-                {reservations.map((reservation) => (
-                  <TableRow
-                    key={reservation.id}
-                    className="bg-accent text-center "
-                  >
-                    <TableCell>{reservation.name}</TableCell>
-                    <TableCell className="hidden xl:table-cell">
-                      {reservation.email}
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      {reservation.phone}
-                    </TableCell>
-                    <TableCell className=" md:table-cell">
-                      {reservation.bookedSlot?.date
-                        ? formatDate(reservation.bookedSlot.date.toString()) // Convert the Date object to a string
-                        : "N/A"}
-                    </TableCell>
-                    <TableCell className="md:table-cell">
-                      {reservation.bookedSlot?.time}
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      {reservation.people}
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      {reservation.experience.name ?? "N/A"}
-                    </TableCell>
-                    <TableCell className="hidden xl:table-cell">
-                      {reservation.price}
-                    </TableCell>
-                    <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
-                      <DeleteReservation id={reservation.id} />
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {reservations.map((reservation) => {
+                  const bookedSlot = reservation.experience.bookedSlots[0]; // Assuming each experience has one booked slot for simplicity
+
+                  return (
+                    <TableRow
+                      key={reservation.id}
+                      className="bg-accent text-center"
+                    >
+                      <TableCell>{reservation.name}</TableCell>
+                      <TableCell className="hidden xl:table-cell">
+                        {reservation.email}
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        {reservation.phone}
+                      </TableCell>
+                      <TableCell className="md:table-cell">
+                        {bookedSlot?.date
+                          ? formatDate(bookedSlot.date.toString())
+                          : "N/A"}
+                      </TableCell>
+                      <TableCell className="md:table-cell">
+                        {bookedSlot?.time ?? "N/A"}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {reservation.people}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {reservation.experience?.name ?? "N/A"}
+                      </TableCell>
+                      <TableCell className="hidden xl:table-cell">
+                        {reservation.price}
+                      </TableCell>
+                      <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
+                        <DeleteReservation id={reservation.id} />
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </CardContent>

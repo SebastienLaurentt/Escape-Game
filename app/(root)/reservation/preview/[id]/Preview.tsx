@@ -9,20 +9,23 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
 
-// Extend the Reservation interface to include the booked slot and experience
-interface ReservationWithTime extends Reservation {
-  bookedSlot: {
-    id?: string;
-    time: string;
-    date: Date | null;
-  } | null;
-  experience: {
-    name: string;
-    image: string | null;
-  };
+interface BookedSlot {
+  id?: string;
+  time: string;
+  date: Date | null;
 }
 
-const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
+interface ExperienceWithSlots {
+  name: string;
+  image: string | null;
+  bookedSlots: BookedSlot[];
+}
+
+interface ReservationWithExperience extends Reservation {
+  experience: ExperienceWithSlots;
+}
+
+const Preview = ({ reservation }: { reservation: ReservationWithExperience }) => {
   const formatDate = (date: string) => {
     const formattedDate = new Date(date).toLocaleDateString("fr-FR", {
       day: "2-digit",
@@ -33,7 +36,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
     return formattedDate;
   };
 
-  const { id, experience, bookedSlot, people, price } = reservation;
+  const { id, experience, people, price } = reservation;
   const router = useRouter();
 
   const { mutate: createPaymentSession, isPending } = useMutation({
@@ -52,17 +55,20 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
     },
   });
 
+  // Récupérer le premier créneau réservé (bookedSlot) associé à cette expérience
+  const bookedSlot = experience.bookedSlots[0] || null;
+
   return (
     <main>
       <div className="mx-auto flex flex-col-reverse items-center justify-between py-16 sm:py-24 xl:flex-row">
         <div className="mt-14 xl:mt-0 xl:w-3/5 2xl:w-2/3">
-            <Image
-              alt="image experience"
-              src={experience.image? `https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}` : previewImg}
-              className="rounded-xl"
-              width={1000}
-              height={1000}
-            />
+          <Image
+            alt="image experience"
+            src={experience.image ? `https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}` : previewImg}
+            className="rounded-xl"
+            width={1000}
+            height={1000}
+          />
         </div>
 
         {/* Preview Header */}
@@ -72,7 +78,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
               Bientôt terminé !
             </span>
             <p className="max-w-[400px] text-center text-2xl font-bold leading-10 tracking-tight md:text-4xl md:leading-[52px] xl:text-left">
-              Details de votre reservation
+              Détails de votre réservation
             </p>
           </div>
 
@@ -86,7 +92,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
                   </span>
                   <span>
                     {bookedSlot?.date
-                      ? formatDate(bookedSlot.date.toString()) // Convert the Date object to a string
+                      ? formatDate(bookedSlot.date.toString())
                       : "N/A"}
                   </span>
                 </div>
@@ -101,7 +107,7 @@ const Preview = ({ reservation }: { reservation: ReservationWithTime }) => {
               <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
                   <span className="uppercase text-secondary-foreground">
-                    Experience
+                    Expérience
                   </span>
                   <span>{experience.name}</span>
                 </div>

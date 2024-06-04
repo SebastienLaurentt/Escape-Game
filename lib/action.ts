@@ -6,17 +6,6 @@ import { prisma } from "./prisma";
 import { supabase } from "./supabase";
 
 // Schemas
-// Experience schema type with Zod
-const ExperienceSchema = z.object({
-  name: z.string().min(5),
-  image: z.any(),
-  description: z.string().min(6),
-  duration: z.string().min(1),
-  durationUnit: z.string().min(5),
-  minPrice: z.string().min(2),
-  minPeople: z.string().min(1),
-  maxPeople: z.string().min(0),
-});
 
 // TimeSlot Schema type with Zod
 const BookedSlotSchema = z.object({
@@ -25,13 +14,25 @@ const BookedSlotSchema = z.object({
   time: z.string().min(1),
 });
 
+// Experience schema type with Zod
+const ExperienceSchema = z.object({
+  name: z.string().min(5),
+  image: z.any(),
+  description: z.string().min(6),
+  bookedSlot: BookedSlotSchema.optional(),
+  bookedSlotId: z.string().optional(),
+  duration: z.string().min(1),
+  durationUnit: z.string().min(5),
+  minPrice: z.string().min(2),
+  minPeople: z.string().min(1),
+  maxPeople: z.string().min(0),
+});
+
 // Reservation schema type with Zod
 const ReservationsSchema = z.object({
   experienceId: z.string().optional(),
   people: z.string().optional(),
   price: z.string().optional(),
-  bookedSlot: BookedSlotSchema.optional(),
-  timeId: z.string().optional(),
   name: z.string().optional(),
   email: z.string().optional(),
   phone: z.string().optional(),
@@ -137,8 +138,11 @@ export const getReservationsList = async () => {
   try {
     const reservations = await prisma.reservation.findMany({
       include: {
-        bookedSlot: true, 
-        experience: true,
+        experience: {
+          include: {
+            bookedSlots: true,
+          },
+        },
       },
     });
 
@@ -154,8 +158,11 @@ export const getReservationById = async (id: string) => {
     const reservation = await prisma.reservation.findUnique({
       where: { id },
       include: {
-        bookedSlot: true,
-        experience: true,
+        experience: {
+          include: {
+            bookedSlots: true,
+          },
+        },
       },
     });
 
@@ -181,34 +188,44 @@ export const updateReservation = async (id: string, formData: FormData) => {
   }
 
   try {
-    let timeId: string | null = formData.get("timeId") as string | null;
     const date = formData.get("date") as string;
+    const experienceId = formData.get("experienceId") as string;
+    const time = formData.get("time") as string;
 
-    // Create a new time slot if timeId is not provided
-    if (timeId) {
-      const createdTimeSlot = await prisma.bookedSlot.create({
-        data: {
-          time: timeId.toString(),
-          date: new Date(date), // Associer la date au créneau horaire
-        },
-      });
+    // Create a new booked slot with the correct experience ID
+    const createdTimeSlot = await prisma.bookedSlot.create({
+      data: {
+        time: time.toString(),
+        date: new Date(date),
+        experienceId: experienceId, 
+      },
+    });
 
-      // Assign the ID of the created time slot
-      timeId = createdTimeSlot.id;
-    }
-
-    // Update the reservation with the new data and time slot ID
+    // Update the reservation with the new data 
     await prisma.reservation.update({
       data: {
         people: validatedFields.data.people,
         price: validatedFields.data.price,
-        timeId: timeId,
       },
       where: { id },
     });
+
+    // Set the booked slot for the relevant experience Id
+    await prisma.experience.update({
+      data: {
+        bookedSlots: {
+          connect: { id: createdTimeSlot.id }
+        },
+      },
+      where: { id: experienceId },
+    });
+
   } catch (error) {
+    console.error('Failed to update reservation:', error); 
     return { message: "Failed to update reservation" };
   }
+
+  // Redirect to the preview page
   redirect(`/reservation/preview/${id}`);
 };
 
