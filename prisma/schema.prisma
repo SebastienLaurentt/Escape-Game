@@ -3,58 +3,56 @@ datasource db {
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
- 
+
 generator client {
   provider = "prisma-client-js"
 }
- 
+
 model Experience {
-  id String @id @default(cuid())
-  name String
-  image String?
-  description String
-  duration String
-  durationUnit String
-  minPrice String
-  minPeople String
-  maxPeople String? 
+  id            String       @id @default(cuid())
+  name          String
+  image         String?
+  description   String
+  duration      String
+  durationUnit  String
+  minPrice      String
+  minPeople     String
+  maxPeople     String? 
+  bookedSlot    BookedSlot[]
   reservations  Reservation[]
 }
 
 model Reservation {
-  id        String    @id @default(cuid())
-    experienceId   String
-  experience     Experience   @relation(fields: [experienceId], references: [id])
-  people     String?
-  price      String?
-  bookedSlot   BookedSlot? @relation(fields: [timeId], references: [id])
-  timeId     String?
-  name       String?
-  email      String?
-  phone      String?
-  Order      Order[]
+  id            String       @id @default(cuid())
+  experienceId  String
+  experience    Experience   @relation(fields: [experienceId], references: [id])
+  people        String?
+  price         String?
+  name          String?
+  email         String?
+  phone         String?
+  Order         Order[]
 }
 
 model BookedSlot {
-  id          String   @id @default(cuid())
-  date        DateTime?
-  time        String
-  reservations Reservation[]
+  id            String      @id @default(cuid())
+  date          DateTime?
+  time          String
+  experience    Experience  @relation(fields: [experienceId], references: [id])
+  experienceId  String
 }
 
 model ClosedDay {
-  id String @id @default(cuid())
-  date DateTime
+  id    String    @id @default(cuid())
+  date  DateTime
 }
 
 model Order {
-  id String @id @default(cuid())
-  reservationId String 
-  reservation Reservation @relation(fields: [reservationId], references: [id])
+  id              String      @id @default(cuid())
+  reservationId   String 
+  reservation     Reservation @relation(fields: [reservationId], references: [id])
   amount          Float
-  isPaid          Boolean       @default(false)
-
-  createdAt DateTime @default(now())
-  updated   DateTime @updatedAt
+  isPaid          Boolean     @default(false)
+  createdAt       DateTime    @default(now())
+  updated         DateTime    @updatedAt
 }
-

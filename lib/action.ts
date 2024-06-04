@@ -6,17 +6,6 @@ import { prisma } from "./prisma";
 import { supabase } from "./supabase";
 
 // Schemas
-// Experience schema type with Zod
-const ExperienceSchema = z.object({
-  name: z.string().min(5),
-  image: z.any(),
-  description: z.string().min(6),
-  duration: z.string().min(1),
-  durationUnit: z.string().min(5),
-  minPrice: z.string().min(2),
-  minPeople: z.string().min(1),
-  maxPeople: z.string().min(0),
-});
 
 // TimeSlot Schema type with Zod
 const BookedSlotSchema = z.object({
@@ -25,13 +14,25 @@ const BookedSlotSchema = z.object({
   time: z.string().min(1),
 });
 
+// Experience schema type with Zod
+const ExperienceSchema = z.object({
+  name: z.string().min(5),
+  image: z.any(),
+  description: z.string().min(6),
+  bookedSlot: BookedSlotSchema.optional(),
+  bookedSlotId: z.string().optional(),
+  duration: z.string().min(1),
+  durationUnit: z.string().min(5),
+  minPrice: z.string().min(2),
+  minPeople: z.string().min(1),
+  maxPeople: z.string().min(0),
+});
+
 // Reservation schema type with Zod
 const ReservationsSchema = z.object({
   experienceId: z.string().optional(),
   people: z.string().optional(),
   price: z.string().optional(),
-  bookedSlot: BookedSlotSchema.optional(),
-  timeId: z.string().optional(),
   name: z.string().optional(),
   email: z.string().optional(),
   phone: z.string().optional(),
@@ -137,8 +138,11 @@ export const getReservationsList = async () => {
   try {
     const reservations = await prisma.reservation.findMany({
       include: {
-        bookedSlot: true, 
-        experience: true,
+        experience: {
+          include: {
+            bookedSlot: true,
+          },
+        },
       },
     });
 
@@ -154,8 +158,11 @@ export const getReservationById = async (id: string) => {
     const reservation = await prisma.reservation.findUnique({
       where: { id },
       include: {
-        bookedSlot: true,
-        experience: true,
+        experience: {
+          include: {
+            bookedSlot: true,
+          },
+        },
       },
     });
 
