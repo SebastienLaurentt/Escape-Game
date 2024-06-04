@@ -189,7 +189,7 @@ function ReviewGrid({ isVisible }: { isVisible: boolean }) {
                 "lg:hidden": reviewIndex >= column1.length,
               })
             }
-            msPerPixel={10}
+            msPerPixel={20}
           />
           <ReviewColumn
             reviews={[...column2, ...column3[1]]}
@@ -197,12 +197,12 @@ function ReviewGrid({ isVisible }: { isVisible: boolean }) {
             reviewClassName={(reviewIndex) =>
               reviewIndex >= column2.length ? "lg:hidden" : ""
             }
-            msPerPixel={15}
+            msPerPixel={25}
           />
           <ReviewColumn
             reviews={column3.flat()}
             className="hidden md:block"
-            msPerPixel={10}
+            msPerPixel={20}
           />
         </>
       ) : null}
