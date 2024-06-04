@@ -23,7 +23,7 @@ const formatDate = (date: Date | null | undefined): string => {
   });
 };
 
-type ReservationWithDetails = Reservation & { bookedSlot: BookedSlot, experience: Experience };
+type ReservationWithDetails = Reservation & { experience: Experience };
 
 const BookingReceivedEmail = ({ reservationData }: { reservationData: ReservationWithDetails }) => {
   const baseUrl =
