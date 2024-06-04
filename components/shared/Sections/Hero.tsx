@@ -30,7 +30,7 @@ const Hero = () => {
       {/* Hero Text */}
       <Section
         id="hero-text"
-        classname="absolute z-20 opacity-0 flex flex-col items-center w-full xl:items-center text-center"
+        classname="absolute z-10 opacity-0 flex flex-col items-center w-full xl:items-center text-center"
       >
         <h1 className={`${creepster} uppercase`}>
           La Villa de <span className="text-primary">l&apos;Effroi</span>
