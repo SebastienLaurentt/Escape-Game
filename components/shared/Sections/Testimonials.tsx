@@ -35,7 +35,7 @@ const TESTIMONIALS = [
   },
   {
     text: "La peur était réelle, mais l'excitation l'était encore plus. La Villa de l'Effroi a offert une aventure terrifiante et captivante.",
-    name: "Ana de Armas",
+    name: "Ana",
     experienceType: "Night",
   },
   {
