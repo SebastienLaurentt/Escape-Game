@@ -153,11 +153,13 @@ function Review({
       style={{ animationDelay }}
       {...props}
     >
-      <p className="text-md">{text}</p>
+      <p className="md:text-md">{text}</p>
       <span className="mt-4 block text-sm text-secondary-foreground">
         {name}
       </span>
-      <span className="text-lg font-semibold text-primary">{experienceType}</span>
+      <span className="text-md font-semibold text-primary md:text-lg">
+        {experienceType}
+      </span>
     </div>
   );
 }
@@ -216,7 +218,11 @@ export function Testimonials() {
 
   return (
     <Section marginBottom={true}>
-      <div ref={containerRef} className="opacity-0 transition-opacity duration-700 ease-in-out" style={{ opacity: isInView ? 1 : 0 }}>
+      <div
+        ref={containerRef}
+        className="opacity-0 transition-opacity duration-700 ease-in-out"
+        style={{ opacity: isInView ? 1 : 0 }}
+      >
         <SectionHeader title="Ils ont aimé" titleHighlight="l'expérience" />
         <ReviewGrid isVisible={isInView} />
       </div>
