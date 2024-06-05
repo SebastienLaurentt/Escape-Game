@@ -33,7 +33,7 @@ const ExperienceCard = ({
   return (
     <div
       className={`relative  rounded-xl border-2 xl:w-[403px] 2xl:w-[440px]  ${hasHover} ${
-        isSelected ? "border-primary" : ""
+        isSelected ? "border-primary shadow-primary shadow-md" : ""
       }`}
       onClick={onClick}
     >
