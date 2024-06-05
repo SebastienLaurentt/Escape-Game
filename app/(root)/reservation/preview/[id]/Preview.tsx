@@ -7,7 +7,7 @@ import { Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { createCheckoutSession } from "../../booking/[id]/CheckoutAction";
+import { createCheckoutSession } from "./CheckoutAction";
 
 interface BookedSlot {
   id?: string;
@@ -55,7 +55,6 @@ const Preview = ({ reservation }: { reservation: ReservationWithExperience }) =>
     },
   });
 
-  // Récupérer le premier créneau réservé (bookedSlot) associé à cette expérience
   const bookedSlot = experience.bookedSlots[0] || null;
 
   return (

@@ -131,8 +131,81 @@ export const updateExperience = async (
   }
 };
 
+// Order
+// Read all Orders
+export const getOrdersList = async () => {
+  try {
+    const orders = await prisma.order.findMany({
+      include: {
+        reservation: {
+          include: {
+            experience: {
+              include: {
+                bookedSlots: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return orders;
+  } catch (error) {
+    throw new Error("Failed to fetch orders data");
+  }
+};
+
+// Delete Order
+export const deleteOrder = async (id: string) => {
+  try {
+    //  Find the order by its ID
+    const order = await prisma.order.findUnique({
+      where: { id },
+      include: {
+        reservation: {
+          include: {
+            experience: {
+              select: {
+                bookedSlots: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    if (!order) {
+      console.error("Order not found", id);
+      return { message: "Order not found" };
+    }
+
+    // Delete the order by its ID
+    await prisma.order.delete({
+      where: { id },
+    });
+
+    // Delete the reservation related to the order
+    await prisma.reservation.delete({
+      where: { id: order.reservationId },
+    });
+
+    // Delete the booked slot related to the order
+    if (order.reservation.experience.bookedSlots.length > 0) {
+      const bookedSlotId = order.reservation.experience.bookedSlots[0].id;
+      await prisma.bookedSlot.delete({
+        where: { id: bookedSlotId },
+      });
+    }
+
+    
+  } catch (error) {
+    return { message: "Failed to delete order data" };
+  }
+  redirect("/account/reservations");
+};
+
 // Reservation
-// Read all reservations
+// Read all Reservations
 export const getReservationsList = async () => {
   try {
     const reservations = await prisma.reservation.findMany({
@@ -313,6 +386,7 @@ export const deleteClosedDay = async (id: string) => {
   redirect("/account/opening");
 };
 
+// BookedSlot
 // Get BookedSlots list
 export const getBookedSlots = async () => {
   try {

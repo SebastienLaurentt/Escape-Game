@@ -25,8 +25,6 @@ export const createCheckoutSession = async (id: string) => {
     },
   });
 
-  console.log(reservation.name, reservation.id);
-
   if (existingOrder) {
     order = existingOrder;
   } else {
