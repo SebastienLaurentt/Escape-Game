@@ -50,44 +50,31 @@ const BookingReceivedEmail = ({ reservationData }: { reservationData: Reservatio
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            {reservationData.bookedSlot.map((bookedSlot, index) => (
-              <div key={index}>
-                <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
-                  <Column style={{ width: 170 }}>
-                    <Text style={global.paragraphWithBold}>Date</Text>
-                    <Text style={global.paragraphDescription}>
-                      {formatDate(bookedSlot.date)}
-                    </Text>
-                  </Column>
-                  <Column style={{ marginLeft: 20 }}>
-                    <Text style={global.paragraphWithBold}>Heure</Text>
-                    <Text style={global.paragraphDescription}>
-                      {bookedSlot.time}
-                    </Text>
-                  </Column>
-                </Row>
-              </div>
-            ))}
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
+              <Column style={{ width: 170 }}>
+                <Text style={global.paragraphWithBold}>Date</Text>
+                {/* <Text style={global.paragraphDescription}>{formatDate(reservationData.bookedSlot.date)}</Text> */}
+                <Text style={global.paragraphDescription}>test date</Text>
+              </Column>
+              <Column style={{ marginLeft: 20 }}>
+                <Text style={global.paragraphWithBold}>Heure</Text>
+                <Text style={global.paragraphDescription}>test heure </Text>
+              </Column>
+            </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Expérience</Text>
-                <Text style={global.paragraphDescription}>
-                  {reservationData.experience.name}
-                </Text>
+                <Text style={global.paragraphDescription}>{reservationData.experience.name}</Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Nombre de personnes</Text>
-                <Text style={global.paragraphDescription}>
-                  {reservationData.people}
-                </Text>
+                <Text style={global.paragraphDescription}>{reservationData.people}</Text>
               </Column>
             </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Prix</Text>
-                <Text style={global.paragraphDescription}>
-                  {reservationData.price}
-                </Text>
+                <Text style={global.paragraphDescription}>{reservationData.price}</Text>
               </Column>
             </Row>
           </Section>
