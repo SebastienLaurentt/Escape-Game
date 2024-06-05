@@ -131,8 +131,32 @@ export const updateExperience = async (
   }
 };
 
+// Order
+// Read all Orders
+export const getOrdersList = async () => {
+  try {
+    const orders = await prisma.order.findMany({
+      include: {
+        reservation: {
+          include: {
+            experience: {
+              include: {
+                bookedSlots: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return orders;
+  } catch (error) {
+    throw new Error("Failed to fetch orders data");
+  }
+};
+
 // Reservation
-// Read all reservations
+// Read all Reservations
 export const getReservationsList = async () => {
   try {
     const reservations = await prisma.reservation.findMany({
@@ -313,6 +337,7 @@ export const deleteClosedDay = async (id: string) => {
   redirect("/account/opening");
 };
 
+// BookedSlot
 // Get BookedSlots list
 export const getBookedSlots = async () => {
   try {
