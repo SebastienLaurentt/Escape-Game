@@ -13,6 +13,8 @@ import {
   Text,
 } from "@react-email/components";
 
+
+
 const formatDate = (date: Date | null | undefined): string => {
   if (!date) return '';
   return date.toLocaleDateString("fr-FR", {
@@ -182,7 +184,7 @@ const container = {
   margin: "10px auto",
   width: "600px",
   maxWidth: "100%",
-  border: "1px solid #E5E5E5",
+  border: "1px solid #E5E5E5"
 };
 
 const track = {
@@ -226,3 +228,4 @@ const footer = {
     fontSize: "12px",
   } as React.CSSProperties,
 };
+
