@@ -56,7 +56,6 @@ const BookingInfos = ({
   reservation: Reservation & { experience: ExtendedExperience };
 }) => {
 
-  unstable_noStore();
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
     mutationFn: async (formData: FormData) => {
