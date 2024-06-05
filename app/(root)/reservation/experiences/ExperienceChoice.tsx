@@ -1,14 +1,15 @@
-'use client'
+"use client";
 
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import ExperienceCard from "@/components/shared/ExperienceCard";
 import SectionHeader from "@/components/shared/SectionHeader";
+import { Spotlight } from "@/components/ui/Spotlight";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   const [experienceId, setExperienceId] = useState<string | null>(null);
@@ -48,6 +49,10 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
     <div className="py-8 pb-4 xl:pt-0">
       <SectionHeader title="1. Choisissez votre" titleHighlight="expérience" />
 
+      <Spotlight
+        className="-top-40 left-0 md:-top-20 md:left-60"
+        fill="white"
+      />
       <form onSubmit={handleSubmit}>
         <Input type="hidden" name="experienceId" value={experienceId ?? ""} />
         <ul className="mb-6 flex flex-col justify-between gap-y-8 xl:flex-row xl:gap-x-2 2xl:gap-x-4">

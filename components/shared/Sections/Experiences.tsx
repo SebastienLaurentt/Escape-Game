@@ -35,6 +35,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
           isContentInView ? "opacity-100" : ""
         }`}
       >
+        
         {/* Experience Card List */}
         <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:justify-center xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
           {experiences.map((experience: Experience, index) => (

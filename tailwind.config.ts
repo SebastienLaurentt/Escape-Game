@@ -79,6 +79,16 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        spotlight: {
+          "0%": {
+            opacity: "0",
+            transform: "translate(-72%, -62%) scale(0.5)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translate(-50%,-40%) scale(1)",
+          },
+        },
         'fade-in': {
           from: {
             opacity: '0',
@@ -98,6 +108,7 @@ const config = {
         },
       },
       animation: {
+        spotlight: "spotlight 2s ease .75s 1 forwards",
         marquee: 'marquee var(--marquee-duration) linear infinite',
         'fade-in': 'fade-in 0.5s linear forwards',
         flashing: 'flashing 1.4s infinite linear',
