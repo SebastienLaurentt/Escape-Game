@@ -155,6 +155,19 @@ export const getOrdersList = async () => {
   }
 };
 
+// Delete Order
+export const deleteOrder = async (id: string) => {
+  try {
+    await prisma.order.delete({
+      where: { id },
+    });
+  } catch (error) {
+    return { message: "Failed to delete order" };
+  }
+
+  redirect("/account/reservations");
+};
+
 // Reservation
 // Read all Reservations
 export const getReservationsList = async () => {
