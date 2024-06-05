@@ -65,15 +65,15 @@ export async function POST(req: Request) {
         throw new Error('Experience not found');
       }
 
-      // Get the bookedSlot related to the reservation if it exists
-      // const bookedSlot = experience.bookedSlots.find(slot => slot.id === reservationData.experienceId);
+      const bookedSlot = experience.bookedSlots;
 
-      // if (!bookedSlot) {
-      //   throw new Error('Time slot not found');
-      // }
+      // Check if the bookedSlot exists
+      if (!bookedSlot) {
+        throw new Error('Booked slot not found');
+      }
 
       // Add the time slot and experience to the reservation data
-      const reservationWithDetails = { ...reservationData, experience };
+      const reservationWithDetails = { ...reservationData, bookedSlot, experience };
 
       await resend.emails.send({
         from: "Villa Effroi <noreply@villaeffroi.info>",
