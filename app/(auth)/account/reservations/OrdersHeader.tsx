@@ -2,7 +2,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import React from 'react'
 
-const ReservationsHeader = () => {
+const DeleteOrder = () => {
   return (
     <Tabs defaultValue="week">
     <TabsContent value="week">
@@ -17,4 +17,4 @@ const ReservationsHeader = () => {
   )
 }
 
-export default ReservationsHeader
+export default DeleteOrder

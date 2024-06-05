@@ -1,6 +1,6 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import ReservationsFetch from "./ReservationsFetch";
-import ReservationsHeader from "./ReservationsHeader";
+import OrdersFetch from "./OrdersFetch";
+import OrdersHeader from "./OrdersHeader";
 import { redirect } from "next/navigation";
 
 export default async function Reservations() {
@@ -11,8 +11,8 @@ export default async function Reservations() {
   return (
     <>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
-        <ReservationsHeader />
-        <ReservationsFetch  />
+        <OrdersHeader />
+        <OrdersFetch  />
       </div>
     </>
   );

@@ -8,8 +8,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import { getReservationsList } from "@/lib/action";
-import { DeleteReservation } from "./DeleteReservation";
+import { getOrdersList } from "@/lib/action";
+import { DeleteOrder } from "./DeleteOrder";
+import { Delete } from "lucide-react";
 
 // Function to format date as "Jour de la semaine DD MM AAAA"
 const formatDate = (dateString: string) => {
@@ -24,8 +25,8 @@ const formatDate = (dateString: string) => {
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 };
 
-const ReservationsFetch = async () => {
-  const reservations = await getReservationsList();
+const OrdersFetch = async () => {
+  const orders = await getOrdersList();
   return (
     <Tabs defaultValue="week">
       <TabsContent value="week">
@@ -66,20 +67,22 @@ const ReservationsFetch = async () => {
               </TableHeader>
 
               <TableBody>
-                {reservations.map((reservation) => {
-                  const bookedSlot = reservation.experience.bookedSlots[0]; // Assuming each experience has one booked slot for simplicity
+                {orders.map((order) => {
+                  const bookedSlot = order.reservation.experience.bookedSlots[0]; // Assuming each experience has one booked slot for simplicity
 
                   return (
                     <TableRow
-                      key={reservation.id}
+                      key={order.id}
                       className="bg-accent text-center"
                     >
-                      <TableCell>{reservation.name}</TableCell>
+                      <TableCell>
+                        {/* {order.name} */}
+                        </TableCell>
                       <TableCell className="hidden xl:table-cell">
-                        {reservation.email}
+                        {/* {order.email} */}
                       </TableCell>
                       <TableCell className="hidden sm:table-cell">
-                        {reservation.phone}
+                        {/* {order.phone} */}
                       </TableCell>
                       <TableCell className="md:table-cell">
                         {bookedSlot?.date
@@ -90,16 +93,16 @@ const ReservationsFetch = async () => {
                         {bookedSlot?.time ?? "N/A"}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        {reservation.people}
+                        {order.reservation.people}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        {reservation.experience?.name ?? "N/A"}
+                        {order.reservation.experience?.name ?? "N/A"}
                       </TableCell>
                       <TableCell className="hidden xl:table-cell">
-                        {reservation.price}
+                        {order.reservation.price}
                       </TableCell>
                       <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
-                        <DeleteReservation id={reservation.id} />
+                        <DeleteOrder id={order.reservation.id} />
                       </TableCell>
                     </TableRow>
                   );
@@ -113,4 +116,4 @@ const ReservationsFetch = async () => {
   );
 };
 
-export default ReservationsFetch;
+export default OrdersFetch;
