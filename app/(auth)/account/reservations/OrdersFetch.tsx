@@ -102,7 +102,7 @@ const OrdersFetch = async () => {
                         {order.reservation.price}
                       </TableCell>
                       <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
-                        <DeleteOrder id={order.reservation.id} />
+                        <DeleteOrder id={order.id} />
                       </TableCell>
                     </TableRow>
                   );
