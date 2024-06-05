@@ -18,6 +18,7 @@ import { BookedSlot, ClosedDay, Experience, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import { unstable_noStore } from "next/cache";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -54,6 +55,8 @@ const BookingInfos = ({
   closedDays: ClosedDay[];
   reservation: Reservation & { experience: ExtendedExperience };
 }) => {
+
+  unstable_noStore();
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
     mutationFn: async (formData: FormData) => {
