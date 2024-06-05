@@ -7,13 +7,12 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
   const reservation = await getReservationById(id);
   const closedDays = await getClosedDay();
-  const bookedSlots = await getBookedSlots();
 
   if (!reservation) {
     return <div>La réservation avec l&apos;ID {id} n&apos;existe pas.</div>;
   }
 
-  return <BookingInfos closedDays={closedDays} reservation={reservation} bookedSlots={bookedSlots} />;
+  return <BookingInfos closedDays={closedDays} reservation={reservation}  />;
 };
 
 export default Page;

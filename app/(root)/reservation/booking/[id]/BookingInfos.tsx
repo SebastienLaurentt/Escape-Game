@@ -14,12 +14,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { updateReservation } from "@/lib/action";
-import { BookedSlot, ClosedDay, Reservation } from "@prisma/client";
+import { BookedSlot, ClosedDay, Experience, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Image from "next/image";
 import React, { useState } from "react";
+
+interface ReservationWithExperience extends Reservation {
+  experience: Experience;
+}
+
+interface ExtendedExperience extends Experience {
+  bookedSlots: BookedSlot[];
+}
 
 const generateTimeSlots = (
   date: Date,
@@ -42,11 +50,9 @@ const generateTimeSlots = (
 const BookingInfos = ({
   closedDays,
   reservation,
-  bookedSlots,
 }: {
   closedDays: ClosedDay[];
-  reservation: Reservation;
-  bookedSlots: BookedSlot[];
+  reservation: Reservation & { experience: ExtendedExperience };
 }) => {
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
@@ -95,6 +101,8 @@ const BookingInfos = ({
   };
 
   const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
+
+  const bookedSlots: BookedSlot[] = reservation.experience.bookedSlots;
 
   // Filtrer les créneaux horaires disponibles
   const reservedTimesForDate: string[] = bookedSlots
