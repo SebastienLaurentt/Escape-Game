@@ -158,13 +158,49 @@ export const getOrdersList = async () => {
 // Delete Order
 export const deleteOrder = async (id: string) => {
   try {
+    //  Find the order by its ID
+    const order = await prisma.order.findUnique({
+      where: { id },
+      include: {
+        reservation: {
+          include: {
+            experience: {
+              select: {
+                bookedSlots: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    if (!order) {
+      console.error("Order not found", id);
+      return { message: "Order not found" };
+    }
+
+    // Delete the order by its ID
     await prisma.order.delete({
       where: { id },
     });
-  } catch (error) {
-    return { message: "Failed to delete order" };
-  }
 
+    // Delete the reservation related to the order
+    await prisma.reservation.delete({
+      where: { id: order.reservationId },
+    });
+
+    // Delete the booked slot related to the order
+    if (order.reservation.experience.bookedSlots.length > 0) {
+      const bookedSlotId = order.reservation.experience.bookedSlots[0].id;
+      await prisma.bookedSlot.delete({
+        where: { id: bookedSlotId },
+      });
+    }
+
+    
+  } catch (error) {
+    return { message: "Failed to delete order data" };
+  }
   redirect("/account/reservations");
 };
 
