@@ -16,6 +16,7 @@ const Home = async () => {
       <Price />
       <Testimonials />
       <Infos />
+      
     </main>
   );
 }

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import BgHome from "../../../public/images/BgHome2.webp";
 import { Button } from "../../ui/button";
 import Section from "../Section";
+import Particles from "@/components/ui/particles";
 
 const Hero = () => {
   useEffect(() => {
@@ -46,6 +47,14 @@ const Hero = () => {
           <Link href="/reservation/experiences">Réserver</Link>
         </Button>
       </Section>
+      <Particles
+        className="absolute inset-0"
+        quantity={200}
+        ease={80}
+        color={"#ffffff"}
+        size={1}
+        refresh
+      />
     </div>
   );
 };

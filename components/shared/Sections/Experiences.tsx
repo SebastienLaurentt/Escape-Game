@@ -8,6 +8,7 @@ import { useRef } from "react";
 import ExperienceCard from "../ExperienceCard";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
+import Particles from "@/components/ui/particles";
 
 const Experiences = ({ experiences }: { experiences: Experience[] }) => {
   const sectionHeaderRef = useRef<HTMLDivElement | null>(null);
@@ -19,7 +20,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
   const isContentInView = useInView(contentRef, { once: true, amount: 0.2 });
 
   return (
-    <Section marginBottom={true} marginTop={true} classname="">
+    <Section marginBottom={true} marginTop={true} classname="relative">
       <div
         ref={sectionHeaderRef}
         className={`opacity-0 transition-opacity duration-700 ease-in-out ${
@@ -53,6 +54,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
             </li>
           ))}
         </ul>
+        
 
         {/* Link Button to Experience / Reservation page */}
         <div className="my-8 flex flex-row justify-center lg:my-12">
@@ -64,6 +66,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
           </Button>
         </div>
       </div>
+
     </Section>
   );
 };
