@@ -19,7 +19,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
   const isContentInView = useInView(contentRef, { once: true, amount: 0.2 });
 
   return (
-    <Section marginBottom={true} marginTop={true} classname="">
+    <Section marginBottom={true} marginTop={true} classname="relative">
       <div
         ref={sectionHeaderRef}
         className={`opacity-0 transition-opacity duration-700 ease-in-out ${
@@ -35,6 +35,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
           isContentInView ? "opacity-100" : ""
         }`}
       >
+        
         {/* Experience Card List */}
         <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:justify-center xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
           {experiences.map((experience: Experience, index) => (
@@ -60,7 +61,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
             asChild
             aria-label="Aller à la page pour réserver son expérience"
           >
-            <Link href="/reservation/experiences">Réserver</Link>
+            <Link href="/reservation/experiences" className="">Réserver</Link>
           </Button>
         </div>
       </div>
