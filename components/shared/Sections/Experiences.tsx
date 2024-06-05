@@ -8,7 +8,6 @@ import { useRef } from "react";
 import ExperienceCard from "../ExperienceCard";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
-import Particles from "@/components/ui/particles";
 
 const Experiences = ({ experiences }: { experiences: Experience[] }) => {
   const sectionHeaderRef = useRef<HTMLDivElement | null>(null);
@@ -54,7 +53,6 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
             </li>
           ))}
         </ul>
-        
 
         {/* Link Button to Experience / Reservation page */}
         <div className="my-8 flex flex-row justify-center lg:my-12">
@@ -62,11 +60,10 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
             asChild
             aria-label="Aller à la page pour réserver son expérience"
           >
-            <Link href="/reservation/experiences">Réserver</Link>
+            <Link href="/reservation/experiences" className="">Réserver</Link>
           </Button>
         </div>
       </div>
-
     </Section>
   );
 };

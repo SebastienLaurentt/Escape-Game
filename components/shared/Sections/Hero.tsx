@@ -1,5 +1,6 @@
 "use client";
 
+import Particles from "@/components/ui/particles";
 import { creepster } from "@/lib/font";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -8,7 +9,6 @@ import { useEffect } from "react";
 import BgHome from "../../../public/images/BgHome2.webp";
 import { Button } from "../../ui/button";
 import Section from "../Section";
-import Particles from "@/components/ui/particles";
 
 const Hero = () => {
   useEffect(() => {
@@ -43,8 +43,12 @@ const Hero = () => {
         <Button
           asChild
           aria-label="Aller à la page pour réserver son expérience"
+          variant="hero"
         >
-          <Link href="/reservation/experiences">Réserver</Link>
+          <Link href="/reservation/experiences" className="relative z-10">
+            Réserver
+          </Link>
+          <span className="absolute right-0 top-1/2 h-32 w-8 -translate-y-1/2 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
         </Button>
       </Section>
       <Particles
