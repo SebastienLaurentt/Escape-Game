@@ -1,15 +1,40 @@
+"use client";
+
 import { creepster } from "@/lib/font";
+import { useInView } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useRef } from "react";
 import logo from "../../public/images/Logo.svg";
 
 const Footer = () => {
+  const footerRef = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const isFooterInView = useInView(footerRef, {
+    once: true,
+    amount: 0.4,
+  });
+
   return (
-    <footer className="w-full px-6  md:px-10 xl:mx-auto xl:max-w-[1600px] xl:px-16">
-      <div className=" flex flex-col justify-between border-t border-slate-400 pt-4 text-xs  md:text-sm lg:py-8">
+    <footer
+      ref={footerRef}
+      className={`w-full px-6 transition-opacity duration-700 ease-in-out md:px-10 xl:mx-auto xl:max-w-[1600px] xl:px-16 ${
+        isHomePage && isFooterInView
+          ? "opacity-100"
+          : isHomePage
+          ? "opacity-0"
+          : "opacity-100"
+      }`}
+    >
+      <div className="flex flex-col justify-between border-t border-slate-400 pt-4 text-xs md:text-sm lg:py-8">
         <div className="mb-6 flex flex-row items-center md:gap-x-4 lg:gap-x-6">
-          <span className={`${creepster} text-3xl uppercase md:text-4xl xl:text-5xl`}>
+          <span
+            className={`${creepster} text-3xl uppercase md:text-4xl xl:text-5xl`}
+          >
             La Villa de <span className="text-primary">l&apos; Effroi</span>
           </span>
           <Image
@@ -21,9 +46,11 @@ const Footer = () => {
           />
         </div>
 
-        <div className="gap-x-2 md:flex md:flex-row md:justify-between ">
+        <div className="gap-x-2 md:flex md:flex-row md:justify-between">
           <div className="mb-6">
-            <span className="text-lg uppercase text-secondary-foreground">Services </span>
+            <span className="text-lg uppercase text-secondary-foreground">
+              Services{" "}
+            </span>
             <div className="mt-3 flex flex-col gap-y-2 text-sm">
               <Link href="/faq" className="xl:hover:text-primary">
                 Team Building{" "}
@@ -37,7 +64,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="mb-6">
-            <span className="text-lg uppercase text-secondary-foreground">Contact </span>
+            <span className="text-lg uppercase text-secondary-foreground">
+              Contact{" "}
+            </span>
             <div className="mt-3 flex flex-col gap-y-2 text-sm">
               <span className="flex flex-row items-center gap-x-2">
                 <span>
@@ -60,7 +89,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="mb-6">
-            <span className="text-lg uppercase text-secondary-foreground">Informations</span>
+            <span className="text-lg uppercase text-secondary-foreground">
+              Informations
+            </span>
             <div className="mt-3 flex flex-col gap-y-2 text-sm">
               <Link
                 href="/faq"
