@@ -110,7 +110,7 @@ const OrdersFetch = async () => {
                           {order.isPaid ? "Payé" : "Non payé"}
                         </span>
                       </TableCell>
-                      <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
+                      <TableCell className="hidden lg:table-cell xl:cursor-pointer">
                         <DeleteOrder id={order.id} />
                       </TableCell>
                     </TableRow>
