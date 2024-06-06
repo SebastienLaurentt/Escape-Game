@@ -72,12 +72,16 @@ export async function POST(req: Request) {
         throw new Error('Booked slot not found');
       }
 
+      if (!updatedOrder.email) {
+        throw new Error('Email not found for the order');
+      }
+
       // Add the time slot and experience to the reservation data
       const reservationWithDetails = { ...reservationData, bookedSlot, experience };
 
       await resend.emails.send({
         from: "Villa Effroi <noreply@villaeffroi.info>",
-        to: [event.data.object.customer_details.email],
+        to: [updatedOrder.email],
         subject: 'Réservation confirmée',
         react: BookingReceivedEmail({ reservationData: reservationWithDetails }),
       });
