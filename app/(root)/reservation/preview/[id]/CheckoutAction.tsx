@@ -3,11 +3,13 @@
 import { prisma } from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 
-import { Order } from "@prisma/client";
-
-export const createCheckoutSession = async (id: string) => {
+export const createCheckoutSession = async (
+  id: string,
+  userInfo: { name: string; email: string; phone: string }
+) => {
   const reservation = await prisma.reservation.findUnique({
     where: { id },
+    include: { Order: true }, // Include orders in the query
   });
 
   if (!reservation) {
@@ -15,30 +17,42 @@ export const createCheckoutSession = async (id: string) => {
   }
 
   // Convert to cents for Stripe
-  const price = parseFloat(reservation.price || "0") * 100; 
+  const price = parseFloat(reservation.price || "0") * 100;
 
-  let order: Order | undefined = undefined;
-
-  const existingOrder = await prisma.order.findFirst({
-    where: {
-      reservationId: reservation.id,
-    },
+  // Check if the order already exists using reservationId
+  let order = await prisma.order.findFirst({
+    where: { reservationId: reservation.id },
   });
 
-  if (existingOrder) {
-    order = existingOrder;
+  if (order) {
+    // Update existing order with new user info
+    order = await prisma.order.update({
+      where: { id: order.id },
+      data: {
+        amount: price,
+        name: userInfo.name,
+        email: userInfo.email,
+        phone: userInfo.phone,
+      },
+    });
   } else {
+    // Create new order with user info
     order = await prisma.order.create({
       data: {
         amount: price,
         reservationId: reservation.id,
+        name: userInfo.name,
+        email: userInfo.email,
+        phone: userInfo.phone,
       },
     });
   }
 
   const product = await stripe.products.create({
     name: "La Villa de l'Effroi",
-    images: ["https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/images/Horror.jpg-1717198117087"],
+    images: [
+      "https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/images/Horror.jpg-1717198117087",
+    ],
     default_price_data: {
       currency: "eur",
       unit_amount: price,
