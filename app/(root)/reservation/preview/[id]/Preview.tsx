@@ -225,12 +225,10 @@ const Preview = ({
                 <span className="text-lg font-bold">{price}€</span>
               </div>
               <Button
-                disabled={isPending || isDisabled}
-                isLoading={isPending}
-                loadingText="Chargement"
                 onClick={() => createPaymentSession()}
+                disabled={isDisabled || isPending}
               >
-                Confirmer et Payer
+                {isPending ? "Chargement..." : "Confirmer et Payer"}
               </Button>
             </div>
             <div className="text-sm font-bold text-primary">

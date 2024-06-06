@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export default async function SignIn() {
   const { isAuthenticated } = getKindeServerSession();
   if (await isAuthenticated()) {
-    redirect("/account");
+    redirect("/account/experiences");
   }
 
   return (

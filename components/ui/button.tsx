@@ -18,13 +18,14 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "group relative w-full max-w-52 items-center justify-center overflow-hidden whitespace-pre rounded-md bg-primary text-sm font-medium text-primary-foreground shadow transition-all duration-300 ease-out hover:bg-primary/90 hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 flex",
+        hero: "group relative flex w-full max-w-52 items-center justify-center overflow-hidden whitespace-pre rounded-md bg-primary text-sm font-medium text-primary-foreground shadow transition-all duration-300 ease-out hover:bg-primary/90 hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "size-10",
+        default: " px-4 py-2",
+        links: "px-3 py-1",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icons: "size-10 p-1",
       },
     },
     defaultVariants: {
@@ -38,42 +39,17 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  isLoading?: boolean;
-  loadingText?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      isLoading,
-      loadingText,
-      variant,
-      children,
-      size,
-      asChild = false,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      >
-        <span className="flex items-center">
-          {isLoading && loadingText ? loadingText : children}
-          {isLoading && (
-            <span className="ml-1.5 flex items-center gap-1">
-              <span className="inline-block size-1 animate-flashing rounded-full bg-white" />
-              <span className="inline-block size-1 animate-flashing rounded-full bg-white delay-100" />
-              <span className="inline-block size-1 animate-flashing rounded-full bg-white delay-200" />
-            </span>
-          )}
-        </span>
-      </Comp>
+      />
     );
   }
 );
