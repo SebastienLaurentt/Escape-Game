@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import previewImg from "@/public/images/Experience2.jpg";
 import { Reservation } from "@prisma/client";
@@ -49,13 +50,21 @@ const Preview = ({
   const [confirmEmail, setConfirmEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
-  const [emailError, setEmailError] = useState(""); // Pour le message d'erreur
+  const [emailError, setEmailError] = useState("");
+
+  const isValidEmail = (email: string): boolean => {
+    // Regex to validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   // Update disabled state based on input fields
   useEffect(() => {
     const fieldsFilled = name && email && confirmEmail && phone;
     const emailsMatch = email === confirmEmail;
-    setIsDisabled(!(fieldsFilled && emailsMatch));
+    const isValidEmailFormat =
+      isValidEmail(email) && isValidEmail(confirmEmail);
+    setIsDisabled(!(fieldsFilled && emailsMatch && isValidEmailFormat));
     setEmailError(emailsMatch ? "" : "Les emails ne correspondent pas");
   }, [name, email, confirmEmail, phone]);
 
@@ -116,9 +125,9 @@ const Preview = ({
           </div>
 
           {/* Reservation Description */}
-          <div className="my-8 flex flex-col items-center text-md xl:items-start 2xl:my-12">
+          <div className="my-6 flex flex-col items-center text-md xl:items-start">
             {/* Reservation Booking */}
-            <div className="mb-6 flex flex-col gap-y-3">
+            <div className="mb-4 flex flex-col gap-y-3">
               <div className="flex flex-row gap-x-4">
                 <div className="flex flex-col">
                   <span className="uppercase text-secondary-foreground">
@@ -156,35 +165,47 @@ const Preview = ({
 
             {/* User infos */}
             <div className="flex max-w-[280px] flex-col gap-y-3 md:max-w-[380px]">
-              <Input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                type="email"
-                name="confirmEmail"
-                placeholder="Confirmez l'email"
-                value={confirmEmail}
-                onChange={(e) => setConfirmEmail(e.target.value)}
-              />
+              <div>
+                <Label>Email</Label>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <Label>Confirmation Email</Label>
+                <Input
+                  type="email"
+                  name="confirmEmail"
+                  placeholder="Confirmez l'email"
+                  value={confirmEmail}
+                  onChange={(e) => setConfirmEmail(e.target.value)}
+                />
+              </div>
               <div className="flex flex-row gap-x-2">
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Nom"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <Input
-                  type="text"
-                  name="phone"
-                  placeholder="Téléphone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
+                <div>
+                  <Label>Nom</Label>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Nom"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label>Téléphone</Label>
+                  <Input
+                    type="text"
+                    name="phone"
+                    placeholder="Téléphone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -204,7 +225,6 @@ const Preview = ({
                 Confirmer et Payer
               </Button>
             </div>
-
           </div>
         </div>
       </div>
