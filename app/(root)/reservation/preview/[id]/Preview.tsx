@@ -203,7 +203,12 @@ const Preview = ({
                     name="phone"
                     placeholder="Téléphone"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    maxLength={6}
+                    onChange={(e) => {
+                      if (e.target.value.length <= 6) {
+                        setPhone(e.target.value);
+                      }
+                    }}
                   />
                 </div>
               </div>
