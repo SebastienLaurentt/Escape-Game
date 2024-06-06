@@ -32,9 +32,6 @@ const ReservationsSchema = z.object({
   experienceId: z.string().optional(),
   people: z.string().optional(),
   price: z.string().optional(),
-  name: z.string().optional(),
-  email: z.string().optional(),
-  phone: z.string().optional(),
 });
 
 // Closed Day Schema type with Zod

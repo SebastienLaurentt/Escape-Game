@@ -28,9 +28,6 @@ model Reservation {
   experience    Experience   @relation(fields: [experienceId], references: [id])
   people        String?
   price         String?
-  name          String?
-  email         String?
-  phone         String?
   Order         Order[]
 }
 
@@ -51,6 +48,9 @@ model Order {
   id              String      @id @default(cuid())
   reservationId   String 
   reservation     Reservation @relation(fields: [reservationId], references: [id])
+  name          String?
+  email         String?
+  phone         String?
   amount          Float
   isPaid          Boolean     @default(false)
   createdAt       DateTime    @default(now())
