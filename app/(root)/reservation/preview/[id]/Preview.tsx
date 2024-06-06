@@ -50,7 +50,6 @@ const Preview = ({
   const [confirmEmail, setConfirmEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
-  const [emailError, setEmailError] = useState("");
 
   const isValidEmail = (email: string): boolean => {
     // Regex to validate email format
@@ -62,10 +61,12 @@ const Preview = ({
   useEffect(() => {
     const fieldsFilled = name && email && confirmEmail && phone;
     const emailsMatch = email === confirmEmail;
+    const isPhoneValid = phone.length === 10;
     const isValidEmailFormat =
       isValidEmail(email) && isValidEmail(confirmEmail);
-    setIsDisabled(!(fieldsFilled && emailsMatch && isValidEmailFormat));
-    setEmailError(emailsMatch ? "" : "Les emails ne correspondent pas");
+    setIsDisabled(
+      !(fieldsFilled && emailsMatch && isValidEmailFormat && isPhoneValid)
+    );
   }, [name, email, confirmEmail, phone]);
 
   const { mutate: createPaymentSession, isPending } = useMutation({
@@ -203,10 +204,12 @@ const Preview = ({
                     name="phone"
                     placeholder="Téléphone"
                     value={phone}
-                    maxLength={6}
+                    maxLength={10}
                     onChange={(e) => {
-                      if (e.target.value.length <= 6) {
-                        setPhone(e.target.value);
+                      const userInput = e.target.value;
+                      const onlyNumbers = userInput.replace(/\D/g, ""); // Supprimer tout sauf les chiffres
+                      if (onlyNumbers.length <= 10) {
+                        setPhone(onlyNumbers);
                       }
                     }}
                   />
@@ -229,6 +232,42 @@ const Preview = ({
               >
                 Confirmer et Payer
               </Button>
+            </div>
+            <div className="text-sm font-bold text-primary">
+              {(!name || !email || !confirmEmail || !phone) &&
+                "Veuillez remplir tous les champs"}
+              {name &&
+                email &&
+                confirmEmail &&
+                phone &&
+                email !== confirmEmail &&
+                "Emails non identiques"}
+              {name &&
+                email &&
+                confirmEmail &&
+                phone &&
+                email === confirmEmail &&
+                !isValidEmail(email) &&
+                "Email non conforme"}
+              {name &&
+                email &&
+                confirmEmail &&
+                phone &&
+                email === confirmEmail &&
+                isValidEmail(email) &&
+                phone.length < 10 &&
+                "Numéro de téléphone non conforme"}
+              {name &&
+                email &&
+                confirmEmail &&
+                phone &&
+                email === confirmEmail &&
+                isValidEmail(email) &&
+                phone.length === 10 && (
+                  <span className="text-green-500">
+                    Vous pouvez valider et payer
+                  </span>
+                )}
             </div>
           </div>
         </div>
