@@ -43,10 +43,18 @@ const Hero = () => {
         <Button
           asChild
           aria-label="Aller à la page pour réserver son expérience"
+          variant="hero"
+          size="hero"
         >
-          <Link href="/reservation/experiences">
-            Réserver
-          </Link>
+          <span>
+            <Link
+              href="/reservation/experiences"
+              className="relative z-10 w-full p-2"
+            >
+              Réserver
+            </Link>
+            <span className="absolute right-0 top-1/2 h-32 w-8 -translate-y-1/2 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+          </span>
         </Button>
       </Section>
       <Particles
