@@ -10,7 +10,6 @@ import {
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { getOrdersList } from "@/lib/action";
 import { DeleteOrder } from "./DeleteOrder";
-import { Delete } from "lucide-react";
 
 // Function to format date as "Jour de la semaine DD MM AAAA"
 const formatDate = (dateString: string) => {
@@ -60,6 +59,9 @@ const OrdersFetch = async () => {
                   <TableHead className="hidden text-center xl:table-cell">
                     Prix
                   </TableHead>
+                  <TableHead className="hidden text-center xl:table-cell">
+                    Etat
+                  </TableHead>
                   <TableHead className="hidden text-center lg:table-cell">
                     Edit
                   </TableHead>
@@ -68,21 +70,17 @@ const OrdersFetch = async () => {
 
               <TableBody>
                 {orders.map((order) => {
-                  const bookedSlot = order.reservation.experience.bookedSlots[0]; // Assuming each experience has one booked slot for simplicity
+                  const bookedSlot =
+                    order.reservation.experience.bookedSlots[0]; // Assuming each experience has one booked slot for simplicity
 
                   return (
-                    <TableRow
-                      key={order.id}
-                      className="bg-accent text-center"
-                    >
-                      <TableCell>
-                        {/* {order.name} */}
-                        </TableCell>
+                    <TableRow key={order.id} className="bg-accent text-center">
+                      <TableCell>{order.name}</TableCell>
                       <TableCell className="hidden xl:table-cell">
-                        {/* {order.email} */}
+                        {order.email}
                       </TableCell>
                       <TableCell className="hidden sm:table-cell">
-                        {/* {order.phone} */}
+                        {order.phone}
                       </TableCell>
                       <TableCell className="md:table-cell">
                         {bookedSlot?.date
@@ -100,6 +98,17 @@ const OrdersFetch = async () => {
                       </TableCell>
                       <TableCell className="hidden xl:table-cell">
                         {order.reservation.price}
+                      </TableCell>
+                      <TableCell className="hidden xl:table-cell">
+                        <span
+                          className={`${
+                            order.isPaid
+                              ? "font-bold text-green-500"
+                              : "text-red-500"
+                          }`}
+                        >
+                          {order.isPaid ? "Payé" : "Non payé"}
+                        </span>
                       </TableCell>
                       <TableCell className="hidden lg:flex lg:flex-row lg:justify-center xl:cursor-pointer">
                         <DeleteOrder id={order.id} />
