@@ -18,7 +18,6 @@ import { BookedSlot, ClosedDay, Experience, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { unstable_noStore } from "next/cache";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -55,7 +54,6 @@ const BookingInfos = ({
   closedDays: ClosedDay[];
   reservation: Reservation & { experience: ExtendedExperience };
 }) => {
-
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
     mutationFn: async (formData: FormData) => {
@@ -144,7 +142,11 @@ const BookingInfos = ({
             <div className="mb-8 flex flex-col items-center">
               <h3 className="mb-1">A. Combien êtes vous ?</h3>
               {/* Fetch reservation experienceId in input to link bookedSlot to correct experienceId (ExperienceUpdate) */}
-              <Input type="hidden" name="experienceId" value={reservation.experienceId ?? ""} />
+              <Input
+                type="hidden"
+                name="experienceId"
+                value={reservation.experienceId ?? ""}
+              />
               <Input type="hidden" name="people" value={people ?? ""} />
               <Input type="hidden" name="price" value={price.toString()} />
 
@@ -226,14 +228,7 @@ const BookingInfos = ({
                 </div>
                 {time && (
                   <div className="flex flex-row justify-end">
-                    <Button
-                      disabled={isPending}
-                      isLoading={isPending}
-                      loadingText="Chargement"
-                      type="submit"
-                    >
-                      Continuer
-                    </Button>
+                    <Button type="submit">Continuer</Button>
                   </div>
                 )}
               </div>
