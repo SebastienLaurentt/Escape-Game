@@ -18,11 +18,6 @@ const OpeningHours = () => {
           <div className="grid gap-0.5">
             <CardTitle className="group flex items-center gap-2">
               Horaires d&apos;ouverture
-              <Button
-                size="icon"
-                variant="outline"
-                className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
-              ></Button>
             </CardTitle>
           </div>
         </CardHeader>
