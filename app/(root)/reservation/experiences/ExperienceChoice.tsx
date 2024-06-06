@@ -79,7 +79,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         </div>
         {experienceId && (
           <div className="flex flex-row justify-end">
-            <Button type="submit">Continuer</Button>
+            <Button type="submit">{isPending ? "Chargement..." : "Continuer"}</Button>
           </div>
         )}
       </form>

@@ -224,8 +224,11 @@ const Preview = ({
               <div className="flex flex-col">
                 <span className="text-lg font-bold">{price}€</span>
               </div>
-              <Button onClick={() => createPaymentSession()}>
-                Confirmer et Payer
+              <Button
+                onClick={() => createPaymentSession()}
+                disabled={isDisabled || isPending}
+              >
+                {isPending ? "Chargement..." : "Confirmer et Payer"}
               </Button>
             </div>
             <div className="text-sm font-bold text-primary">
