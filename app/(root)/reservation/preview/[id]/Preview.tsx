@@ -49,12 +49,14 @@ const Preview = ({
   const [confirmEmail, setConfirmEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+  const [emailError, setEmailError] = useState(""); // Pour le message d'erreur
 
   // Update disabled state based on input fields
   useEffect(() => {
     const fieldsFilled = name && email && confirmEmail && phone;
     const emailsMatch = email === confirmEmail;
     setIsDisabled(!(fieldsFilled && emailsMatch));
+    setEmailError(emailsMatch ? "" : "Les emails ne correspondent pas");
   }, [name, email, confirmEmail, phone]);
 
   const { mutate: createPaymentSession, isPending } = useMutation({
@@ -188,18 +190,21 @@ const Preview = ({
           </div>
 
           {/* Price and Checkout */}
-          <div className="flex flex-row items-center justify-center gap-x-4 xl:justify-start">
-            <div className="flex flex-col">
-              <span className="text-lg font-bold">{price}€</span>
+          <div className="flex flex-col items-center gap-y-2 xl:items-start">
+            <div className="flex flex-row items-center justify-center gap-x-4 xl:justify-start">
+              <div className="flex flex-col">
+                <span className="text-lg font-bold">{price}€</span>
+              </div>
+              <Button
+                disabled={isPending || isDisabled}
+                isLoading={isPending}
+                loadingText="Chargement"
+                onClick={() => createPaymentSession()}
+              >
+                Confirmer et Payer
+              </Button>
             </div>
-            <Button
-              disabled={isPending || isDisabled}
-              isLoading={isPending}
-              loadingText="Chargement"
-              onClick={() => createPaymentSession()}
-            >
-              Confirmer et Payer
-            </Button>
+
           </div>
         </div>
       </div>
