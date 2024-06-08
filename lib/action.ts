@@ -158,7 +158,7 @@ export const getOrdersList = async () => {
 // Delete Order
 export const deleteOrder = async (id: string) => {
   try {
-    //  Find the order by its ID
+    // Find the order by its ID
     const order = await prisma.order.findUnique({
       where: { id },
       include: {
@@ -176,7 +176,7 @@ export const deleteOrder = async (id: string) => {
 
     if (!order) {
       console.error("Order not found", id);
-      return { message: "Order not found" };
+      throw new Error("Order not found");
     }
 
     // Delete the order by its ID
@@ -196,10 +196,8 @@ export const deleteOrder = async (id: string) => {
         where: { id: bookedSlotId },
       });
     }
-
-    
   } catch (error) {
-    return { message: "Failed to delete order data" };
+    throw new Error("Failed to delete order data");
   }
   redirect("/account/reservations");
 };

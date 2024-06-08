@@ -1,3 +1,4 @@
+import Providers from "@/components/shared/Providers";
 import { poppins } from "@/lib/font";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${poppins} min-h-screen`}>{children}</body>
+      <Providers>
+        <body className={`${poppins} min-h-screen`}>{children}</body>
+      </Providers>
     </html>
   );
 }
