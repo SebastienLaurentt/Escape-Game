@@ -10,25 +10,25 @@ import TabDeskNavItem from "./TabDeskNavItem";
 
 const navItems = [
   {
-    href: "/account/experiences/",
+    href: "/account/experiences",
     icon: <Gamepad2 />,
     label: "Onglet Experiences",
     tooltip: "Expériences",
   },
   {
-    href: "/account/opening/",
+    href: "/account/opening",
     icon: <Calendar />,
     label: "Onglet Ouverture",
     tooltip: "Ouverture",
   },
   {
-    href: "/account/reservations/",
+    href: "/account/reservations",
     icon: <Users2 />,
     label: "Onglet Réservations",
     tooltip: "Réservations",
   },
   {
-    href: "/account/insights/",
+    href: "/account/insights",
     icon: <AreaChart />,
     label: "Onglet Comptabilité",
     tooltip: "Comptabilité",
