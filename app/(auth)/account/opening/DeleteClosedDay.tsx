@@ -1,11 +1,10 @@
-'use client'
+"use client";
 
-import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
-import { deleteClosedDay } from "@/lib/action";
-import { toast } from "@/components/ui/use-toast";
-import { Trash } from "lucide-react";
 import Loader from "@/components/shared/Loader";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
+import { deleteClosedDay } from "@/lib/action";
+import { useMutation } from "@tanstack/react-query";
 
 export const DeleteButton = ({ id }: { id: string }) => {
   const { mutate: deleteClosedDayMutation, isPending } = useMutation({
