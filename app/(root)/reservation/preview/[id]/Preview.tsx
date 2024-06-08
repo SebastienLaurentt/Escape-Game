@@ -95,7 +95,8 @@ const Preview = ({
     },
   });
 
-  const bookedSlot = experience.bookedSlots[0] || null;
+  const bookedSlot = experience.bookedSlots.length > 0 ? experience.bookedSlots[experience.bookedSlots.length - 1] : null;
+
 
   return (
     <main>
