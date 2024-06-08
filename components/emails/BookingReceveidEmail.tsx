@@ -13,8 +13,6 @@ import {
   Text,
 } from "@react-email/components";
 
-
-
 const formatDate = (date: Date | null | undefined): string => {
   if (!date) return '';
   return date.toLocaleDateString("fr-FR", {
@@ -228,4 +226,3 @@ const footer = {
     fontSize: "12px",
   } as React.CSSProperties,
 };
-
