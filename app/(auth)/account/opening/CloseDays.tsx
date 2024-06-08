@@ -1,37 +1,69 @@
-"use client";
+'use client'
 
+import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
 import { createClosedDay } from "@/lib/action";
 import { ClosedDay } from "@prisma/client";
-import React from "react";
-import { useFormState } from "react-dom";
+import { useMutation } from "@tanstack/react-query"; //
+import React, { useState } from "react";
 
 const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
-  const [state, formAction] = useFormState(createClosedDay, null);
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(new Date());
 
   const handleDateChange = (selectedDate: Date | undefined) => {
     if (selectedDate) {
-      const utcDate = new Date(Date.UTC(
-        selectedDate.getFullYear(),
-        selectedDate.getMonth(),
-        selectedDate.getDate()
-      ));
+      const utcDate = new Date(
+        Date.UTC(
+          selectedDate.getFullYear(),
+          selectedDate.getMonth(),
+          selectedDate.getDate()
+        )
+      );
       setDate(utcDate);
     } else {
       setDate(undefined);
     }
   };
 
+  const isDayClosed = (selectedDate: Date | undefined) => {
+    if (!selectedDate) return false;
+    const selectedDateString = selectedDate.toISOString().split("T")[0];
+    return closedDays.some((day) => {
+      const dayDate = new Date(day.date);
+      const dayDateString = dayDate.toISOString().split("T")[0];
+      return dayDateString === selectedDateString;
+    });
+  };
+
+  const { mutate: createClosedDayMutation, isPending } = useMutation({
+    mutationKey: ["create-closed-day"],
+    mutationFn: async (formData: FormData) => {
+      const result = await createClosedDay(null, formData);
+      return result;
+    },
+    onError: () => {
+      toast({ title: "Failed to create closed day", variant: "destructive" });
+    },
+    onSuccess: () => {
+      toast({ title: "Closed day created successfully", variant: "destructive" });
+    },
+  });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    formData.set("date", date?.toISOString() ?? "");
+    createClosedDayMutation(formData);
+  };
+
   return (
     <div className="flex flex-col">
-      <CardDescription>
-        Fermer des jours
-      </CardDescription>
-      <form action={formAction}>
+      <CardDescription>Fermer des jours</CardDescription>
+      <form onSubmit={handleSubmit}>
         <Input type="hidden" name="date" value={date?.toISOString()} />
         <Calendar
           mode="single"
@@ -40,10 +72,11 @@ const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
           closedDays={closedDays.map((day) => new Date(day.date))}
           className="px-0"
         />
-        <div id="name-error" aria-live="polite" aria-atomic="true">
-          <p className="mt-2 text-sm text-red-500">{state?.Error?.date}</p>
-        </div>
-        <Button>Fermer le jour</Button>
+        {!isDayClosed(date) && (
+          <Button type="submit" disabled={isPending}>
+            {isPending ? <Loader /> : "Fermer le jour"}
+          </Button>
+        )}
       </form>
     </div>
   );
