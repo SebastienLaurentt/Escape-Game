@@ -124,11 +124,11 @@ export const updateExperience = async (
       where: { id },
     });
 
-    // Revalidate and redirect
-    redirect(`/account/experiences`);
+
   } catch (error) {
     return { message: "Expérience mise à jour !" };
   }
+  redirect(`/account/experiences`);
 };
 
 // Order
