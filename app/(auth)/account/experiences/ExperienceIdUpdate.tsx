@@ -39,7 +39,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     if (!selectedImage) {
-      formData.append('currentImageUrl', `${experience.image}`);
+      formData.append("currentImageUrl", `${experience.image}`);
     }
     formAction(formData);
   };
@@ -128,41 +128,47 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
-            <div className="mb-5">
-              <Label htmlFor="Name">Durée</Label>
-              <Input
-                type="text"
-                defaultValue={experience.duration}
-                placeholder="Durée de l'expérience"
-                name="duration"
-                id="duration"
-                className="mt-1"
-              />
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.duration}
-                </p>
+            <div className="flex flex-row gap-x-2">
+              <div className="mb-5">
+                <Label htmlFor="Name">Durée</Label>
+                <Input
+                  type="text"
+                  defaultValue={experience.duration}
+                  placeholder="Durée de l'expérience"
+                  name="duration"
+                  id="duration"
+                  className="mt-1 w-[100px]"
+                />
+                <div id="name-error" aria-live="polite" aria-atomic="true">
+                  <p className="mt-2 text-sm text-red-500">
+                    {state?.Error?.duration}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="mb-5">
-              <Label htmlFor="Name">Unité de durée</Label>
-              <div className="mt-1">
-                <Select name="durationUnit" defaultValue={experience.durationUnit}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder={experience.durationUnit} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="minutes">minutes</SelectItem>
-                      <SelectItem value="heure">heure</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.durationUnit}
-                </p>
+
+              <div className="mb-5">
+                <Label htmlFor="Name">Unité de durée</Label>
+                <div className="mt-1">
+                  <Select
+                    name="durationUnit"
+                    defaultValue={experience.durationUnit}
+                  >
+                    <SelectTrigger className="w-[140px]">
+                      <SelectValue placeholder={experience.durationUnit} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="minutes">minutes</SelectItem>
+                        <SelectItem value="heure">heure</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div id="name-error" aria-live="polite" aria-atomic="true">
+                  <p className="mt-2 text-sm text-red-500">
+                    {state?.Error?.durationUnit}
+                  </p>
+                </div>
               </div>
             </div>
             <div className="mb-5">
@@ -216,7 +222,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
             </div>
             <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
-              <Button type="submit">Update</Button>
+              <Button type="submit">Mettre à jour</Button>
               <div id="message-error" aria-live="polite" aria-atomic="true">
                 <p className="text-center text-base text-green-600">
                   {state?.message}
