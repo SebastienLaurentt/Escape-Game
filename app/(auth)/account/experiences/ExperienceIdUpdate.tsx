@@ -36,7 +36,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     }
   };
 
-  console.log(state);
   return (
     <div>
       <Card className="overflow-hidden" x-chunk="dashboard-05-chunk-4">
@@ -151,7 +150,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             <div className="mb-5">
               <Label htmlFor="Name">Unité de durée</Label>
               <div className="mt-1">
-                <Select name="durationUnit">
+                <Select name="durationUnit" defaultValue={experience.durationUnit}>
                   <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder={experience.durationUnit} />
                   </SelectTrigger>
