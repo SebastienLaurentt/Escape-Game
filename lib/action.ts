@@ -125,7 +125,7 @@ export const updateExperience = async (
     });
 
     // Revalidate and redirect
-    redirect(`/account/experiences/${id}`);
+    redirect(`/account/experiences`);
   } catch (error) {
     return { message: "Expérience mise à jour !" };
   }
