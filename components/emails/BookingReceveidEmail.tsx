@@ -26,10 +26,8 @@ const formatDate = (date: Date | null | undefined): string => {
 type ReservationWithDetails = Reservation & { bookedSlot: BookedSlot[], experience: Experience };
 
 const BookingReceivedEmail = ({ reservationData }: { reservationData: ReservationWithDetails }) => {
-  const baseUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://escape-game-pi.vercel.app";
+
+  const bookedSlot = reservationData.bookedSlot.length > 0 ? reservationData.bookedSlot[reservationData.bookedSlot.length - 1] : null;
 
   return (
     <Html>
@@ -50,24 +48,20 @@ const BookingReceivedEmail = ({ reservationData }: { reservationData: Reservatio
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            {reservationData.bookedSlot.map((bookedSlot, index) => (
-              <div key={index}>
-                <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
-                  <Column style={{ width: 170 }}>
-                    <Text style={global.paragraphWithBold}>Date</Text>
-                    <Text style={global.paragraphDescription}>
-                      {formatDate(bookedSlot.date)}
-                    </Text>
-                  </Column>
-                  <Column style={{ marginLeft: 20 }}>
-                    <Text style={global.paragraphWithBold}>Heure</Text>
-                    <Text style={global.paragraphDescription}>
-                      {bookedSlot.time}
-                    </Text>
-                  </Column>
-                </Row>
-              </div>
-            ))}
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
+              <Column style={{ width: 170 }}>
+                <Text style={global.paragraphWithBold}>Date</Text>
+                <Text style={global.paragraphDescription}>
+                  {formatDate(bookedSlot?.date)}
+                </Text>
+              </Column>
+              <Column style={{ marginLeft: 20 }}>
+                <Text style={global.paragraphWithBold}>Heure</Text>
+                <Text style={global.paragraphDescription}>
+                  {bookedSlot?.time}
+                </Text>
+              </Column>
+            </Row>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 20 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Expérience</Text>
