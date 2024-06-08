@@ -1,5 +1,6 @@
 'use client'
 
+import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { deleteOrder } from "@/lib/action";
@@ -32,8 +33,9 @@ export const DeleteOrder = ({ id }: { id: string }) => {
       }}
     >
       <Button size="sm" disabled={isPending}>
-        {isPending ? "Deleting..." : <Trash />}
+        {isPending ? <Loader/> : <Trash/>}
       </Button>
+
     </form>
   );
 };
