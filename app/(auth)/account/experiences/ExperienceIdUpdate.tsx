@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
@@ -28,6 +36,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     }
   };
 
+  console.log(state);
   return (
     <div>
       <Card className="overflow-hidden" x-chunk="dashboard-05-chunk-4">
@@ -54,6 +63,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 placeholder="Nom de l'experience"
                 name="name"
                 id="name"
+                className="mt-1"
               />
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
@@ -68,6 +78,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 name="image"
                 id="image"
                 onChange={handleImageChange}
+                className="mt-1"
               />
               <div className="mt-3 flex flex-row gap-x-4">
                 <div className="flex flex-col gap-y-1">
@@ -109,6 +120,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 placeholder="Description de l'experience"
                 name="description"
                 id="description"
+                className="mt-1"
               />
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
@@ -126,6 +138,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 placeholder="Durée de l'expérience"
                 name="duration"
                 id="duration"
+                className="mt-1"
               />
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
@@ -136,14 +149,21 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
 
             {/* Duration Unit */}
             <div className="mb-5">
-              <Label htmlFor="Name">Unité de durée (minutes ou heure)</Label>
-              <Input
-                type="text"
-                defaultValue={experience.durationUnit}
-                placeholder="Unité de durée (minutes ou heure)"
-                name="durationUnit"
-                id="durationUnit"
-              />
+              <Label htmlFor="Name">Unité de durée</Label>
+              <div className="mt-1">
+                <Select name="durationUnit">
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder={experience.durationUnit} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="minutes">minutes</SelectItem>
+                      <SelectItem value="heure">heure</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
                   {state?.Error?.durationUnit}
@@ -160,6 +180,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 placeholder="Prix minimum"
                 name="minPrice"
                 id="minPrice"
+                className="mt-1"
               />
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
@@ -177,6 +198,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 placeholder="Nombre de personnes minimum"
                 name="minPeople"
                 id="minPeople"
+                className="mt-1"
               />
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
@@ -196,6 +218,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 placeholder="Nombre de personnes maximum"
                 name="maxPeople"
                 id="maxPeople"
+                className="mt-1"
               />
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
