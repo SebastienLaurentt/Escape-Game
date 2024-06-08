@@ -1,4 +1,3 @@
-//components/editform.tsx
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -36,10 +35,18 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     }
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    if (!selectedImage) {
+      formData.append('currentImageUrl', `${experience.image}`);
+    }
+    formAction(formData);
+  };
+
   return (
     <div>
       <Card className="overflow-hidden" x-chunk="dashboard-05-chunk-4">
-        {/* Header */}
         <CardHeader className="flex flex-row items-start bg-muted/50">
           <div className="grid gap-0.5">
             <CardTitle className="group flex items-center gap-2 text-lg">
@@ -50,10 +57,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
         </CardHeader>
 
         <CardContent className="p-6 text-sm">
-          {/* Form */}
-          <form action={formAction}>
-            {/* Name */}
-
+          <form onSubmit={handleSubmit}>
             <div className="mb-5">
               <Label htmlFor="Name">Nom</Label>
               <Input
@@ -103,15 +107,12 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                   </div>
                 )}
               </div>
-
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
                   {state?.Error?.image}
                 </p>
               </div>
             </div>
-
-            {/* Description */}
             <div className="mb-5">
               <Label htmlFor="Name">Description</Label>
               <Textarea
@@ -127,8 +128,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
-
-            {/* Duration */}
             <div className="mb-5">
               <Label htmlFor="Name">Durée</Label>
               <Input
@@ -145,8 +144,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
-
-            {/* Duration Unit */}
             <div className="mb-5">
               <Label htmlFor="Name">Unité de durée</Label>
               <div className="mt-1">
@@ -162,15 +159,12 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                   </SelectContent>
                 </Select>
               </div>
-
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
                   {state?.Error?.durationUnit}
                 </p>
               </div>
             </div>
-
-            {/* Min Price */}
             <div className="mb-5">
               <Label htmlFor="Name">Prix minimum</Label>
               <Input
@@ -187,8 +181,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
-
-            {/* Min People */}
             <div className="mb-5">
               <Label htmlFor="Name">Nombre de personnes minimum</Label>
               <Input
@@ -205,8 +197,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
-
-            {/* Max People */}
             <div className="mb-5">
               <Label htmlFor="Name">
                 Nombre de personnes maximum (optionnel){" "}
@@ -225,9 +215,8 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </p>
               </div>
             </div>
-
             <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
-              <Button>Update</Button>
+              <Button type="submit">Update</Button>
               <div id="message-error" aria-live="polite" aria-atomic="true">
                 <p className="text-center text-base text-green-600">
                   {state?.message}

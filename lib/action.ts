@@ -71,7 +71,6 @@ export const updateExperience = async (
   prevState: any,
   formData: FormData
 ) => {
-  // Validate form data
   const validatedFields = ExperienceSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
@@ -85,7 +84,6 @@ export const updateExperience = async (
   try {
     const {
       name,
-      image,
       description,
       duration,
       durationUnit,
@@ -94,26 +92,32 @@ export const updateExperience = async (
       maxPeople,
     } = validatedFields.data;
 
-    // Extract the actual file from FormData
+    let imagePath = formData.get('currentImageUrl') as string;
     const actualImageFile = formData.get("image") as File;
 
-    // Convert the file to a string and upload the image to Supabase
-    const { data: imageData, error: uploadError } = await supabase.storage
-      .from("images")
-      .upload(
-        `images/${actualImageFile?.name}-${Date.now()}`,
-        actualImageFile,
-        {
-          cacheControl: "2592000",
-          contentType: "image/png",
-        }
-      );
+    if (actualImageFile && actualImageFile.size > 0) {
+      const { data: imageData, error: uploadError } = await supabase.storage
+        .from("images")
+        .upload(
+          `images/${actualImageFile?.name}-${Date.now()}`,
+          actualImageFile,
+          {
+            cacheControl: "2592000",
+            contentType: actualImageFile.type,
+          }
+        );
 
-    // Update the experience in the database
+      if (uploadError) {
+        throw new Error("Error uploading image");
+      }
+
+      imagePath = imageData.path;
+    }
+
     await prisma.experience.update({
       data: {
         name,
-        image: imageData?.path,
+        image: imagePath,
         description,
         duration,
         durationUnit,
@@ -124,12 +128,13 @@ export const updateExperience = async (
       where: { id },
     });
 
-
+    
   } catch (error) {
     return { message: "Expérience mise à jour !" };
   }
   redirect(`/account/experiences`);
 };
+
 
 // Order
 // Read all Orders
