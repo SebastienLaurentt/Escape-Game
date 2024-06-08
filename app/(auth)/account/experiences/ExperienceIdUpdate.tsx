@@ -121,6 +121,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 name="description"
                 id="description"
                 className="mt-1"
+                rows={4}
               />
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
