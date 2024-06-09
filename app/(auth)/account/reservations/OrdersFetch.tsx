@@ -70,8 +70,7 @@ const OrdersFetch = async () => {
 
               <TableBody>
                 {orders.map((order) => {
-                  const bookedSlot =
-                    order.reservation.experience.bookedSlots[0]; // Assuming each experience has one booked slot for simplicity
+                  const bookedSlot = order.reservation.bookedSlot;
 
                   return (
                     <TableRow key={order.id} className="bg-accent text-center">
@@ -126,3 +125,4 @@ const OrdersFetch = async () => {
 };
 
 export default OrdersFetch;
+

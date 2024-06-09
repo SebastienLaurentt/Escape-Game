@@ -93,7 +93,7 @@ export const updateExperience = async (
       maxPeople,
     } = validatedFields.data;
 
-    let imagePath = formData.get('currentImageUrl') as string;
+    let imagePath = formData.get("currentImageUrl") as string;
     const actualImageFile = formData.get("image") as File;
 
     if (actualImageFile && actualImageFile.size > 0) {
@@ -128,14 +128,11 @@ export const updateExperience = async (
       },
       where: { id },
     });
-
-    
   } catch (error) {
     return { message: "Expérience mise à jour !" };
   }
   redirect(`/account/experiences`);
 };
-
 
 // Order
 // Read all Orders
@@ -150,6 +147,7 @@ export const getOrdersList = async () => {
                 bookedSlots: true,
               },
             },
+            bookedSlot: true,
           },
         },
       },
@@ -228,7 +226,6 @@ export const getReservationsList = async () => {
   }
 };
 
-
 export const getReservationById = async (id: string) => {
   try {
     const reservation = await prisma.reservation.findUnique({
@@ -239,7 +236,7 @@ export const getReservationById = async (id: string) => {
             bookedSlots: true,
           },
         },
-        bookedSlot: true,  
+        bookedSlot: true,
       },
     });
 
@@ -274,11 +271,11 @@ export const updateReservation = async (id: string, formData: FormData) => {
       data: {
         time: time.toString(),
         date: new Date(date),
-        experienceId: experienceId, 
+        experienceId: experienceId,
       },
     });
 
-    // Update the reservation with the new data 
+    // Update the reservation with the new data
     await prisma.reservation.update({
       data: {
         people: validatedFields.data.people,
@@ -292,14 +289,13 @@ export const updateReservation = async (id: string, formData: FormData) => {
     await prisma.experience.update({
       data: {
         bookedSlots: {
-          connect: { id: createdTimeSlot.id }
+          connect: { id: createdTimeSlot.id },
         },
       },
       where: { id: experienceId },
     });
-
   } catch (error) {
-    console.error('Failed to update reservation:', error); 
+    console.error("Failed to update reservation:", error);
     return { message: "Failed to update reservation" };
   }
 
@@ -323,10 +319,10 @@ export const createReservation = async (prevState: any, formData: FormData) => {
   try {
     const newReservation = await prisma.reservation.create({
       data: {
-        experienceId: validatedFields.data.experienceId || "", 
+        experienceId: validatedFields.data.experienceId || "",
       },
     });
-    return { reservationId: newReservation.id }; 
+    return { reservationId: newReservation.id };
   } catch (error) {
     return { message: "Failed to create new reservation", Error: error };
   }
