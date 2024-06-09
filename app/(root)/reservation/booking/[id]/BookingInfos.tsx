@@ -8,8 +8,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { updateReservation } from "@/lib/action";
 import { BookedSlot, ClosedDay, Experience, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { format } from "date-fns";
-import { fr } from "date-fns/locale";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -46,6 +44,7 @@ const BookingInfos = ({
   closedDays: ClosedDay[];
   reservation: Reservation & { experience: ExtendedExperience };
 }) => {
+  // Update Reservation Mutation
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
     mutationFn: async (formData: FormData) => {
@@ -54,6 +53,7 @@ const BookingInfos = ({
     },
   });
 
+  // Form States
   const [people, setPeople] = useState<number | null>(null);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [price, setPrice] = useState(0);
@@ -82,28 +82,22 @@ const BookingInfos = ({
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    // ExperienceId FormData
+    // All form data set
     formData.set("experienceId", reservation.experienceId ?? "");
-    // People FormData
     if (people !== null) {
       formData.set("people", people.toString());
     }
-    // Price FormData
     formData.set("price", price.toString());
-    // Date FormData
     const utcDate = date
       ? new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
       : null;
     if (utcDate) {
       formData.set("date", utcDate.toISOString());
     }
-    // Time FormData
     formData.set("time", time ?? "");
 
     updateReservationMutation(formData);
   };
-
-  const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
 
   // Fetch booked slots for the selected experience
   const bookedSlots: BookedSlot[] = reservation.experience.bookedSlots;
@@ -120,6 +114,8 @@ const BookingInfos = ({
     })
     .map((slot) => slot.time);
 
+  const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
+  
   const availableTimes = timeSlots.filter(
     (time) => !reservedTimesForDate.includes(time)
   );
@@ -163,7 +159,7 @@ const BookingInfos = ({
                     />
                   </div>
 
-                  <TimeSelector 
+                  <TimeSelector
                     availableTimes={availableTimes}
                     selectedTime={time}
                     selectedDate={date}
