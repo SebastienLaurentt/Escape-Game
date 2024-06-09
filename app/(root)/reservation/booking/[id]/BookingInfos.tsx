@@ -142,7 +142,7 @@ const BookingInfos = ({
           <form onSubmit={handleSubmit}>
             <div className="mb-8 flex flex-col items-center">
               <h3 className="mb-1">A. Combien êtes vous ?</h3>
-              {/* Fetch reservation experienceId in input to link bookedSlot to correct experienceId (ExperienceUpdate) */}
+              
               <Input
                 type="hidden"
                 name="experienceId"
