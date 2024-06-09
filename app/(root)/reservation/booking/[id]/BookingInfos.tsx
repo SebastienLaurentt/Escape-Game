@@ -11,10 +11,6 @@ import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useState } from "react";
 
-interface ReservationWithExperience extends Reservation {
-  experience: Experience;
-}
-
 interface ExtendedExperience extends Experience {
   bookedSlots: BookedSlot[];
 }
