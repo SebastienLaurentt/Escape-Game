@@ -4,7 +4,6 @@ import ExperienceCard from "@/components/shared/ExperienceCard";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
@@ -76,13 +75,12 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         <div id="name-error" aria-live="polite" aria-atomic="true">
           {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
-        {experienceId && (
-          <div className="flex flex-row justify-end">
-            <Button disabled={isPending} type="submit">
-              {isPending ? "Chargement..." : "Continuer"}
-            </Button>
-          </div>
-        )}
+
+        <div className="flex flex-row justify-end">
+          <Button disabled={isPending || !experienceId} type="submit">
+            {isPending ? "Chargement..." : "Continuer"}
+          </Button>
+        </div>
       </form>
     </div>
   );
