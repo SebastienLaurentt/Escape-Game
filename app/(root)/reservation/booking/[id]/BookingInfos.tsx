@@ -1,7 +1,7 @@
 "use client";
 
 import PeopleSelector from "@/components/shared/BookingForm/PeopleSelector";
-import HoursChips from "@/components/shared/HoursChips";
+import TimeSelector from "@/components/shared/BookingForm/TimeSelector"; // Import du nouveau composant
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -105,7 +105,7 @@ const BookingInfos = ({
 
   const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
 
-  // Fetch booked slots for the selected  experience
+  // Fetch booked slots for the selected experience
   const bookedSlots: BookedSlot[] = reservation.experience.bookedSlots;
 
   // Filter booked slots for the selected date
@@ -163,31 +163,12 @@ const BookingInfos = ({
                     />
                   </div>
 
-                  <div className="flex flex-col items-center">
-                    <h3 className="w-[320px] text-center">
-                      C. Choisissez une horaire
-                    </h3>
-                    {date && (
-                      <div className="flex flex-col items-center">
-                        <span className="mt-1 text-md text-primary">
-                          {format(date, " EEEE dd MMMM", { locale: fr })
-                            .replace(/^\w/, (c) => c.toUpperCase())
-                            .replace(/ \w/g, (c) => c.toUpperCase())}
-                        </span>
-
-                        <div className="grid grid-cols-3 gap-4 py-6">
-                          {availableTimes.map((timeSlot, index) => (
-                            <HoursChips
-                              key={index}
-                              hours={timeSlot}
-                              onClick={() => handleTimeSelect(timeSlot)}
-                              isSelected={time === timeSlot}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <TimeSelector 
+                    availableTimes={availableTimes}
+                    selectedTime={time}
+                    selectedDate={date}
+                    onTimeSelect={handleTimeSelect}
+                  />
                 </div>
                 {time && (
                   <div className="flex flex-row justify-end">
