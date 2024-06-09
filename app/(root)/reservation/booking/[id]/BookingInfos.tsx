@@ -170,9 +170,10 @@ const BookingInfos = ({
                     onTimeSelect={handleTimeSelect}
                   />
                 </div>
-                {time && (
+
+                {date && (
                   <div className="flex flex-row justify-end">
-                    <Button disabled={isPending} type="submit">
+                    <Button disabled={isPending || !time} type="submit">
                       {isPending ? "Chargement..." : "Continuer"}
                     </Button>
                   </div>
