@@ -51,15 +51,6 @@ const BookingInfos = ({
   const [price, setPrice] = useState(0);
   const [time, setTime] = useState<string | null>(null);
 
-  // Update Reservation Mutation
-  const { mutate: updateReservationMutation, isPending } = useMutation({
-    mutationKey: ["update-reservation"],
-    mutationFn: async (formData: FormData) => {
-      const result = await updateReservation(reservation.id, formData);
-      return result;
-    },
-  });
-
   const handlePeopleSelect = (value: string) => {
     const numberOfPeople = parseInt(value);
     setPeople(numberOfPeople);
@@ -120,6 +111,15 @@ const BookingInfos = ({
   const availableTimes = timeSlots.filter(
     (time) => !reservedTimesForDate.includes(time)
   );
+
+  // Update Reservation Mutation
+  const { mutate: updateReservationMutation, isPending } = useMutation({
+    mutationKey: ["update-reservation"],
+    mutationFn: async (formData: FormData) => {
+      const result = await updateReservation(reservation.id, formData);
+      return result;
+    },
+  });
 
   return (
     <div className="w-full py-8 ">

@@ -15,6 +15,17 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+  const handleCardClick = (id: string) => {
+    setExperienceId(id);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    formData.set("experienceId", experienceId ?? "");
+    createReservationMutation(formData);
+  };
+
   const { mutate: createReservationMutation, isPending } = useMutation({
     mutationKey: ["create-reservation"],
     mutationFn: async (formData: FormData) => {
@@ -32,17 +43,6 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
       }
     },
   });
-
-  const handleCardClick = (id: string) => {
-    setExperienceId(id);
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    formData.set("experienceId", experienceId ?? "");
-    createReservationMutation(formData);
-  };
 
   return (
     <div className="py-8 pb-4 xl:pt-0">

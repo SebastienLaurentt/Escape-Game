@@ -12,8 +12,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createCheckoutSession } from "./CheckoutAction";
 
-
-
 interface ExperienceWithSlots {
   name: string;
   image: string | null;
@@ -29,6 +27,17 @@ const Preview = ({
 }: {
   reservation: ReservationWithExperience;
 }) => {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const router = useRouter();
+
+  const { id, experience, people, price, bookedSlot  } = reservation;
+
   const formatDate = (date: string) => {
     const formattedDate = new Date(date).toLocaleDateString("fr-FR", {
       day: "2-digit",
@@ -37,15 +46,6 @@ const Preview = ({
     });
     return formattedDate;
   };
-
-  const { id, experience, people, price, bookedSlot  } = reservation;
-  const router = useRouter();
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
 
   const isValidEmail = (email: string): boolean => {
     // Regex to validate email format
