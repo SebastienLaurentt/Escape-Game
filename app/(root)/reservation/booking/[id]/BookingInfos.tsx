@@ -4,7 +4,6 @@ import HoursChips from "@/components/shared/HoursChips";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -90,12 +89,23 @@ const BookingInfos = ({
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
+    // ExperienceId FormData
+    formData.set("experienceId", reservation.experienceId ?? "");
+    // People FormData
+    if (people !== null) {
+      formData.set("people", people.toString());
+    }
+    // Price FormData
+    formData.set("price", price.toString());
+    // Date FormData
     const utcDate = date
       ? new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
       : null;
     if (utcDate) {
       formData.set("date", utcDate.toISOString());
     }
+    // Time FormData
+    formData.set("time", time ?? "");
 
     updateReservationMutation(formData);
   };
@@ -109,7 +119,7 @@ const BookingInfos = ({
   const reservedTimesForDate: string[] = bookedSlots
     .filter((slot) => {
       if (date instanceof Date && slot.date instanceof Date) {
-        const slotDateString = slot.date.toLocaleDateString("fr-FR"); 
+        const slotDateString = slot.date.toLocaleDateString("fr-FR");
         const currentDate = date.toLocaleDateString("fr-FR");
         return slotDateString === currentDate;
       }
@@ -142,15 +152,6 @@ const BookingInfos = ({
           <form onSubmit={handleSubmit}>
             <div className="mb-8 flex flex-col items-center">
               <h3 className="mb-1">A. Combien êtes vous ?</h3>
-              
-              <Input
-                type="hidden"
-                name="experienceId"
-                value={reservation.experienceId ?? ""}
-              />
-              <Input type="hidden" name="people" value={people ?? ""} />
-              <Input type="hidden" name="price" value={price.toString()} />
-
               <Select onValueChange={handlePeopleSelect}>
                 <SelectTrigger
                   className=" w-[280px]"
@@ -187,11 +188,6 @@ const BookingInfos = ({
                     <h3 className="w-[320px] text-center">
                       B. Choisissez un jour
                     </h3>
-                    <Input
-                      type="hidden"
-                      name="date"
-                      value={date?.toISOString()}
-                    />
                     <Calendar
                       mode="single"
                       selected={date}
@@ -204,7 +200,6 @@ const BookingInfos = ({
                     <h3 className="w-[320px] text-center">
                       C. Choisissez une horaire
                     </h3>
-                    <Input type="hidden" name="time" value={time ?? ""} />
                     {date && (
                       <div className="flex flex-col items-center">
                         <span className="mt-1 text-md text-primary">
