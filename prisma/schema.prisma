@@ -26,17 +26,20 @@ model Reservation {
   id            String       @id @default(cuid())
   experienceId  String
   experience    Experience   @relation(fields: [experienceId], references: [id])
+  bookedSlotId   String?
+  bookedSlot     BookedSlot? @relation(fields: [bookedSlotId], references: [id])
   people        String?
   price         String?
   Order         Order[]
 }
 
 model BookedSlot {
-  id            String      @id @default(cuid())
-  date          DateTime?
+  id            String       @id @default(cuid())
   time          String
-  experience    Experience  @relation(fields: [experienceId], references: [id])
+  date          DateTime
   experienceId  String
+  experience    Experience   @relation(fields: [experienceId], references: [id])
+  reservations  Reservation[]
 }
 
 model ClosedDay {

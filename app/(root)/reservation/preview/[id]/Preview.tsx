@@ -5,27 +5,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import previewImg from "@/public/images/Experience2.jpg";
-import { Reservation } from "@prisma/client";
+import { BookedSlot, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createCheckoutSession } from "./CheckoutAction";
 
-interface BookedSlot {
-  id?: string;
-  time: string;
-  date: Date | null;
-}
+
 
 interface ExperienceWithSlots {
   name: string;
   image: string | null;
-  bookedSlots: BookedSlot[];
 }
 
 interface ReservationWithExperience extends Reservation {
   experience: ExperienceWithSlots;
+  bookedSlot: BookedSlot | null; 
 }
 
 const Preview = ({
@@ -42,7 +38,7 @@ const Preview = ({
     return formattedDate;
   };
 
-  const { id, experience, people, price } = reservation;
+  const { id, experience, people, price, bookedSlot  } = reservation;
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -94,9 +90,6 @@ const Preview = ({
       });
     },
   });
-
-  const bookedSlot = experience.bookedSlots.length > 0 ? experience.bookedSlots[experience.bookedSlots.length - 1] : null;
-
 
   return (
     <main>

@@ -102,13 +102,14 @@ const BookingInfos = ({
 
   const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
 
+  // Fetch booked slots for the selected  experience
   const bookedSlots: BookedSlot[] = reservation.experience.bookedSlots;
 
-  // Filtrer les créneaux horaires disponibles
+  // Filter booked slots for the selected date
   const reservedTimesForDate: string[] = bookedSlots
     .filter((slot) => {
       if (date instanceof Date && slot.date instanceof Date) {
-        const slotDateString = slot.date.toLocaleDateString("fr-FR"); // Utilisez le code de langue 'fr-FR' pour le format français
+        const slotDateString = slot.date.toLocaleDateString("fr-FR"); 
         const currentDate = date.toLocaleDateString("fr-FR");
         return slotDateString === currentDate;
       }

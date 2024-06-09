@@ -30,6 +30,7 @@ const ExperienceSchema = z.object({
 // Reservation schema type with Zod
 const ReservationsSchema = z.object({
   experienceId: z.string().optional(),
+  bookedSlotId: z.string().optional(),
   people: z.string().optional(),
   price: z.string().optional(),
   name: z.string().optional(),
@@ -238,6 +239,7 @@ export const getReservationById = async (id: string) => {
             bookedSlots: true,
           },
         },
+        bookedSlot: true,  
       },
     });
 
@@ -281,6 +283,7 @@ export const updateReservation = async (id: string, formData: FormData) => {
       data: {
         people: validatedFields.data.people,
         price: validatedFields.data.price,
+        bookedSlotId: createdTimeSlot.id,
       },
       where: { id },
     });
