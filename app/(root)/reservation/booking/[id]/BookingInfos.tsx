@@ -1,17 +1,10 @@
 "use client";
 
+import PeopleSelector from "@/components/shared/BookingForm/PeopleSelector";
 import HoursChips from "@/components/shared/HoursChips";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { updateReservation } from "@/lib/action";
 import { BookedSlot, ClosedDay, Experience, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
@@ -150,36 +143,10 @@ const BookingInfos = ({
         </div>
         <div className="xl:w-1/2">
           <form onSubmit={handleSubmit}>
-            <div className="mb-8 flex flex-col items-center">
-              <h3 className="mb-1">A. Combien êtes vous ?</h3>
-              <Select onValueChange={handlePeopleSelect}>
-                <SelectTrigger
-                  className=" w-[280px]"
-                  aria-label="Choisir le nombre de personnes"
-                >
-                  <SelectValue placeholder="Sélectionner votre nombre" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="2">
-                      2 personnes - <span className="font-bold">70€</span>
-                    </SelectItem>
-                    <SelectItem value="3">
-                      3 personnes - <span className="font-bold">90€</span>
-                    </SelectItem>
-                    <SelectItem value="4">
-                      4 personnes - <span className="font-bold">120€</span>
-                    </SelectItem>
-                    <SelectItem value="5">
-                      5 personnes - <span className="font-bold">125€</span>
-                    </SelectItem>
-                    <SelectItem value="6">
-                      6 personnes - <span className="font-bold">150€</span>
-                    </SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
+            <PeopleSelector
+              onPeopleSelect={handlePeopleSelect}
+              selectedPeople={people}
+            />
 
             {people && (
               <div className="">
