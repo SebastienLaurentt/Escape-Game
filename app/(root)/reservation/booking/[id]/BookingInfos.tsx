@@ -44,6 +44,13 @@ const BookingInfos = ({
   closedDays: ClosedDay[];
   reservation: Reservation & { experience: ExtendedExperience };
 }) => {
+  
+  // Form States
+  const [people, setPeople] = useState<number | null>(null);
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [price, setPrice] = useState(0);
+  const [time, setTime] = useState<string | null>(null);
+
   // Update Reservation Mutation
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
@@ -52,12 +59,6 @@ const BookingInfos = ({
       return result;
     },
   });
-
-  // Form States
-  const [people, setPeople] = useState<number | null>(null);
-  const [date, setDate] = useState<Date | undefined>(new Date());
-  const [price, setPrice] = useState(0);
-  const [time, setTime] = useState<string | null>(null);
 
   const handlePeopleSelect = (value: string) => {
     const numberOfPeople = parseInt(value);
@@ -115,7 +116,7 @@ const BookingInfos = ({
     .map((slot) => slot.time);
 
   const timeSlots = date ? generateTimeSlots(date, 9, 23, 1) : [];
-  
+
   const availableTimes = timeSlots.filter(
     (time) => !reservedTimesForDate.includes(time)
   );
@@ -155,7 +156,7 @@ const BookingInfos = ({
                       mode="single"
                       selected={date}
                       onSelect={setDate}
-                      closedDays={closedDays.map((day) => day.date)} // Map the closedDays array to extract only the date property
+                      closedDays={closedDays.map((day) => day.date)}
                     />
                   </div>
 
