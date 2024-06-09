@@ -74,6 +74,10 @@ export async function POST(req: Request) {
         throw new Error("bookedSlotId is not defined");
       }
 
+      if (!bookedSlot) {
+        throw new Error("bookedSlot not found");
+      }
+
       if (!updatedOrder.email) {
         throw new Error("Email not found for the order");
       }
@@ -90,7 +94,6 @@ export async function POST(req: Request) {
         to: [updatedOrder.email],
         subject: "Réservation confirmée",
         react: BookingReceivedEmail({
-          // @ts-ignore
           reservationData: reservationWithDetails,
         }),
       });
