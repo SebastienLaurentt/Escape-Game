@@ -54,7 +54,6 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         fill="white"
       />
       <form onSubmit={handleSubmit}>
-        <Input type="hidden" name="experienceId" value={experienceId ?? ""} />
         <ul className="mb-6 flex flex-col justify-between gap-y-8 xl:flex-row xl:gap-x-2 2xl:gap-x-4">
           {experiences.map((experience, index) => (
             <li key={index}>
