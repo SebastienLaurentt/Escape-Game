@@ -62,11 +62,17 @@ export async function POST(req: Request) {
         throw new Error("Experience not found");
       }
 
-      // Fetch the booked according to the reservation data bookedSlot ID
-      const bookedSlot = await prisma.bookedSlot.findUnique({
-        // @ts-ignore
-        where: { id: reservationData.bookedSlotId },
-      });
+      // Fetch BookedSlot data according to the reservation data bookedSlotId
+      // Have to check if the bookedSlotId is defined because of Prisma typing (BookedSlotId is optionnal because not needed when reservation is created)
+      let bookedSlot = null;
+
+      if (reservationData.bookedSlotId) {
+        bookedSlot = await prisma.bookedSlot.findUnique({
+          where: { id: reservationData.bookedSlotId },
+        });
+      } else {
+        throw new Error("bookedSlotId is not defined");
+      }
 
       if (!updatedOrder.email) {
         throw new Error("Email not found for the order");
