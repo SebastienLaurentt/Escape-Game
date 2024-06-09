@@ -23,11 +23,10 @@ const formatDate = (date: Date | null | undefined): string => {
   });
 };
 
-type ReservationWithDetails = Reservation & { bookedSlot: BookedSlot[], experience: Experience };
+type ReservationWithDetails = Reservation & { bookedSlot: BookedSlot, experience: Experience };
 
 const BookingReceivedEmail = ({ reservationData }: { reservationData: ReservationWithDetails }) => {
 
-  const bookedSlot = reservationData.bookedSlot.length > 0 ? reservationData.bookedSlot[reservationData.bookedSlot.length - 1] : null;
 
   return (
     <Html>
@@ -52,13 +51,13 @@ const BookingReceivedEmail = ({ reservationData }: { reservationData: Reservatio
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Date</Text>
                 <Text style={global.paragraphDescription}>
-                  {formatDate(bookedSlot?.date)}
+                  {formatDate(reservationData.bookedSlot.date)}
                 </Text>
               </Column>
               <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Heure</Text>
                 <Text style={global.paragraphDescription}>
-                  {bookedSlot?.time}
+                  {reservationData.bookedSlot.time}
                 </Text>
               </Column>
             </Row>
