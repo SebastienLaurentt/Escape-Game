@@ -6,7 +6,7 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { updateReservation } from "@/lib/action";
-import { BookedSlot, ClosedDay, Experience, Reservation } from "@prisma/client";
+import { BookedSlot, ClosedDay, Experience, Price, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -36,9 +36,11 @@ const generateTimeSlots = (
 const BookingInfos = ({
   closedDays,
   reservation,
+  priceList,
 }: {
   closedDays: ClosedDay[];
   reservation: Reservation & { experience: ExtendedExperience };
+  priceList: Price[];
 }) => {
   
   // Form States
@@ -139,6 +141,7 @@ const BookingInfos = ({
             <PeopleSelector
               onPeopleSelect={handlePeopleSelect}
               selectedPeople={people}
+              priceList={priceList}
             />
 
             {people && (
