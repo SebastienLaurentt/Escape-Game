@@ -75,7 +75,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
             </div>
             <div className="mb-5">
-              <Label htmlFor="Name">Image</Label>
+              <Label htmlFor="image">Image</Label>
               <Input
                 type="file"
                 name="image"
@@ -114,7 +114,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
             </div>
             <div className="mb-5">
-              <Label htmlFor="Name">Description</Label>
+              <Label htmlFor="description">Description</Label>
               <Textarea
                 defaultValue={experience.description}
                 placeholder="Description de l'experience"
@@ -131,7 +131,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             </div>
             <div className="flex flex-row gap-x-2">
               <div className="mb-5">
-                <Label htmlFor="Name">Durée</Label>
+                <Label htmlFor="duration">Durée</Label>
                 <Input
                   type="text"
                   defaultValue={experience.duration}
@@ -148,7 +148,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
 
               <div className="mb-5">
-                <Label htmlFor="Name">Unité de durée</Label>
+                <Label htmlFor="durationUnit">Unité de durée</Label>
                 <div className="mt-1">
                   <Select
                     name="durationUnit"
@@ -174,7 +174,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             </div>
             <div className="mb-5 flex flex-row gap-x-4">
               <div>
-                <Label htmlFor="Name">Personnes Min</Label>
+                <Label htmlFor="minPeople">Personnes Min</Label>
                 <div className="mt-1">
                   <Select name="minPeople" defaultValue={experience.minPeople}>
                     <SelectTrigger className="w-[140px]">
@@ -201,7 +201,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </div>
               </div>
               <div>
-                <Label htmlFor="Name">Personnes Max</Label>
+                <Label htmlFor="maxPeople">Personnes Max</Label>
                 <div className="mt-1">
                   <Select name="maxPeople" defaultValue={experience.maxPeople}>
                     <SelectTrigger className="w-[140px]">
@@ -230,7 +230,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             </div>
 
             <div className="mb-5">
-              <Label htmlFor="Name">Prix minimum</Label>
+              <Label htmlFor="minPrice">Prix minimum</Label>
               <Input
                 type="text"
                 defaultValue={experience.minPrice}
