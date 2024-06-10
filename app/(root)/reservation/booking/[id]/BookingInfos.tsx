@@ -49,18 +49,17 @@ const BookingInfos = ({
   const [price, setPrice] = useState(0);
   const [time, setTime] = useState<string | null>(null);
 
+  // Handle People Select and Price Calculation based on the selected number of people
   const handlePeopleSelect = (value: string) => {
     const numberOfPeople = parseInt(value);
     setPeople(numberOfPeople);
-    const prices: { [key: number]: number } = {
-      2: 70,
-      3: 90,
-      4: 120,
-      5: 125,
-      6: 150,
-    };
-    if (prices[numberOfPeople]) {
-      setPrice(prices[numberOfPeople]);
+    // Find the price for the selected number of people
+    const selectedPrice = priceList.find((price) => price.people === String(numberOfPeople));
+    if (selectedPrice) {
+      setPrice(parseInt(selectedPrice.price));
+    } else {
+      // If no price is found, set the price to 0
+      setPrice(0);
     }
   };
 
