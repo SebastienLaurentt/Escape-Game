@@ -26,6 +26,9 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
   const [selectedMinPeople, setSelectedMinPeople] = useState<string>(
     experience.minPeople
   );
+  const [selectedMaxPeople, setSelectedMaxPeople] = useState<string>(
+    experience.maxPeople
+  );
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -193,10 +196,15 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                   <Select
                     name="minPeople"
                     defaultValue={experience.minPeople}
-                    onValueChange={(value) => setSelectedMinPeople(value)}
+                    onValueChange={(value) => {
+                      setSelectedMinPeople(value);
+                      if (parseInt(value) > parseInt(selectedMaxPeople)) {
+                        setSelectedMaxPeople(value);
+                      }
+                    }}
                   >
                     <SelectTrigger className="w-[140px]">
-                    <SelectValue placeholder={experience.minPeople} />
+                      <SelectValue placeholder={experience.minPeople} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -223,15 +231,14 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 <div className="mt-1">
                   <Select
                     name="maxPeople"
-                    defaultValue={experience.maxPeople}
+                    value={selectedMaxPeople}
+                    onValueChange={(value) => setSelectedMaxPeople(value)}
                   >
                     <SelectTrigger className="w-[140px]">
-                      <SelectValue placeholder={selectedMinPeople} />
+                      <SelectValue placeholder={selectedMaxPeople} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectGroup>
-                        {maxPeopleOptions}
-                      </SelectGroup>
+                      <SelectGroup>{maxPeopleOptions}</SelectGroup>
                     </SelectContent>
                   </Select>
                 </div>
@@ -275,4 +282,3 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
 };
 
 export default ExperienceIdUpdate;
-
