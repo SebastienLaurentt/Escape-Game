@@ -1,6 +1,7 @@
 import {
   AreaChart,
   Calendar,
+  CircleDollarSign,
   Gamepad2,
   LayoutDashboard,
   Settings,
@@ -28,6 +29,12 @@ const navItems = [
     tooltip: "Réservations",
   },
   {
+    href: "/account/prices",
+    icon: <CircleDollarSign />,
+    label: "Onglet Tarifs",
+    tooltip: "Tarifs",
+  },
+  {
     href: "/account/insights",
     icon: <AreaChart />,
     label: "Onglet Comptabilité",
@@ -49,12 +56,12 @@ const TabDeskNav = () => {
           <LayoutDashboard className="size-4" />
           <span className="sr-only">Dashboard Logo</span>
         </span>
-        {navItems.slice(0, 4).map((item, index) => (
+        {navItems.slice(0, 5).map((item, index) => (
           <TabDeskNavItem key={index} {...item} />
         ))}
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-        <TabDeskNavItem {...navItems[4]} />
+        <TabDeskNavItem {...navItems[5]} />
       </nav>
     </aside>
   );

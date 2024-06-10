@@ -4,6 +4,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
   AreaChart,
   Calendar,
+  CircleDollarSign,
   Gamepad2,
   LayoutDashboard,
   PanelLeft,
@@ -53,6 +54,13 @@ export default async function MobileNav() {
             >
               <Users2 className="size-5" />
               Réservations
+            </Link>
+            <Link
+              href="/account/prices/"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+            >
+              <CircleDollarSign  className="size-5" />
+              Tarifs
             </Link>
             <Link
               href="/account/insights/"
