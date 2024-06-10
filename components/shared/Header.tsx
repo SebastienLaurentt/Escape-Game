@@ -60,7 +60,7 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
               asChild
               aria-label="Aller à la page pour réserver son expérience"
             >
-              <Link href="/account">Dashboard</Link>
+              <Link href="/account/experiences">Dashboard</Link>
             </Button>
           )}
           <div className="flex items-center lg:hidden">
