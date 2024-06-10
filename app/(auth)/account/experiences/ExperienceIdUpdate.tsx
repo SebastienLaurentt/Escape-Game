@@ -172,6 +172,41 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </div>
               </div>
             </div>
+            <div className="mb-5 flex flex-row gap-x-4">
+              <div>
+                <Label htmlFor="Name">Personnes Minimum</Label>
+                <Input
+                  type="text"
+                  defaultValue={experience.minPeople}
+                  placeholder="Pers min"
+                  name="minPeople"
+                  id="minPeople"
+                  className="mt-1"
+                />
+                <div id="name-error" aria-live="polite" aria-atomic="true">
+                  <p className="mt-2 text-sm text-red-500">
+                    {state?.Error?.minPeople}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="Name">Personnes Maximum</Label>
+                <Input
+                  type="text"
+                  defaultValue={experience.maxPeople}
+                  placeholder="Pers max"
+                  name="maxPeople"
+                  id="maxPeople"
+                  className="mt-1"
+                />
+                <div id="name-error" aria-live="polite" aria-atomic="true">
+                  <p className="mt-2 text-sm text-red-500">
+                    {state?.Error?.maxPeople}
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="mb-5">
               <Label htmlFor="Name">Prix minimum</Label>
               <Input
@@ -185,40 +220,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               <div id="name-error" aria-live="polite" aria-atomic="true">
                 <p className="mt-2 text-sm text-red-500">
                   {state?.Error?.minPrice}
-                </p>
-              </div>
-            </div>
-            <div className="mb-5">
-              <Label htmlFor="Name">Nombre de personnes minimum</Label>
-              <Input
-                type="text"
-                defaultValue={experience.minPeople}
-                placeholder="Nombre de personnes minimum"
-                name="minPeople"
-                id="minPeople"
-                className="mt-1"
-              />
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.minPeople}
-                </p>
-              </div>
-            </div>
-            <div className="mb-5">
-              <Label htmlFor="Name">
-                Nombre de personnes maximum (optionnel){" "}
-              </Label>
-              <Input
-                type="text"
-                defaultValue={experience.maxPeople ?? ""}
-                placeholder="Nombre de personnes maximum"
-                name="maxPeople"
-                id="maxPeople"
-                className="mt-1"
-              />
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.maxPeople}
                 </p>
               </div>
             </div>

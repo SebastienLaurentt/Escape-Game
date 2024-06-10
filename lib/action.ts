@@ -24,7 +24,7 @@ const ExperienceSchema = z.object({
   durationUnit: z.string().min(5),
   minPrice: z.string().min(2),
   minPeople: z.string().min(1),
-  maxPeople: z.string().min(0),
+  maxPeople: z.string().min(1),
 });
 
 // Reservation schema type with Zod

@@ -17,7 +17,7 @@ model Experience {
   durationUnit  String
   minPrice      String
   minPeople     String
-  maxPeople     String? 
+  maxPeople     String
   bookedSlots   BookedSlot[]
   reservations  Reservation[]
 }
