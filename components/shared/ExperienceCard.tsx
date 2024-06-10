@@ -70,7 +70,7 @@ const ExperienceCard = ({
           <div className="flex flex-row items-center gap-x-1">
             <User className="cardIcon" />
             <span className="text-sm md:text-md xl:text-sm">
-              <span>{minPeople}</span> {maxPeople ? ` à ${maxPeople}` : ""}{" "}
+              <span>{minPeople}</span> {maxPeople!=minPeople ? ` à ${maxPeople}` : ""}{" "}
               personnes
             </span>
           </div>
