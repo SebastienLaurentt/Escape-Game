@@ -175,14 +175,25 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             <div className="mb-5 flex flex-row gap-x-4">
               <div>
                 <Label htmlFor="Name">Personnes Min</Label>
-                <Input
-                  type="text"
-                  defaultValue={experience.minPeople}
-                  placeholder="Pers min"
-                  name="minPeople"
-                  id="minPeople"
-                  className="mt-1"
-                />
+                <div className="mt-1">
+                  <Select name="minPeople" defaultValue={experience.minPeople}>
+                    <SelectTrigger className="w-[140px]">
+                      <SelectValue placeholder={experience.minPeople} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="2">2</SelectItem>
+                        <SelectItem value="3">3</SelectItem>
+                        <SelectItem value="4">4</SelectItem>
+                        <SelectItem value="5">5</SelectItem>
+                        <SelectItem value="6">6</SelectItem>
+                        <SelectItem value="7">7</SelectItem>
+                        <SelectItem value="8">8</SelectItem>
+                        <SelectItem value="9">9</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
                 <div id="name-error" aria-live="polite" aria-atomic="true">
                   <p className="mt-2 text-sm text-red-500">
                     {state?.Error?.minPeople}
@@ -191,14 +202,25 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               </div>
               <div>
                 <Label htmlFor="Name">Personnes Max</Label>
-                <Input
-                  type="text"
-                  defaultValue={experience.maxPeople}
-                  placeholder="Pers max"
-                  name="maxPeople"
-                  id="maxPeople"
-                  className="mt-1"
-                />
+                <div className="mt-1">
+                  <Select name="maxPeople" defaultValue={experience.maxPeople}>
+                    <SelectTrigger className="w-[140px]">
+                      <SelectValue placeholder={experience.maxPeople} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="2">2</SelectItem>
+                        <SelectItem value="3">3</SelectItem>
+                        <SelectItem value="4">4</SelectItem>
+                        <SelectItem value="5">5</SelectItem>
+                        <SelectItem value="6">6</SelectItem>
+                        <SelectItem value="7">7</SelectItem>
+                        <SelectItem value="8">8</SelectItem>
+                        <SelectItem value="9">9</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
                 <div id="name-error" aria-live="polite" aria-atomic="true">
                   <p className="mt-2 text-sm text-red-500">
                     {state?.Error?.maxPeople}
