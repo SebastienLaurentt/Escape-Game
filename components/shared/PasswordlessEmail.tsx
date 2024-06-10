@@ -20,7 +20,7 @@ const PasswordlessEmail = () => {
         value={email}
         onChange={handleEmailChange}
       />
-      <Button>
+      <Button asChild>
         <LoginLink
           authUrlParams={{
             connection_id:
