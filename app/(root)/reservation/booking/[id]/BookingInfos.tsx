@@ -50,7 +50,7 @@ const BookingInfos = ({
   const [time, setTime] = useState<string | null>(null);
 
   // Handle People Select and Price Calculation based on the selected number of people
-  const handlePeopleSelect = (value: string) => {
+  const handlePeopleSelectAndPriceSet = (value: string) => {
     const numberOfPeople = parseInt(value);
     setPeople(numberOfPeople);
     // Find the price for the selected number of people
@@ -138,7 +138,7 @@ const BookingInfos = ({
         <div className="xl:w-1/2">
           <form onSubmit={handleSubmit}>
             <PeopleSelector
-              onPeopleSelect={handlePeopleSelect}
+              onPeopleSelect={handlePeopleSelectAndPriceSet}
               selectedPeople={people}
               priceList={priceList}
             />
