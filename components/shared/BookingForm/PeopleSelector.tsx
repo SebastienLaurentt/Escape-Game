@@ -6,9 +6,20 @@ interface PeopleSelectorProps {
   onPeopleSelect: (value: string) => void;
   selectedPeople: number | null;
   priceList: Price[]; 
+  minPeople: number; 
 }
 
-const PeopleSelector: React.FC<PeopleSelectorProps> = ({ onPeopleSelect, selectedPeople, priceList }) => {
+const PeopleSelector: React.FC<PeopleSelectorProps> = ({ onPeopleSelect, selectedPeople, priceList, minPeople }) => {
+  
+  //  Filter the priceList according to the minPeople
+  const optionsAccordingMinPeople = priceList
+    .filter(price => parseInt(price.people) >= minPeople) 
+    .map(price => (
+      <SelectItem key={price.id} value={price.people}>
+        {price.people} personnes - <span className="font-bold">{price.price}€</span>
+      </SelectItem>
+    ));
+
   return (
     <div className="mb-8 flex flex-col items-center">
       <h3 className="mb-1">A. Combien êtes vous ?</h3>
@@ -18,11 +29,7 @@ const PeopleSelector: React.FC<PeopleSelectorProps> = ({ onPeopleSelect, selecte
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {priceList.map(price => (
-              <SelectItem key={price.id} value={price.people}>
-                {price.people} personnes - <span className="font-bold">{price.price}€</span>
-              </SelectItem>
-            ))}
+            {optionsAccordingMinPeople}
           </SelectGroup>
         </SelectContent>
       </Select>

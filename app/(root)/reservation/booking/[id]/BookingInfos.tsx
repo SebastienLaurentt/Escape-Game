@@ -49,6 +49,9 @@ const BookingInfos = ({
   const [price, setPrice] = useState(0);
   const [time, setTime] = useState<string | null>(null);
 
+    // Extract minPeople from reservation.experience
+    const minPeople = parseInt(reservation.experience.minPeople);
+
   // Handle People Select and Price Calculation based on the selected number of people
   const handlePeopleSelectAndPriceSet = (value: string) => {
     const numberOfPeople = parseInt(value);
@@ -141,6 +144,7 @@ const BookingInfos = ({
               onPeopleSelect={handlePeopleSelectAndPriceSet}
               selectedPeople={people}
               priceList={priceList}
+              minPeople={minPeople}
             />
 
             {people && (
