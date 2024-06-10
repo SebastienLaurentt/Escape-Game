@@ -42,6 +42,12 @@ model BookedSlot {
   reservations  Reservation[]
 }
 
+model Price {
+  id            String       @id @default(cuid())
+  people        String
+  price         String
+}
+
 model ClosedDay {
   id    String    @id @default(cuid())
   date  DateTime

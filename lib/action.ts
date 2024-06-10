@@ -388,6 +388,17 @@ export const deleteClosedDay = async (id: string) => {
   redirect("/account/opening");
 };
 
+// Price
+// Get Price list
+export const getPricesList = async () => {
+  try {
+    const prices = await prisma.price.findMany({});
+    return prices;
+  } catch (error) {
+    throw new Error("Failed to fetch prices data");
+  }
+};
+
 // BookedSlot
 // Get BookedSlots list
 export const getBookedSlots = async () => {
