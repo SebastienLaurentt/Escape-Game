@@ -58,7 +58,7 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
           {isAuth && (
             <Button
               asChild
-              aria-label="Aller à la page pour réserver son expérience"
+              aria-label="Aller sur le dashboard Administrateur"
             >
               <Link href="/account/experiences">Dashboard</Link>
             </Button>
