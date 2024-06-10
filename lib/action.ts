@@ -38,6 +38,13 @@ const ReservationsSchema = z.object({
   phone: z.string().optional(),
 });
 
+// Price schema type with Zod
+const PriceSchema = z.object({
+  id: z.string().optional(),
+  people: z.string().min(1), 
+  price: z.string().min(2), 
+});
+
 // Closed Day Schema type with Zod
 const ClosedDaySchema = z.object({
   date: z.string(),
