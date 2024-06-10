@@ -174,7 +174,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             </div>
             <div className="mb-5 flex flex-row gap-x-4">
               <div>
-                <Label htmlFor="Name">Personnes Minimum</Label>
+                <Label htmlFor="Name">Personnes Min</Label>
                 <Input
                   type="text"
                   defaultValue={experience.minPeople}
@@ -190,7 +190,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 </div>
               </div>
               <div>
-                <Label htmlFor="Name">Personnes Maximum</Label>
+                <Label htmlFor="Name">Personnes Max</Label>
                 <Input
                   type="text"
                   defaultValue={experience.maxPeople}
