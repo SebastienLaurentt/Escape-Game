@@ -23,6 +23,9 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
   const UpdateExperienceWithId = updateExperience.bind(null, experience.id);
   const [state, formAction] = useFormState(UpdateExperienceWithId, null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedMinPeople, setSelectedMinPeople] = useState<string>(
+    experience.minPeople
+  );
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -43,6 +46,17 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     }
     formAction(formData);
   };
+
+  const minPeopleValue = parseInt(selectedMinPeople);
+  const maxPeopleOptions = [];
+
+  for (let i = minPeopleValue; i <= 9; i++) {
+    maxPeopleOptions.push(
+      <SelectItem key={i} value={i.toString()}>
+        {i}
+      </SelectItem>
+    );
+  }
 
   return (
     <div>
@@ -176,9 +190,13 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               <div>
                 <Label htmlFor="minPeople">Personnes Min</Label>
                 <div className="mt-1">
-                  <Select name="minPeople" defaultValue={experience.minPeople}>
+                  <Select
+                    name="minPeople"
+                    defaultValue={experience.minPeople}
+                    onValueChange={(value) => setSelectedMinPeople(value)}
+                  >
                     <SelectTrigger className="w-[140px]">
-                      <SelectValue placeholder={experience.minPeople} />
+                    <SelectValue placeholder={experience.minPeople} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -203,20 +221,16 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               <div>
                 <Label htmlFor="maxPeople">Personnes Max</Label>
                 <div className="mt-1">
-                  <Select name="maxPeople" defaultValue={experience.maxPeople}>
+                  <Select
+                    name="maxPeople"
+                    defaultValue={experience.maxPeople}
+                  >
                     <SelectTrigger className="w-[140px]">
-                      <SelectValue placeholder={experience.maxPeople} />
+                      <SelectValue placeholder={selectedMinPeople} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="2">2</SelectItem>
-                        <SelectItem value="3">3</SelectItem>
-                        <SelectItem value="4">4</SelectItem>
-                        <SelectItem value="5">5</SelectItem>
-                        <SelectItem value="6">6</SelectItem>
-                        <SelectItem value="7">7</SelectItem>
-                        <SelectItem value="8">8</SelectItem>
-                        <SelectItem value="9">9</SelectItem>
+                        {maxPeopleOptions}
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -261,3 +275,4 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
 };
 
 export default ExperienceIdUpdate;
+
