@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
   AreaChart,
   Calendar,
@@ -11,7 +12,9 @@ import {
 import Link from "next/link";
 import SignOutButton from "../SignOutButton";
 
-const MobileNav = () => {
+export default async function MobileNav() {
+  const { isAuthenticated } = getKindeServerSession();
+  const isAuth = await isAuthenticated();
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
@@ -55,18 +58,24 @@ const MobileNav = () => {
               href="/account/insights/"
               className="flex items-center gap-4 px-2.5 text-foreground"
             >
-              <AreaChart  className="size-5" />
+              <AreaChart className="size-5" />
               Comptabilité
             </Link>
           </nav>
         </SheetContent>
       </Sheet>
 
-      <div className="ml-auto">
+      <div className="ml-auto space-x-2">
+        {isAuth && (
+          <Button
+            asChild
+            aria-label="Retourner sur le site de la Villa de l'Effroi"
+          >
+            <Link href="/">Site</Link>
+          </Button>
+        )}
         <SignOutButton />
       </div>
     </header>
   );
-};
-
-export default MobileNav;
+}
