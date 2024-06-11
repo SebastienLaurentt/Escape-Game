@@ -1,4 +1,5 @@
 import Providers from "@/components/shared/Providers";
+import { Toaster } from "@/components/ui/toaster";
 import { poppins } from "@/lib/font";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <Providers>
-        <body className={`${poppins} min-h-screen`}>{children}</body>
+        <body className={`${poppins} min-h-screen`}>
+          {children} <Toaster />
+        </body>
       </Providers>
     </html>
   );

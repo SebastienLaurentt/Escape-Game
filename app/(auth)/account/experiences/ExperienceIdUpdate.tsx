@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
@@ -28,6 +30,8 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
   const [selectedMaxPeople, setSelectedMaxPeople] = useState<string>(
     experience.maxPeople
   );
+
+  const { toast } = useToast();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -55,6 +59,9 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
       alert("An error occurred while updating the experience.");
     },
     onSuccess: () => {
+      toast({
+        title: "Experience mise à jour !",
+      });
     },
   });
 
