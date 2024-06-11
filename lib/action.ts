@@ -431,7 +431,7 @@ export const createPrice = async (formData: FormData) => {
   } catch (error) {
     return { message: "Failed to create new price" };
   }
-
+  redirect("/account/prices");
 };
 
 
