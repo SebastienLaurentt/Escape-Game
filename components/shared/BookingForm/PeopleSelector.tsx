@@ -7,18 +7,20 @@ interface PeopleSelectorProps {
   selectedPeople: number | null;
   priceList: Price[]; 
   minPeople: number; 
+  maxPeople: number;
 }
 
-const PeopleSelector: React.FC<PeopleSelectorProps> = ({ onPeopleSelect, selectedPeople, priceList, minPeople }) => {
+const PeopleSelector: React.FC<PeopleSelectorProps> = ({ onPeopleSelect, selectedPeople, priceList, minPeople, maxPeople }) => {
   
-  //  Filter the priceList according to the minPeople
-  const optionsAccordingMinPeople = priceList
-    .filter(price => parseInt(price.people) >= minPeople) 
-    .map(price => (
-      <SelectItem key={price.id} value={price.people}>
-        {price.people} personnes - <span className="font-bold">{price.price}€</span>
-      </SelectItem>
-    ));
+  //  Filter the priceList according to the minPeople and maxPeople
+  const optionsAccordingMinAndMaxPeople = priceList
+  .filter(price => parseInt(price.people) >= minPeople && parseInt(price.people) <= maxPeople) 
+  .map(price => (
+    <SelectItem key={price.id} value={price.people}>
+      {price.people} personnes - <span className="font-bold">{price.price}€</span>
+    </SelectItem>
+  ));
+
 
   return (
     <div className="mb-8 flex flex-col items-center">
@@ -29,7 +31,7 @@ const PeopleSelector: React.FC<PeopleSelectorProps> = ({ onPeopleSelect, selecte
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {optionsAccordingMinPeople}
+            {optionsAccordingMinAndMaxPeople}
           </SelectGroup>
         </SelectContent>
       </Select>

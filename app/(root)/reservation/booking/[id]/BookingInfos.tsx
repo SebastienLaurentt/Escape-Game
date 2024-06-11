@@ -6,7 +6,13 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { updateReservation } from "@/lib/action";
-import { BookedSlot, ClosedDay, Experience, Price, Reservation } from "@prisma/client";
+import {
+  BookedSlot,
+  ClosedDay,
+  Experience,
+  Price,
+  Reservation,
+} from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -42,22 +48,26 @@ const BookingInfos = ({
   reservation: Reservation & { experience: ExtendedExperience };
   priceList: Price[];
 }) => {
-  
   // Form States
   const [people, setPeople] = useState<number | null>(null);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [price, setPrice] = useState(0);
   const [time, setTime] = useState<string | null>(null);
 
-    // Extract minPeople from reservation.experience
-    const minPeople = parseInt(reservation.experience.minPeople);
+  // Extract minPeople from reservation.experience
+  const minPeople = parseInt(reservation.experience.minPeople);
+
+  // Extract maxPeople from reservation.experience
+  const maxPeople = parseInt(reservation.experience.maxPeople);
 
   // Handle People Select and Price Calculation based on the selected number of people
   const handlePeopleSelectAndPriceSet = (value: string) => {
     const numberOfPeople = parseInt(value);
     setPeople(numberOfPeople);
     // Find the price for the selected number of people
-    const selectedPrice = priceList.find((price) => price.people === String(numberOfPeople));
+    const selectedPrice = priceList.find(
+      (price) => price.people === String(numberOfPeople)
+    );
     if (selectedPrice) {
       setPrice(parseInt(selectedPrice.price));
     } else {
@@ -145,6 +155,7 @@ const BookingInfos = ({
               selectedPeople={people}
               priceList={priceList}
               minPeople={minPeople}
+              maxPeople={maxPeople}
             />
 
             {people && (
