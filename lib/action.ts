@@ -410,6 +410,30 @@ export const getPricesList = async () => {
   }
 };
 
+export const createPrice = async (formData: FormData) => {
+  const validatedFields = PriceSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!validatedFields.success) {
+    return {
+      Error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    await prisma.price.create({
+      data: {
+        people: validatedFields.data.people,
+        price: validatedFields.data.price,
+      },
+    });
+  } catch (error) {
+    return { message: "Failed to create new price" };
+  }
+
+};
+
 
 // BookedSlot
 // Get BookedSlots list
