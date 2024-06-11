@@ -19,6 +19,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import { CircleCheckBig } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -60,7 +61,9 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     },
     onSuccess: () => {
       toast({
-        title: "Experience mise à jour !",
+        variant: "success",
+        description: "Experience mise à jour !",
+
       });
     },
   });
