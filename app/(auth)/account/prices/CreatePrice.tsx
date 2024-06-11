@@ -26,6 +26,7 @@ const CreatePrice = () => {
     formDataToSend.append("price", formData.price);
 
     const result = await createPrice(formDataToSend);
+    setFormData({ people: "", price: "" });
   };
 
   return (
