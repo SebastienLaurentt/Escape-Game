@@ -4,6 +4,7 @@ import { getPricesList } from "@/lib/action";
 
 const PriceList = async () => {
   const priceList = await getPricesList();
+
   return (
     <Tabs defaultValue="week">
       <TabsContent value="week">
