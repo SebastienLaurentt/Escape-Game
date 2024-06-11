@@ -1,8 +1,10 @@
 "use client";
 
+import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createPrice } from "@/lib/action";
+import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 
 const CreatePrice = () => {
@@ -19,14 +21,31 @@ const CreatePrice = () => {
     }));
   };
 
+  const {
+    mutate: createPriceMutation,
+    isPending,
+    error,
+  } = useMutation({
+    mutationKey: ["create-price"],
+    mutationFn: async (formData: FormData) => {
+      const result = await createPrice(formData);
+      return result;
+    },
+    onError: () => {
+      alert("An error occurred while creating the price.");
+    },
+    onSuccess: () => {
+      setFormData({ people: "", price: "" });
+    },
+  });
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDataToSend = new FormData();
     formDataToSend.append("people", formData.people);
     formDataToSend.append("price", formData.price);
 
-    const result = await createPrice(formDataToSend);
-    setFormData({ people: "", price: "" });
+    createPriceMutation(formDataToSend);
   };
 
   return (
@@ -52,8 +71,8 @@ const CreatePrice = () => {
         required
         className="mx-auto w-[100px] md:w-[200px] xl:w-[180px] 2xl:w-[200px]"
       />
-      <Button type="submit" className="mx-auto w-[120px]">
-        Ajouter Prix
+      <Button type="submit" className="flex justify-center mx-auto w-[120px]" disabled={isPending}>
+        {isPending ? <Loader /> : "Ajouter Prix"}
       </Button>
     </form>
   );
