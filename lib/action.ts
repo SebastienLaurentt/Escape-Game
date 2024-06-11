@@ -54,12 +54,17 @@ const ClosedDaySchema = z.object({
 // Read all experiences
 export const getExperiencesList = async () => {
   try {
-    const experiences = await prisma.experience.findMany({});
+    const experiences = await prisma.experience.findMany({
+      orderBy: {
+        minPrice: 'desc', 
+      },
+    });
     return experiences;
   } catch (error) {
     throw new Error("Failed to fetch experiences data");
   }
 };
+
 
 // Find one experience by its ID
 export const getExperienceById = async (id: string) => {
@@ -161,7 +166,7 @@ export const getOrdersList = async () => {
       orderBy: {
         reservation: {
           bookedSlot: {
-            date: 'asc', // Or 'desc' for most distant to closest
+            date: 'asc', 
           },
         },
       },
