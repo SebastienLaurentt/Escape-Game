@@ -158,6 +158,13 @@ export const getOrdersList = async () => {
           },
         },
       },
+      orderBy: {
+        reservation: {
+          bookedSlot: {
+            date: 'asc', // Or 'desc' for most distant to closest
+          },
+        },
+      },
     });
 
     return orders;
@@ -165,6 +172,7 @@ export const getOrdersList = async () => {
     throw new Error("Failed to fetch orders data");
   }
 };
+
 
 // Delete Order
 export const deleteOrder = async (id: string) => {
