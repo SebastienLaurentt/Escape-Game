@@ -32,16 +32,16 @@ const CreatePrice = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-2 gap-x-2 px-6 font-bold lg:grid-cols-4"
+      className="mt-4 grid grid-cols-3 font-bold lg:grid-cols-4 xl:grid-cols-4"
     >
       <Input
         type="text"
         name="people"
         value={formData.people}
         onChange={handleChange}
-        placeholder="Nombre de personnes"
+        placeholder="Nbr de personnes"
         required
-        className="mx-auto w-[220px]"
+        className="mx-auto w-[100px] md:w-[200px] xl:w-[180px] 2xl:w-[200px]"
       />
       <Input
         type="text"
@@ -50,9 +50,11 @@ const CreatePrice = () => {
         onChange={handleChange}
         placeholder="Prix"
         required
-        className="mx-auto w-[220px]"
+        className="mx-auto w-[100px] md:w-[200px] xl:w-[180px] 2xl:w-[200px]"
       />
-      <Button type="submit" className="mx-auto w-[180px]">Ajouter Prix</Button>
+      <Button type="submit" className="mx-auto w-[130px]">
+        Ajouter Prix
+      </Button>
     </form>
   );
 };
