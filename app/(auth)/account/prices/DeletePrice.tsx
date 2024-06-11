@@ -33,7 +33,7 @@ export const DeletePrice = ({ id }: { id: string }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Button type="submit" disabled={isPending}>
-        {isPending ? <Loader /> : "Delete Price"}
+        {isPending ? <Loader /> : "Supprimer"}
       </Button>
     </form>
   );

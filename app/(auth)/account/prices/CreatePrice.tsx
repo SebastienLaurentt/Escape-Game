@@ -52,7 +52,7 @@ const CreatePrice = () => {
         required
         className="mx-auto w-[100px] md:w-[200px] xl:w-[180px] 2xl:w-[200px]"
       />
-      <Button type="submit" className="mx-auto w-[130px]">
+      <Button type="submit" className="mx-auto w-[120px]">
         Ajouter Prix
       </Button>
     </form>
