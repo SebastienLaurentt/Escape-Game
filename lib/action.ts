@@ -410,6 +410,7 @@ export const getPricesList = async () => {
   }
 };
 
+// Create Price
 export const createPrice = async (formData: FormData) => {
   const validatedFields = PriceSchema.safeParse(
     Object.fromEntries(formData.entries())
@@ -434,6 +435,18 @@ export const createPrice = async (formData: FormData) => {
   redirect("/account/prices");
 };
 
+// Delete Price
+export const deletePrice = async (id: string) => {
+  try {
+    await prisma.price.delete({
+      where: { id },
+    });
+  } catch (error) {
+    return { message: "Failed to delete price" };
+  }
+
+  redirect("/account/prices");
+};
 
 // BookedSlot
 // Get BookedSlots list
