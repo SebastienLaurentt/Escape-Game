@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { getPricesList } from "@/lib/action";
+import CreatePrice from "./CreatePrice";
 
 const PriceList = async () => {
   const priceList = await getPricesList();
@@ -20,6 +21,7 @@ const PriceList = async () => {
                 <div className="text-center">{price}</div>
               </div>
             ))}
+            <CreatePrice />
           </CardContent>
         </Card>
       </TabsContent>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createPrice } from "@/lib/action";
@@ -24,18 +26,21 @@ const CreatePrice = () => {
     formDataToSend.append("price", formData.price);
 
     const result = await createPrice(formDataToSend);
-    // Gérer la réponse de l'action, par exemple afficher un message de succès ou d'erreur
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="grid grid-cols-2 gap-x-2 px-6 font-bold lg:grid-cols-4"
+    >
       <Input
         type="text"
-        name="numberOfPeople"
+        name="people"
         value={formData.people}
         onChange={handleChange}
         placeholder="Nombre de personnes"
         required
+        className="mx-auto w-[220px]"
       />
       <Input
         type="text"
@@ -44,8 +49,9 @@ const CreatePrice = () => {
         onChange={handleChange}
         placeholder="Prix"
         required
+        className="mx-auto w-[220px]"
       />
-      <Button type="submit">Ajouter Prix</Button>
+      <Button type="submit" className="mx-auto w-[180px]">Ajouter Prix</Button>
     </form>
   );
 };
