@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,13 +16,11 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
-import { useFormState } from "react-dom";
 
 const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
-  const UpdateExperienceWithId = updateExperience.bind(null, experience.id);
-  const [state, formAction] = useFormState(UpdateExperienceWithId, null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedMinPeople, setSelectedMinPeople] = useState<string>(
     experience.minPeople
@@ -41,13 +40,31 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     }
   };
 
+  const {
+    mutate: updateExperienceMutation,
+    isPending,
+    error,
+    isSuccess,
+  } = useMutation({
+    mutationKey: ["update-experience"],
+    mutationFn: async (formData: FormData) => {
+      const result = await updateExperience(experience.id, formData);
+      return result;
+    },
+    onError: () => {
+      alert("An error occurred while updating the experience.");
+    },
+    onSuccess: () => {
+    },
+  });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     if (!selectedImage) {
       formData.append("currentImageUrl", `${experience.image}`);
     }
-    formAction(formData);
+    updateExperienceMutation(formData);
   };
 
   const minPeopleValue = parseInt(selectedMinPeople);
@@ -85,11 +102,13 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 id="name"
                 className="mt-1"
               />
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.name}
-                </p>
-              </div>
+              {error && (
+                <div id="name-error" aria-live="polite" aria-atomic="true">
+                  <p className="mt-2 text-sm text-red-500">
+                    Error: {error.message}
+                  </p>
+                </div>
+              )}
             </div>
             <div className="mb-5">
               <Label htmlFor="image">Image</Label>
@@ -124,11 +143,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                   </div>
                 )}
               </div>
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.image}
-                </p>
-              </div>
             </div>
             <div className="mb-5">
               <Label htmlFor="description">Description</Label>
@@ -140,11 +154,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 className="mt-1"
                 rows={4}
               />
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.description}
-                </p>
-              </div>
             </div>
             <div className="flex flex-row gap-x-2">
               <div className="mb-5">
@@ -157,11 +166,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                   id="duration"
                   className="mt-1 w-[100px]"
                 />
-                <div id="name-error" aria-live="polite" aria-atomic="true">
-                  <p className="mt-2 text-sm text-red-500">
-                    {state?.Error?.duration}
-                  </p>
-                </div>
               </div>
 
               <div className="mb-5">
@@ -181,11 +185,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                </div>
-                <div id="name-error" aria-live="polite" aria-atomic="true">
-                  <p className="mt-2 text-sm text-red-500">
-                    {state?.Error?.durationUnit}
-                  </p>
                 </div>
               </div>
             </div>
@@ -220,11 +219,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div id="name-error" aria-live="polite" aria-atomic="true">
-                  <p className="mt-2 text-sm text-red-500">
-                    {state?.Error?.minPeople}
-                  </p>
-                </div>
               </div>
               <div>
                 <Label htmlFor="maxPeople">Personnes Max</Label>
@@ -242,11 +236,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div id="name-error" aria-live="polite" aria-atomic="true">
-                  <p className="mt-2 text-sm text-red-500">
-                    {state?.Error?.maxPeople}
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -260,19 +249,18 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
                 id="minPrice"
                 className="mt-1"
               />
-              <div id="name-error" aria-live="polite" aria-atomic="true">
-                <p className="mt-2 text-sm text-red-500">
-                  {state?.Error?.minPrice}
-                </p>
-              </div>
             </div>
             <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
-              <Button type="submit">Mettre à jour</Button>
-              <div id="message-error" aria-live="polite" aria-atomic="true">
-                <p className="text-center text-base text-green-600">
-                  {state?.message}
-                </p>
-              </div>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? <Loader /> : "Mettre à jour"}
+              </Button>
+              {isSuccess && (
+                <div id="message-success" aria-live="polite" aria-atomic="true">
+                  <p className="text-center text-base text-green-600">
+                    Experience updated successfully!
+                  </p>
+                </div>
+              )}
             </div>
           </form>
         </CardContent>

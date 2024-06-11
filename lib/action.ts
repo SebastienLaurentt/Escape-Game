@@ -81,7 +81,6 @@ export const getExperienceById = async (id: string) => {
 // Update an experience by its ID
 export const updateExperience = async (
   id: string,
-  prevState: any,
   formData: FormData
 ) => {
   const validatedFields = ExperienceSchema.safeParse(
