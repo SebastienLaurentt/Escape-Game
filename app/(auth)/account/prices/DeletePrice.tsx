@@ -6,7 +6,7 @@ import { toast } from "@/components/ui/use-toast";
 import { deletePrice } from "@/lib/action";
 import { useMutation } from "@tanstack/react-query";
 
-export const DeletePriceButton = ({ id }: { id: string }) => {
+export const DeletePrice = ({ id }: { id: string }) => {
   const { mutate: deletePriceMutation, isPending } = useMutation({
     mutationKey: ["delete-price"],
     mutationFn: () => deletePrice(id),
