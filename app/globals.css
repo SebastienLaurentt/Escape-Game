@@ -57,7 +57,6 @@
   h3 {
     @apply text-lg leading-7 md:leading-8 ;
   }
-
   /* Custom Class */
   .cardIcon {
     @apply size-8 md:size-10 xl:size-8
