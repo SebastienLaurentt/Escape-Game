@@ -19,24 +19,43 @@ import { useState } from "react";
 
 const OpeningHoursSelector = ({ day }: { day: string }) => {
   const [isAccordionEnabled, setIsAccordionEnabled] = useState(false);
+  const [accordionValue, setAccordionValue] = useState<string | undefined>("");
+
+  const handleAccordionToggle = (checked: boolean) => {
+    setIsAccordionEnabled(checked);
+    setAccordionValue(checked ? "item-1" : "");
+  };
+
+  const handleValueChange = (value: string) => {
+    if (isAccordionEnabled) {
+      setAccordionValue(value === accordionValue ? "" : value);
+    }
+  };
 
   return (
     <li className="flex flex-col px-2">
       <Switch
         className="absolute z-20 mt-1"
         checked={isAccordionEnabled}
-        onCheckedChange={(checked) => setIsAccordionEnabled(checked)}
+        onCheckedChange={handleAccordionToggle}
       />
 
-      <Accordion type="single" collapsible disabled={!isAccordionEnabled}>
+      <Accordion
+        type="single"
+        collapsible
+        value={accordionValue}
+        onValueChange={handleValueChange}
+      >
         <AccordionItem value="item-1">
           <AccordionTrigger
             className={`p-1.5 underline-offset-1 ${
-              isAccordionEnabled ? "hover:underline" : "no-underline"
+              isAccordionEnabled
+                ? "hover:underline"
+                : "cursor-default no-underline"
             }`}
           >
             <div className="relative flex flex-row items-center gap-x-4">
-              <span className=" ml-16 text-base font-semibold">{day}</span>
+              <span className="ml-16 text-base font-semibold">{day}</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="p-2">
