@@ -9,7 +9,7 @@ const Faq = () => {
   return (
     <Accordion type="single" collapsible className="w-full md:px-8 xl:px-24" >
       <AccordionItem value="item-1" >
-        <AccordionTrigger>
+        <AccordionTrigger className="hover:underline">
           Quel est l&apos;âge minimum requis pour participer ?
         </AccordionTrigger>
         <AccordionContent>
@@ -18,7 +18,7 @@ const Faq = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger>
+        <AccordionTrigger className="hover:underline">
           Pouvons-nous annuler ou reporter notre réservation ?
         </AccordionTrigger>
         <AccordionContent>
@@ -28,7 +28,7 @@ const Faq = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">
-        <AccordionTrigger>
+        <AccordionTrigger className="hover:underline">
           Est-ce que l&apos;escape game est adapté aux personnes à mobilité
           réduite ?
         </AccordionTrigger>
@@ -39,7 +39,7 @@ const Faq = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-4">
-        <AccordionTrigger>
+        <AccordionTrigger className="hover:underline">
           Quelles sont les mesures de sécurité en place ?
         </AccordionTrigger>
         <AccordionContent>

@@ -30,7 +30,11 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
 
       <Accordion type="single" collapsible disabled={!isAccordionEnabled}>
         <AccordionItem value="item-1">
-          <AccordionTrigger className="p-1.5">
+          <AccordionTrigger
+            className={`p-1.5 underline-offset-1 ${
+              isAccordionEnabled ? "hover:underline" : "no-underline"
+            }`}
+          >
             <div className="relative flex flex-row items-center gap-x-4">
               <span className=" ml-16 text-base font-semibold">{day}</span>
             </div>
