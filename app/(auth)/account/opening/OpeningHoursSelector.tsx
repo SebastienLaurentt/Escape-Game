@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -13,18 +15,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
 
 const OpeningHoursSelector = ({ day }: { day: string }) => {
+  const [isAccordionEnabled, setIsAccordionEnabled] = useState(false);
+
   return (
-    <Accordion type="single" collapsible>
-      <AccordionItem value="item-1">
-        <li className="flex flex-col px-2">
+    <li className="flex flex-col px-2">
+      <Switch
+        className="absolute z-20 mt-1"
+        checked={isAccordionEnabled}
+        onCheckedChange={(checked) => setIsAccordionEnabled(checked)}
+      />
+
+      <Accordion type="single" collapsible disabled={!isAccordionEnabled}>
+        <AccordionItem value="item-1">
           <AccordionTrigger className="p-1.5">
-            <div className="flex flex-row items-center gap-x-4">
-              <Switch />
-              <span className=" text-base font-semibold">
-                {day}
-              </span>
+            <div className="relative flex flex-row items-center gap-x-4">
+              <span className=" ml-16 text-base font-semibold">{day}</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="p-2">
@@ -62,9 +70,9 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
               </Select>
             </div>
           </AccordionContent>
-        </li>
-      </AccordionItem>
-    </Accordion>
+        </AccordionItem>
+      </Accordion>
+    </li>
   );
 };
 
