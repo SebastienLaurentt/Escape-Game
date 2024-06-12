@@ -20,6 +20,8 @@ import { useState } from "react";
 const OpeningHoursSelector = ({ day }: { day: string }) => {
   const [isAccordionEnabled, setIsAccordionEnabled] = useState(false);
   const [accordionValue, setAccordionValue] = useState<string | undefined>("");
+  const [openingHour, setOpeningHour] = useState<string | undefined>(undefined);
+  const [closingHour, setClosingHour] = useState<string | undefined>(undefined);
 
   const handleAccordionToggle = (checked: boolean) => {
     setIsAccordionEnabled(checked);
@@ -32,10 +34,18 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
     }
   };
 
+  const handleOpeningHourChange = (value: string) => {
+    setOpeningHour(value);
+  };
+
+  const handleClosingHourChange = (value: string) => {
+    setClosingHour(value);
+  };
+
   return (
     <li className="flex flex-col px-2">
       <Switch
-        className="absolute z-20 mt-1"
+        className="absolute z-20 ml-2 mt-1"
         checked={isAccordionEnabled}
         onCheckedChange={handleAccordionToggle}
       />
@@ -54,13 +64,21 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
                 : "cursor-default no-underline opacity-50"
             }`}
           >
-            <div className="relative flex flex-row items-center gap-x-4">
-              <span className="ml-16 text-base font-semibold">{day}</span>
+            <div className="relative flex flex-row items-center">
+              <span className="ml-16 w-[100px] text-left text-base font-semibold">
+                {day}
+              </span>
+              <span className=" text-base">
+                {" "}
+                {openingHour && closingHour
+                  ? `(${openingHour}h - ${closingHour}h)`
+                  : "(Fermé)"}
+              </span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="p-2">
             <div className="flex flex-row items-center gap-x-4">
-              <Select>
+              <Select onValueChange={handleOpeningHourChange}>
                 <SelectTrigger className="w-[130px]">
                   <SelectValue placeholder="Ouverture" />
                 </SelectTrigger>
@@ -78,7 +96,7 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
 
               <span>à</span>
 
-              <Select>
+              <Select onValueChange={handleClosingHourChange}>
                 <SelectTrigger className="w-[130px]">
                   <SelectValue placeholder="Fermeture" />
                 </SelectTrigger>
