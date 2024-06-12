@@ -55,6 +55,7 @@ const OpeningHoursSchema = z.object({
   id: z.string().optional(),
   day: z.string(), // Assumed to be non-optional
   dayNumber: z.number().int().min(0).max(6),
+  isOpen: z.boolean().default(true),
   openingHour: z.string().optional(),
   closingHour: z.string().optional(),
 });
@@ -483,7 +484,7 @@ export const getBookedSlots = async () => {
 
 // Opening Hours 
 // Get Opening Hours list
-export const getOpeningHours = async () => {
+export const getOpeningHoursList = async () => {
   try {
     const openingHours = await prisma.openingHours.findMany({
       orderBy: {

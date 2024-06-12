@@ -57,8 +57,10 @@ model OpeningHours {
   id            String      @id @default(cuid())
   day           String
   dayNumber     Int // 0-6 - 0 is Monday
+  isOpen Boolean
   openingHour   String?
   closingHour   String?
+  
 }
 
 model Order {
