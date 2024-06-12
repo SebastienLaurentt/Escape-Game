@@ -53,6 +53,14 @@ model ClosedDay {
   date  DateTime
 }
 
+model OpeningHours {
+  id            String      @id @default(cuid())
+  day           String
+  dayNumber     Int // 0-6 - 0 is Monday
+  openingHour   String?
+  closingHour   String?
+}
+
 model Order {
   id              String      @id @default(cuid())
   reservationId   String 

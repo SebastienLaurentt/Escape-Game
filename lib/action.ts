@@ -50,6 +50,15 @@ const ClosedDaySchema = z.object({
   date: z.string(),
 });
 
+// OpeningHours schema type with Zod
+const OpeningHoursSchema = z.object({
+  id: z.string().optional(),
+  day: z.string(), // Assumed to be non-optional
+  dayNumber: z.number().int().min(0).max(6),
+  openingHour: z.string().optional(),
+  closingHour: z.string().optional(),
+});
+
 // Experience
 // Read all experiences
 export const getExperiencesList = async () => {
@@ -468,5 +477,21 @@ export const getBookedSlots = async () => {
     return BookedSlots;
   } catch (error) {
     throw new Error("Failed to fetch BookedSlots data");
+  }
+};
+
+
+// Opening Hours 
+// Get Opening Hours list
+export const getOpeningHours = async () => {
+  try {
+    const openingHours = await prisma.openingHours.findMany({
+      orderBy: {
+        dayNumber: 'asc'
+      }
+    });
+    return openingHours;
+  } catch (error) {
+    throw new Error("Failed to fetch opening hours data");
   }
 };
