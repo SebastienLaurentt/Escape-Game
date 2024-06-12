@@ -71,6 +71,7 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
                     <SelectItem value="11">11.00</SelectItem>
                     <SelectItem value="12">12.00</SelectItem>
                     <SelectItem value="13">13.00</SelectItem>
+                    <SelectItem value="14">14.00</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -83,11 +84,15 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="9">09.00</SelectItem>
-                    <SelectItem value="10">10.00</SelectItem>
-                    <SelectItem value="11">11.00</SelectItem>
-                    <SelectItem value="12">12.00</SelectItem>
-                    <SelectItem value="13">13.00</SelectItem>
+                    <SelectItem value="15">15.00</SelectItem>
+                    <SelectItem value="16">16.00</SelectItem>
+                    <SelectItem value="17">17.00</SelectItem>
+                    <SelectItem value="18">18.00</SelectItem>
+                    <SelectItem value="19">19.00</SelectItem>
+                    <SelectItem value="20">20.00</SelectItem>
+                    <SelectItem value="21">21.00</SelectItem>
+                    <SelectItem value="22">22.00</SelectItem>
+                    <SelectItem value="23">23.00</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
