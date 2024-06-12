@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import OpeningHoursSelector from "./OpeningHoursSelector";
 
@@ -15,7 +16,7 @@ const OpeningHours = () => {
         </CardHeader>
 
         <CardContent className="py-2 text-sm 2xl:px-10">
-          <ul className="flex flex-col gap-y-3">
+          <ul className="mb-5 flex flex-col gap-y-3">
             <OpeningHoursSelector day="Lundi" />
             <OpeningHoursSelector day="Mardi" />
             <OpeningHoursSelector day="Mercredi" />
@@ -24,6 +25,9 @@ const OpeningHours = () => {
             <OpeningHoursSelector day="Samedi" />
             <OpeningHoursSelector day="Dimanche" />
           </ul>
+          <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
+            <Button type="submit">Sauvegarder</Button>
+          </div>
         </CardContent>
       </Card>
     </div>
