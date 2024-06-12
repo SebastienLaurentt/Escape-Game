@@ -496,3 +496,21 @@ export const getOpeningHoursList = async () => {
     throw new Error("Failed to fetch opening hours data");
   }
 };
+
+
+
+export const updateOpeningHours = async (openingHoursList: any) => {
+  const updatePromises = openingHoursList.map((openingHours:any) =>
+    prisma.openingHours.update({
+      where: { id: openingHours.id },
+      data: {
+        isOpen: openingHours.isOpen,
+        openingHour: openingHours.openingHour,
+        closingHour: openingHours.closingHour,
+      },
+    })
+  );
+
+  await Promise.all(updatePromises);
+  return { message: "Horaires mis à jour avec succès" };
+};
