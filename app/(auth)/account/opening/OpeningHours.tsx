@@ -17,7 +17,7 @@ const OpeningHours = async () => {
           </div>
         </CardHeader>
 
-        <CardContent className="py-2 text-sm 2xl:px-10">
+        <CardContent className="py-8 text-sm 2xl:px-10">
           <ul className="mb-5 flex flex-col gap-y-3">
             {openingHoursList.map((openingHours, index) => (
               <OpeningHoursSelector
