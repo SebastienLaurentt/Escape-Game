@@ -13,6 +13,7 @@ import { useState } from "react";
 const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   const [experienceId, setExperienceId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const router = useRouter();
 
   const handleCardClick = (id: string) => {
@@ -37,6 +38,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
     },
     onSuccess: (result) => {
       if (result && result.reservationId) {
+        setIsSuccess(true);
         router.push(`/reservation/booking/${result.reservationId}`);
       } else {
         setError("Failed to create reservation.");
@@ -77,8 +79,8 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         </div>
 
         <div className="flex flex-row justify-end">
-          <Button disabled={isPending || !experienceId} type="submit">
-            {isPending ? "Chargement..." : "Continuer"}
+          <Button disabled={isPending || !experienceId || isSuccess} type="submit">
+            {isPending || isSuccess ? "Chargement..." : "Continuer"}
           </Button>
         </div>
       </form>
