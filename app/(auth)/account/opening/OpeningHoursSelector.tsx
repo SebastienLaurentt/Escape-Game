@@ -48,7 +48,10 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
   if (!isDayOpen) {
     displayText = "Fermé";
   } else {
-    displayText = openingHour && closingHour ? `(${openingHour}h - ${closingHour}h)` : "Horaires manquantes";
+    displayText =
+      openingHour && closingHour
+        ? `(${openingHour}h - ${closingHour}h)`
+        : "Horaires manquantes";
   }
 
   return (
@@ -71,8 +74,8 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
               isAccordionEnabled ? "" : "cursor-default opacity-50"
             }`}
           >
-            <div className="relative flex flex-row items-center">
-              <span className="ml-16 w-[100px] text-left text-base font-semibold">
+            <div className="relative ml-16 mr-4 flex w-full flex-row items-center justify-between">
+              <span className="w-[100px] text-left text-base font-semibold">
                 {day}
               </span>
               <span className="text-base">{displayText}</span>
@@ -80,7 +83,10 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
           </AccordionTrigger>
           <AccordionContent className="p-2">
             <div className="flex flex-row items-center gap-x-4">
-              <Select onValueChange={handleOpeningHourChange} defaultValue={openingHour}>
+              <Select
+                onValueChange={handleOpeningHourChange}
+                defaultValue={openingHour}
+              >
                 <SelectTrigger className="w-[130px]">
                   <SelectValue placeholder="Ouverture" />
                 </SelectTrigger>
@@ -98,7 +104,10 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
 
               <span>à</span>
 
-              <Select onValueChange={handleClosingHourChange} defaultValue={closingHour}>
+              <Select
+                onValueChange={handleClosingHourChange}
+                defaultValue={closingHour}
+              >
                 <SelectTrigger className="w-[130px]">
                   <SelectValue placeholder="Fermeture" />
                 </SelectTrigger>
