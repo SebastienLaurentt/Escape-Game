@@ -51,7 +51,7 @@ const OpeningHoursSelector = ({ day }: { day: string }) => {
             className={`p-1.5 underline-offset-1 ${
               isAccordionEnabled
                 ? "hover:underline"
-                : "cursor-default no-underline"
+                : "cursor-default no-underline opacity-50"
             }`}
           >
             <div className="relative flex flex-row items-center gap-x-4">
