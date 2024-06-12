@@ -19,7 +19,7 @@ interface ExperienceWithSlots {
 
 interface ReservationWithExperience extends Reservation {
   experience: ExperienceWithSlots;
-  bookedSlot: BookedSlot | null; 
+  bookedSlot: BookedSlot | null;
 }
 
 const Preview = ({
@@ -27,16 +27,16 @@ const Preview = ({
 }: {
   reservation: ReservationWithExperience;
 }) => {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState(true);
 
   const router = useRouter();
 
-  const { id, experience, people, price, bookedSlot  } = reservation;
+  const { id, experience, people, price, bookedSlot } = reservation;
 
   const formatDate = (date: string) => {
     const formattedDate = new Date(date).toLocaleDateString("fr-FR", {
@@ -79,13 +79,15 @@ const Preview = ({
       return createCheckoutSession(id, { name, email, phone });
     },
     onSuccess: ({ url }) => {
+      setIsSuccess(true);
       if (url) router.push(url);
       else throw new Error("Unable to retrieve payment URL.");
     },
     onError: () => {
       toast({
-        title: "Something went wrong",
-        description: "There was an error on our end. Please try again.",
+        title: "Une erreur s'est produite",
+        description:
+          "Il y a eu un problème lors de la création de la session de paiement. Veuillez réessayer.",
         variant: "destructive",
       });
     },
@@ -220,9 +222,9 @@ const Preview = ({
               </div>
               <Button
                 onClick={() => createPaymentSession()}
-                disabled={isDisabled || isPending}
+                disabled={isDisabled || isPending || isSuccess}
               >
-                {isPending ? "Chargement..." : "Confirmer et Payer"}
+                {isPending || isSuccess ? "Chargement..." : "Confirmer et Payer"}
               </Button>
             </div>
             <div className="text-sm font-bold text-primary">
