@@ -40,9 +40,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
       if (result && result.reservationId) {
         setIsSuccess(true);
         router.push(`/reservation/booking/${result.reservationId}`);
-      } else {
-        setError("Failed to create reservation.");
-      }
+      } 
     },
   });
 

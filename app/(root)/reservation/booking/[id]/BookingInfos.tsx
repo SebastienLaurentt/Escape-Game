@@ -15,6 +15,7 @@ import {
 } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface ExtendedExperience extends Experience {
@@ -52,7 +53,10 @@ const BookingInfos = ({
   const [people, setPeople] = useState<number | null>(null);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [price, setPrice] = useState(0);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [time, setTime] = useState<string | null>(null);
+
+  const router = useRouter();
 
   // Extract minPeople from reservation.experience
   const minPeople = parseInt(reservation.experience.minPeople);
@@ -129,6 +133,9 @@ const BookingInfos = ({
       const result = await updateReservation(reservation.id, formData);
       return result;
     },
+    onSuccess: () => {
+      setIsSuccess(true);
+    },
   });
 
   return (
@@ -183,8 +190,11 @@ const BookingInfos = ({
 
                 {date && (
                   <div className="flex flex-row justify-end">
-                    <Button disabled={isPending || !time} type="submit">
-                      {isPending ? "Chargement..." : "Continuer"}
+                    <Button
+                      disabled={isPending || !time || isSuccess}
+                      type="submit"
+                    >
+                      {isPending || isSuccess ? "Chargement..." : "Continuer"}
                     </Button>
                   </div>
                 )}
