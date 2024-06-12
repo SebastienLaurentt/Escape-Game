@@ -12,8 +12,8 @@ export const DeleteButton = ({ id }: { id: string }) => {
     mutationFn: () => deleteClosedDay(id),
     onSuccess: () => {
       toast({
-        title: "Closed day reopened successfully",
-        variant: "destructive",
+        title: "Jour réouvert !",
+        variant: "success",
       });
     },
     onError: (error: any) => {

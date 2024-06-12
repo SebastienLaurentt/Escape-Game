@@ -12,8 +12,8 @@ export const DeletePrice = ({ id }: { id: string }) => {
     mutationFn: () => deletePrice(id),
     onSuccess: () => {
       toast({
-        title: "Price deleted successfully",
-        variant: "destructive",
+        title: "Tarif supprimé !",
+        variant: "success",
       });
     },
     onError: (error: any) => {

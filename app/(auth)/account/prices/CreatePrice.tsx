@@ -3,6 +3,7 @@
 import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
 import { createPrice } from "@/lib/action";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -35,6 +36,7 @@ const CreatePrice = () => {
       alert("An error occurred while creating the price.");
     },
     onSuccess: () => {
+      toast({ title: "Nouveau tarif ajouté !", variant: "success" });
       setFormData({ people: "", price: "" });
     },
   });

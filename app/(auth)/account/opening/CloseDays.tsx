@@ -49,7 +49,7 @@ const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
       toast({ title: "Failed to create closed day", variant: "destructive" });
     },
     onSuccess: () => {
-      toast({ title: "Closed day created successfully", variant: "destructive" });
+      toast({ title: "Ajout d'un jour de fermeture !", variant: "success" });
     },
   });
 

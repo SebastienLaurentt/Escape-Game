@@ -14,12 +14,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { ToastAction } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "@/components/ui/use-toast";
 import { updateExperience } from "@/lib/action";
 import type { Experience } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { CircleCheckBig } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -31,8 +29,6 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
   const [selectedMaxPeople, setSelectedMaxPeople] = useState<string>(
     experience.maxPeople
   );
-
-  const { toast } = useToast();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -62,8 +58,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
     onSuccess: () => {
       toast({
         variant: "success",
-        description: "Experience mise à jour !",
-
+        title: "Experience mise à jour !",
       });
     },
   });

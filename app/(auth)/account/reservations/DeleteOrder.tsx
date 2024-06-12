@@ -14,7 +14,7 @@ export const DeleteOrder = ({ id }: { id: string }) => {
     onMutate: () => {
     },
     onSuccess: () => {
-      toast({ title: "Order deleted successfully", variant: "destructive" });
+      toast({ title: "Réservation supprimée !", variant: "success" });
     },
     onError: (error: any) => {
       toast({
