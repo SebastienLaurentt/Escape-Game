@@ -33,12 +33,16 @@ const Hero = () => {
         id="hero-text"
         classname="absolute z-10 opacity-0 flex flex-col items-center w-full xl:items-center text-center"
       >
-        <h1 className={`${creepster} uppercase`}>
-          La Villa de <span className="text-primary">l&apos;Effroi</span>
+        <h1 className={`${creepster} flex flex-col uppercase`}>
+          <span>Entrez dans la Villa.</span>
+          <span>
+            Découvrez un{" "}
+            <span className="text-primary">Mystère Terrifiant.</span>{" "}
+          </span>
         </h1>
-        <p className="my-4 w-[250px] md:w-[500px] md:text-lg lg:text-xl">
-          Explorez la Villa de l&apos;Effroi. <br /> Échappez-vous avant
-          l&apos;horreur.
+        <p className="my-4 w-[300px] text-[14px] md:w-[550px] md:text-lg">
+          Survivez aux énigmes et échappez-vous avant que l&apos;horreur ne vous
+          rattrape.
         </p>
         <Button
           asChild
