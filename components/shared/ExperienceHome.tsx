@@ -50,16 +50,14 @@ const ExperienceHome = ({
         {/* #0a0a0a */}
       </div>
 
-      {/* Experience Name and Price */}
-      <div className="flex flex-col gap-y-3 p-4 xl:w-1/3 xl:p-0">
-        <div className="flex flex-row items-center justify-between">
-          <span className="text-xl font-semibold leading-6 md:text-3xl md:leading-7">
-            {name}
-          </span>
-        </div>
+      {/* Experience Name */}
+      <div className="flex flex-col gap-y-4 p-4 xl:w-1/3  xl:p-0">
+        <span className="text-center text-xl font-semibold leading-6 md:text-3xl md:leading-9 xl:text-left">
+          {name}
+        </span>
 
         {/* Description */}
-        <span className="text-secondary-foreground md:text-lg xl:text-md">
+        <span className="text-balance text-secondary-foreground md:text-lg xl:text-md">
           {longDescription}
         </span>
 
