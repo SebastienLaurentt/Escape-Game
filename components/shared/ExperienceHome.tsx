@@ -5,7 +5,7 @@ interface ExperienceCardProps {
   src: string;
   name: string;
   minPrice: string;
-  description: string;
+  longDescription: string;
   minPeople: string;
   maxPeople?: string;
   duration: string;
@@ -19,7 +19,7 @@ const ExperienceHome = ({
   src,
   name,
   minPrice,
-  description,
+  longDescription,
   minPeople,
   maxPeople,
   duration,
@@ -56,7 +56,7 @@ const ExperienceHome = ({
 
         {/* Description */}
         <span className="text-secondary-foreground md:text-lg xl:text-md">
-          {description}
+          {longDescription}
         </span>
 
         {/* People Number and Duration */}

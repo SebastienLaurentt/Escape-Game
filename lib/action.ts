@@ -20,6 +20,7 @@ const ExperienceSchema = z.object({
   name: z.string().min(5),
   image: z.any(),
   description: z.string().min(6),
+  longDescription: z.string().min(6),
   bookedSlots: z.array(BookedSlotSchema).optional(),
   duration: z.string().min(1),
   durationUnit: z.string().min(5),

@@ -5,7 +5,7 @@ import { Experience } from "@prisma/client";
 import { useInView } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
-import ExperienceCard from "../ExperienceCard";
+import ExperienceHome from "../ExperienceHome";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 
@@ -35,21 +35,20 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
           isContentInView ? "opacity-100" : ""
         }`}
       >
-        
         {/* Experience Card List */}
         <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:justify-center xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
           {experiences.map((experience: Experience, index) => (
             <li key={index}>
-              <ExperienceCard
+              <ExperienceHome
                 src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
                 name={experience.name}
                 minPrice={experience.minPrice}
-                description={experience.description}
+                longDescription={experience.longDescription}
                 minPeople={experience.minPeople}
                 maxPeople={experience.maxPeople || ""}
                 duration={experience.duration}
                 durationUnit={experience.durationUnit}
-                hover={false}
+    
               />
             </li>
           ))}
@@ -61,7 +60,9 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
             asChild
             aria-label="Aller à la page pour réserver son expérience"
           >
-            <Link href="/reservation/experiences" className="">Réserver</Link>
+            <Link href="/reservation/experiences" className="">
+              Réserver
+            </Link>
           </Button>
         </div>
       </div>
