@@ -1,12 +1,11 @@
 "use client";
 
 import { gsap } from "gsap";
-import Image from "next/image";
+import { Axe } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import navData from "../../data/navData";
-import logo from "../../public/images/Logo.svg";
 import { Button } from "../ui/button";
 import BurgerMenu from "./BurgerMenu";
 import SocialIcons from "./SocialIcons";
@@ -27,13 +26,11 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
   return (
     <header id="header" className={`${headerPosition} w-full opacity-0 `}>
       <div className="relative flex flex-row items-center  justify-center  px-6 py-4 lg:px-10 lg:py-6 xl:mx-auto xl:px-16 2xl:max-w-[2000px]">
-        <Link href="/" className="mr-auto">
-          <Image
-            src={logo}
-            alt="Logo de la Villa de l'Effroi"
-            width={50}
-            height={50}
-          />
+        <Link href="/" className="mr-auto flex flex-row items-center gap-x-1">
+          <Axe className="size-7 md:size-8" />
+          <span className="flex flex-col text-md font-semibold uppercase leading-[16px] md:leading-[20px]">
+            <span>villa</span> <span className="text-primary">effroi</span>
+          </span>
         </Link>
 
         <nav className="absolute hidden lg:block ">
@@ -56,10 +53,7 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
 
         <div className="flex flex-row gap-x-4 md:gap-x-6">
           {isAuth && (
-            <Button
-              asChild
-              aria-label="Aller sur le dashboard Administrateur"
-            >
+            <Button asChild aria-label="Aller sur le dashboard Administrateur">
               <Link href="/account/experiences">Dashboard</Link>
             </Button>
           )}
