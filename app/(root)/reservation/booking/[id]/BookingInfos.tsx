@@ -1,7 +1,7 @@
 "use client";
 
 import PeopleSelector from "@/components/shared/BookingForm/PeopleSelector";
-import TimeSelector from "@/components/shared/BookingForm/TimeSelector"; // Import du nouveau composant
+import TimeSelector from "@/components/shared/BookingForm/TimeSelector";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -15,7 +15,7 @@ import {
 } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface ExtendedExperience extends Experience {
   bookedSlots: BookedSlot[];
@@ -136,20 +136,19 @@ const BookingInfos = ({
   });
 
   return (
-    <div className="w-full py-8 ">
+    <div className="w-full py-8">
       <SectionHeader title="II. Réservez votre" titleHighlight="créneau" />
-      <div className="xl:flex xl:flex-row ">
-        <div className="hidden items-center justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0 ">
+      <div className="xl:flex xl:flex-row">
+        <div className="hidden items-start justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0">
           <Image
-            src="/images/BgHome2.webp"
-            alt="Villa de l'effroi image"
+            src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${reservation.experience.image}`}
+            alt={reservation.experience.name}
             width={1000}
             height={1000}
             className="rounded-xl opacity-30"
           />
-          <span className="absolute text-center text-xl font-bold uppercase md:leading-9 lg:text-3xl lg:leading-[48px] xl:text-4xl ">
-            La villa vous <br />
-            <span className="text-primary">attend</span>
+          <span className="absolute mt-12 text-center font-bold uppercase lg:text-xl lg:leading-[48px] xl:text-3xl">
+            {reservation.experience.name}
           </span>
         </div>
         <div className="xl:w-1/2">
@@ -164,7 +163,7 @@ const BookingInfos = ({
 
             {people && (
               <div>
-                <div className=" flex flex-col gap-y-8 md:flex-row md:justify-between lg:justify-around xl:justify-between 2xl:gap-x-4">
+                <div className="flex flex-col gap-y-8 md:flex-row md:justify-between lg:justify-around xl:justify-between 2xl:gap-x-4">
                   <div className="flex flex-col items-center gap-y-2">
                     <h3 className="w-[320px] text-center">
                       B. Choisissez un jour
