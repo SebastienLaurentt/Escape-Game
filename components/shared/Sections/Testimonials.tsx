@@ -6,52 +6,51 @@ import { HTMLAttributes, useEffect, useRef, useState } from "react";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 
-// Témoignages textuels avec prénoms et types d'expérience
 const TESTIMONIALS = [
   {
-    text: "La Villa de l'Effroi était une expérience absolument terrifiante et excitante! J'ai adoré chaque moment passé à résoudre les énigmes effrayantes.",
+    text: "C'était une expérience absolument terrifiante et excitante! J'ai adoré chaque moment passé à résoudre les énigmes effrayantes.",
     name: "Alice",
-    experienceType: "Horror",
+    experienceType: "Villa des Damnés",
   },
   {
-    text: "Une expérience intense et inoubliable. La Villa de l'Effroi m'a fait frissonner du début à la fin. Bravo pour cette ambiance incroyable!",
+    text: "Une expérience intense et inoubliable. J'ai frissonné du début à la fin. Bravo pour cette ambiance incroyable!",
     name: "Tom Hardy",
-    experienceType: "Thriller",
+    experienceType: "Cercle des Ténèbres",
   },
   {
-    text: "J'ai eu des frissons tout au long de l'aventure! La Villa de l'Effroi est sans doute le meilleur escape game d'horreur que j'ai fait.",
+    text: "J'ai eu des frissons tout au long de l'aventure! C'est sans doute le meilleur escape game d'horreur que j'ai fait.",
     name: "Sophie",
-    experienceType: "Night",
+    experienceType: "Secrets du Sanctuaire",
   },
   {
-    text: "L'ambiance, les décors, les énigmes... Tout était parfait. La Villa de l'Effroi est une expérience à ne pas manquer pour les amateurs de sensations fortes.",
+    text: "L'ambiance, les décors, les énigmes... Tout était parfait. Une expérience à ne pas manquer pour les amateurs de sensations fortes.",
     name: "Thorfinn",
-    experienceType: "Horror",
+    experienceType: "Villa des Damnés",
   },
   {
-    text: "Je ne savais pas à quoi m'attendre, mais La Villa de l'Effroi a dépassé toutes mes attentes. J'ai hâte d'y retourner!",
+    text: "Je ne savais pas à quoi m'attendre, mais ça a dépassé toutes mes attentes. J'ai hâte d'y retourner!",
     name: "Clara",
-    experienceType: "Thriller",
+    experienceType: "Cercle des Ténèbres",
   },
   {
-    text: "La peur était réelle, mais l'excitation l'était encore plus. La Villa de l'Effroi a offert une aventure terrifiante et captivante.",
+    text: "La peur était réelle, mais l'excitation l'était encore plus. Une aventure terrifiante et captivante.",
     name: "Ana",
-    experienceType: "Night",
+    experienceType: "Secrets du Sanctuaire",
   },
   {
-    text: "Un escape game d'horreur digne des meilleurs films. La Villa de l'Effroi m'a transporté dans un univers sombre et mystérieux que je n'oublierai jamais.",
+    text: "Un escape game d'horreur digne des meilleurs films. J'ai été transporté dans un univers sombre et mystérieux que je n'oublierai jamais.",
     name: "Emma",
-    experienceType: "Horror",
+    experienceType: "Villa des Damnés",
   },
   {
-    text: "Des énigmes bien pensées et une ambiance glaçante. La Villa de l'Effroi est un escape game qui mérite d'être essayé par tous les fans d'horreur.",
+    text: "Des énigmes bien pensées et une ambiance glaçante. Cet escape game mérite d'être essayé par tous les fans d'horreur.",
     name: "Nathan",
-    experienceType: "Thriller",
+    experienceType: "Cercle des Ténèbres",
   },
   {
-    text: "La Villa de l'Effroi m'a fait sursauter plus d'une fois. C'était effrayant, mais tellement amusant. Une expérience inégalée!",
+    text: "J'ai sursauté plus d'une fois. C'était effrayant, mais tellement amusant. Une expérience inégalée!",
     name: "Léa",
-    experienceType: "Night",
+    experienceType: "Secrets du Sanctuaire",
   },
 ];
 
@@ -153,11 +152,11 @@ function Review({
       style={{ animationDelay }}
       {...props}
     >
-      <p className="md:text-md">{text}</p>
+      <p className="text-pretty md:text-md">{text}</p>
       <span className="mt-4 block text-sm text-secondary-foreground">
         {name}
       </span>
-      <span className="text-md font-semibold text-primary md:text-lg">
+      <span className="text-md font-semibold text-primary">
         {experienceType}
       </span>
     </div>
@@ -166,43 +165,31 @@ function Review({
 
 function ReviewGrid({ isVisible }: { isVisible: boolean }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const columns = splitArray(TESTIMONIALS, 3);
+  const columns = splitArray(TESTIMONIALS, 3); // Change to 3 columns
   const column1 = columns[0];
   const column2 = columns[1];
-  const column3 = splitArray(columns[2], 2);
+  const column3 = columns[2];
 
   return (
     <div
       ref={containerRef}
       className={cn(
-        "relative -mx-4 mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3",
+        "relative -mx-4 mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3", // Add xl:grid-cols-3
         isVisible && "animate-fade-in"
       )}
     >
       {isVisible ? (
         <>
+          <ReviewColumn reviews={column1} msPerPixel={30} />
           <ReviewColumn
-            reviews={[...column1, ...column3.flat(), ...column2]}
-            reviewClassName={(reviewIndex) =>
-              cn({
-                "md:hidden": reviewIndex >= column1.length + column3[0].length,
-                "lg:hidden": reviewIndex >= column1.length,
-              })
-            }
-            msPerPixel={20}
+            reviews={column2}
+            className="hidden md:block"
+            msPerPixel={40}
           />
           <ReviewColumn
-            reviews={[...column2, ...column3[1]]}
-            className="hidden md:block"
-            reviewClassName={(reviewIndex) =>
-              reviewIndex >= column2.length ? "lg:hidden" : ""
-            }
-            msPerPixel={25}
-          />
-          <ReviewColumn
-            reviews={column3.flat()}
-            className="hidden md:block"
-            msPerPixel={20}
+            reviews={column3}
+            className="hidden xl:block"
+            msPerPixel={30}
           />
         </>
       ) : null}
@@ -220,7 +207,7 @@ export function Testimonials() {
     <Section marginBottom={true}>
       <div
         ref={containerRef}
-        className="opacity-0 transition-opacity duration-700 ease-in-out"
+        className="px-4 opacity-0 transition-opacity duration-700 ease-in-out md:px-6 lg:px-8 xl:px-20 2xl:px-32"
         style={{ opacity: isInView ? 1 : 0 }}
       >
         <SectionHeader title="L'avis des " titleHighlight="survivants" />
