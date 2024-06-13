@@ -8,13 +8,21 @@ import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   const [experienceId, setExperienceId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const router = useRouter();
+  const submitButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    // Scroll to submit button when an experience is chosen, but only on screens smaller than XL
+    if (window.innerWidth < 1280 && submitButtonRef.current && experienceId) {
+      submitButtonRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [experienceId]);
 
   const handleCardClick = (id: string) => {
     setExperienceId(id);
@@ -77,7 +85,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         </div>
 
         <div className="flex flex-row justify-end">
-          <Button disabled={isPending || !experienceId || isSuccess} type="submit">
+          <Button disabled={isPending || !experienceId || isSuccess} type="submit" ref={submitButtonRef}>
             {isPending || isSuccess ? "Chargement..." : "Continuer"}
           </Button>
         </div>
