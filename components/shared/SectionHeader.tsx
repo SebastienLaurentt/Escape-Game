@@ -15,10 +15,10 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div className="mb-6 mt-4 flex flex-col items-center text-center md:mb-8">
       <h2
-        className={`${creepster} flex flex-col text-3xl leading-[44px] md:text-5xl md:leading-[56px] lg:text-6xl lg:leading-[64px]`}
+        className={`${creepster} text-2xl uppercase leading-[44px] md:text-5xl md:leading-[56px] lg:text-5xl lg:leading-[64px]`}
       >
-        <span>{title}</span>{" "}
-        <span className="text-primary">{titleHighlight}</span>
+        <span>{title}</span>
+        <span className="text-primary"> {titleHighlight}</span>
       </h2>
       <p>{titleDescription}</p>
     </div>

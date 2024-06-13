@@ -15,7 +15,7 @@ const Infos = () => {
   return (
     <Section marginBottom={true} marginTop={true}>
       <div ref={containerRef} className="opacity-0 transition-opacity duration-700 ease-in-out" style={{ opacity: isInView ? 1 : 0 }}>
-        <SectionHeader title="Envie de tenter " titleHighlight="l'aventure ?" />
+        <SectionHeader title="Nous" titleHighlight="rejoindre" />
 
         <div className={`flex flex-col gap-y-16 md:flex-row md:justify-center md:gap-x-20 md:gap-y-0 lg:gap-x-28 ${isInView ? 'animate-fade-in' : ''}`}>
           {/* When and Where */}

@@ -223,7 +223,7 @@ export function Testimonials() {
         className="opacity-0 transition-opacity duration-700 ease-in-out"
         style={{ opacity: isInView ? 1 : 0 }}
       >
-        <SectionHeader title="Ils ont aimé" titleHighlight="l'expérience" />
+        <SectionHeader title="L'avis des " titleHighlight="survivants" />
         <ReviewGrid isVisible={isInView} />
       </div>
     </Section>

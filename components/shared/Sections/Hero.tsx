@@ -40,7 +40,7 @@ const Hero = () => {
             <span className="text-primary">Mystère Terrifiant.</span>{" "}
           </span>
         </h1>
-        <p className="my-4 w-[300px] text-[14px] md:w-[550px] md:text-lg">
+        <p className="my-4 w-[330px] text-sm md:w-[550px] md:text-lg">
           Survivez aux énigmes et échappez-vous avant que l&apos;horreur ne vous
           rattrape.
         </p>

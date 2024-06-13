@@ -46,7 +46,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
 
   return (
     <div className="py-8 pb-4 xl:pt-0">
-      <SectionHeader title="1. Choisissez votre" titleHighlight="expérience" />
+      <SectionHeader title="I. Choisissez votre" titleHighlight="expérience" />
 
       <Spotlight
         className="-top-40 left-0 md:-top-20 md:left-60"
