@@ -46,9 +46,9 @@ const ExperienceCard = ({
         className="rounded-xl"
       />
       {/* Experience Name and Price */}
-      <div className="flex flex-col  p-4">
+      <div className="flex flex-col p-4 md:p-6 xl:p-4">
         <div className="flex flex-col">
-          <span className="mb-3 text-lg font-semibold md:text-xl">
+          <span className="mb-3 text-lg font-semibold md:text-3xl xl:text-xl">
             {name}
           </span>
           <span className="flex w-full flex-row items-end gap-x-1 md:text-md xl:text-sm">

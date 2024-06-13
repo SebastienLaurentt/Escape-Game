@@ -163,8 +163,8 @@ const BookingInfos = ({
             />
 
             {people && (
-              <div className="">
-                <div className="flex flex-col gap-y-8 xl:flex-row xl:justify-between 2xl:gap-x-4">
+              <div>
+                <div className=" flex flex-col gap-y-8 md:flex-row md:justify-between lg:justify-around xl:justify-between 2xl:gap-x-4">
                   <div className="flex flex-col items-center gap-y-2">
                     <h3 className="w-[320px] text-center">
                       B. Choisissez un jour

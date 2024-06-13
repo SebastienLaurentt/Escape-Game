@@ -8,7 +8,7 @@ import { createReservation } from "@/lib/action";
 import { Experience } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   const [experienceId, setExperienceId] = useState<string | null>(null);
@@ -20,7 +20,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   useEffect(() => {
     // Scroll to submit button when an experience is chosen, but only on screens smaller than XL
     if (window.innerWidth < 1280 && submitButtonRef.current && experienceId) {
-      submitButtonRef.current.scrollIntoView({ behavior: 'smooth' });
+      submitButtonRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [experienceId]);
 
@@ -48,12 +48,12 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
       if (result && result.reservationId) {
         setIsSuccess(true);
         router.push(`/reservation/booking/${result.reservationId}`);
-      } 
+      }
     },
   });
 
   return (
-    <div className="py-8 pb-4">
+    <div className="py-8 pb-4 ">
       <SectionHeader title="I. Choisissez votre" titleHighlight="expérience" />
 
       <Spotlight
@@ -61,7 +61,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         fill="white"
       />
       <form onSubmit={handleSubmit}>
-        <ul className="mb-6 flex flex-col justify-between gap-y-8 xl:flex-row xl:gap-x-2 2xl:gap-x-4">
+        <ul className="mb-6 flex flex-col justify-between gap-y-8 md:mx-12 lg:mx-24 xl:mx-0 xl:flex-row xl:gap-x-2 2xl:gap-x-4">
           {experiences.map((experience, index) => (
             <li key={index}>
               <ExperienceCard
@@ -85,7 +85,11 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
         </div>
 
         <div className="flex flex-row justify-end">
-          <Button disabled={isPending || !experienceId || isSuccess} type="submit" ref={submitButtonRef}>
+          <Button
+            disabled={isPending || !experienceId || isSuccess}
+            type="submit"
+            ref={submitButtonRef}
+          >
             {isPending || isSuccess ? "Chargement..." : "Continuer"}
           </Button>
         </div>
