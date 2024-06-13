@@ -51,18 +51,18 @@ const ExperienceHome = ({
       </div>
 
       {/* Experience Name */}
-      <div className="flex flex-col gap-y-4 p-4 xl:w-1/3  xl:p-0">
-        <span className="text-center text-xl font-semibold leading-6 md:text-3xl md:leading-9 xl:text-left">
+      <div className="flex flex-col items-center gap-y-4 p-4  xl:w-1/3 xl:items-start xl:p-0">
+        <span className=" text-xl font-semibold leading-6 md:text-3xl md:leading-9 xl:text-left">
           {name}
         </span>
 
         {/* Description */}
-        <span className="text-balance text-secondary-foreground md:text-lg xl:text-md">
+        <span className="text-balance text-center text-secondary-foreground md:text-lg xl:text-left xl:text-md">
           {longDescription}
         </span>
 
         {/* People Number and Duration */}
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row ">
           <div className="flex flex-row items-center gap-x-1">
             <User className="cardIcon" />
             <span className="text-sm md:text-md xl:text-sm">

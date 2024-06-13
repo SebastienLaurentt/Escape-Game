@@ -26,7 +26,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
           isSectionHeaderInView ? "opacity-100" : ""
         }`}
       >
-        <SectionHeader title="De sinistres" titleHighlight="mystères" />
+        <SectionHeader title="Missions de la " titleHighlight="Villa" />
       </div>
 
       <div
