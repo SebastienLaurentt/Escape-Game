@@ -45,7 +45,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   });
 
   return (
-    <div className="py-8 pb-4 xl:pt-0">
+    <div className="py-8 pb-4">
       <SectionHeader title="I. Choisissez votre" titleHighlight="expérience" />
 
       <Spotlight
