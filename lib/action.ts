@@ -399,7 +399,11 @@ export const createClosedDay = async (prevSate: any, formData: FormData) => {
 // Get ClosedDay list
 export const getClosedDay = async () => {
   try {
-    const closedDays = await prisma.closedDay.findMany({});
+    const closedDays = await prisma.closedDay.findMany({
+      orderBy: {
+        date: 'asc'
+      }
+    });
     return closedDays;
   } catch (error) {
     throw new Error("Failed to fetch closedDays data");
