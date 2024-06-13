@@ -139,7 +139,7 @@ const BookingInfos = ({
     <div className="w-full py-8">
       <SectionHeader title="II. Réservez votre" titleHighlight="créneau" />
       <div className="xl:flex xl:flex-row">
-        <div className="hidden items-start justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0">
+        <div className="hidden justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0">
           <Image
             src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${reservation.experience.image}`}
             alt={reservation.experience.name}

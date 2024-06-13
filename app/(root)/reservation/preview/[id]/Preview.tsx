@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
-import previewImg from "@/public/images/Experience2.jpg";
 import { BookedSlot, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createCheckoutSession } from "./CheckoutAction";
+import previewImg from "@/public/images/BgHome.jpg";
 
 interface ExperienceWithSlots {
   name: string;
@@ -99,14 +99,11 @@ const Preview = ({
         <div className="mt-14 xl:mt-0 xl:w-3/5 2xl:w-2/3">
           <Image
             alt="image experience"
-            src={
-              experience.image
-                ? `https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`
-                : previewImg
-            }
+            src={previewImg}
             className="rounded-xl"
             width={1000}
             height={1000}
+            priority
           />
         </div>
 
