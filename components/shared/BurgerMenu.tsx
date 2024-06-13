@@ -1,10 +1,9 @@
+import { creepster } from "@/lib/font";
 import { gsap } from "gsap";
 import { X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import navData from "../../data/navData";
-import Logo from "../../public/images/Logo.svg";
 import SocialIcons from "./SocialIcons";
 
 interface IBurgerMenu {
@@ -78,13 +77,12 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
         </button>
 
         <div className="mt-32 flex flex-col gap-y-12">
-          <Link href="/">
-            <Image
-              id="LogoBurgerMenu"
-              src={Logo}
-              alt="logo"
-              className="mx-auto  size-40"
-            />
+          <Link
+            href="/"
+            className={`${creepster} flex flex-col text-5xl font-semibold uppercase leading-[64px]`}
+          >
+            <span>la villa de </span>
+            <span className="text-primary">l&apos;effroi</span>
           </Link>
 
           <ul

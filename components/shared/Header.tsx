@@ -28,7 +28,7 @@ const Header = ({ isAuth }: { isAuth: boolean }) => {
       <div className="relative flex flex-row items-center  justify-center  px-6 py-4 lg:px-10 lg:py-6 xl:mx-auto xl:px-16 2xl:max-w-[2000px]">
         <Link href="/" className="mr-auto flex flex-row items-center gap-x-1">
           <Axe className="size-7 md:size-8" />
-          <span className="flex flex-col text-md font-semibold uppercase leading-[16px] md:leading-[20px]">
+          <span className="flex flex-col text-md font-semibold uppercase leading-[18px] md:leading-[20px]">
             <span>villa</span> <span className="text-primary">effroi</span>
           </span>
         </Link>
