@@ -46,14 +46,13 @@ const ExperienceCard = ({
         className="rounded-xl"
       />
       {/* Experience Name and Price */}
-      <div className="flex flex-col gap-y-3 p-4">
-        <div className="flex flex-row items-center justify-between">
-          <span className="text-xl font-semibold leading-6 md:text-3xl md:leading-7">
+      <div className="flex flex-col  p-4">
+        <div className="flex flex-col">
+          <span className="mb-3 text-lg font-semibold md:text-xl">
             {name}
           </span>
-          <span className="flex flex-row items-center gap-x-1 md:text-md xl:text-sm">
-            dès
-            <span className="text-xl font-semibold italic text-primary md:text-3xl ">
+          <span className="flex w-full flex-row items-end gap-x-1 md:text-md xl:text-sm">
+            <span className="text-xl font-semibold italic leading-7 text-primary md:text-3xl md:leading-9 ">
               {minPrice}€
             </span>
             / personne
@@ -61,7 +60,7 @@ const ExperienceCard = ({
         </div>
 
         {/* Description */}
-        <span className="text-secondary-foreground md:text-lg xl:text-md">
+        <span className="my-4 text-secondary-foreground md:text-lg xl:text-md">
           {description}
         </span>
 
@@ -70,8 +69,8 @@ const ExperienceCard = ({
           <div className="flex flex-row items-center gap-x-1">
             <User className="cardIcon" />
             <span className="text-sm md:text-md xl:text-sm">
-              <span>{minPeople}</span> {maxPeople!=minPeople ? ` à ${maxPeople}` : ""}{" "}
-              personnes
+              <span>{minPeople}</span>{" "}
+              {maxPeople != minPeople ? ` à ${maxPeople}` : ""} personnes
             </span>
           </div>
           <div className="flex flex-row items-center gap-x-1">
