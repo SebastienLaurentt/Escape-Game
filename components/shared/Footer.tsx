@@ -31,7 +31,7 @@ const Footer = () => {
       <div className="flex flex-col justify-between border-t border-slate-400 pt-4 text-xs md:text-sm lg:py-8">
         <div className="mb-6">
           <span
-            className={`${creepster} text-3xl uppercase md:text-4xl xl:text-5xl`}
+            className={`${creepster} text-xl uppercase md:text-2xl xl:text-3xl`}
           >
             La Villa de <span className="text-primary">l&apos; Effroi</span>
           </span>
