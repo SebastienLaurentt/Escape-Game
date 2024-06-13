@@ -13,6 +13,7 @@ model Experience {
   name          String
   image         String?
   description   String
+  longDescription String
   duration      String
   durationUnit  String
   minPrice      String
