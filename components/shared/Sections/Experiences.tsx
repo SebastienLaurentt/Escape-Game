@@ -36,19 +36,16 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
         }`}
       >
         {/* Experience Card List */}
-        <ul className="flex flex-col gap-y-8 md:px-20 lg:px-40 xl:flex-row xl:justify-center xl:gap-x-2 xl:px-0 2xl:gap-x-4 2xl:px-12">
+        <ul className="mt-20 flex flex-col gap-y-12 md:px-8 xl:gap-y-24 ">
           {experiences.map((experience: Experience, index) => (
             <li key={index}>
               <ExperienceHome
                 src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
                 name={experience.name}
-                minPrice={experience.minPrice}
                 longDescription={experience.longDescription}
                 minPeople={experience.minPeople}
                 maxPeople={experience.maxPeople || ""}
-                duration={experience.duration}
-                durationUnit={experience.durationUnit}
-    
+                rowReverse={index % 2 === 1}
               />
             </li>
           ))}
@@ -60,9 +57,7 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
             asChild
             aria-label="Aller à la page pour réserver son expérience"
           >
-            <Link href="/reservation/experiences" className="">
-              Réserver
-            </Link>
+            <Link href="/reservation/experiences">Réserver</Link>
           </Button>
         </div>
       </div>
