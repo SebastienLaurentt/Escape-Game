@@ -1,4 +1,4 @@
-import { Creepster, Poppins } from "next/font/google";
+import { Anton, Poppins } from "next/font/google";
 
 const poppins_init = Poppins({
   subsets: ["latin"],
@@ -6,8 +6,12 @@ const poppins_init = Poppins({
   variable: "--font-poppins",
 });
 
-const creepster_init = Creepster({ subsets: ["latin"], weight: "400", variable: "--font-creepster",});
+const anton_init = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
+});
 
 export const poppins = poppins_init.className;
 
-export const creepster = creepster_init.className;
+export const creepster = anton_init.className;
