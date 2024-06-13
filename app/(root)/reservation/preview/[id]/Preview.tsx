@@ -124,44 +124,39 @@ const Preview = ({
           {/* Reservation Description */}
           <div className="my-6 flex flex-col items-center text-md xl:items-start">
             {/* Reservation Booking */}
-            <div className="mb-4 flex flex-col gap-y-3">
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">
-                    Date
-                  </span>
-                  <span>
-                    {bookedSlot?.date
-                      ? formatDate(bookedSlot.date.toString())
-                      : "N/A"}
-                  </span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">
-                    Heure
-                  </span>
-                  <span>{bookedSlot?.time ?? ""}</span>
-                </div>
+            <div className="mb-4 grid w-full grid-cols-2 gap-y-3  ">
+              <div className="flex flex-col items-center xl:items-start">
+                <span className="uppercase text-secondary-foreground">
+                  Date
+                </span>
+                <span>
+                  {bookedSlot?.date
+                    ? formatDate(bookedSlot.date.toString())
+                    : "N/A"}
+                </span>
               </div>
-
-              <div className="flex flex-row gap-x-4">
-                <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">
-                    Expérience
-                  </span>
-                  <span>{experience.name}</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="uppercase text-secondary-foreground">
-                    Personnes
-                  </span>
-                  <span>{people}</span>
-                </div>
+              <div className="flex flex-col items-center xl:items-start">
+                <span className=" uppercase text-secondary-foreground">
+                  Heure
+                </span>
+                <span>{bookedSlot?.time ?? ""}</span>
+              </div>
+              <div className="flex flex-col items-center xl:items-start">
+                <span className="uppercase text-secondary-foreground">
+                  Expérience
+                </span>
+                <span className="text-center">{experience.name}</span>
+              </div>
+              <div className="flex flex-col items-center xl:items-start">
+                <span className="uppercase text-secondary-foreground">
+                  Personnes
+                </span>
+                <span>{people}</span>
               </div>
             </div>
 
             {/* User infos */}
-            <div className="flex max-w-[280px] flex-col gap-y-3 md:max-w-[380px]">
+            <div className="flex  flex-col gap-y-3">
               <div>
                 <Label>Email</Label>
                 <Input
@@ -224,7 +219,9 @@ const Preview = ({
                 onClick={() => createPaymentSession()}
                 disabled={isDisabled || isPending || isSuccess}
               >
-                {isPending || isSuccess ? "Chargement..." : "Confirmer et Payer"}
+                {isPending || isSuccess
+                  ? "Chargement..."
+                  : "Confirmer et Payer"}
               </Button>
             </div>
             <div className="text-sm font-bold text-primary">
