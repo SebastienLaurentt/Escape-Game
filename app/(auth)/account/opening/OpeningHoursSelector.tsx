@@ -16,14 +16,29 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { OpeningHours } from "@prisma/client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const OpeningHoursSelector = ({ openingHours }: { openingHours: OpeningHours }) => {
+const OpeningHoursSelector = ({
+  openingHours,
+  onUpdate,
+}: {
+  openingHours: OpeningHours;
+  onUpdate: (updatedOpeningHour: OpeningHours) => void;
+}) => {
   const [isAccordionEnabled, setIsAccordionEnabled] = useState(openingHours.isOpen);
   const [accordionValue, setAccordionValue] = useState<string | undefined>("");
   const [openingHour, setOpeningHour] = useState<string | null>(openingHours.openingHour);
   const [closingHour, setClosingHour] = useState<string | null>(openingHours.closingHour);
   const [isDayOpen, setIsDayOpen] = useState(openingHours.isOpen);
+
+  useEffect(() => {
+    onUpdate({
+      ...openingHours,
+      openingHour,
+      closingHour,
+      isOpen: isDayOpen,
+    });
+  }, [openingHour, closingHour, isDayOpen]);
 
   const handleAccordionToggle = (checked: boolean) => {
     setIsAccordionEnabled(checked);
@@ -122,7 +137,6 @@ const OpeningHoursSelector = ({ openingHours }: { openingHours: OpeningHours }) 
                     <SelectItem value="20">20h</SelectItem>
                     <SelectItem value="21">21h</SelectItem>
                     <SelectItem value="22">22h</SelectItem>
-                    <SelectItem value="23">23h</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

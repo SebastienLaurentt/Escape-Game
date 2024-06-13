@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { prisma } from "./prisma";
 import { supabase } from "./supabase";
+import { OpeningHours } from "@prisma/client";
 
 // Schemas
 
@@ -499,18 +500,25 @@ export const getOpeningHoursList = async () => {
 
 
 
-export const updateOpeningHours = async (openingHoursList: any) => {
-  const updatePromises = openingHoursList.map((openingHours:any) =>
-    prisma.openingHours.update({
-      where: { id: openingHours.id },
-      data: {
-        isOpen: openingHours.isOpen,
-        openingHour: openingHours.openingHour,
-        closingHour: openingHours.closingHour,
-      },
-    })
-  );
+export const updateOpeningHours = async (formData: FormData): Promise<void> => {
+  try {
+    const openingHoursList = JSON.parse(formData.get("openingHoursList") as string);
 
-  await Promise.all(updatePromises);
-  return { message: "Horaires mis à jour avec succès" };
+    const updatePromises = openingHoursList.map((openingHour: OpeningHours) => {
+      return prisma.openingHours.update({
+        where: { id: openingHour.id },
+        data: {
+          day: openingHour.day,
+          openingHour: openingHour.openingHour,
+          closingHour: openingHour.closingHour,
+          isOpen: openingHour.isOpen,
+        },
+      });
+    });
+
+    await Promise.all(updatePromises);
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour des horaires d'ouverture:", error);
+    throw new Error("Erreur lors de la mise à jour des horaires d'ouverture");
+  }
 };
