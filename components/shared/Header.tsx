@@ -13,18 +13,22 @@ import SocialIcons from "./SocialIcons";
 const Header = ({ isAuth }: { isAuth: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const headerPosition = pathname === "/" ? "absolute top-0 z-20" : "";
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
-    gsap.fromTo(
-      "#header",
-      { opacity: 0 },
-      { opacity: 1, duration: 1, delay: 0.8 }
-    );
-  }, []);
+    if (isHomePage) {
+      gsap.fromTo(
+        "#header",
+        { opacity: 0 },
+        { opacity: 1, duration: 1, delay: 0.8 }
+      );
+    }
+  }, [isHomePage]);
+
+  const headerPosition = isHomePage ? "absolute top-0 z-20 opacity-0" : "opacity-100";
 
   return (
-    <header id="header" className={`${headerPosition} w-full opacity-0 `}>
+    <header id="header" className={`${headerPosition} w-full  `}>
       <div className="relative flex flex-row items-center  justify-center  p-6 md:px-10 lg:py-6 xl:mx-auto xl:px-32 2xl:max-w-[2000px]">
         <Link href="/" className="mr-auto flex flex-row items-center gap-x-1">
           <Axe className="size-6 md:size-8" />
