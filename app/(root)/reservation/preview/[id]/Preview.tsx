@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
+import previewImg from "@/public/images/BgHome.jpg";
 import { BookedSlot, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createCheckoutSession } from "./CheckoutAction";
-import previewImg from "@/public/images/BgHome.jpg";
 
 interface ExperienceWithSlots {
   name: string;
@@ -121,34 +121,44 @@ const Preview = ({
           {/* Reservation Description */}
           <div className="my-6 flex flex-col items-center text-md xl:items-start">
             {/* Reservation Booking */}
-            <div className="mb-4 grid w-full grid-cols-2 gap-y-3  ">
-              <div className="flex flex-col items-center xl:items-start">
-                <span className="uppercase text-secondary-foreground">
-                  Date
-                </span>
-                <span>
-                  {bookedSlot?.date
-                    ? formatDate(bookedSlot.date.toString())
-                    : "N/A"}
-                </span>
-              </div>
-              <div className="flex flex-col items-center xl:items-start">
-                <span className=" uppercase text-secondary-foreground">
-                  Heure
-                </span>
-                <span>{bookedSlot?.time ?? ""}</span>
-              </div>
-              <div className="flex flex-col items-center xl:items-start">
+            <div className="mb-4 w-full xl:grid">
+              {/* Container for Experience Name */}
+              <div className="mb-3 flex flex-col items-center md:col-span-3 lg:col-span-3 xl:hidden">
                 <span className="uppercase text-secondary-foreground">
                   Expérience
                 </span>
                 <span className="text-center">{experience.name}</span>
               </div>
-              <div className="flex flex-col items-center xl:items-start">
-                <span className="uppercase text-secondary-foreground">
-                  Personnes
-                </span>
-                <span>{people}</span>
+              {/* Container for Date, Time, and People for md and lg screens */}
+              <div className="grid grid-cols-3 gap-y-3  xl:grid-cols-2 xl:gap-y-3">
+                <div className="flex flex-col items-center xl:items-start">
+                  <span className="uppercase text-secondary-foreground">
+                    Date
+                  </span>
+                  <span>
+                    {bookedSlot?.date
+                      ? formatDate(bookedSlot.date.toString())
+                      : "N/A"}
+                  </span>
+                </div>
+                <div className="flex flex-col items-center xl:items-start">
+                  <span className="uppercase text-secondary-foreground">
+                    Heure
+                  </span>
+                  <span>{bookedSlot?.time ?? ""}</span>
+                </div>
+                <div className="hidden flex-col xl:flex xl:items-start">
+                  <span className="uppercase text-secondary-foreground">
+                    Expérience
+                  </span>
+                  <span className="text-center">{experience.name}</span>
+                </div>
+                <div className="flex flex-col items-center xl:items-start">
+                  <span className="uppercase text-secondary-foreground">
+                    Personnes
+                  </span>
+                  <span>{people}</span>
+                </div>
               </div>
             </div>
 
