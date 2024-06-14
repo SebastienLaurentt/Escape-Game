@@ -62,7 +62,7 @@ const Hero = () => {
         </Button>
       </Section>
       <Particles
-        className="absolute inset-0"
+        className="absolute inset-0 hidden xl:flex"
         quantity={200}
         ease={80}
         color={"#ffffff"}

@@ -113,10 +113,11 @@ const Preview = ({
           <Image
             alt="image experience"
             src={previewImg}
-            className="rounded-xl"
+            className="rounded-xl opacity-50"
             width={1000}
             height={1000}
             priority
+            
           />
         </div>
 
