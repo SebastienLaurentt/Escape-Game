@@ -14,8 +14,9 @@ import {
   Reservation,
 } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import gsap from "gsap";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ExtendedExperience extends Experience {
   bookedSlots: BookedSlot[];
@@ -123,6 +124,18 @@ const BookingInfos = ({
     (time) => !reservedTimesForDate.includes(time)
   );
 
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+
+    gsap.fromTo("#booking-img", { opacity: 0 }, { opacity: 1, duration: 1 });
+
+    gsap.fromTo(
+      "#booking-text",
+      { opacity: 0 },
+      { opacity: 1, duration: 1, delay: screenWidth < 1280 ? 0 : 0.5 }
+    );
+  });
+
   // Update Reservation Mutation
   const { mutate: updateReservationMutation, isPending } = useMutation({
     mutationKey: ["update-reservation"],
@@ -139,7 +152,10 @@ const BookingInfos = ({
     <div className="w-full py-8">
       <SectionHeader title="II. Réservez votre" titleHighlight="créneau" />
       <div className="xl:flex xl:flex-row">
-        <div className="hidden justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0">
+        <div
+          id="booking-img"
+          className="hidden justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0"
+        >
           <Image
             src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${reservation.experience.image}`}
             alt={reservation.experience.name}
@@ -151,7 +167,7 @@ const BookingInfos = ({
             {reservation.experience.name}
           </span>
         </div>
-        <div className="xl:w-1/2">
+        <div id="booking-text" className="xl:w-1/2">
           <form onSubmit={handleSubmit}>
             <PeopleSelector
               onPeopleSelect={handlePeopleSelectAndPriceSet}
