@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { deletePrice } from "@/lib/action";
 import { useMutation } from "@tanstack/react-query";
+import { Trash } from "lucide-react";
 
 export const DeletePrice = ({ id }: { id: string }) => {
   const { mutate: deletePriceMutation, isPending } = useMutation({
@@ -33,7 +34,7 @@ export const DeletePrice = ({ id }: { id: string }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Button type="submit" disabled={isPending}>
-        {isPending ? <Loader /> : "Supprimer"}
+        {isPending ? <Loader /> : <Trash />}
       </Button>
     </form>
   );
