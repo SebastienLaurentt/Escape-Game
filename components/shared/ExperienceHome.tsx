@@ -1,6 +1,5 @@
 import { User } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "../ui/button";
 
 interface ExperienceCardProps {
@@ -10,6 +9,7 @@ interface ExperienceCardProps {
   minPeople: string;
   maxPeople?: string;
   rowReverse: boolean;
+  onReserveClick: () => void;
 }
 
 const ExperienceHome = ({
@@ -19,6 +19,7 @@ const ExperienceHome = ({
   minPeople,
   maxPeople,
   rowReverse,
+  onReserveClick,
 }: ExperienceCardProps) => {
   const isRowReverse = rowReverse ? "xl:flex-row-reverse" : "xl:flex-row";
 
@@ -73,8 +74,13 @@ const ExperienceHome = ({
             </span>
           </div>
           <div>
-            <Button asChild aria-label={`Réserver l'expérience ${name}`}>
-              <Link href="/reservation/experiences">Réserver</Link>
+            <Button
+              asChild
+              aria-label={`Réserver l'expérience ${name}`}
+              onClick={onReserveClick}
+              className="cursor-pointer"
+            >
+              <span>Réserver</span>
             </Button>
           </div>
         </div>
