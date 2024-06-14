@@ -9,6 +9,7 @@ import { Experience } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   const [experienceId, setExperienceId] = useState<string | null>(null);
@@ -23,6 +24,18 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
       submitButtonRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [experienceId]);
+
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+
+    experiences.forEach((_, index) => {
+      gsap.fromTo(
+        `#experience-card-${index}`,
+        { opacity: screenWidth < 1280 ? 1 : 0, y: screenWidth < 1280 ? 0 : 20 },
+        { opacity: 1, y: 0, duration: 0.6, delay: index * 0.3, ease: "power3.out" }
+      );
+    });
+  }, [experiences]);
 
   const handleCardClick = (id: string) => {
     setExperienceId(id);
@@ -53,17 +66,14 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
   });
 
   return (
-    <div className="py-8 pb-4 ">
+    <div className="py-8 pb-4">
       <SectionHeader title="I. Choisissez votre" titleHighlight="expérience" />
 
-      <Spotlight
-        className="-top-40 left-0 md:-top-20 md:left-60"
-        fill="white"
-      />
+      <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="white" />
       <form onSubmit={handleSubmit}>
         <ul className="mb-6 flex flex-col justify-between gap-y-8 md:mx-12 lg:mx-24 xl:mx-0 xl:flex-row xl:gap-x-2 2xl:gap-x-4">
           {experiences.map((experience, index) => (
-            <li key={index}>
+            <li key={index} id={`experience-card-${index}`} className="opacity-0">
               <ExperienceCard
                 src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${experience.image}`}
                 name={experience.name}
