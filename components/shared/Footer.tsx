@@ -4,13 +4,10 @@ import { creepster } from "@/lib/font";
 import { useInView } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useRef } from "react";
 
 const Footer = () => {
   const footerRef = useRef<HTMLDivElement | null>(null);
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
 
   const isFooterInView = useInView(footerRef, {
     once: true,
@@ -21,11 +18,7 @@ const Footer = () => {
     <footer
       ref={footerRef}
       className={`w-full px-6 transition-opacity duration-700 ease-in-out md:px-10 xl:mx-auto xl:max-w-[1600px] xl:px-16 ${
-        isHomePage && isFooterInView
-          ? "opacity-100"
-          : isHomePage
-          ? "opacity-0"
-          : "opacity-100"
+        isFooterInView ? "opacity-100" : "opacity-0"
       }`}
     >
       <div className="flex flex-col justify-between border-t border-slate-400 pt-4 text-xs md:text-sm lg:py-8">

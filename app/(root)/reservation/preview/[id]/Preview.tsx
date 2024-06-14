@@ -7,6 +7,7 @@ import { toast } from "@/components/ui/use-toast";
 import previewImg from "@/public/images/BgHome.jpg";
 import { BookedSlot, Reservation } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import gsap from "gsap";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -65,6 +66,15 @@ const Preview = ({
     );
   }, [name, email, confirmEmail, phone]);
 
+  // Animation
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+
+    gsap.fromTo("#preview-img", { opacity: 0 }, { opacity: 1, duration: 1 });
+
+    gsap.fromTo("#preview-text", { opacity: 0 }, { opacity: 1, duration: 1, delay: screenWidth < 1280 ? 0 : 0.5});
+  });
+
   const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],
     mutationFn: async () => {
@@ -96,7 +106,10 @@ const Preview = ({
   return (
     <main>
       <div className="mx-auto flex flex-col-reverse items-center justify-between py-16 sm:py-24 xl:flex-row">
-        <div className="mt-14 xl:mt-0 xl:w-3/5 2xl:w-2/3">
+        <div
+          id="preview-img"
+          className="mt-14 opacity-0 xl:mt-0 xl:w-3/5 2xl:w-2/3"
+        >
           <Image
             alt="image experience"
             src={previewImg}
@@ -108,7 +121,7 @@ const Preview = ({
         </div>
 
         {/* Preview Header */}
-        <div className="flex flex-col gap-y-2">
+        <div id="preview-text" className="flex flex-col gap-y-2 opacity-0">
           <div className="flex flex-col items-center xl:items-start">
             <span className="text-lg font-medium text-primary">
               Bientôt terminé !
