@@ -1,5 +1,7 @@
 import { User } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 interface ExperienceCardProps {
   src: string;
@@ -51,24 +53,29 @@ const ExperienceHome = ({
       </div>
 
       {/* Experience Name */}
-      <div className="flex flex-col items-center gap-y-4 p-4  xl:w-1/3 xl:items-start xl:p-0">
-        <span className=" text-xl font-semibold leading-6 md:text-3xl md:leading-9 xl:text-left">
+      <div className="flex flex-col items-center gap-y-4 p-4  text-center xl:w-1/3 xl:items-start xl:p-0 xl:text-left">
+        <span className="text-xl font-semibold leading-6 md:text-3xl md:leading-9 ">
           {name}
         </span>
 
         {/* Description */}
-        <span className="text-balance text-center text-secondary-foreground md:text-lg xl:text-left xl:text-md">
+        <span className="text-balance text-secondary-foreground md:text-lg xl:text-md">
           {longDescription}
         </span>
 
-        {/* People Number and Duration */}
-        <div className="flex flex-row ">
+        {/* People Number */}
+        <div className="flex w-full flex-row justify-around md:justify-center md:gap-x-8 xl:justify-start">
           <div className="flex flex-row items-center gap-x-1">
             <User className="cardIcon" />
             <span className="text-sm md:text-md xl:text-sm">
               <span>{minPeople}</span>{" "}
               {maxPeople != minPeople ? ` à ${maxPeople}` : ""} personnes
             </span>
+          </div>
+          <div>
+            <Button asChild aria-label={`Réserver l'expérience ${name}`}>
+              <Link href="/reservation/experiences">Réserver</Link>
+            </Button>
           </div>
         </div>
       </div>

@@ -52,14 +52,14 @@ const Experiences = ({ experiences }: { experiences: Experience[] }) => {
         </ul>
 
         {/* Link Button to Experience / Reservation page */}
-        <div className="my-8 flex flex-row justify-center lg:my-12">
+        {/* <div className="my-8 flex flex-row justify-center lg:my-12">
           <Button
             asChild
             aria-label="Aller à la page pour réserver son expérience"
           >
             <Link href="/reservation/experiences">Réserver</Link>
           </Button>
-        </div>
+        </div> */}
       </div>
     </Section>
   );
