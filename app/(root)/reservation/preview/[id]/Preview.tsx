@@ -73,7 +73,7 @@ const Preview = ({
     gsap.fromTo("#preview-img", { opacity: 0 }, { opacity: 1, duration: 1 });
 
     gsap.fromTo("#preview-text", { opacity: 0 }, { opacity: 1, duration: 1, delay: screenWidth < 1280 ? 0 : 0.5});
-  });
+  },[]);
 
   const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],

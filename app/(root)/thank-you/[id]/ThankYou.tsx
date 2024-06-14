@@ -15,6 +15,8 @@ const ThankYou = ({ reservation }: { reservation: Reservation }) => {
     return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
   };
 
+  
+
   return (
     <main>
       <div className="mx-auto py-16 sm:py-24 ">

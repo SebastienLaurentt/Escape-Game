@@ -134,7 +134,7 @@ const BookingInfos = ({
       { opacity: 0 },
       { opacity: 1, duration: 1, delay: screenWidth < 1280 ? 0 : 0.5 }
     );
-  });
+  },[]);
 
   // Update Reservation Mutation
   const { mutate: updateReservationMutation, isPending } = useMutation({
@@ -154,7 +154,7 @@ const BookingInfos = ({
       <div className="xl:flex xl:flex-row">
         <div
           id="booking-img"
-          className="hidden justify-center xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0"
+          className="hidden justify-center opacity-0 xl:flex xl:w-1/2 xl:py-12 2xl:w-3/5 2xl:py-0"
         >
           <Image
             src={`https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/${reservation.experience.image}`}
@@ -167,7 +167,7 @@ const BookingInfos = ({
             {reservation.experience.name}
           </span>
         </div>
-        <div id="booking-text" className="xl:w-1/2">
+        <div id="booking-text" className="opacity-0 xl:w-1/2">
           <form onSubmit={handleSubmit}>
             <PeopleSelector
               onPeopleSelect={handlePeopleSelectAndPriceSet}
