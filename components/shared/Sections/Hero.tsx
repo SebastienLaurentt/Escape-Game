@@ -57,7 +57,7 @@ const Hero = () => {
             >
               Réserver
             </Link>
-            <span className="absolute right-0 top-1/2 h-32 w-8 -translate-y-1/2 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+            <span className="absolute right-0 top-1/2 h-32 w-8 -translate-y-1/2 translate-x-12 rotate-12 bg-secondary opacity-40 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
           </span>
         </Button>
       </Section>

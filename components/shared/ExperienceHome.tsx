@@ -79,6 +79,7 @@ const ExperienceHome = ({
               aria-label={`Réserver l'expérience ${name}`}
               onClick={onReserveClick}
               className="cursor-pointer"
+              variant="tertiary"
             >
               <span>Réserver</span>
             </Button>

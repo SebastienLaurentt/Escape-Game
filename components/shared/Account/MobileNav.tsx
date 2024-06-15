@@ -78,8 +78,9 @@ export default async function MobileNav() {
           <Button
             asChild
             aria-label="Retourner sur le site de la Villa de l'Effroi"
+            variant="tertiary"
           >
-            <Link href="/">Site</Link>
+            <Link href="/">Retour Site</Link>
           </Button>
         )}
         <SignOutButton />

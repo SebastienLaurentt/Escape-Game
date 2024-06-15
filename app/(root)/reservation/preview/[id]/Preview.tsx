@@ -239,6 +239,7 @@ const Preview = ({
               <Button
                 onClick={() => createPaymentSession()}
                 disabled={isDisabled || isPending || isSuccess}
+                variant="tertiary"
               >
                 {isPending || isSuccess
                   ? "Chargement..."

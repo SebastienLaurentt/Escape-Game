@@ -205,6 +205,7 @@ const BookingInfos = ({
                     <Button
                       disabled={isPending || !time || isSuccess}
                       type="submit"
+                      variant="tertiary"
                     >
                       {isPending || isSuccess ? "Chargement..." : "Continuer"}
                     </Button>

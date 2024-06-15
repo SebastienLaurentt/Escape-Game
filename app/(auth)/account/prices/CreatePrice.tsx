@@ -77,6 +77,7 @@ const CreatePrice = () => {
         type="submit"
         className="mx-auto flex w-[120px] justify-center"
         disabled={isPending}
+        variant="tertiary"
       >
         {isPending ? <Loader /> : "Ajouter Prix"}
       </Button>

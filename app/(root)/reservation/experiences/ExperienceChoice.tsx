@@ -99,6 +99,7 @@ const ExperienceChoice = ({ experiences }: { experiences: Experience[] }) => {
             disabled={isPending || !experienceId || isSuccess}
             type="submit"
             ref={submitButtonRef}
+            variant="tertiary"
           >
             {isPending || isSuccess ? "Chargement..." : "Continuer"}
           </Button>

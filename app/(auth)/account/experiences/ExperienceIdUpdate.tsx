@@ -256,7 +256,7 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
               />
             </div>
             <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
-              <Button type="submit" disabled={isPending}>
+              <Button type="submit" disabled={isPending} variant="tertiary">
                 {isPending ? <Loader /> : "Mettre à jour"}
               </Button>
               {isSuccess && (

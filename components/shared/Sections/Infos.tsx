@@ -85,7 +85,7 @@ const Infos = () => {
           </div>
         </div>
         <div className="my-8 flex flex-row justify-center lg:my-12">
-          <Button asChild aria-label="Aller à la page de la Foire aux Questions">
+          <Button asChild aria-label="Aller à la page de la Foire aux Questions" variant="tertiary">
             <Link href="/faq">Foire aux questions</Link>
           </Button>
         </div>

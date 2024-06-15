@@ -16,9 +16,11 @@ const buttonVariants = cva(
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        tertiary:
+          "bg-tertiary text-tertiary-foreground hover:bg-tertiary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "group relative flex w-full max-w-52 items-center justify-center overflow-hidden whitespace-pre rounded-md bg-primary text-sm font-medium text-primary-foreground shadow transition-all duration-300 ease-out hover:bg-primary/90 hover:ring-2 hover:ring-primary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+        hero: "group relative flex w-full max-w-52 items-center justify-center overflow-hidden whitespace-pre rounded-md bg-tertiary text-sm font-medium text-tertiary-foreground shadow transition-all duration-300 ease-out hover:bg-tertiary/90 hover:ring-2 hover:ring-tertiary hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
       },
       size: {
         default: " px-4 py-2",

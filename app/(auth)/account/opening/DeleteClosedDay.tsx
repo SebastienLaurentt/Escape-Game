@@ -32,7 +32,7 @@ export const DeleteButton = ({ id }: { id: string }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Button type="submit" disabled={isPending}>
+      <Button type="submit" disabled={isPending} variant="tertiary">
         {isPending ? <Loader /> : "Réouvrir"}
       </Button>
     </form>

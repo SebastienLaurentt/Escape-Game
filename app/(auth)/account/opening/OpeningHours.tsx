@@ -80,7 +80,7 @@ const OpeningHours = ({
             ))}
           </ul>
           <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
-            <Button type="button" onClick={handleSave} disabled={isPending}>
+            <Button type="button" onClick={handleSave} disabled={isPending} variant="tertiary">
               {isPending ? "Sauvegarde en cours..." : "Sauvegarder"}
             </Button>
           </div>
