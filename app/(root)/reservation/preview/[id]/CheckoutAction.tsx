@@ -51,7 +51,7 @@ export const createCheckoutSession = async (
   const product = await stripe.products.create({
     name: "La Villa de l'Effroi",
     images: [
-      "https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/images/Horror.jpg-1717198117087",
+      "https://igppurftciumtqmwijea.supabase.co/storage/v1/object/public/images/images/Horror.jpg-1718277782175",
     ],
     default_price_data: {
       currency: "eur",
