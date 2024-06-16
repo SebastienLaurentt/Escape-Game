@@ -1,4 +1,4 @@
-import { creepster } from "@/lib/font";
+import { anton } from "@/lib/font";
 import { gsap } from "gsap";
 import { X } from "lucide-react";
 import Link from "next/link";
@@ -79,7 +79,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
         <div className="mt-32 flex flex-col gap-y-12">
           <Link
             href="/"
-            className={`${creepster} flex flex-col text-5xl font-semibold uppercase leading-[64px]`}
+            className={`${anton} flex flex-col text-5xl font-semibold uppercase leading-[64px]`}
           >
             <span>la villa de </span>
             <span className="text-primary">l&apos;effroi</span>
