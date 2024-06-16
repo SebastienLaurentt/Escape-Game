@@ -33,6 +33,7 @@
     "date-fns": "^3.6.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
     "gsap": "^3.12.5",
+    "ldrs": "^1.0.2",
     "lucide-react": "^0.377.0",
     "next": "14.2.2",
     "react": "^18",

@@ -2,6 +2,7 @@
 
 import PeopleSelector from "@/components/shared/BookingForm/PeopleSelector";
 import TimeSelector from "@/components/shared/BookingForm/TimeSelector";
+import Loader from "@/components/shared/Loader";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -134,7 +135,7 @@ const BookingInfos = ({
       { opacity: 0 },
       { opacity: 1, duration: 1, delay: screenWidth < 1280 ? 0 : 0.5 }
     );
-  },[]);
+  }, []);
 
   // Update Reservation Mutation
   const { mutate: updateReservationMutation, isPending } = useMutation({
@@ -207,7 +208,13 @@ const BookingInfos = ({
                       type="submit"
                       variant="tertiary"
                     >
-                      {isPending || isSuccess ? "Chargement..." : "Continuer"}
+                      {isPending || isSuccess ? (
+                        <span className="flex flex-row items-center gap-x-2">
+                          Chargement <Loader/>
+                        </span>
+                      ) : (
+                        "Continuer"
+                      )}
                     </Button>
                   </div>
                 )}

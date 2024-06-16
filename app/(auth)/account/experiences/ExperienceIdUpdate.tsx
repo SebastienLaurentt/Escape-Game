@@ -257,15 +257,14 @@ const ExperienceIdUpdate = ({ experience }: { experience: Experience }) => {
             </div>
             <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
               <Button type="submit" disabled={isPending} variant="tertiary">
-                {isPending ? <Loader /> : "Mettre à jour"}
+                {isPending ? (
+                  <span className="flex flex-row items-center gap-x-2">
+                    Sauvegarde <Loader />
+                  </span>
+                ) : (
+                  "Sauvegarder"
+                )}
               </Button>
-              {isSuccess && (
-                <div id="message-success" aria-live="polite" aria-atomic="true">
-                  <p className="text-center text-base text-green-600">
-                    Experience updated successfully!
-                  </p>
-                </div>
-              )}
             </div>
           </form>
         </CardContent>

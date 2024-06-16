@@ -1,9 +1,14 @@
-const Loader = () => {
-  return (
-    <div className="flex items-center justify-center">
-      <div className="size-6 animate-spin rounded-xl border-y-2 border-white"></div>
-    </div>
-  );
+import React from 'react';
+import { dotPulse } from "ldrs";
+
+dotPulse.register();
+
+interface LoaderProps {
+  color?: string;
+}
+
+const Loader: React.FC<LoaderProps> = ({ color = "black" }) => {
+  return <l-dot-pulse size="20" color={color} />;
 };
 
 export default Loader;

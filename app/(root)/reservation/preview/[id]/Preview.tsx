@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -72,8 +73,12 @@ const Preview = ({
 
     gsap.fromTo("#preview-img", { opacity: 0 }, { opacity: 1, duration: 1 });
 
-    gsap.fromTo("#preview-text", { opacity: 0 }, { opacity: 1, duration: 1, delay: screenWidth < 1280 ? 0 : 0.5});
-  },[]);
+    gsap.fromTo(
+      "#preview-text",
+      { opacity: 0 },
+      { opacity: 1, duration: 1, delay: screenWidth < 1280 ? 0 : 0.5 }
+    );
+  }, []);
 
   const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],
@@ -117,7 +122,6 @@ const Preview = ({
             width={1000}
             height={1000}
             priority
-            
           />
         </div>
 
@@ -241,9 +245,13 @@ const Preview = ({
                 disabled={isDisabled || isPending || isSuccess}
                 variant="tertiary"
               >
-                {isPending || isSuccess
-                  ? "Chargement..."
-                  : "Confirmer et Payer"}
+                {isPending || isSuccess ? (
+                  <span className="flex flex-row items-center gap-x-2">
+                    Chargement <Loader />
+                  </span>
+                ) : (
+                  "Continuer"
+                )}
               </Button>
             </div>
             <div className="text-sm font-bold text-primary">

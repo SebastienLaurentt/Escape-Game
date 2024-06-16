@@ -34,7 +34,13 @@ export const DeletePrice = ({ id }: { id: string }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Button type="submit" disabled={isPending}>
-        {isPending ? <Loader /> : <Trash />}
+        {isPending ? (
+          <span className="flex flex-row items-center gap-x-2">
+            <Loader color="white" />
+          </span>
+        ) : (
+          <Trash />
+        )}
       </Button>
     </form>
   );

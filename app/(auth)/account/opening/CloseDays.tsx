@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
@@ -74,7 +74,13 @@ const CloseDays = ({ closedDays }: { closedDays: ClosedDay[] }) => {
         />
         {!isDayClosed(date) && (
           <Button type="submit" disabled={isPending}>
-            {isPending ? <Loader /> : "Fermer le jour"}
+            {isPending ? (
+              <span className="flex flex-row items-center gap-x-2">
+                Chargement <Loader color="white" />
+              </span>
+            ) : (
+              "Fermer"
+            )}
           </Button>
         )}
       </form>

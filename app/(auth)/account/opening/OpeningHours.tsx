@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
@@ -80,8 +81,19 @@ const OpeningHours = ({
             ))}
           </ul>
           <div className="flex flex-col gap-y-2 md:flex-row md:items-center md:gap-x-4 md:gap-y-0">
-            <Button type="button" onClick={handleSave} disabled={isPending} variant="tertiary">
-              {isPending ? "Sauvegarde en cours..." : "Sauvegarder"}
+            <Button
+              type="button"
+              onClick={handleSave}
+              disabled={isPending}
+              variant="tertiary"
+            >
+              {isPending ? (
+                <span className="flex flex-row items-center gap-x-2">
+                 Sauvegarde <Loader />
+                </span>
+              ) : (
+                "Sauvegarder"
+              )}
             </Button>
           </div>
         </CardContent>

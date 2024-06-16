@@ -79,7 +79,13 @@ const CreatePrice = () => {
         disabled={isPending}
         variant="tertiary"
       >
-        {isPending ? <Loader /> : "Ajouter Prix"}
+        {isPending ? (
+          <span className="flex flex-row items-center gap-x-2">
+            Ajout <Loader />
+          </span>
+        ) : (
+          "Ajouter Prix"
+        )}
       </Button>
     </form>
   );
