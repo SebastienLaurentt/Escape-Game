@@ -14,4 +14,4 @@ const anton_init = Anton({
 
 export const poppins = poppins_init.className;
 
-export const creepster = anton_init.className;
+export const anton = anton_init.className;

@@ -1,7 +1,7 @@
 "use client";
 
 import Particles from "@/components/ui/particles";
-import { creepster } from "@/lib/font";
+import { anton } from "@/lib/font";
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const Hero = () => {
         id="hero-text"
         classname="absolute z-10 opacity-0 flex flex-col items-center w-full xl:items-center text-center"
       >
-        <h1 className={`${creepster} flex flex-col uppercase`}>
+        <h1 className={`${anton} flex flex-col uppercase`}>
           <span>Entrez dans la Villa.</span>
           <span>
             Découvrez un{" "}

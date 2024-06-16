@@ -1,6 +1,6 @@
 "use client";
 
-import { creepster } from "@/lib/font";
+import { anton } from "@/lib/font";
 import { useInView } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +31,7 @@ const Footer = () => {
       <div className="flex flex-col justify-between border-t border-slate-400 pt-4 text-xs md:text-sm lg:py-8">
         <div className="mb-6">
           <span
-            className={`${creepster} text-xl uppercase md:text-2xl xl:text-3xl`}
+            className={`${anton} text-xl uppercase md:text-2xl xl:text-3xl`}
           >
             La Villa de <span className="text-primary">l&apos; Effroi</span>
           </span>
