@@ -36,6 +36,14 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta property="og:image" content="<generated>" />
+        <meta property="og:image:type" content="<generated>" />
+        <meta property="og:image:width" content="<generated>" />
+        <meta property="og:image:height" content="<generated>" />
+        <meta name="twitter:image" content="<generated>" />
+        <meta name="twitter:image:type" content="<generated>" />
+        <meta name="twitter:image:width" content="<generated>" />
+        <meta name="twitter:image:height" content="<generated>" />
         <meta name="msapplication-TileColor" content="#b91d47" />
         <meta name="theme-color" content="#ffffff" />
       </head>
