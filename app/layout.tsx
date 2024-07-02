@@ -44,6 +44,7 @@ export default function RootLayout({
         <meta name="twitter:image:type" content="<generated>" />
         <meta name="twitter:image:width" content="<generated>" />
         <meta name="twitter:image:height" content="<generated>" />
+        <meta property="og:image:alt" content="Bienvenue à la Villa de l'Effroi, l'escape game de l'horreur !" />
         <meta name="msapplication-TileColor" content="#b91d47" />
         <meta name="theme-color" content="#ffffff" />
       </head>
