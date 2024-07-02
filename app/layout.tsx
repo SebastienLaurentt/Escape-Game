@@ -7,6 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "La Villa de l'Effroi",
   description: "Bienvenue à la Villa de l'Effroi, l'escape game de l'horreur !",
+  metadataBase: new URL('https://escape-game-pi.vercel.app/'),
 };
 
 export default function RootLayout({
