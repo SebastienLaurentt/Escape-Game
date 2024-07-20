@@ -7,7 +7,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const { isAuthenticated } = getKindeServerSession();
   const isAuth = await isAuthenticated();
 
@@ -15,7 +14,6 @@ export default async function RootLayout({
     <div className="flex min-h-screen flex-col">
       <Header isAuth={isAuth} />
       <div className="flex flex-1 flex-col justify-center">{children} </div>
-
       <Footer />
     </div>
   );
